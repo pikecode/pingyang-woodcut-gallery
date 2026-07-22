@@ -56,20 +56,59 @@ function OpeningIntro() {
       },
     });
 
-    gsap.set(leftDoorRef.current, { transformOrigin: "left center", rotateY: 0 });
-    gsap.set(rightDoorRef.current, { transformOrigin: "right center", rotateY: 0 });
-    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.06 });
-    gsap.set(titleRef.current, { opacity: 0, y: 24 });
+    gsap.set(leftDoorRef.current, {
+      transformPerspective: 1400,
+      transformOrigin: "left center",
+      rotateY: 0,
+    });
+    gsap.set(rightDoorRef.current, {
+      transformPerspective: 1400,
+      transformOrigin: "right center",
+      rotateY: 0,
+    });
+    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.08 });
+    gsap.set(titleRef.current, { opacity: 0, y: 28 });
 
-    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 700) });
+    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 800) });
 
-    tl.from([leftDoorRef.current, rightDoorRef.current], { opacity: 0, duration: 0.5, ease: "power2.out" })
-      .from(sealRef.current, { scale: 1.5, opacity: 0, rotation: -8, duration: 0.55, ease: "back.out(2.8)" }, "+=0.3")
-      .to([leftRingRef.current, rightRingRef.current], { rotation: -10, duration: 0.13, ease: "power2.inOut", yoyo: true, repeat: 3 }, "+=0.4")
-      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, "-=0.1")
-      .to([leftDoorRef.current, rightDoorRef.current], { opacity: 0.06, duration: 0.2, ease: "power2.in" }, "+=1.0")
-      .to([leftDoorRef.current, rightDoorRef.current], { rotateY: (i) => i === 0 ? -105 : 105, duration: 1.4, ease: "power2.inOut" }, "<0.1")
-      .to(doorBgRef.current, { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, "<0.2");
+    // 门扇出现
+    tl.from([leftDoorRef.current, rightDoorRef.current], {
+      opacity: 0, scale: 0.98, duration: 0.7, ease: "power2.out",
+    })
+    // 印章落下
+    .from(sealRef.current, {
+      scale: 1.6, opacity: 0, rotation: -10, duration: 0.65, ease: "back.out(3)",
+    }, "+=0.35")
+    // 门环抖动（敲门三声）
+    .to([leftRingRef.current, rightRingRef.current], {
+      rotation: -14, duration: 0.12, ease: "power2.inOut", yoyo: true, repeat: 5,
+    }, "+=0.45")
+    // 标题浮现
+    .to(titleRef.current, {
+      opacity: 1, y: 0, duration: 0.65, ease: "power3.out",
+    }, "-=0.2")
+    // 停留欣赏门扇——关键！
+    .to({}, { duration: 2.2 })
+    // 门缝透光
+    .to([leftDoorRef.current, rightDoorRef.current], {
+      boxShadow: "inset 0 0 60px rgba(232,175,55,0.15)",
+      duration: 0.5, ease: "power2.out",
+    })
+    // 门扇推开（3D 旋转）
+    .to(leftDoorRef.current, {
+      rotateY: -108, duration: 1.8, ease: "power2.inOut",
+    }, "+=0.1")
+    .to(rightDoorRef.current, {
+      rotateY: 108, duration: 1.8, ease: "power2.inOut",
+    }, "<")
+    // 画作从门后透出
+    .to(doorBgRef.current, {
+      opacity: 1, scale: 1, duration: 1.4, ease: "power2.out",
+    }, "<0.3")
+    // 标题随门消散
+    .to(titleRef.current, {
+      opacity: 0, y: -16, duration: 0.6, ease: "power2.in",
+    }, "<0.4");
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);

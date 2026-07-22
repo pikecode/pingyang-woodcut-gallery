@@ -2155,23 +2155,26 @@ img {
 .door-frame {
   position: absolute;
   inset: 0;
-  display: flex;
 }
 
 .door-panel {
-  flex: 1;
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
   background: linear-gradient(160deg, #7A1A1A 0%, #5C1212 50%, #3A0A0A 100%);
   will-change: transform;
 }
 
 .door-panel.is-left {
+  left: 0;
   transform-origin: left center;
   border-right: 2px solid rgba(232, 150, 26, 0.45);
   box-shadow: inset -8px 0 24px rgba(0,0,0,0.5);
 }
 
 .door-panel.is-right {
+  right: 0;
   transform-origin: right center;
   border-left: 2px solid rgba(232, 150, 26, 0.45);
   box-shadow: inset 8px 0 24px rgba(0,0,0,0.5);
