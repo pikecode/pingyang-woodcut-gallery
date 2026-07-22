@@ -2419,11 +2419,48 @@ img {
   text-shadow: 0 4px 24px rgba(0,0,0,0.6);
 }
 
-.door-sub {
-  font-size: 14px;
-  letter-spacing: 0.32em;
-  color: rgba(255,255,255,0.65);
-  margin-top: 4px;
+.door-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 70% at 50% 50%,
+    rgba(220, 160, 40, 0.35) 0%,
+    rgba(180, 100, 20, 0.15) 40%,
+    transparent 70%);
+}
+
+.door-light-crack {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 8px;
+  transform: translateX(-50%);
+  transform-origin: center top;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 220, 100, 0.9) 50%,
+    transparent 100%);
+  filter: blur(3px);
+  z-index: 6;
+  pointer-events: none;
+}
+
+.door-title-chars {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  font-family: var(--display);
+  font-size: clamp(46px, 9vw, 96px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.door-title-chars span {
+  display: inline-block;
 }
 
 /* ─── 音频播放器 ──────────────────────────────────── */

@@ -37,10 +37,14 @@ function OpeningIntro() {
   const leftDoorRef = useRef(null);
   const rightDoorRef = useRef(null);
   const doorBgRef = useRef(null);
+  const doorGlowRef = useRef(null);
   const sealRef = useRef(null);
   const leftRingRef = useRef(null);
   const rightRingRef = useRef(null);
-  const titleRef = useRef(null);
+  const eyebrowRef = useRef(null);
+  const titleCharsRef = useRef([]);
+  const subRef = useRef(null);
+  const lightCrackRef = useRef(null);
 
   useEffect(() => {
     if (!visible || !containerRef.current) return undefined;
@@ -48,7 +52,7 @@ function OpeningIntro() {
     document.body.style.overflow = "hidden";
 
     const exit = () => gsap.to(containerRef.current, {
-      opacity: 0, duration: 0.7, ease: "power2.inOut",
+      opacity: 0, duration: 0.8, ease: "power2.inOut",
       onComplete: () => {
         try { window.sessionStorage.setItem(INTRO_STORAGE_KEY, "1"); } catch { /**/ }
         document.body.style.overflow = orig;
@@ -56,65 +60,75 @@ function OpeningIntro() {
       },
     });
 
-    gsap.set(leftDoorRef.current, {
-      transformPerspective: 1400,
-      transformOrigin: "left center",
-      rotateY: 0,
-    });
-    gsap.set(rightDoorRef.current, {
-      transformPerspective: 1400,
-      transformOrigin: "right center",
-      rotateY: 0,
-    });
-    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.08 });
-    gsap.set(titleRef.current, { opacity: 0, y: 28 });
+    gsap.set(leftDoorRef.current, { transformPerspective: 1600, transformOrigin: "left center" });
+    gsap.set(rightDoorRef.current, { transformPerspective: 1600, transformOrigin: "right center" });
+    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
+    gsap.set(doorGlowRef.current, { opacity: 0 });
+    gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
 
-    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 800) });
+    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 900) });
 
-    // 门扇出现
-    tl.from([leftDoorRef.current, rightDoorRef.current], {
-      opacity: 0, scale: 0.98, duration: 0.7, ease: "power2.out",
-    })
-    // 印章落下
-    .from(sealRef.current, {
-      scale: 1.6, opacity: 0, rotation: -10, duration: 0.65, ease: "back.out(3)",
-    }, "+=0.35")
-    // 门环抖动（敲门三声）
-    .to([leftRingRef.current, rightRingRef.current], {
-      rotation: -14, duration: 0.12, ease: "power2.inOut", yoyo: true, repeat: 5,
-    }, "+=0.45")
-    // 标题浮现
-    .to(titleRef.current, {
-      opacity: 1, y: 0, duration: 0.65, ease: "power3.out",
-    }, "-=0.2")
-    // 停留欣赏门扇——关键！
-    .to({}, { duration: 2.2 })
-    // 门缝透光
-    .to([leftDoorRef.current, rightDoorRef.current], {
-      boxShadow: "inset 0 0 60px rgba(232,175,55,0.15)",
-      duration: 0.5, ease: "power2.out",
-    })
-    // 门扇推开（3D 旋转）
-    .to(leftDoorRef.current, {
-      rotateY: -108, duration: 1.8, ease: "power2.inOut",
-    }, "+=0.1")
-    .to(rightDoorRef.current, {
-      rotateY: 108, duration: 1.8, ease: "power2.inOut",
-    }, "<")
-    // 画作从门后透出
-    .to(doorBgRef.current, {
-      opacity: 1, scale: 1, duration: 1.4, ease: "power2.out",
-    }, "<0.3")
-    // 标题随门消散
-    .to(titleRef.current, {
-      opacity: 0, y: -16, duration: 0.6, ease: "power2.in",
-    }, "<0.4");
+    tl
+      // ① 门扇立刻出现（无长黑屏）
+      .from([leftDoorRef.current, rightDoorRef.current], {
+        opacity: 0, duration: 0.28, ease: "power1.out",
+      })
+      // ② 印章快速落印
+      .from(sealRef.current, {
+        scale: 2, opacity: 0, rotation: -12, duration: 0.5, ease: "back.out(3.5)",
+      }, "+=0.12")
+      // ③ 眉标滑入
+      .from(eyebrowRef.current, {
+        opacity: 0, y: 14, duration: 0.38, ease: "power2.out",
+      }, "+=0.18")
+      // ④ 标题逐字落下（每字间隔 90ms）
+      .from(titleCharsRef.current, {
+        opacity: 0, y: 32, rotationX: -45, duration: 0.45,
+        stagger: 0.09, ease: "back.out(1.6)",
+        transformOrigin: "50% 100%",
+      }, "-=0.1")
+      // ⑤ 副标淡入
+      .from(subRef.current, {
+        opacity: 0, y: 10, duration: 0.35, ease: "power2.out",
+      }, "-=0.1")
+      // ⑥ 停留欣赏——门、印章、标题
+      .to({}, { duration: 1.8 })
+      // ⑦ 门环敲击（预示要开门）
+      .to([leftRingRef.current, rightRingRef.current], {
+        rotation: -16, duration: 0.1, ease: "power2.inOut", yoyo: true, repeat: 5,
+      })
+      // ⑧ 门缝透出金光
+      .to(lightCrackRef.current, {
+        scaleY: 1, opacity: 1, duration: 0.55, ease: "power2.out",
+      }, "+=0.15")
+      .to(doorGlowRef.current, {
+        opacity: 0.6, duration: 0.8, ease: "power2.out",
+      }, "<0.2")
+      // ⑨ 门缓缓推开（宝藏房间感）
+      .to(leftDoorRef.current, {
+        rotateY: -112, duration: 2.5, ease: "power1.inOut",
+      }, "+=0.2")
+      .to(rightDoorRef.current, {
+        rotateY: 112, duration: 2.5, ease: "power1.inOut",
+      }, "<")
+      // ⑩ 画作从门后透出，暖光弥漫
+      .to(doorBgRef.current, {
+        opacity: 1, scale: 1, duration: 2.2, ease: "power2.out",
+      }, "<0.4")
+      // ⑪ 标题与印章随门消散
+      .to([eyebrowRef.current, ...titleCharsRef.current, subRef.current, sealRef.current], {
+        opacity: 0, y: -20, duration: 0.7, ease: "power2.in", stagger: 0.02,
+      }, "<0.5")
+      // ⑫ 门缝光消失
+      .to([lightCrackRef.current, doorGlowRef.current], {
+        opacity: 0, duration: 0.6,
+      }, "<0.3");
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);
 
   const skip = () => gsap.to(containerRef.current, {
-    opacity: 0, duration: 0.5, ease: "power2.inOut",
+    opacity: 0, duration: 0.4, ease: "power2.inOut",
     onComplete: () => {
       try { window.sessionStorage.setItem(INTRO_STORAGE_KEY, "1"); } catch { /**/ }
       setVisible(false);
@@ -129,12 +143,15 @@ function OpeningIntro() {
         <X size={16} /><span>SKIP</span>
       </button>
 
+      {/* 门后宝藏画作 */}
       <div ref={doorBgRef} className="door-bg" aria-hidden="true">
         <img src="/images/py-087/primary.webp" alt="" />
         <div className="door-bg-overlay" />
-        <div className="door-bg-vignette" />
       </div>
+      {/* 开门时的暖光晕 */}
+      <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
 
+      {/* 门扇 */}
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
           <div className="door-studs" />
@@ -147,10 +164,18 @@ function OpeningIntro() {
         </div>
       </div>
 
-      <div ref={titleRef} className="door-title">
-        <span className="door-eyebrow">山西临汾 · 国家级非物质文化遗产</span>
-        <strong>平阳木版年画</strong>
-        <span className="door-sub">数字馆藏</span>
+      {/* 门缝光线 */}
+      <div ref={lightCrackRef} className="door-light-crack" aria-hidden="true" />
+
+      {/* 标题 */}
+      <div className="door-title">
+        <span ref={eyebrowRef} className="door-eyebrow">山西临汾 · 国家级非物质文化遗产</span>
+        <strong className="door-title-chars">
+          {"平阳木版年画".split("").map((c, i) => (
+            <span key={i} ref={(el) => { titleCharsRef.current[i] = el; }}>{c}</span>
+          ))}
+        </strong>
+        <span ref={subRef} className="door-sub">数字馆藏</span>
       </div>
     </div>
   );
