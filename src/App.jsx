@@ -103,30 +103,30 @@ function OpeningIntro() {
       })
       // ⑧ 门缝金光
       .to(lightCrackRef.current, {
-        scaleY: 1, opacity: 1, duration: 0.55, ease: "power2.out",
-      }, "+=0.15")
-      .to(doorGlowRef.current, {
-        opacity: 0.6, duration: 0.8, ease: "power2.out",
-      }, "<0.2")
-      // ⑨ 门缓缓推开
-      .to(leftDoorRef.current, {
-        rotateY: -112, duration: 2.5, ease: "power1.inOut",
+        scaleY: 1, opacity: 1, duration: 0.7, ease: "power1.out",
       }, "+=0.2")
-      .to(rightDoorRef.current, {
-        rotateY: 112, duration: 2.5, ease: "power1.inOut",
-      }, "<")
-      // ⑩ 画作透出
-      .to(doorBgRef.current, {
-        opacity: 1, scale: 1, duration: 2.2, ease: "power2.out",
-      }, "<0.4")
-      // ⑪ 标题随门消散
+      .to(doorGlowRef.current, {
+        opacity: 0.5, duration: 1.0, ease: "power1.out",
+      }, "<0.2")
+      // ⑨ 字体缓缓消失
       .to([eyebrowRef.current, ...titleCharsRef.current.filter(Boolean), subRef.current, sealRef.current].filter(Boolean), {
-        opacity: 0, y: -20, duration: 0.7, ease: "power2.in", stagger: 0.02,
-      }, "<0.5")
+        opacity: 0, y: -14, duration: 1.4, ease: "power1.inOut", stagger: 0.04,
+      }, "+=0.1")
+      // ⑩ 门缓缓推开
+      .to(leftDoorRef.current, {
+        rotateY: -112, duration: 3.2, ease: "power1.inOut",
+      }, "-=0.5")
+      .to(rightDoorRef.current, {
+        rotateY: 112, duration: 3.2, ease: "power1.inOut",
+      }, "<")
+      // ⑪ 宝藏缓缓透出
+      .to(doorBgRef.current, {
+        opacity: 1, scale: 1, duration: 3.0, ease: "power1.out",
+      }, "<0.6")
       // ⑫ 光线收敛
       .to([lightCrackRef.current, doorGlowRef.current], {
-        opacity: 0, duration: 0.6,
-      }, "<0.3");
+        opacity: 0, duration: 1.2, ease: "power1.inOut",
+      }, "<1.0");
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);
