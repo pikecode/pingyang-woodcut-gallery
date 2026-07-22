@@ -65,6 +65,11 @@ function OpeningIntro() {
     gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
     gsap.set(doorGlowRef.current, { opacity: 0 });
     gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
+    // 提前隐藏所有文字元素，避免 .from() 启动前闪现
+    gsap.set(sealRef.current, { opacity: 0 });
+    gsap.set(eyebrowRef.current, { opacity: 0 });
+    gsap.set(titleCharsRef.current, { opacity: 0 });
+    gsap.set(subRef.current, { opacity: 0 });
 
     const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 900) });
 
