@@ -44,7 +44,17 @@ async function runViewport(name, viewport) {
   });
   page.on("pageerror", (error) => errors.push(error.message));
 
+  await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "networkidle" });
+  await page.locator(".opening-intro").waitFor();
+  await page.waitForTimeout(1000);
+  await assertViewport(page, `${name} opening`);
+  await page.screenshot({ path: path.join(OUTPUT, `opening-${name}.png`), fullPage: false });
+  await page.locator(".opening-intro").waitFor({ state: "detached" });
+
   await page.goto(BASE_URL, { waitUntil: "networkidle" });
+  if (await page.locator(".opening-intro").count()) {
+    throw new Error(`${name}: opening intro replayed in the same session`);
+  }
   await page.locator("h1").filter({ hasText: "平阳木版年画" }).waitFor();
   await waitForImages(page);
   await assertViewport(page, `${name} home`);
