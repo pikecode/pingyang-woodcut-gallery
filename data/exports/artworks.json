@@ -1,0 +1,2678 @@
+{
+  "schemaVersion": 1,
+  "artworkCount": 55,
+  "artworks": [
+    {
+      "catalogNo": 1,
+      "slug": "py-001",
+      "title": "牛郎织女",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "画面上方点缀星辰，下方云间喜鹊搭成鹊桥。织女站在云端左侧，披云肩，着上披下裙，腰系丝绦，右手举拂尘，左臂前伸，正欲迎上前与牛郎和一双儿女相会。而右侧鹊桥一端的牛郎正携儿带女向织女走来。但见幼子挥手欲奔向母亲织女，身侧的牛郎头戴草帽，一身农夫打扮，左手上扬，右手抚子头顶。而牛郎身后的女儿双手作揖，正向织女谦恭施礼。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-001/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3887789,
+          "sha256": "a2c03763cd2f1fb1b0e029f5efe12812df6799fe24026d3d4e961286adb00971"
+        }
+      ]
+    },
+    {
+      "catalogNo": 2,
+      "slug": "py-002",
+      "title": "玉虎坠（一）",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "画面表现的是王元与随从王忠、王义赴洛阳任职途中偶遇冯彦的情形。中心人物王元头戴展翅纱帽，垂三绺髯，着蟒袍腰横玉带，左手轻扶王义，右手指向画面右侧的冯义。王元左侧为王义，右手叉腰，左手持马鞭，侧身面向主人王元；王元身右为王忠，金鸡独立于王元与冯义间，左臂后伸护主，右臂曲肘握刀作势进攻。冯义头扎帽巾，右腿屈弓、左腿侧伸呈探海式，左臂前探作惊愕状，右手抚帽巾惊疑不定；头顶虚空处幻化出玉虎坠本体，点明剧情。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-002/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4523614,
+          "sha256": "530f4fe3f060664e16c55cc02a85cb386f54ac07819ad23a1143c1141aae7b39"
+        }
+      ]
+    },
+    {
+      "catalogNo": 3,
+      "slug": "py-003",
+      "title": "玉虎坠（二）",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "画面左侧为冯义（冯彦父），头束发髻，戴三绺髯，呈骑马蹲裆式，双手背于身后。其身后为忠仆贺吉卷，头戴一把抓的随风倒，亦骑马蹲裆式，肩扛长棍，右手紧握棍头。二人前方、画面右侧为马武，头戴草王盔，挂满髯，背插宝剑，双手在空中比划，双脚离地作疾奔状，扭头回望身后追赶的二人。画面边框饰以斜向卍字纹，下边框正中印刻着“天下太平”四字。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-003/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4072763,
+          "sha256": "edfa97e20f01fd25cb1bf1eac28af093bcf7f5062ec954b63c2d3eeeee24c7cf"
+        }
+      ]
+    },
+    {
+      "catalogNo": 4,
+      "slug": "py-004",
+      "title": "佘塘关",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "火山王杨衮与佘王佘通迎面交战的场景。杨衮（错为杨滚）立于左侧，头戴硬包巾，满髯，项挂狐尾，背插靠旗，腹部绣虎头，双腿右弓左箭，左手持大刀，刀柄隐于身后，刀锋指向佘通，右手挥动雌雄锤，锤头击向佘通。佘通头戴霸王盔，盔头插双翎，挂虬髯，背后挂狐尾，身穿箭衣，外罩马褂，右手执鞭，左手五指向前伸开，双脚大步流星，撤退时探身回望以避锤击。佘通身后有一兵卒，头戴兵帽，肩扛战旗，同向撤退。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-004/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4378923,
+          "sha256": "4ef4ddbaa2fb01e0f088d810824c272f33280cce8d4743b1607534955b769143"
+        }
+      ]
+    },
+    {
+      "catalogNo": 5,
+      "slug": "py-005",
+      "title": "西厢记",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "崔莺莺由外向内探望，穿长裙，罩披风，右手执扇，右臂上抬。莺莺身后即红娘，头梳花髻，外罩坎肩，脚踩绣鞋，左臂平抬，右臂后甩，左腿前迈，刚刚步入。张生侧坐桌前，头戴书生巾，身穿道袍，右手捋垂带，左臂靠于桌案。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-005/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4441100,
+          "sha256": "e16249a333d1817f6c129bb1a59d6fa359897141d9b367eb193e500c2ebec189"
+        }
+      ]
+    },
+    {
+      "catalogNo": 6,
+      "slug": "py-006",
+      "title": "昌兴店",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "表现的是刘坝天与吴孝先、吴兰英兄妹交手败北后，落荒而逃的情形。右侧的刘坝天，头戴罗帽，身穿道袍，大步流星逃走，右臂在前，左臂在后，扭头望向吴家兄妹。吴孝先头戴一把抓的随风倒，外罩斗篷，绑腿，脚蹬薄底靴，左手反握长棍。吴兰英反手握刀，紧随其后。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-006/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4210512,
+          "sha256": "140ca15da38764013e7b1b5113c70969f3a9880210ee8d54bc5697976eb61f2f"
+        }
+      ]
+    },
+    {
+      "catalogNo": 7,
+      "slug": "py-007",
+      "title": "挑帘裁衣",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "为潘金莲、西门庆被武大郎捉奸在屋的情形。武大郎立于左，头戴鸭尾巾，胸前挂髯口，左手提壶，右手挎篮。潘金莲坐于炕沿，脑后梳双髻，着旦衫长裙，左臂平抬，右手呈兰花指，双腕戴镯。西门庆侧坐于桌后，头戴相公帽，左手捋飘带，右臂扶案。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-007/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4363608,
+          "sha256": "b52e268ed2c57cb9d1c18a6d0b49b5f21de06cedf524efd1eb3742ada9d526ac"
+        }
+      ]
+    },
+    {
+      "catalogNo": 8,
+      "slug": "py-008",
+      "title": "乌龙院",
+      "aliases": [
+        "宋江闹院",
+        "杀惜"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《宋江闹院》《杀惜》，取材于《水浒传》。表现的是宋江回到乌龙院，撞见阎惜娇与张文远私会的情形。宋江立于右，头戴员外巾，左手捻三绺须，刚进屋门，正在窃听屋内的谈话。阎惜娇左腿屈于炕沿，右腿落地，脚踩绣鞋，左手兰花指，右手握扇。张文远头戴相公帽，右手张开，作讲述状。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-008/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4700394,
+          "sha256": "20e5aa01147d8e4a7b4f1c02ea2613ba3497f22465dcc4d2494226e2fae20c87"
+        }
+      ]
+    },
+    {
+      "catalogNo": 9,
+      "slug": "py-009",
+      "title": "望江亭",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "白士中坐右侧，头戴相公帽，右手扶膝，左手抬起，似有所述。白道姑头戴道巾，右手置膝，左手握拂尘。身后的是谭记儿，左手托腮，若有所思。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-009/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4546,
+          "height": 2184,
+          "bytes": 4793926,
+          "sha256": "ac5f626e04c2944e6335da2479753f68894b81945372ec037ecff28bd1236efb"
+        }
+      ]
+    },
+    {
+      "catalogNo": 10,
+      "slug": "py-010",
+      "title": "闹书馆",
+      "aliases": [
+        "狐狸仙闹书馆"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《狐狸仙闹书馆》，为《狐狸缘》中的一折。张蛊与狐狸姐妹正在书馆内饮酒。张蛊头戴书生巾，右手端茶，坐在案后。大仙姑左手扶在张蛊肩上，右手抬至肩部，掌中握长辫，向右扭头，似与四仙姑沟通。四仙姑则缓步走来，上身微倾，左手背于腰后，右手晃动，施展法术，烹饪出四道美味菜肴。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-010/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3991003,
+          "sha256": "b10b719e1583e75592e9bca195d1e4a4d4c4802abeafe98595d7913146e068e7"
+        }
+      ]
+    },
+    {
+      "catalogNo": 11,
+      "slug": "py-011",
+      "title": "少华山",
+      "aliases": [
+        "小富贵图",
+        "双莲配"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《小富贵图》《双莲配》。倪俊头戴书生巾，双腿分叉，坐于靠背椅，双手前伸于火盆，扭头注视着殷碧莲。殷碧莲（错为殷璧莲）右手托腮，左手轻抚幔帐，含情脉脉张望。桌上烛台，烘托洞房氛围。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-011/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4475115,
+          "sha256": "6a9cca7cdc069a375fbe05530a3a66329c3121d6616eadc3edf49e8f33a7d58e"
+        }
+      ]
+    },
+    {
+      "catalogNo": 12,
+      "slug": "py-012",
+      "title": "林小姐",
+      "aliases": [
+        "巧连珠",
+        "水晶带"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《巧连珠》《水晶带》。画面表现的是书生陶景玉去洛阳林家途中，遭遇强劫的故事。强盗头戴毡帽，战衣战裙，外罩斗篷，身后背刀，双腿跨立，左臂抬胸前，右掌打向陶公子，扭头望着两位女子。陶公子扎着马步，双臂高举，正在应战。二女子双膝跪地，左手撑地，右手抱头，一副求饶状。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-012/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4388951,
+          "sha256": "ed8c75b5776f29bdc1c0d6c9dcaa3d5e3b0e8691e5075a419385b1047876d52c"
+        }
+      ]
+    },
+    {
+      "catalogNo": 13,
+      "slug": "py-013",
+      "title": "盗仙草",
+      "aliases": [
+        "盗灵芝",
+        "雄黄阵"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《盗灵芝》《雄黄阵》。左侧的白素贞，头戴额子，身穿战衣，外罩战裙，左腿单膝跪地，右手执剑拄地，左手举剑，回头望向仙童。仙童头束发带，右手高剑，左手直指，气势逼人。南极仙翁左手拄龙头杖，右手端宝器，正在观望，尚未赠予仙草。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-013/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4009961,
+          "sha256": "787448b84c37e392fb44665c8585ddb5120a4ab5d6e68d3ea253f97964ca50f5"
+        }
+      ]
+    },
+    {
+      "catalogNo": 14,
+      "slug": "py-014",
+      "title": "水漫金山",
+      "aliases": [
+        "金山寺",
+        "降香水斗",
+        "水斗"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《金山寺》《降香水斗》《水斗》。表现的是白素贞与小青水漫金山寺的战斗场景。白素贞头戴额子，身穿战衣，双手持剑，左脚落地，右脚高抬，扭头怒视法海。小青双腿前弓，双手持剑，回身向左扭头。童子右腿高抬，正大步流星朝赶来。法海外罩僧袍，项挂佛珠，右腿高踩，右手反向握剑，左臂高举过头顶，正在施展法术，阻拦海水漫寺。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-014/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3974104,
+          "sha256": "9335f64b7b2b2df8597c5e51b58d143cbe7b90ae9044a1fcc5de928fa2e49d5c"
+        }
+      ]
+    },
+    {
+      "catalogNo": 15,
+      "slug": "py-015",
+      "title": "断桥",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "为白素贞、小青与许仙在断桥相遇的情形。小青立于左，满脸怒气，右手反握宝剑，左手手背叉腰。白素贞端坐石桌，面向许仙，右手举起有所指向，左手前伸扶住许仙右手。许仙头右手与白素贞相握，似在讲诉。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-015/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3998134,
+          "sha256": "3083ffd667bb8bfe05aab9203c60d81ff2db54b9db82a33cf79a2c71bf0aca48"
+        }
+      ]
+    },
+    {
+      "catalogNo": 16,
+      "slug": "py-016",
+      "title": "黄鹤楼",
+      "aliases": [
+        "刘玄德醉走黄鹤楼"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《刘玄德醉走黄鹤楼》。表现的是周瑜与刘备在黄鹤楼举行宴会的场景。画面绘四人，周瑜据中，头戴紫金冠插双翎，身穿蟒袍，腰系玉带，左脚蹬地，右脚高抬踩在鼓凳上，左臂抬至胸前，右手高举搬翎。其身后立一吴将，头扎软巾，上系绒球，右手扶腰握剑，左臂高举。刘备与周瑜相对而立，双手作揖，弯腰向前，以示恭敬。刘备身后大将为赵云，右手前伸，略有所指，左手怀抱竹节。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-016/01-primary.png",
+          "publicUrl": null,
+          "format": "PNG",
+          "mimeType": "image/png",
+          "width": 949,
+          "height": 514,
+          "bytes": 1105380,
+          "sha256": "3ac64ee86d9de0745f0198c0f071e0b5a95ee06cd8d45f7c14b5eca3ee3bd3ed"
+        }
+      ]
+    },
+    {
+      "catalogNo": 17,
+      "slug": "py-017",
+      "title": "辕门射戟",
+      "aliases": [
+        "夺小沛"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《夺小沛》。吕布站中央，头戴紫金冠插双翎，身穿蟒袍，身后佩剑，双手扬起掰翎，双腿跨立，扭头正与张飞、刘备对话。张飞面朝吕布，高举双拳，横亘于刘备身前。刘备双手前伸，似在表述。吕布手下大将，双手抱拳，正向纪灵劝解。纪灵双手作揖，回应对方。纪灵身后立一名武将。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-017/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3956735,
+          "sha256": "d06d7ac74cc5609a5287b0d3aa5e710581e19b0558c09c9f57b1f40e9622a03f"
+        }
+      ]
+    },
+    {
+      "catalogNo": 18,
+      "slug": "py-018",
+      "title": "回荆州",
+      "aliases": [
+        "龙凤配"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《龙凤配》，为《甘露寺》中的一折。刘备据中，右手捋须，身体面对孙尚香，头则扭向赵云，赵云双手合抱，似在禀报。孙尚香则拱手立于一旁。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-018/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4246935,
+          "sha256": "40d83a0157dc72d4f37326ab5ce743e396f6228f3f9f4c1a0468386b169ee8bc"
+        }
+      ]
+    },
+    {
+      "catalogNo": 19,
+      "slug": "py-019",
+      "title": "汾河湾",
+      "aliases": [
+        "仁贵打雁"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《仁贵打雁》，取材于《征东全传》。薛丁山右手握弓，箭已离手射出，三只大雁中的一只中箭坠落。薛仁贵右手平抬，左手挥动马鞭，回身望向薛丁山。左侧少女右手扛枪，左手托腮，回身望向薛丁山。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-019/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4497117,
+          "sha256": "9475f92eeb4fcc09f6664b038aa2d4c0a83e9b1e418254682962361ee7b8af11"
+        }
+      ]
+    },
+    {
+      "catalogNo": 20,
+      "slug": "py-020",
+      "title": "彦贵卖水",
+      "aliases": [
+        "火焰驹",
+        "李彦贵卖水",
+        "李彦龙征北"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《火焰驹》《李彦贵卖水》《李彦龙征北》。表现的是李彦贵在卖水途中与黄桂英相见的情形。李彦贵肩挑扁担，两端各挂水桶，右腿前迈，头向后扭，张望向黄桂英。丫环立于二人之间，手指李彦贵，头扭向小姐黄桂英，似在介绍。黄桂英左手托腮，右手握扇，目光注向李彦贵。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-020/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4079247,
+          "sha256": "c2784b38a59c4b5b21b9bcf8121495cb2e3093c321f9a2e77ed1faad1f55229a"
+        }
+      ]
+    },
+    {
+      "catalogNo": 21,
+      "slug": "py-021",
+      "title": "法门寺",
+      "aliases": [
+        "郿坞县",
+        "朱砂井",
+        "双姣奇缘"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《郿坞县》《朱砂井》《双姣奇缘》。刘瑾（错为刘锦），头戴九龙冠，身穿蟒袍，项挂佛珠，端坐公堂，正在听取赵廉的汇报。赵廉（错为赵连）上身前倾，双手展卷，正念诉状。巧娇（错为巧焦），双膝跪在公案前，双手撩裙摆，脑袋上扬。刘瑾旁站立太监贾桂，所持拂尘扬在桌前，正在言语。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-021/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4110080,
+          "sha256": "612998bb46bd6fa675e9925fe1672566ec5646eaf6d76e029232b139d1016b87"
+        }
+      ]
+    },
+    {
+      "catalogNo": 22,
+      "slug": "py-022",
+      "title": "白水滩",
+      "aliases": [
+        "捉拿青面虎",
+        "十一郎"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《捉拿青面虎》《十一郎》。青面虎许起英，蓬头垢面，赤裸上身，下穿长裤，外扎战裙，右手握刀，正在追赶骑马逃走的刘仁杰（王公子）。许佩珠胯下骑马，头插双翎，项两侧垂狐尾，右手执剑，也在追赶。刘仁杰急催战马，回身枪指青面虎兄妹。右上方为十一郎，手扶担挑，正在张望，尚未卷入战局。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-022/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4018553,
+          "sha256": "3a759253458760cf021624deaab02a967c20231fce0854d5da08808d43a216ee"
+        }
+      ]
+    },
+    {
+      "catalogNo": 23,
+      "slug": "py-023",
+      "title": "马童死了",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "共绘七人，其装扮相仿，均头扎软巾，袄衣袄裤，腰中系带，足蹬薄底靴，手持长枪，为战斗场景。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-023/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3753653,
+          "sha256": "1ecc3f0ceda3f2f330ffa64c305477bd56d5089526f0903fdcfe18f05724d92b"
+        }
+      ]
+    },
+    {
+      "catalogNo": 24,
+      "slug": "py-024",
+      "title": "牧羊卷",
+      "aliases": [
+        "硃痕记",
+        "牧羊山",
+        "双槐树",
+        "黄龙造反"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《硃痕记》《牧羊山》《双槐树》《黄龙造反》。朱春登头戴套翅纱帽，身着补子官袍，端坐椅上。赵锦棠（错为赵景堂）双膝跪于前，右手撩长裙，左手抱头，侧身仰视。另有吏卒持剑赶来。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-024/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4546,
+          "height": 2184,
+          "bytes": 4316854,
+          "sha256": "ff8ed6f68143c210b88f4ee2726e02dd29b6bba9e01b1de17de96d611b66f898"
+        }
+      ]
+    },
+    {
+      "catalogNo": 25,
+      "slug": "py-025",
+      "title": "打金枝",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": {
+        "code": "lantern-picture",
+        "name": "灯画"
+      },
+      "material": null,
+      "technique": {
+        "code": "woodblock-hand-painted",
+        "name": "版印手绘"
+      },
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 15.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "15×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "郭暖正在屈身劝说公主与其同往为郭子仪祝寿。公主坐在椅上，左手纨扇，右手托腮，若有所思。右侧太监，扭身偷窥。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-025/01-primary.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 4000,
+          "height": 3000,
+          "bytes": 3171842,
+          "sha256": "fab9fd3ae79826805f356bc71230960ba77ea1d11e12d74d5928e9c70964e3b9"
+        }
+      ]
+    },
+    {
+      "catalogNo": 26,
+      "slug": "py-026",
+      "title": "三疑计",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": {
+        "code": "lantern-picture",
+        "name": "灯画"
+      },
+      "material": null,
+      "technique": {
+        "code": "woodblock-hand-painted",
+        "name": "版印手绘"
+      },
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 15.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "15×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "唐寅立于双臂向右平端，挂刀落地，跨步向前。李月英手持纨扇，扭身后望，丫环则立其身后。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-026/01-primary.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 4000,
+          "height": 3000,
+          "bytes": 3029754,
+          "sha256": "3372982ef3a6b2138dbb99a7e46fd85db90e075ae2bb95403d489cd4705dadf4"
+        }
+      ]
+    },
+    {
+      "catalogNo": 27,
+      "slug": "py-027",
+      "title": "高平关",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": {
+        "code": "lantern-picture",
+        "name": "灯画"
+      },
+      "material": null,
+      "technique": {
+        "code": "woodblock-hand-painted",
+        "name": "版印手绘"
+      },
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 15.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "15×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "赵匡胤头戴双翎王冠，胸前挂髯口，身穿蟒袍，左手捻须，右臂托布袋，端坐椅上。高行周立于案后，左手捻须，右手伏案，左脚踏于椅上。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-027/01-primary.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 4000,
+          "height": 3000,
+          "bytes": 3315047,
+          "sha256": "0379b1e7678823bb38936ab2bb23a9557ee7f4a4b1eae219e47d8cd02eb4ef88"
+        }
+      ]
+    },
+    {
+      "catalogNo": 28,
+      "slug": "py-028",
+      "title": "打渔杀家",
+      "aliases": [
+        "庆顶珠",
+        "讨渔税"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": {
+        "code": "lantern-picture",
+        "name": "灯画"
+      },
+      "material": null,
+      "technique": {
+        "code": "woodblock-hand-painted",
+        "name": "版印手绘"
+      },
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 15.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "15×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《庆顶珠》《讨渔税》。萧恩双臂高抬，左手托须。萧桂英立于其后，头顶系花，戴虞姬罩，披云肩，身体外斜。教师爷右臂平抬，高捋衣袖，左臂放在套脖布条上，一脸赖皮相。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-028/01-primary.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 4000,
+          "height": 2352,
+          "bytes": 28255332,
+          "sha256": "6dcd0b4c7d5765517f28e135ee306978476311fd0015ad958055ef92b6325b16"
+        }
+      ]
+    },
+    {
+      "catalogNo": 29,
+      "slug": "py-029",
+      "title": "进蛮诗",
+      "aliases": [
+        "太白醉酒",
+        "太白醉写",
+        "吓蛮书"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": {
+        "code": "lantern-picture",
+        "name": "灯画"
+      },
+      "material": null,
+      "technique": {
+        "code": "woodblock-hand-painted",
+        "name": "版印手绘"
+      },
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 15.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "15×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《太白醉酒》《太白醉写》《吓蛮书》。为使臣献表的特写。其头戴盔头，插双翎，两侧挂狐尾，右手托蛮表，蛮表两端系丝绸，嘴巴大张，面露狰狞。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-029/01-primary.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 4000,
+          "height": 3000,
+          "bytes": 3111164,
+          "sha256": "b81586714f4b3932359aa577e6f5e797e005277ef8c282c2c68e0a055e0e0096"
+        }
+      ]
+    },
+    {
+      "catalogNo": 30,
+      "slug": "py-030",
+      "title": "踏雪寻梅",
+      "aliases": [],
+      "theme": {
+        "code": "story",
+        "name": "故事"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "一高士雪中骑驴前行，书童肩扛折枝梅花紧随其后，为寻梅归来情形。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-030/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 4459724,
+          "sha256": "4e15127959940a78225bf62e6106a59eca58be3df836171e0abd1fae162254fb"
+        }
+      ]
+    },
+    {
+      "catalogNo": 31,
+      "slug": "py-031",
+      "title": "长坂坡",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "赵云身穿战袍，怀藏阿斗，战盔已被打丢，胯下战马飞奔，双臂舞动大枪，回身与张郃打斗。张郃左手反握枪，右手挥马鞭，在其身后紧追不舍。左上角有一曹兵，左手张弓，右手搭箭，正准备发射。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-031/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 6023233,
+          "sha256": "45c0b4e8deb96188280ab82e786e7a126e39b506a1bc40eb3245d2127c45bcb8"
+        }
+      ]
+    },
+    {
+      "catalogNo": 32,
+      "slug": "py-032",
+      "title": "三打白骨精",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "孙悟空立于树下，头戴紧箍咒，内衬长裤，外罩僧袍，袖口高挽，右臂高举金箍棒，双目怒瞪妖精，身后为白龙马。化作妙龄女子的白骨精，身旁为化作老妖精，头双手斜握拐杖。画面将前后两次变为人形的妖精同置一框，突破了时空限制。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-032/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 6546103,
+          "sha256": "75833f07b3e146c91270a3344031e20f4890cb65c6440246d16684ac31fe55c7"
+        }
+      ]
+    },
+    {
+      "catalogNo": 33,
+      "slug": "py-033",
+      "title": "拿谢虎",
+      "aliases": [
+        "拿一支桃",
+        "鄚州庙"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《拿一支桃》《鄚州庙》。谢虎在任丘县因采花杀死周荣之女、蒋旺之妻，留一枝桃花于壁而去。施世纶至，黄天霸自请访拿，遇旧友神眼计全，计全告系谢虎所为。王殿臣、郭起凤助黄追踪，至鄚州庙恰遇谢虎，黄欲与格斗，谢虎知黄善金镖，约言不得用暗器，黄中计，被谢用毒镖打伤，朱光祖等至，谢虎逃走。左二为谢虎，头戴夫子盔，穿着战衣战裙，双腿左弓右箭，手握出鞘宝剑，准备与黄天霸动武。黄天霸左手叉腰，右臂平抬指向谢虎。施世纶立于黄天霸身后，左手捋须，目光射向谢虎。左右为酒保。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-033/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 5376769,
+          "sha256": "e41e2ecf415bc064fbe2be6c11a7c4c2ca172ed6b15dc87b5c1ccdb1bfeeccfa"
+        }
+      ]
+    },
+    {
+      "catalogNo": 34,
+      "slug": "py-034",
+      "title": "韩湘子度林英",
+      "aliases": [
+        "龙虎山"
+      ],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又名《龙虎山》。韩湘子头戴方巾，左手握拂尘，右手扶于丫环。丫环站在韩湘子与林英之间，手指林英，回身与韩湘子讲话。林英坐椅上，左手托腮，望向韩湘子。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-034/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4546,
+          "height": 2184,
+          "bytes": 5063127,
+          "sha256": "bbaa43f9148951d3bf19aa73713f01db333f46676b04934b03b9061411ad3dde"
+        }
+      ]
+    },
+    {
+      "catalogNo": 35,
+      "slug": "py-035",
+      "title": "拾玉镯",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "少女孙玉姣矜持立于门前，面带羞涩，小生傅朋手持折扇趋前，刘媒婆自墙后探出身来，颇有心计的样子。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-035/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3203838,
+          "sha256": "ee6eba66b64403df50dc71ee599ab6267bebb0d39a70c006b7ab3ce46ef3b3dd"
+        }
+      ]
+    },
+    {
+      "catalogNo": 36,
+      "slug": "py-036",
+      "title": "武松单臂擒方腊",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "武松裸露左臂，左手反握长棍，目视着马上的方腊。方腊左臂抱枪，右臂挥舞马鞭，扭头望着武松，身后为扬起的漫天灰尘。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-036/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3634131,
+          "sha256": "5da8aa5715af52f190351d081e7f7917f0af265ddd0a0cf561418f0d1831ee1c"
+        }
+      ]
+    },
+    {
+      "catalogNo": 37,
+      "slug": "py-037",
+      "title": "武松战方腊",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "武松赤裸上身，右手舞刀，大步流星与马上的方腊展开对决。奔马回头，聚焦于武松。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-037/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3918579,
+          "sha256": "b927dbbd4cdae7c81b60894630329230378bea28dc05413d918cdd1249bdff68"
+        }
+      ]
+    },
+    {
+      "catalogNo": 38,
+      "slug": "py-038",
+      "title": "渭水河",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "姜尚头戴圆顶草帽，稳坐车辇。姬昌站在车前，头戴王冠，身穿蟒袍，扭头相望，亲为其拉辇。姬昌身前环立三位大臣。车前立一军官，左手捋须，右手握剑。前面的车夫双手拉带搭于左肩，车尾的车夫奋力推车，左肩抵车尾，右手握横杆。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-038/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4589,
+          "height": 2190,
+          "bytes": 6313902,
+          "sha256": "2b8f0b9b558c171f4381a5f0b2cafe59a35fcb5bb8c18320676d7e664f259614"
+        }
+      ]
+    },
+    {
+      "catalogNo": 39,
+      "slug": "py-039",
+      "title": "禹王锁蛟",
+      "aliases": [],
+      "theme": {
+        "code": "opera",
+        "name": "戏曲"
+      },
+      "form": null,
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "大禹治水时，锁水蛟于军山，危害顿除，故事记载于《山海经》。图中描绘水蛟无支祁被擒，锁在擎天柱下，大禹则捋须按剑立守。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-039/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4547,
+          "height": 2185,
+          "bytes": 3140162,
+          "sha256": "f36d95fc8f5f5f00d1c814ee79a66acf10a45d4cfb871af5881c30ad1b009911"
+        }
+      ]
+    },
+    {
+      "catalogNo": 87,
+      "slug": "py-087",
+      "title": "赵云救阿斗",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "描绘的是在曹操和刘备的战争中，刘备的妻小处于水深火热之中，赵云以一己之力，七进七出救出刘备之子阿斗的故事。画中的赵云骑白马，披盔甲，怀抱阿斗，手执长枪。其造型夸张，赵云与战马的比例几乎是一比一，甚至大过战马。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-087/01-primary.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 4134,
+          "height": 3071,
+          "bytes": 38117144,
+          "sha256": "61d3fe9507216ef74d82c9f1ec5727060f6ba7bf13bf3a8d7e5a48d4a57f2c8f"
+        }
+      ]
+    },
+    {
+      "catalogNo": 88,
+      "slug": "py-088",
+      "title": "护子张仙",
+      "aliases": [
+        "送子张仙"
+      ],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": {
+        "code": "fuchen-paper",
+        "name": "拂尘纸"
+      },
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 22.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×22"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "又称送子张仙，为道教中赐人后嗣的男性神祇，为孩子的守护神，民间有“张仙流落在下方，箭射云中犬，子孙不受伤”之谚。张仙五绺长髯飘于胸前，身旁围绕五个孩子，上有天狗虎视眈眈，其左手张弓，右手持箭，驱赶之。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-088/01-primary.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 3624,
+          "height": 5669,
+          "bytes": 61661892,
+          "sha256": "508731dfc2af72d6381b9320ce24eb5734140faf31cd354ac3636870865343b5"
+        }
+      ]
+    },
+    {
+      "catalogNo": 89,
+      "slug": "py-089",
+      "title": "禄门神",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": "天官门神",
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "禄神为民间信仰中的主司官禄之神，一般认为是魁星与文昌星。身穿绿袍者，为一件圆领蟒袍朝服，执笏板，系玉带，手展“指日高升”卷轴，以绿谐“禄”，头戴乌沙帽；穿红袍者，喻鸿运当头，且戴一顶耳不闻的“金踏镫”，执如意，足蹬云头锦靴，寓意平步登云，为郭子仪带子上朝图，捧印童子为郭暧。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-089/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 3030,
+          "height": 4252,
+          "bytes": 6688719,
+          "sha256": "d0931791682164aab2d39e62cc76984b0b34e0ea552b2746c682d0b6cf8ddd98"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-089/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 3024,
+          "height": 4252,
+          "bytes": 7113665,
+          "sha256": "efd861e5232c0b6ea34b83140316cc48cb1e81561789014a749e8a3933fc6fe6"
+        }
+      ]
+    },
+    {
+      "catalogNo": 90,
+      "slug": "py-090",
+      "title": "官服门神（加官进禄）",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "禄神戴官帽，穿官袍，持笏板，或擎鹿爵，喻进爵，或擎紫金冠，喻加官，两童子各捧花瓶，瓶中插戟，寓意“连升三级”。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-090/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 2093,
+          "height": 1504,
+          "bytes": 1361804,
+          "sha256": "7f9b580f88aa42f09052c7d2f5c6ab58ec94b7d6d83c18586302f03087309425"
+        }
+      ]
+    },
+    {
+      "catalogNo": 91,
+      "slug": "py-091",
+      "title": "厨门神（东厨司命）",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "东厨司命即灶神。头戴弁巾，身着“福”字道袍，骑马持缰上天汇报途中，侍者擎华盖随后。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-091/01-primary.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4134,
+          "height": 3071,
+          "bytes": 7417485,
+          "sha256": "00c9f9f2b1d780cce112941f40415ad2cc8e61967ba8864f10ce4dd36251dfb1"
+        }
+      ]
+    },
+    {
+      "catalogNo": 92,
+      "slug": "py-092",
+      "title": "五子登科",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": "天官门神",
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "“窦燕山，有义方。教五子，名俱扬”，五子登科故事即源于此。为文门神之一种。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-092/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 3543,
+          "height": 4370,
+          "bytes": 5647066,
+          "sha256": "c86c8838301c1bf75d9c2bff7389dc0834150ebdaa4a273b1dae69ef4e246151"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-092/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 3543,
+          "height": 4370,
+          "bytes": 5831314,
+          "sha256": "7d887755ee88a4ff80e6a5425b7c9dd1d857bb010e0e760e80180be67f8ca7ef"
+        }
+      ]
+    },
+    {
+      "catalogNo": 93,
+      "slug": "py-093",
+      "title": "对刀门神（官室大吉）",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": "天官门神",
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "武士装扮，形象饱满，骨骼粗壮，神态威武，目光聚于前，神态威严。其造型夸张，特征强调，或简化，或添加，意在强化氛围。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-093/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4491,
+          "height": 6614,
+          "bytes": 32313700,
+          "sha256": "719d9e6a608a509dce68f4523526f96a0c85945cd00ca26ef3ae2a0e2b7586ec"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-093/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 4453,
+          "height": 6614,
+          "bytes": 31609503,
+          "sha256": "c7b852a85385857b45b73c1867363a248abef4a822ade93e1a326a3585776d79"
+        }
+      ]
+    },
+    {
+      "catalogNo": 94,
+      "slug": "py-094",
+      "title": "墨线门神（小刀门神）",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 68.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×68"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "花脸戎装，顶盔贯甲，凤眼长髯，身姿魁梧，神态肃穆，背扎靠旗，二将军腰间各挎宝剑，气势夺人。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-094/01-primary.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 4000,
+          "height": 3000,
+          "bytes": 3730789,
+          "sha256": "5c0ec8c72ff245216d3ae3b72d1a161724d23b25a7ab902b54fc4fd8572b7da3"
+        }
+      ]
+    },
+    {
+      "catalogNo": 95,
+      "slug": "py-095",
+      "title": "马莲如意（前程似锦）",
+      "aliases": [],
+      "theme": {
+        "code": "auspicious",
+        "name": "吉祥"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "身骑骏马，身穿官袍，头戴状元帽，为金榜题名后跨马游街的情形。状元郎一手持如意，寓意称心如意，一手举牡丹，寓意富贵吉祥。色彩以黄紫为主，间以小块红绿。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-095/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 2386,
+          "height": 4016,
+          "bytes": 8351718,
+          "sha256": "d655705098455cd8c0b4005fd6e71c51209754ef1a7134eaf39af65ad0448ba4"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-095/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 2289,
+          "height": 4016,
+          "bytes": 8145056,
+          "sha256": "e29ef1c60a653f64eb7bfc0fb32f7d531f4c385f1ca64516be4cb86c5f57c428"
+        }
+      ]
+    },
+    {
+      "catalogNo": 96,
+      "slug": "py-096",
+      "title": "福禄寿门神",
+      "aliases": [],
+      "theme": {
+        "code": "auspicious",
+        "name": "吉祥"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "墨色“福”字为底，前有寿星身披道袍，手捧蟠桃，骑一梅花鹿上而来，寓意福禄寿。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-096/01-part-1.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 1080,
+          "height": 1440,
+          "bytes": 1719862,
+          "sha256": "0f36b7f1ba2474ee58c75c99909fd84ea5befac61a6f7f2d5ad36444931a931e"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-096/02-part-2.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 1080,
+          "height": 1440,
+          "bytes": 1798474,
+          "sha256": "8fe6f81fe8d20c562e44dc0b0f5b333385a3bd075a72d322ad0e1ef3e52eba5c"
+        }
+      ]
+    },
+    {
+      "catalogNo": 97,
+      "slug": "py-097",
+      "title": "福水善火（善水福火）",
+      "aliases": [],
+      "theme": {
+        "code": "auspicious",
+        "name": "吉祥"
+      },
+      "form": {
+        "code": "door-picture",
+        "name": "门画"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "贴于灶台（厨房门）。马背驮幡，上书“福水善火”，下有方胜、铜钱铺地。灶马之“马”是一种昆虫，因活动于灶台上下，被奉为灶神。所谓蛛丝马迹之“马”，即此马。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "primary",
+          "storageProvider": "local",
+          "path": "assets/originals/py-097/01-primary.tif",
+          "publicUrl": null,
+          "format": "TIFF",
+          "mimeType": "image/tiff",
+          "width": 4320,
+          "height": 2940,
+          "bytes": 38127576,
+          "sha256": "db62e81ef92a7808685fcfe53a4e4e5fb33755529f48160da8dfe8bae10dc26e"
+        }
+      ]
+    },
+    {
+      "catalogNo": 98,
+      "slug": "py-098",
+      "title": "神荼郁垒",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "early-qing",
+        "label": "清早期"
+      },
+      "dimensions": {
+        "width": 45.0,
+        "height": 58.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "45×58"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "记载二位神仙最早的典籍为《山海经》：“沧海之中有度朔之山，百鬼所出入也。上有二神人，一曰神荼，二曰郁垒，主阅领百鬼，害恶之鬼，执以苇索可以食虎。于是黄帝乃作礼，以时驱之，立大桃人，门户画神荼、郁垒与虎，悬苇索，以御凶魅。”汉代应勋的《风俗演义》中已写明此二神执鬼门职能。他们奉黄帝之命居于秀丽的度朔山下，能将涂炭生灵的恶鬼以苇索捆缚，尔后喂虎。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-098/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 1981,
+          "height": 2795,
+          "bytes": 1875644,
+          "sha256": "9bb0a1a50c1e5efccfdc9a9a84257297842eff3d6c066f5dd3891bb4aa34fcd9"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-098/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 2009,
+          "height": 2786,
+          "bytes": 1036666,
+          "sha256": "1061cf0e993ca97c9f25311b62e137765c11eff0170b3aa2d8354dc16fcc6796"
+        }
+      ]
+    },
+    {
+      "catalogNo": 99,
+      "slug": "py-099",
+      "title": "秦琼敬德",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "“头大身小肥裤腿，对称均衡三比一”，放大头部后，五官随之扩展，门神的神态更显威严，更具震慑效果。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-099/01-part-1.png",
+          "publicUrl": null,
+          "format": "PNG",
+          "mimeType": "image/png",
+          "width": 351,
+          "height": 526,
+          "bytes": 290172,
+          "sha256": "b7b56e2a682d703a95460bad1239d87ecff9ffcdee7292e8be0b84642987086e"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-099/02-part-2.png",
+          "publicUrl": null,
+          "format": "PNG",
+          "mimeType": "image/png",
+          "width": 307,
+          "height": 519,
+          "bytes": 308317,
+          "sha256": "94138e202f7c7e8f65c446abebd123cdaec2c6c2d575cc8c94ddb60a359bfa31"
+        }
+      ]
+    },
+    {
+      "catalogNo": 100,
+      "slug": "py-100",
+      "title": "武门神（戬矛门神）",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "early-qing",
+        "label": "清早期"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "所绘秦琼与尉迟敬德。秦琼仗剑持枪马上，净面长髯，眉紧锁，嘴紧闭，头扎金巾，手中持锏；尉迟敬德头戴红盔，双手持鞭，执锏持枪乌骓马上，红脸白须，竖眉立目，张嘴怒吼。老少之间，二人的对比反差明显。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-100/01-part-1.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 2664,
+          "height": 4000,
+          "bytes": 2665414,
+          "sha256": "1d1a2e996ca9c042f8383d16772860e05ab014a58643ca04c684060cb597e014"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-100/02-part-2.mpo",
+          "publicUrl": null,
+          "format": "MPO",
+          "mimeType": "image/jpeg",
+          "width": 2664,
+          "height": 4000,
+          "bytes": 2712291,
+          "sha256": "868ef95276d3be0edca09de1e9c29e7b0c8ff4a7669aba5386c41b2e391042a8"
+        }
+      ]
+    },
+    {
+      "catalogNo": 101,
+      "slug": "py-101",
+      "title": "加官进爵门神",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "qing",
+        "label": "清代"
+      },
+      "dimensions": {
+        "width": 32.0,
+        "height": 48.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "32×48"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "秦琼与尉迟敬德全副戎装，骑马而至，各持大刀，另一手在托鼎举狮，鞭锏则收于背后。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-101/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 678,
+          "height": 912,
+          "bytes": 521332,
+          "sha256": "c24937f1a046249ea3839796813c43e21896a4a93035db2f8ffec8b7c7641c38"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-101/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 716,
+          "height": 921,
+          "bytes": 563139,
+          "sha256": "f59e9920246e3339f1c17247bb02ad2435f911302a1b1b180681320f2164d216"
+        }
+      ]
+    },
+    {
+      "catalogNo": 102,
+      "slug": "py-102",
+      "title": "文武门神",
+      "aliases": [],
+      "theme": {
+        "code": "deity",
+        "name": "神祇"
+      },
+      "form": {
+        "code": "door-god",
+        "name": "门神"
+      },
+      "material": null,
+      "technique": null,
+      "subtype": null,
+      "period": {
+        "code": "modern",
+        "label": "现代"
+      },
+      "dimensions": {
+        "width": 30.0,
+        "height": 42.0,
+        "unit": "cm",
+        "unitVerified": false,
+        "sourceText": "30×42"
+      },
+      "collection": "临汾市平阳木版年画博物馆",
+      "description": "两位文官并立，头戴乌沙，身穿官袍，各持笏板，一托举紫金冠，一托举鹿饰器，寓意加官进爵，随行二童子，各自捧瓶，中插如意，寓意平安如意。两位武士披盔甲，扎靠旗，各持大刀，并排守护。",
+      "editorialStatus": "needs_review",
+      "images": [
+        {
+          "role": "part-1",
+          "storageProvider": "local",
+          "path": "assets/originals/py-102/01-part-1.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 1046,
+          "height": 1447,
+          "bytes": 1214137,
+          "sha256": "a891df03537cb39b81268f71b04b943709a81133799e480eec989e198b631c08"
+        },
+        {
+          "role": "part-2",
+          "storageProvider": "local",
+          "path": "assets/originals/py-102/02-part-2.jpg",
+          "publicUrl": null,
+          "format": "JPEG",
+          "mimeType": "image/jpeg",
+          "width": 1052,
+          "height": 1411,
+          "bytes": 1202105,
+          "sha256": "b84a7690538707f1730b1e7f5d3515f04f5103f07301e77b419e8c59827a4359"
+        }
+      ]
+    }
+  ]
+}
