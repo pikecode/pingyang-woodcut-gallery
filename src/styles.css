@@ -1,16 +1,16 @@
 :root {
-  color: #f2ede3;
-  background: #111110;
+  color: #1A1814;
+  background: #F8F4ED;
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-synthesis: none;
-  --paper: #111110;
-  --white: #1c1c18;
-  --ink: #f2ede3;
-  --muted: #8a8a80;
-  --line: #2c2c27;
-  --red: #d4522a;
-  --green: #2e7d72;
-  --gold: #c9940e;
+  --paper: #F8F4ED;
+  --white: #FFFFFF;
+  --ink: #1A1814;
+  --muted: #8C8877;
+  --line: #E2DDD4;
+  --red: #C4321A;
+  --green: #178B78;
+  --gold: #E8961A;
   --display: "Songti SC", "STSong", "SimSun", serif;
 }
 
@@ -353,7 +353,7 @@ img {
   z-index: 50;
   height: 72px;
   border-bottom: 1px solid var(--line);
-  background: rgba(17, 17, 16, 0.96);
+  background: rgba(248, 244, 237, 0.97);
   backdrop-filter: blur(12px);
 }
 
@@ -738,7 +738,7 @@ img {
   place-items: center;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #0a0a09;
+  background: #F5F2EB;
 }
 
 .artwork-image-wrap img {
@@ -817,7 +817,7 @@ img {
 .theme-section {
   padding-block: 100px 116px;
   border-top: 1px solid var(--line);
-  background: #0e0e0c;
+  background: #F0EBE1;
 }
 
 .theme-heading p {
@@ -1888,7 +1888,7 @@ img {
   padding-bottom: env(safe-area-inset-bottom, 0px);
   display: flex;
   border-top: 1px solid var(--line);
-  background: rgba(17, 17, 16, 0.97);
+  background: rgba(248, 244, 237, 0.97);
   backdrop-filter: blur(12px);
 }
 
@@ -1921,7 +1921,7 @@ img {
   z-index: 10;
   padding: 16px 16px 12px;
   border-bottom: 1px solid var(--line);
-  background: rgba(17, 17, 16, 0.97);
+  background: rgba(248, 244, 237, 0.97);
   backdrop-filter: blur(12px);
 }
 
@@ -1968,7 +1968,7 @@ img {
   z-index: 10;
   padding: 14px 16px;
   border-bottom: 1px solid var(--line);
-  background: rgba(17, 17, 16, 0.97);
+  background: rgba(248, 244, 237, 0.97);
   backdrop-filter: blur(12px);
 }
 
@@ -2143,4 +2143,316 @@ img {
 .section {
   width: calc(100% - 32px);
   margin-inline: auto;
+}
+
+/* ─── 门扉开场动画 ──────────────────────────────────── */
+
+.door-intro {
+  background: #140808;
+  perspective: 1000px;
+}
+
+.door-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.door-panel {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(160deg, #7A1A1A 0%, #5C1212 50%, #3A0A0A 100%);
+  will-change: transform;
+}
+
+.door-panel.is-left {
+  transform-origin: left center;
+  border-right: 2px solid rgba(232, 150, 26, 0.45);
+  box-shadow: inset -8px 0 24px rgba(0,0,0,0.5);
+}
+
+.door-panel.is-right {
+  transform-origin: right center;
+  border-left: 2px solid rgba(232, 150, 26, 0.45);
+  box-shadow: inset 8px 0 24px rgba(0,0,0,0.5);
+}
+
+.door-studs {
+  position: absolute;
+  inset: 14% 12%;
+  background-image: radial-gradient(circle 3.5px at center, rgba(232,175,55,0.65) 3.5px, transparent 3.5px);
+  background-size: 11% 11%;
+}
+
+.door-ring {
+  position: absolute;
+  bottom: 36%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  border: 5px solid rgba(232, 175, 55, 0.75);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(232,175,55,0.2);
+}
+
+.door-seal {
+  position: absolute;
+  top: 28%;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--display);
+  font-size: 30px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.door-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.door-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.door-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 8, 8, 0.55);
+}
+
+.door-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at center, transparent 30%, rgba(10,4,4,0.7) 100%);
+}
+
+.door-title {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  pointer-events: none;
+  gap: 8px;
+}
+
+.door-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(232, 175, 55, 0.9);
+  text-transform: uppercase;
+}
+
+.door-title strong {
+  font-family: var(--display);
+  font-size: clamp(46px, 9vw, 96px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.door-sub {
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  color: rgba(255,255,255,0.65);
+  margin-top: 4px;
+}
+
+/* ─── 音频播放器 ──────────────────────────────────── */
+
+.audio-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 2px;
+}
+
+.audio-btn {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  cursor: pointer;
+}
+
+.audio-btn:disabled {
+  background: var(--line);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.audio-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.audio-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+}
+
+.audio-status {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.audio-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.audio-bars span {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--line);
+  height: calc(30% + var(--bar-i, 0) * 10%);
+}
+
+/* ─── 字体 & 尺寸修复 ──────────────────────────────── */
+
+select,
+.search-field input,
+.select-field select {
+  font-size: 14px !important;
+}
+
+.catalog-filter-row .search-field input,
+.catalog-filter-row .select-field select {
+  font-size: 13px !important;
+}
+
+.theme-feature-copy strong {
+  font-size: 26px;
+}
+
+/* Light theme: theme feature hover */
+.theme-feature:hover .theme-feature-copy strong {
+  color: var(--red);
+}
+
+/* Collection facts dark section keeps white text */
+.facts-inner h2,
+.facts-inner .section-label {
+  color: inherit;
+}
+
+/* Theme index light bg */
+.theme-index {
+  background: var(--white);
+}
+
+/* Tab bar light */
+.tab-bar {
+  background: rgba(248, 244, 237, 0.97);
+  border-top: 1px solid var(--line);
+}
+
+.tab-item {
+  color: var(--muted);
+}
+
+.tab-item.is-active {
+  color: var(--red);
+}
+
+/* Catalog/search topbars light */
+.catalog-topbar,
+.search-header {
+  background: rgba(248, 244, 237, 0.97);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Modal light theme */
+.artwork-modal {
+  background: var(--white);
+}
+
+.modal-toolbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-images {
+  background: #F5F2EB;
+}
+
+/* Hero caption — keep dark on dark hero */
+.hero-caption {
+  background: rgba(20, 8, 8, 0.88);
+  color: #fff;
+}
+
+.hero-caption strong,
+.hero-caption small {
+  color: rgba(255,255,255,0.85);
+}
+
+/* Results heading light */
+.results-heading button {
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+/* Section link */
+.section-link {
+  border-bottom: 1px solid var(--muted);
+  color: var(--ink);
+}
+
+/* Empty state light */
+.empty-state {
+  background: transparent;
+}
+
+/* Search tags */
+.search-tag {
+  background: var(--white);
+  border-color: var(--line);
+}
+
+/* Icon button light */
+.icon-button:hover,
+.view-switch button:hover,
+.modal-toolbar button:hover {
+  background: var(--paper);
+  border-color: var(--ink);
 }

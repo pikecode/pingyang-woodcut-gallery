@@ -4,10 +4,10 @@ import { gsap } from "gsap";
 import {
   ArrowRight, ChevronLeft, ChevronRight,
   Grid2X2, Home, LayoutGrid, List,
-  Search, SlidersHorizontal, X,
+  Play, Search, SlidersHorizontal, X,
 } from "lucide-react";
 import {
-  Link, NavLink, Route, Routes,
+  Link, Route, Routes,
   useLocation, useSearchParams,
 } from "react-router-dom";
 
@@ -34,16 +34,13 @@ function shouldShowOpeningIntro() {
 function OpeningIntro() {
   const [visible, setVisible] = useState(shouldShowOpeningIntro);
   const containerRef = useRef(null);
+  const leftDoorRef = useRef(null);
+  const rightDoorRef = useRef(null);
+  const doorBgRef = useRef(null);
   const sealRef = useRef(null);
-  const charsRed = useRef([]);
-  const charsGreen = useRef([]);
-  const charsInk = useRef([]);
-  const regRefs = useRef([]);
-  const ruleRef = useRef(null);
-  const ruleFillRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const stripRef = useRef(null);
-  const stripImgs = useRef([]);
+  const leftRingRef = useRef(null);
+  const rightRingRef = useRef(null);
+  const titleRef = useRef(null);
 
   useEffect(() => {
     if (!visible || !containerRef.current) return undefined;
@@ -51,7 +48,7 @@ function OpeningIntro() {
     document.body.style.overflow = "hidden";
 
     const exit = () => gsap.to(containerRef.current, {
-      y: "-106%", scaleY: 0.97, opacity: 0.08, duration: 0.9, ease: "power3.inOut",
+      opacity: 0, duration: 0.7, ease: "power2.inOut",
       onComplete: () => {
         try { window.sessionStorage.setItem(INTRO_STORAGE_KEY, "1"); } catch { /**/ }
         document.body.style.overflow = orig;
@@ -59,24 +56,26 @@ function OpeningIntro() {
       },
     });
 
-    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 800) });
-    tl.from(regRefs.current, { opacity: 0, scale: 0.3, duration: 0.22, stagger: 0.04, ease: "back.out(3)" })
-      .from(sealRef.current, { y: -58, rotation: -8, scale: 1.38, opacity: 0, duration: 0.5, ease: "back.out(2.6)" }, "-=0.05")
-      .to(sealRef.current, { scale: 1.07, duration: 0.09, ease: "power2.out", yoyo: true, repeat: 1 }, "-=0.06")
-      .from(charsRed.current, { y: -36, opacity: 0, scale: 1.2, rotation: (i) => CHAR_ROTS[i] ?? 0, duration: 0.3, stagger: 0.09, ease: "back.out(2)" }, "+=0.04")
-      .from(charsGreen.current, { y: -36, opacity: 0, scale: 1.2, rotation: (i) => (CHAR_ROTS[i] ?? 0) * 0.6, duration: 0.3, stagger: 0.09, ease: "back.out(2)" }, "<0.03")
-      .from(charsInk.current, { y: -36, opacity: 0, scale: 1.2, rotation: (i) => (CHAR_ROTS[i] ?? 0) * 0.25, duration: 0.3, stagger: 0.09, ease: "back.out(2)" }, "<0.05")
-      .from(ruleRef.current, { scaleX: 0, opacity: 0, duration: 0.36, ease: "power3.out", transformOrigin: "left center" }, "+=0.12")
-      .from(ruleFillRef.current, { scaleX: 0, duration: 0.52, ease: "power2.inOut", transformOrigin: "left center" }, "<")
-      .from(subtitleRef.current, { y: 8, opacity: 0, duration: 0.3, ease: "power2.out" }, "-=0.22")
-      .from(stripRef.current, { opacity: 0, duration: 0.22 }, "+=0.18")
-      .from(stripImgs.current, { opacity: 0, y: 14, scale: 0.88, stagger: { each: 0.05, from: "center" }, duration: 0.25, ease: "back.out(1.6)" }, "<0.08");
+    gsap.set(leftDoorRef.current, { transformOrigin: "left center", rotateY: 0 });
+    gsap.set(rightDoorRef.current, { transformOrigin: "right center", rotateY: 0 });
+    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.06 });
+    gsap.set(titleRef.current, { opacity: 0, y: 24 });
+
+    const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 700) });
+
+    tl.from([leftDoorRef.current, rightDoorRef.current], { opacity: 0, duration: 0.5, ease: "power2.out" })
+      .from(sealRef.current, { scale: 1.5, opacity: 0, rotation: -8, duration: 0.55, ease: "back.out(2.8)" }, "+=0.3")
+      .to([leftRingRef.current, rightRingRef.current], { rotation: -10, duration: 0.13, ease: "power2.inOut", yoyo: true, repeat: 3 }, "+=0.4")
+      .to(titleRef.current, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, "-=0.1")
+      .to([leftDoorRef.current, rightDoorRef.current], { opacity: 0.06, duration: 0.2, ease: "power2.in" }, "+=1.0")
+      .to([leftDoorRef.current, rightDoorRef.current], { rotateY: (i) => i === 0 ? -105 : 105, duration: 1.4, ease: "power2.inOut" }, "<0.1")
+      .to(doorBgRef.current, { opacity: 1, scale: 1, duration: 1.1, ease: "power2.out" }, "<0.2");
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);
 
   const skip = () => gsap.to(containerRef.current, {
-    y: "-106%", opacity: 0.08, scaleY: 0.97, duration: 0.6, ease: "power3.inOut",
+    opacity: 0, duration: 0.5, ease: "power2.inOut",
     onComplete: () => {
       try { window.sessionStorage.setItem(INTRO_STORAGE_KEY, "1"); } catch { /**/ }
       setVisible(false);
@@ -86,36 +85,34 @@ function OpeningIntro() {
   if (!visible) return null;
 
   return (
-    <div ref={containerRef} className="opening-intro">
+    <div ref={containerRef} className="opening-intro door-intro">
       <button className="intro-skip" type="button" aria-label="跳过" onClick={skip}>
         <X size={16} /><span>SKIP</span>
       </button>
-      {[["is-tl",0],["is-tr",1],["is-bl",2],["is-br",3]].map(([cls,i]) => (
-        <span key={cls} ref={(el) => { regRefs.current[i] = el; }} className={`intro-reg-mark ${cls}`} aria-hidden="true" />
-      ))}
-      <span className="intro-origin">山西 · 临汾</span>
-      <div className="intro-stage">
-        <span ref={sealRef} className="intro-seal" aria-hidden="true">平</span>
-        <div className="intro-title" aria-label="平阳木版年画">
-          <span className="intro-title-layer is-red" aria-hidden="true">
-            {INTRO_CHARS.map((c,i) => <span key={i} ref={(el)=>{charsRed.current[i]=el;}}>{c}</span>)}
-          </span>
-          <span className="intro-title-layer is-green" aria-hidden="true">
-            {INTRO_CHARS.map((c,i) => <span key={i} ref={(el)=>{charsGreen.current[i]=el;}}>{c}</span>)}
-          </span>
-          <span className="intro-title-layer is-ink">
-            {INTRO_CHARS.map((c,i) => <span key={i} ref={(el)=>{charsInk.current[i]=el;}}>{c}</span>)}
-          </span>
+
+      <div ref={doorBgRef} className="door-bg" aria-hidden="true">
+        <img src="/images/py-087/primary.webp" alt="" />
+        <div className="door-bg-overlay" />
+        <div className="door-bg-vignette" />
+      </div>
+
+      <div className="door-frame" aria-hidden="true">
+        <div ref={leftDoorRef} className="door-panel is-left">
+          <div className="door-studs" />
+          <div ref={leftRingRef} className="door-ring" />
+          <span ref={sealRef} className="door-seal">平</span>
         </div>
-        <div ref={ruleRef} className="intro-rule" aria-hidden="true"><span ref={ruleFillRef} /></div>
-        <p ref={subtitleRef}>数字馆藏</p>
-        <div ref={stripRef} className="intro-strip" aria-hidden="true">
-          {STRIP_SLUGS.map((slug,i) => (
-            <img key={slug} ref={(el)=>{stripImgs.current[i]=el;}} src={`/images/${slug}/primary.webp`} alt="" />
-          ))}
+        <div ref={rightDoorRef} className="door-panel is-right">
+          <div className="door-studs" />
+          <div ref={rightRingRef} className="door-ring" />
         </div>
       </div>
-      <span className="intro-heritage">国家级非物质文化遗产</span>
+
+      <div ref={titleRef} className="door-title">
+        <span className="door-eyebrow">山西临汾 · 国家级非物质文化遗产</span>
+        <strong>平阳木版年画</strong>
+        <span className="door-sub">数字馆藏</span>
+      </div>
     </div>
   );
 }
@@ -502,6 +499,20 @@ function ArtworkModal({ artwork, artworks, onClose, onChange }) {
             <div><dt>规格</dt><dd>{artwork.dimensions.sourceText}</dd></div>
             <div className="wide"><dt>馆藏</dt><dd>{artwork.collection}</dd></div>
           </dl>
+          <div className="audio-section">
+            <div className="audio-player">
+              <button className="audio-btn" type="button" disabled aria-label="播放导览音频">
+                <Play size={16} />
+              </button>
+              <div className="audio-info">
+                <span className="audio-label">导览音频</span>
+                <span className="audio-status">音频文件准备中</span>
+              </div>
+              <div className="audio-bars" aria-hidden="true">
+                {[...Array(6)].map((_, i) => <span key={i} style={{ "--bar-i": i }} />)}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>,
