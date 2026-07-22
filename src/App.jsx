@@ -65,66 +65,65 @@ function OpeningIntro() {
     gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
     gsap.set(doorGlowRef.current, { opacity: 0 });
     gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
-    // 提前隐藏所有文字元素，避免 .from() 启动前闪现
-    gsap.set(sealRef.current, { opacity: 0 });
-    gsap.set(eyebrowRef.current, { opacity: 0 });
-    gsap.set(titleCharsRef.current, { opacity: 0 });
-    gsap.set(subRef.current, { opacity: 0 });
+    // 预设所有文字的起始状态（配合后面的 .to()）
+    gsap.set(sealRef.current, { opacity: 0, scale: 2, rotation: -12 });
+    gsap.set(eyebrowRef.current, { opacity: 0, y: 14 });
+    gsap.set(titleCharsRef.current.filter(Boolean), { opacity: 0, y: 32, rotationX: -45, transformOrigin: "50% 100%" });
+    gsap.set(subRef.current, { opacity: 0, y: 10 });
 
     const tl = gsap.timeline({ onComplete: () => setTimeout(exit, 900) });
 
     tl
-      // ① 门扇立刻出现（无长黑屏）
+      // ① 门扇立刻出现
       .from([leftDoorRef.current, rightDoorRef.current], {
         opacity: 0, duration: 0.28, ease: "power1.out",
       })
-      // ② 印章快速落印
-      .from(sealRef.current, {
-        scale: 2, opacity: 0, rotation: -12, duration: 0.5, ease: "back.out(3.5)",
+      // ② 印章弹落
+      .to(sealRef.current, {
+        opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3.5)",
       }, "+=0.12")
       // ③ 眉标滑入
-      .from(eyebrowRef.current, {
-        opacity: 0, y: 14, duration: 0.38, ease: "power2.out",
+      .to(eyebrowRef.current, {
+        opacity: 1, y: 0, duration: 0.38, ease: "power2.out",
       }, "+=0.18")
-      // ④ 标题逐字落下（每字间隔 90ms）
-      .from(titleCharsRef.current, {
-        opacity: 0, y: 32, rotationX: -45, duration: 0.45,
+      // ④ 标题六字逐个落下
+      .to(titleCharsRef.current.filter(Boolean), {
+        opacity: 1, y: 0, rotationX: 0, duration: 0.45,
         stagger: 0.09, ease: "back.out(1.6)",
-        transformOrigin: "50% 100%",
       }, "-=0.1")
       // ⑤ 副标淡入
-      .from(subRef.current, {
-        opacity: 0, y: 10, duration: 0.35, ease: "power2.out",
+      .to(subRef.current, {
+        opacity: 1, y: 0, duration: 0.35, ease: "power2.out",
       }, "-=0.1")
-      // ⑥ 停留欣赏——门、印章、标题
+      // ⑥ 停留欣赏
       .to({}, { duration: 1.8 })
-      // ⑦ 门环敲击（预示要开门）
+      // ⑦ 门环敲击
       .to([leftRingRef.current, rightRingRef.current], {
         rotation: -16, duration: 0.1, ease: "power2.inOut", yoyo: true, repeat: 5,
       })
-      // ⑧ 门缝透出金光
+      // ⑧ 门缝金光
       .to(lightCrackRef.current, {
         scaleY: 1, opacity: 1, duration: 0.55, ease: "power2.out",
       }, "+=0.15")
       .to(doorGlowRef.current, {
         opacity: 0.6, duration: 0.8, ease: "power2.out",
       }, "<0.2")
-      // ⑨ 门缓缓推开（宝藏房间感）
+      // ⑨ 门缓缓推开
       .to(leftDoorRef.current, {
         rotateY: -112, duration: 2.5, ease: "power1.inOut",
       }, "+=0.2")
       .to(rightDoorRef.current, {
         rotateY: 112, duration: 2.5, ease: "power1.inOut",
       }, "<")
-      // ⑩ 画作从门后透出，暖光弥漫
+      // ⑩ 画作透出
       .to(doorBgRef.current, {
         opacity: 1, scale: 1, duration: 2.2, ease: "power2.out",
       }, "<0.4")
-      // ⑪ 标题与印章随门消散
-      .to([eyebrowRef.current, ...titleCharsRef.current, subRef.current, sealRef.current], {
+      // ⑪ 标题随门消散
+      .to([eyebrowRef.current, ...titleCharsRef.current.filter(Boolean), subRef.current, sealRef.current].filter(Boolean), {
         opacity: 0, y: -20, duration: 0.7, ease: "power2.in", stagger: 0.02,
       }, "<0.5")
-      // ⑫ 门缝光消失
+      // ⑫ 光线收敛
       .to([lightCrackRef.current, doorGlowRef.current], {
         opacity: 0, duration: 0.6,
       }, "<0.3");
