@@ -44,8 +44,9 @@ function OpeningIntro() {
       onComplete: () => { document.body.style.overflow = orig; setVisible(false); },
     });
 
-    gsap.set(leftDoorRef.current, { transformPerspective: 1600, transformOrigin: "left center" });
-    gsap.set(rightDoorRef.current, { transformPerspective: 1600, transformOrigin: "right center" });
+    // CSS perspective on .door-frame handles 3D — no need for transformPerspective
+    gsap.set(leftDoorRef.current, { transformOrigin: "left center", rotateY: 0 });
+    gsap.set(rightDoorRef.current, { transformOrigin: "right center", rotateY: 0 });
     gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
     gsap.set(doorGlowRef.current, { opacity: 0 });
     gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
@@ -66,10 +67,11 @@ function OpeningIntro() {
       .to(lightCrackRef.current, { scaleY: 1, opacity: 1, duration: 0.7, ease: "power1.out" }, "+=0.2")
       .to(doorGlowRef.current, { opacity: 0.5, duration: 1.0, ease: "power1.out" }, "<0.2")
       .to([eyebrowRef.current, ...titleCharsRef.current.filter(Boolean), subRef.current, sealRef.current].filter(Boolean), { opacity: 0, y: -14, duration: 1.4, ease: "power1.inOut", stagger: 0.04 }, "+=0.1")
-      .to(leftDoorRef.current, { rotateY: -112, duration: 3.2, ease: "power1.inOut" }, "-=0.5")
-      .to(rightDoorRef.current, { rotateY: 112, duration: 3.2, ease: "power1.inOut" }, "<")
-      .to(doorBgRef.current, { opacity: 1, scale: 1, duration: 3.0, ease: "power1.out" }, "<0.6")
-      .to([lightCrackRef.current, doorGlowRef.current], { opacity: 0, duration: 1.2, ease: "power1.inOut" }, "<1.0");
+      // 门缓缓推开——先慢（推门阻力）→ 加速（门扇摆动）→ 末尾缓停
+      .to(leftDoorRef.current, { rotateY: -95, duration: 2.2, ease: "power3.inOut" }, "-=0.5")
+      .to(rightDoorRef.current, { rotateY: 95, duration: 2.2, ease: "power3.inOut" }, "<")
+      .to(doorBgRef.current, { opacity: 1, scale: 1, duration: 1.8, ease: "power2.out" }, "<0.5")
+      .to([lightCrackRef.current, doorGlowRef.current], { opacity: 0, duration: 0.9, ease: "power1.inOut" }, "<0.8");
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);
