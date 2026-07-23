@@ -597,11 +597,38 @@ input { font: inherit; }
   box-shadow: 0 4px 14px rgba(0,0,0,0.6);
 }
 .door-light-crack { position: absolute; top: 0; bottom: 0; left: 50%; width: 8px; transform: translateX(-50%); background: linear-gradient(90deg,transparent,rgba(255,220,100,0.9),transparent); filter: blur(3px); z-index: 5; pointer-events: none; }
-.door-title { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; gap: 12px; pointer-events: none; }
-.door-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: rgba(232,175,55,0.9); text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+.door-title {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: #fff; text-align: center; gap: 12px; pointer-events: none;
+}
+.door-title::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(700px, 82vw); height: 230px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 8px;
+  z-index: -1;
+}
+.door-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: rgba(232,175,55,0.98); text-shadow: 0 1px 4px rgba(0,0,0,1); }
 .door-title-chars { display: flex; justify-content: center; gap: 4px; }
-.door-title-chars span { display: inline-block; font-family: "Songti SC",serif; font-size: clamp(56px,7.5vw,118px); font-weight: 700; color: #F5E0B0; text-shadow: 0 0 40px rgba(232,175,55,0.55), 0 4px 24px rgba(0,0,0,0.6); letter-spacing: 0.03em; }
-.door-sub { font-size: 15px; letter-spacing: 0.38em; color: rgba(255,255,255,0.55); }
+.door-title-chars span {
+  display: inline-block;
+  font-family: "Songti SC", serif;
+  font-size: clamp(56px, 7.5vw, 118px);
+  font-weight: 700;
+  color: #D4A520;
+  -webkit-text-stroke: 3px rgba(0,0,0,0.88);
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8), 0 0 28px rgba(212,165,32,0.45);
+  letter-spacing: 0.03em;
+}
+.door-sub { font-size: 15px; letter-spacing: 0.38em; color: rgba(232,175,55,0.85); text-shadow: 0 1px 6px rgba(0,0,0,1); }
 
 @media (prefers-reduced-motion: reduce) {
   .opening-intro { display: none; }
