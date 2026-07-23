@@ -2148,6 +2148,74 @@ img {
   margin-inline: auto;
 }
 
+/* ─── 桌面宽屏开场动画适配 ──────────────────────────────── */
+
+@media (min-width: 900px) {
+  /* 门扇比例适配宽屏 */
+  .door-studs {
+    background-size: 8% 8%;
+  }
+
+  .door-ring {
+    width: 80px;
+    height: 80px;
+    border-width: 6px;
+    bottom: 38%;
+  }
+
+  .door-seal {
+    width: 72px;
+    height: 72px;
+    font-size: 44px;
+    top: 30%;
+    right: min(80px, 6%);
+  }
+
+  /* 标题宽屏放大 */
+  .door-title-chars {
+    gap: 8px;
+  }
+
+  .door-title-chars span {
+    font-size: clamp(72px, 9vw, 140px);
+  }
+
+  .door-eyebrow {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+  }
+
+  .door-sub {
+    font-size: 18px;
+    letter-spacing: 0.4em;
+  }
+
+  /* 宽屏：光缝更窄更集中 */
+  .door-light-crack {
+    width: 10px;
+  }
+
+  /* 宽屏：暖光晕更柔和 */
+  .door-glow {
+    background: radial-gradient(ellipse 40% 80% at 50% 50%,
+      rgba(220, 160, 40, 0.28) 0%,
+      rgba(180, 100, 20, 0.08) 40%,
+      transparent 65%);
+  }
+}
+
+@media (min-width: 1200px) {
+  .door-title-chars span {
+    font-size: clamp(88px, 8vw, 160px);
+  }
+
+  .door-seal {
+    width: 88px;
+    height: 88px;
+    font-size: 52px;
+  }
+}
+
 /* ─── 全局过渡补全 ──────────────────────────────────── */
 
 /* 页面路由切换淡入 */

@@ -27,8 +27,8 @@ const STRIP_SLUGS = ["py-001", "py-014", "py-008", "py-030", "py-089", "py-095",
 function shouldShowOpeningIntro() {
   if (typeof window === "undefined") return false;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-  if (new URLSearchParams(window.location.search).get("intro") === "1") return true;
-  try { return window.sessionStorage.getItem(INTRO_STORAGE_KEY) !== "1"; } catch { return true; }
+  // 桌面端：每次启动应用都显示开场动画
+  return true;
 }
 
 function OpeningIntro() {
