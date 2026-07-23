@@ -86,17 +86,25 @@ function OpeningIntro() {
     <div ref={containerRef} className="opening-intro door-intro">
       <button className="intro-skip" type="button" onClick={skip}><X size={16} /><span>SKIP</span></button>
       <div ref={doorBgRef} className="door-bg" aria-hidden="true">
-        <img src="/images/py-087/primary.webp" alt="" />
+        <div className="door-bg-grid">
+          {["py-001","py-014","py-025","py-030","py-089","py-095"].map(slug => (
+            <img key={slug} src={`/images/${slug}/primary.webp`} alt="" className="door-bg-art" />
+          ))}
+        </div>
         <div className="door-bg-overlay" />
       </div>
       <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
-          <div className="door-studs" /><div ref={leftRingRef} className="door-ring" />
+          <img className="door-panel-art" src="/images/py-098/part-1.webp" alt="" />
+          <div className="door-studs" />
+          <div ref={leftRingRef} className="door-ring" />
           <span ref={sealRef} className="door-seal">平</span>
         </div>
         <div ref={rightDoorRef} className="door-panel is-right">
-          <div className="door-studs" /><div ref={rightRingRef} className="door-ring" />
+          <img className="door-panel-art" src="/images/py-098/part-2.webp" alt="" />
+          <div className="door-studs" />
+          <div ref={rightRingRef} className="door-ring" />
         </div>
       </div>
       <div ref={lightCrackRef} className="door-light-crack" aria-hidden="true" />
