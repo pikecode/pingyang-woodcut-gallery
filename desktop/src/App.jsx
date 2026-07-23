@@ -44,9 +44,9 @@ function OpeningIntro() {
       onComplete: () => { document.body.style.overflow = orig; setVisible(false); },
     });
 
-    // CSS perspective on .door-frame handles 3D — no need for transformPerspective
-    gsap.set(leftDoorRef.current, { transformOrigin: "left center", rotateY: 0 });
-    gsap.set(rightDoorRef.current, { transformOrigin: "right center", rotateY: 0 });
+    // GSAP 直接管理透视，不依赖 CSS perspective
+    gsap.set(leftDoorRef.current, { transformPerspective: 1000, transformOrigin: "left center", rotateY: 0 });
+    gsap.set(rightDoorRef.current, { transformPerspective: 1000, transformOrigin: "right center", rotateY: 0 });
     gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
     gsap.set(doorGlowRef.current, { opacity: 0 });
     gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
@@ -96,13 +96,11 @@ function OpeningIntro() {
       <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
-          <img className="door-panel-art" src="/images/py-098/part-1.webp" alt="" />
           <div className="door-studs" />
           <div ref={leftRingRef} className="door-ring" />
           <span ref={sealRef} className="door-seal">平</span>
         </div>
         <div ref={rightDoorRef} className="door-panel is-right">
-          <img className="door-panel-art" src="/images/py-098/part-2.webp" alt="" />
           <div className="door-studs" />
           <div ref={rightRingRef} className="door-ring" />
         </div>
