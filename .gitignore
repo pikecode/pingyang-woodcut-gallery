@@ -18,6 +18,11 @@ h5/dist/
 miniapp/node_modules/
 miniapp/dist/
 
+# Desktop build artifacts
+desktop/node_modules/
+desktop/dist/
+desktop/src-tauri/target/
+
 # Root level (legacy, kept for safety)
 node_modules/
 dist/
