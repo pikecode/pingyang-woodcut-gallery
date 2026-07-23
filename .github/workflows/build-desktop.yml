@@ -5,7 +5,8 @@ on:
     branches: [main]
     paths:
       - 'desktop/**'
-      - 'h5/public/**'
+      - 'data/**'
+      - 'scripts/build_web_assets.py'
   workflow_dispatch:
     inputs:
       release:

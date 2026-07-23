@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build browser-friendly artwork images and a frontend data payload."""
+"""Build desktop-friendly artwork images and a frontend data payload."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DATA = ROOT / "data" / "exports" / "artworks.json"
-PUBLIC_ROOT = ROOT / "public"
+PUBLIC_ROOT = ROOT / "desktop" / "public"
 OUTPUT_DATA = PUBLIC_ROOT / "data" / "artworks.json"
 MAX_EDGE = 1800
 
@@ -48,4 +48,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

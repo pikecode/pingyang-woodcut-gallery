@@ -1,1 +1,1 @@
-{"default":{"identifier":"default","description":"Default capability for pingyang desktop","local":true,"windows":["main"],"permissions":["core:default","opener:default"],"platforms":["macOS","windows","linux"]}}
+{"default":{"identifier":"default","description":"Default capability for pingyang desktop","local":true,"windows":["main"],"permissions":["core:default","opener:default","dialog:allow-open"],"platforms":["macOS","windows","linux"]}}

@@ -28,6 +28,12 @@ button { border: 0; cursor: pointer; font: inherit; background: transparent; col
 img { display: block; }
 input { font: inherit; }
 
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(232, 150, 26, 0.78);
+  outline-offset: 2px;
+}
+
 /* ─── App shell ─────────────────────────────────────────── */
 .app-shell {
   display: flex;
@@ -112,6 +118,44 @@ input { font: inherit; }
 }
 
 .topbar-search button:hover { color: rgba(255,255,255,0.75); }
+
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-actions > button {
+  height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  color: rgba(255,255,255,0.62);
+  font-size: 11px;
+  font-weight: 600;
+  transition: color 160ms, border-color 160ms, background 160ms;
+}
+
+.topbar-actions > button:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.06);
+}
+
+.topbar-actions > button.has-library {
+  color: #e6b85b;
+  border-color: rgba(230,184,91,0.34);
+}
+
+.topbar-actions > .topbar-icon-button {
+  width: 36px;
+  padding: 0;
+}
 
 /* ─── 题材标签栏 ─────────────────────────────────────────── */
 .theme-tabs-bar {
@@ -324,22 +368,177 @@ input { font: inherit; }
   overflow: hidden;
 }
 
+.detail-img-area:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
 .detail-images-wrap {
-  display: flex;
-  gap: 14px;
-  padding: 28px;
-  align-items: center;
-  justify-content: center;
+  padding: 66px 26px 74px;
+  display: grid;
+  place-items: center;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.detail-image-stage {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  cursor: zoom-in;
+}
+
+.detail-image-stage.is-zoomed {
+  cursor: grab;
+}
+
+.detail-image-stage.is-panning {
+  cursor: grabbing;
 }
 
 .detail-artwork-img {
   max-width: 100%;
-  max-height: 780px;
+  max-height: 100%;
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+  transform-origin: center;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.image-toolbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.68);
+  backdrop-filter: blur(8px);
+}
+
+.image-toolbar button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.72);
+}
+
+.image-toolbar button:last-child {
+  border-right: 0;
+}
+
+.image-toolbar button:hover:not(:disabled),
+.image-toolbar button.is-active {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+.image-toolbar button.is-active {
+  color: #efbd58;
+}
+
+.image-toolbar button:disabled {
+  color: rgba(255,255,255,0.24);
+  cursor: default;
+}
+
+.image-toolbar > span {
+  width: 50px;
+  color: rgba(255,255,255,0.58);
+  font-size: 10px;
+  text-align: center;
+}
+
+.image-part-switch {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: 5;
+  display: flex;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.68);
+}
+
+.image-part-switch button {
+  min-width: 48px;
+  height: 36px;
+  padding-inline: 12px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+}
+
+.image-part-switch button:last-child {
+  border-right: 0;
+}
+
+.image-part-switch button.is-active {
+  background: #fff;
+  color: #151515;
+}
+
+.original-image-status {
+  position: absolute;
+  bottom: 20px;
+  left: 18px;
+  z-index: 5;
+  max-width: 290px;
+  min-height: 36px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(230,184,91,0.28);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.68);
+  color: #e6b85b;
+  font-size: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.original-image-status.is-error {
+  border-color: rgba(196,50,26,0.48);
+  color: #f0b5ad;
+}
+
+.original-image-status span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.original-image-status button {
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 10px;
+  text-decoration: underline;
+}
+
+@keyframes tool-spin {
+  to { transform: rotate(360deg); }
+}
+
+.is-spinning {
+  animation: tool-spin 800ms linear infinite;
 }
 
 /* 关闭按钮 */
@@ -352,6 +551,7 @@ input { font: inherit; }
   border-radius: 50%;
   color: rgba(255,255,255,0.8);
   transition: background 160ms;
+  z-index: 6;
 }
 
 .detail-close-btn:hover { background: rgba(255,255,255,0.2); }
@@ -369,6 +569,7 @@ input { font: inherit; }
   border-radius: 24px;
   padding: 8px 18px;
   backdrop-filter: blur(8px);
+  z-index: 5;
 }
 
 .detail-nav-btn {
@@ -525,11 +726,13 @@ input { font: inherit; }
   height: 32px; padding: 0 12px 0 10px;
   border: 1px solid rgba(255,255,255,0.28);
   border-radius: 16px;
+  background: rgba(0,0,0,0.58);
   color: rgba(255,255,255,0.55); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  backdrop-filter: blur(8px);
   transition: border-color 160ms, color 160ms;
 }
 
-.intro-skip:hover { border-color: rgba(255,255,255,0.55); color: rgba(255,255,255,0.85); }
+.intro-skip:hover { border-color: rgba(255,255,255,0.55); background: rgba(0,0,0,0.74); color: rgba(255,255,255,0.9); }
 
 .door-intro .door-bg { position: absolute; inset: 0; z-index: 1; opacity: 0; transform: scale(1.08); transition: opacity 3s ease, transform 3s ease; }
 .door-intro .door-bg { position: absolute; inset: 0; z-index: 1; opacity: 0; }
@@ -623,4 +826,5 @@ input { font: inherit; }
   .detail-overlay { animation: none; }
   .gallery-card { transition: none; }
   .gallery-card-img { transition: none; }
+  .is-spinning { animation: none; }
 }
