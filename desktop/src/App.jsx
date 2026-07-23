@@ -96,11 +96,13 @@ function OpeningIntro() {
       <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
+          <img className="door-panel-art" src="/images/py-098/part-1.webp" alt="" />
           <div className="door-studs" />
           <div ref={leftRingRef} className="door-ring" />
           <span ref={sealRef} className="door-seal">平</span>
         </div>
         <div ref={rightDoorRef} className="door-panel is-right">
+          <img className="door-panel-art" src="/images/py-098/part-2.webp" alt="" />
           <div className="door-studs" />
           <div ref={rightRingRef} className="door-ring" />
         </div>
