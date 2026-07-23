@@ -33,6 +33,17 @@ function OpeningIntro() {
   const titleCharsRef = useRef([]);
   const subRef = useRef(null);
   const lightCrackRef = useRef(null);
+  const corridorArtsRef = useRef([]);
+
+  // 走廊透视布局：左右各3幅，近大远小
+  const CORRIDOR = [
+    { slug: "py-001", x: -420, y: -80,  scale: 0.42, rot: 14 },
+    { slug: "py-014", x: -305, y: 48,   scale: 0.64, rot: 9  },
+    { slug: "py-025", x: -162, y: 148,  scale: 0.87, rot: 4  },
+    { slug: "py-030", x:  162, y: 148,  scale: 0.87, rot: -4 },
+    { slug: "py-089", x:  305, y: 48,   scale: 0.64, rot: -9 },
+    { slug: "py-095", x:  420, y: -80,  scale: 0.42, rot: -14},
+  ];
 
   useEffect(() => {
     if (!visible || !containerRef.current) return undefined;
@@ -47,7 +58,8 @@ function OpeningIntro() {
     // GSAP 直接管理透视，不依赖 CSS perspective
     gsap.set(leftDoorRef.current, { transformPerspective: 1000, transformOrigin: "left center", rotateY: 0 });
     gsap.set(rightDoorRef.current, { transformPerspective: 1000, transformOrigin: "right center", rotateY: 0 });
-    gsap.set(doorBgRef.current, { opacity: 0, scale: 1.1 });
+    gsap.set(doorBgRef.current, { opacity: 0 });
+    gsap.set(corridorArtsRef.current.filter(Boolean), { scale: 0.05, x: 0, y: 0, opacity: 0, rotation: 0 });
     gsap.set(doorGlowRef.current, { opacity: 0 });
     gsap.set(lightCrackRef.current, { scaleY: 0, opacity: 0 });
     gsap.set(sealRef.current, { opacity: 0, scale: 2, rotation: -12 });
@@ -67,11 +79,28 @@ function OpeningIntro() {
       .to(lightCrackRef.current, { scaleY: 1, opacity: 1, duration: 0.7, ease: "power1.out" }, "+=0.2")
       .to(doorGlowRef.current, { opacity: 0.5, duration: 1.0, ease: "power1.out" }, "<0.2")
       .to([eyebrowRef.current, ...titleCharsRef.current.filter(Boolean), subRef.current, sealRef.current].filter(Boolean), { opacity: 0, y: -14, duration: 1.4, ease: "power1.inOut", stagger: 0.04 }, "+=0.1")
-      // 向内开门（正负号对调）
+      // 向内开门
       .to(leftDoorRef.current, { rotateY: 95, duration: 2.2, ease: "power3.inOut" }, "-=0.5")
       .to(rightDoorRef.current, { rotateY: -95, duration: 2.2, ease: "power3.inOut" }, "<")
-      .to(doorBgRef.current, { opacity: 1, scale: 1, duration: 1.8, ease: "power2.out" }, "<0.5")
-      .to([lightCrackRef.current, doorGlowRef.current], { opacity: 0, duration: 0.9, ease: "power1.inOut" }, "<0.8");
+      // 门打开同时：走廊背景淡入
+      .to(doorBgRef.current, { opacity: 1, duration: 1.0, ease: "power2.out" }, "<0.3")
+      // 走廊画作从中心点向左右飞出（透视走廊感）
+      .to(corridorArtsRef.current.filter(Boolean), {
+        scale: (i) => CORRIDOR[i].scale,
+        x: (i) => CORRIDOR[i].x,
+        y: (i) => CORRIDOR[i].y,
+        rotation: (i) => CORRIDOR[i].rot,
+        opacity: 1,
+        duration: 1.6,
+        stagger: { each: 0.07, from: "center" },
+        ease: "power2.out",
+      }, "<0.2")
+      // 停留片刻让用户欣赏走廊
+      .to({}, { duration: 1.2 })
+      // 走廊整体缓缓淡出，光线收敛
+      .to([doorBgRef.current, lightCrackRef.current, doorGlowRef.current], {
+        opacity: 0, duration: 1.2, ease: "power2.inOut",
+      });
 
     return () => { document.body.style.overflow = orig; tl.kill(); };
   }, [visible]);
@@ -86,23 +115,28 @@ function OpeningIntro() {
     <div ref={containerRef} className="opening-intro door-intro">
       <button className="intro-skip" type="button" onClick={skip}><X size={16} /><span>SKIP</span></button>
       <div ref={doorBgRef} className="door-bg" aria-hidden="true">
-        <div className="door-bg-grid">
-          {["py-001","py-014","py-025","py-030","py-089","py-095"].map(slug => (
-            <img key={slug} src={`/images/${slug}/primary.webp`} alt="" className="door-bg-art" />
-          ))}
-        </div>
+        <div className="door-corridor-bg" />
+        {CORRIDOR.map((item, i) => (
+          <img
+            key={item.slug}
+            ref={el => { corridorArtsRef.current[i] = el; }}
+            src={`/images/${item.slug}/primary.webp`}
+            alt=""
+            className="corridor-art"
+          />
+        ))}
         <div className="door-bg-overlay" />
       </div>
       <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
-          <img className="door-panel-art" src="/images/py-098/part-1.webp" alt="" />
+          <img className="door-panel-art" src="/images/py-099/part-1.webp" alt="" />
           <div className="door-studs" />
           <div ref={leftRingRef} className="door-ring" />
           <span ref={sealRef} className="door-seal">平</span>
         </div>
         <div ref={rightDoorRef} className="door-panel is-right">
-          <img className="door-panel-art" src="/images/py-098/part-2.webp" alt="" />
+          <img className="door-panel-art" src="/images/py-099/part-2.webp" alt="" />
           <div className="door-studs" />
           <div ref={rightRingRef} className="door-ring" />
         </div>
