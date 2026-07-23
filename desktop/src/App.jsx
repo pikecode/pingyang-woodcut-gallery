@@ -145,20 +145,26 @@ function DetailOverlay({ artwork, artworks, onClose, onChange }) {
           </div>
         </div>
         <div className="detail-info">
-          <span className="detail-kicker">{artwork.theme.name} · {kind} · {artwork.period.label}</span>
-          <h2 className="detail-title">{artwork.title}</h2>
-          {artwork.aliases.length > 0 && <p className="detail-alias">又名：{artwork.aliases.join("、")}</p>}
-          <p className="detail-desc">{artwork.description}</p>
-          <div className="detail-meta-grid">
-            <div><span className="meta-label">分类</span><span className="meta-val">{artwork.theme.name}</span></div>
-            <div><span className="meta-label">形制</span><span className="meta-val">{kind}</span></div>
-            <div><span className="meta-label">年代</span><span className="meta-val">{artwork.period.label}</span></div>
-            <div><span className="meta-label">规格</span><span className="meta-val">{artwork.dimensions.sourceText}</span></div>
-            <div className="meta-full"><span className="meta-label">馆藏</span><span className="meta-val">{artwork.collection}</span></div>
-          </div>
-          <div className="audio-player">
-            <button className="audio-btn" disabled><Play size={15} /></button>
-            <div><span className="audio-label">导览音频</span><span className="audio-status">音频文件准备中</span></div>
+          <div className="detail-info-scroll">
+            <div className="detail-kicker">
+              <span className="detail-kicker-tag">{artwork.theme.name}</span>
+              <span className="detail-kicker-tag">{kind}</span>
+              <span className="detail-kicker-tag">{artwork.period.label}</span>
+            </div>
+            <h2 className="detail-title">{artwork.title}</h2>
+            {artwork.aliases.length > 0 && <p className="detail-alias">又名：{artwork.aliases.join("、")}</p>}
+            <p className="detail-desc">{artwork.description}</p>
+            <div className="detail-meta-grid">
+              <div><span className="meta-label">分类</span><span className="meta-val">{artwork.theme.name}</span></div>
+              <div><span className="meta-label">形制</span><span className="meta-val">{kind}</span></div>
+              <div><span className="meta-label">年代</span><span className="meta-val">{artwork.period.label}</span></div>
+              <div><span className="meta-label">规格</span><span className="meta-val">{artwork.dimensions.sourceText}</span></div>
+              <div className="meta-full"><span className="meta-label">馆藏</span><span className="meta-val">{artwork.collection}</span></div>
+            </div>
+            <div className="audio-player">
+              <button className="audio-btn" disabled><Play size={15} /></button>
+              <div><span className="audio-label">导览音频</span><span className="audio-status">音频文件准备中</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -172,10 +178,11 @@ function ArtworkCard({ artwork, onOpen }) {
   return (
     <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
       <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="gallery-card-img" />
-      <div className="gallery-card-overlay">
-        <span className="gallery-card-tag">{artwork.theme.name}</span>
+      <span className="gallery-card-num">{String(artwork.catalogNo).padStart(3, "0")}</span>
+      <span className="gallery-card-badge">{artwork.theme.name}</span>
+      <div className="gallery-card-bottom">
         <strong className="gallery-card-title">{artwork.title}</strong>
-        <span className="gallery-card-meta">{artwork.period.label}</span>
+        <span className="gallery-card-meta">{artwork.period.label} · {kind}</span>
       </div>
     </button>
   );

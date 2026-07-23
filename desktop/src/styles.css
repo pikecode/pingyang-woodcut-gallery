@@ -1,27 +1,30 @@
 /* ─── 全局 ─────────────────────────────────────────────── */
 :root {
-  --paper: #F8F4ED;
+  --bg: #0D0D12;
+  --surface: #16161C;
+  --card-bg: #1A1A22;
+  --border: rgba(255,255,255,0.07);
   --ink: #1A1814;
-  --muted: #8C8877;
-  --line: #E2DDD4;
+  --paper: #F5F2EC;
+  --muted-dark: rgba(255,255,255,0.45);
+  --muted-light: #8C8877;
   --red: #C4321A;
   --gold: #E8961A;
-  --bg: #111110;
-  --surface: #1c1c18;
+  --gold-dim: rgba(232,150,26,0.15);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body { height: 100%; overflow: hidden; }
+html, body { height: 100%; overflow: hidden; background: var(--bg); }
 
 body {
-  background: var(--bg);
-  color: var(--paper);
+  color: #fff;
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 }
 
-button { border: 0; cursor: pointer; font: inherit; background: transparent; color: inherit; }
+button { border: 0; cursor: pointer; font: inherit; background: transparent; color: inherit; padding: 0; }
 img { display: block; }
 input { font: inherit; }
 
@@ -31,19 +34,21 @@ input { font: inherit; }
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  background: var(--bg);
 }
 
 /* ─── 顶部工具栏 ─────────────────────────────────────────── */
 .gallery-topbar {
   flex-shrink: 0;
-  height: 56px;
+  height: 60px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 24px;
-  background: rgba(17,17,16,0.97);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
+  gap: 14px;
+  padding: 0 20px;
+  background: rgba(13,13,18,0.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .topbar-brand {
@@ -54,59 +59,69 @@ input { font: inherit; }
 }
 
 .topbar-seal {
-  width: 32px; height: 32px;
+  width: 34px; height: 34px;
   display: grid; place-items: center;
   background: var(--red);
   color: #fff;
-  font-family: "Songti SC", serif;
+  font-family: "Songti SC", "STSong", serif;
   font-size: 20px; font-weight: 700;
+  border-radius: 4px;
 }
 
 .topbar-name {
-  font-family: "Songti SC", serif;
-  font-size: 17px; font-weight: 700;
-  color: var(--paper);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 16px; font-weight: 700;
+  color: #fff;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .topbar-search {
   flex: 1;
-  max-width: 340px;
+  max-width: 300px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 36px;
-  padding: 0 12px;
-  background: rgba(255,255,255,0.06);
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 2px;
-  color: var(--muted);
+  border-radius: 20px;
+  color: var(--muted-dark);
+  transition: background 160ms, border-color 160ms;
 }
 
 .topbar-search:focus-within {
-  border-color: rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.22);
 }
 
 .topbar-search input {
   flex: 1; border: 0; outline: 0;
   background: transparent;
-  color: var(--paper); font-size: 13px;
+  color: #fff; font-size: 13px;
 }
 
-.topbar-search input::placeholder { color: var(--muted); }
+.topbar-search input::placeholder { color: rgba(255,255,255,0.35); }
 
 .topbar-search button {
   display: grid; place-items: center;
-  color: var(--muted);
-  padding: 4px;
+  color: rgba(255,255,255,0.4);
+  padding: 2px;
+  transition: color 140ms;
 }
+
+.topbar-search button:hover { color: rgba(255,255,255,0.75); }
 
 /* ─── 题材标签栏 ─────────────────────────────────────────── */
 .theme-tabs-bar {
   flex-shrink: 0;
   display: flex;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  align-items: center;
+  gap: 4px;
+  padding: 10px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -115,29 +130,41 @@ input { font: inherit; }
 
 .theme-tab-btn {
   flex-shrink: 0;
-  height: 44px;
-  padding: 0 20px;
+  height: 34px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   gap: 6px;
-  border-right: 1px solid rgba(255,255,255,0.07);
-  color: var(--muted);
+  border-radius: 17px;
+  color: rgba(255,255,255,0.45);
   font-size: 13px;
+  font-weight: 500;
   white-space: nowrap;
-  transition: color 160ms ease, background 160ms ease;
+  background: transparent;
+  transition: color 160ms, background 160ms;
 }
-
-.theme-tab-btn:first-child { border-left: 1px solid rgba(255,255,255,0.07); }
 
 .theme-tab-btn span {
   font-size: 11px;
-  opacity: 0.6;
+  opacity: 0.7;
+  background: rgba(255,255,255,0.1);
+  padding: 1px 6px;
+  border-radius: 8px;
+  transition: background 160ms;
 }
 
+.theme-tab-btn:hover { color: rgba(255,255,255,0.75); }
+
 .theme-tab-btn.is-active {
-  color: var(--paper);
-  background: rgba(255,255,255,0.07);
-  border-bottom: 2px solid var(--gold);
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  font-weight: 600;
+}
+
+.theme-tab-btn.is-active span {
+  background: var(--gold);
+  color: #1A1814;
+  opacity: 1;
 }
 
 /* ─── 藏品网格 ─────────────────────────────────────────── */
@@ -145,62 +172,96 @@ input { font: inherit; }
   flex: 1;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.15) transparent;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  background: var(--bg);
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 2px;
-  padding: 2px;
-  background: #0a0a09;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  padding: 16px;
 }
 
+/* ─── 藏品卡片 ─────────────────────────────────────────── */
 .gallery-card {
   position: relative;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: var(--surface);
-  padding: 0;
-  border-radius: 0;
+  background: var(--card-bg);
+  border-radius: 10px;
   display: block;
   width: 100%;
+  text-align: left;
+  transition: transform 260ms cubic-bezier(0.2, 0, 0, 1),
+              box-shadow 260ms ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.55);
 }
 
 .gallery-card-img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 400ms ease;
+  transition: transform 440ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .gallery-card:hover .gallery-card-img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
-.gallery-card-overlay {
+/* 编号角标 — 左上 */
+.gallery-card-num {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 48px 12px 12px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.82));
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  pointer-events: none;
+  top: 10px; left: 10px;
+  padding: 3px 8px;
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
 }
 
-.gallery-card-tag {
+/* 分类徽章 — 右上 */
+.gallery-card-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  padding: 3px 9px;
+  background: rgba(232,150,26,0.85);
+  color: #1A1814;
   font-size: 10px;
   font-weight: 700;
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+/* 底部信息区 */
+.gallery-card-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 14px 14px;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0,0,0,0.35) 30%,
+    rgba(0,0,0,0.75) 70%,
+    rgba(0,0,0,0.92) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .gallery-card-title {
-  font-family: "Songti SC", serif;
-  font-size: 18px;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 16px;
+  font-weight: 700;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.3;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 
 .gallery-card-meta {
@@ -217,12 +278,14 @@ input { font: inherit; }
   gap: 16px;
   height: 100%;
   min-height: 300px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.3);
 }
+
+.gallery-empty p { font-size: 15px; }
 
 /* ─── 详情覆盖层 ─────────────────────────────────────────── */
 @keyframes detail-in {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px) scale(0.99); }
   to   { opacity: 1; transform: none; }
 }
 
@@ -230,30 +293,30 @@ input { font: inherit; }
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(0,0,0,0.88);
+  background: rgba(0,0,0,0.86);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  animation: detail-in 0.28s ease-out both;
+  padding: 20px;
+  animation: detail-in 0.28s cubic-bezier(0.2,0,0,1) both;
 }
 
 .detail-inner {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1180px;
   height: 100%;
-  max-height: 860px;
+  max-height: 840px;
   display: grid;
-  grid-template-columns: 1fr minmax(320px, 420px);
+  grid-template-columns: 1fr minmax(300px, 400px);
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
-  background: #0a0a09;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
 }
 
+/* 左侧图片区 */
 .detail-img-area {
   position: relative;
-  background: #0a0a09;
+  background: #080808;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -262,115 +325,142 @@ input { font: inherit; }
 
 .detail-images-wrap {
   display: flex;
-  gap: 12px;
-  padding: 24px;
+  gap: 14px;
+  padding: 28px;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .detail-artwork-img {
   max-width: 100%;
-  max-height: calc(860px - 80px);
+  max-height: 780px;
   object-fit: contain;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  border-radius: 4px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
 }
 
+/* 关闭按钮 */
 .detail-close-btn {
   position: absolute;
-  top: 14px; right: 14px;
-  width: 36px; height: 36px;
+  top: 16px; right: 16px;
+  width: 38px; height: 38px;
   display: grid; place-items: center;
   background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  color: #fff;
-  transition: background 160ms ease;
+  border-radius: 50%;
+  color: rgba(255,255,255,0.8);
+  transition: background 160ms;
 }
 
 .detail-close-btn:hover { background: rgba(255,255,255,0.2); }
 
+/* 底部翻页导航 */
 .detail-img-nav {
   position: absolute;
-  bottom: 16px; left: 50%;
+  bottom: 20px; left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(0,0,0,0.6);
+  gap: 16px;
+  background: rgba(0,0,0,0.65);
   border: 1px solid rgba(255,255,255,0.12);
-  padding: 6px 14px;
-  border-radius: 2px;
+  border-radius: 24px;
+  padding: 8px 18px;
+  backdrop-filter: blur(8px);
 }
 
 .detail-nav-btn {
-  color: #fff; opacity: 0.8;
+  color: rgba(255,255,255,0.75);
   padding: 4px;
-  transition: opacity 160ms;
+  transition: color 140ms;
+  display: grid; place-items: center;
 }
 
-.detail-nav-btn:hover { opacity: 1; }
+.detail-nav-btn:hover { color: #fff; }
 
-.detail-counter { font-size: 12px; color: rgba(255,255,255,0.6); }
+.detail-counter {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  min-width: 40px;
+  text-align: center;
+}
 
-/* ─── 详情信息面板 ─────────────────────────────────────────── */
+/* 右侧信息面板 */
 .detail-info {
   background: var(--paper);
   color: var(--ink);
   overflow-y: auto;
-  padding: 36px 32px 48px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info-scroll {
+  padding: 32px 28px 48px;
   display: flex;
   flex-direction: column;
   gap: 0;
-  scrollbar-width: thin;
 }
 
 .detail-kicker {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.detail-kicker-tag {
+  padding: 3px 10px;
+  border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
+  background: rgba(196,50,26,0.1);
   color: var(--red);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 12px;
 }
 
 .detail-title {
-  font-family: "Songti SC", serif;
-  font-size: 36px;
-  line-height: 1.2;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 32px;
+  line-height: 1.25;
   color: var(--ink);
   margin-bottom: 10px;
+  letter-spacing: 0.02em;
 }
 
 .detail-alias {
   font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 20px;
+  color: var(--muted-light);
+  margin-bottom: 18px;
+  line-height: 1.6;
 }
 
 .detail-desc {
-  font-family: "Songti SC", serif;
-  font-size: 15px;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 14px;
   line-height: 2;
-  color: var(--ink);
-  margin-bottom: 28px;
+  color: #3A3830;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .detail-meta-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--line);
-  margin-bottom: 24px;
+  gap: 0;
+  margin-bottom: 20px;
 }
 
 .detail-meta-grid > div {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
 }
 
 .detail-meta-grid > div:nth-child(even) {
-  padding-left: 16px;
-  border-left: 1px solid var(--line);
+  padding-left: 14px;
+  border-left: 1px solid rgba(0,0,0,0.07);
 }
 
 .detail-meta-grid .meta-full {
@@ -379,65 +469,88 @@ input { font: inherit; }
   padding-left: 0 !important;
 }
 
-.meta-label { display: block; font-size: 10px; color: var(--muted); margin-bottom: 4px; }
-.meta-val { display: block; font-size: 13px; color: var(--ink); }
+.meta-label {
+  display: block;
+  font-size: 10px;
+  color: var(--muted-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+}
 
-/* ─── 音频播放器 ─────────────────────────────────────────── */
+.meta-val {
+  display: block;
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* 音频播放器 */
 .audio-player {
   display: flex; align-items: center; gap: 14px;
   padding: 14px 16px;
-  background: #F0EBE1;
-  border: 1px solid var(--line);
-  border-radius: 2px;
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
 }
 
 .audio-btn {
-  width: 36px; height: 36px;
+  width: 38px; height: 38px; flex-shrink: 0;
   display: grid; place-items: center;
   background: var(--red); color: #fff;
   border-radius: 50%;
+  transition: background 160ms;
 }
 
-.audio-btn:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+.audio-btn:hover:not(:disabled) { background: #a52817; }
+.audio-btn:disabled { background: rgba(0,0,0,0.12); color: var(--muted-light); cursor: not-allowed; }
 
-.audio-label { display: block; font-size: 10px; font-weight: 700; color: var(--gold); margin-bottom: 3px; }
-.audio-status { display: block; font-size: 12px; color: var(--muted); }
+.audio-label {
+  display: block; font-size: 10px; font-weight: 700;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px;
+}
 
-/* ─── 开场动画（复用现有） ─────────────────────────────────── */
+.audio-status { display: block; font-size: 12px; color: var(--muted-light); }
+
+/* ─── 开场动画 ─────────────────────────────────────────── */
 .opening-intro {
   position: fixed; inset: 0; z-index: 1000;
   background: #140808; overflow: hidden;
-  transition: opacity 0.8s ease;
 }
 
 .intro-skip {
-  position: absolute; top: 24px; right: 24px; z-index: 10;
+  position: absolute; top: 22px; right: 22px; z-index: 10;
   display: flex; align-items: center; gap: 6px;
-  height: 34px; padding: 0 12px 0 10px;
-  border: 1px solid rgba(255,255,255,0.35);
-  color: rgba(255,255,255,0.65); font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  height: 32px; padding: 0 12px 0 10px;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 16px;
+  color: rgba(255,255,255,0.55); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  transition: border-color 160ms, color 160ms;
 }
+
+.intro-skip:hover { border-color: rgba(255,255,255,0.55); color: rgba(255,255,255,0.85); }
 
 .door-intro .door-bg { position: absolute; inset: 0; z-index: 1; opacity: 0; transform: scale(1.08); transition: opacity 3s ease, transform 3s ease; }
 .door-intro .door-bg img { width: 100%; height: 100%; object-fit: cover; }
 .door-intro .door-bg-overlay { position: absolute; inset: 0; background: rgba(20,8,8,0.55); }
-.door-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 55% 70% at 50%, rgba(220,160,40,0.35), rgba(180,100,20,0.1) 45%, transparent 70%); opacity: 0; }
+.door-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(ellipse 55% 70% at 50% 50%,rgba(220,160,40,0.35),rgba(180,100,20,0.1) 45%,transparent 70%); opacity: 0; }
 .door-frame { position: absolute; inset: 0; z-index: 3; display: flex; }
 .door-panel { flex: 1; position: relative; background: linear-gradient(160deg,#7A1A1A,#5C1212 50%,#3A0A0A); will-change: transform; }
-.door-panel.is-left { transform-origin: left center; border-right: 2px solid rgba(232,150,26,0.45); }
-.door-panel.is-right { transform-origin: right center; border-left: 2px solid rgba(232,150,26,0.45); }
-.door-studs { position: absolute; inset: 14% 12%; background-image: radial-gradient(circle 4px at center,rgba(232,175,55,0.65) 4px,transparent 4px); background-size: 9% 9%; }
-.door-ring { position: absolute; bottom: 36%; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; border: 6px solid rgba(232,175,55,0.75); border-radius: 50%; }
-.door-seal { position: absolute; top: 28%; right: min(60px,5%); width: 64px; height: 64px; display: grid; place-items: center; background: var(--red); color: #fff; font-family: "Songti SC",serif; font-size: 38px; }
+.door-panel.is-left { transform-origin: left center; border-right: 2px solid rgba(232,150,26,0.45); box-shadow: inset -8px 0 24px rgba(0,0,0,0.5); }
+.door-panel.is-right { transform-origin: right center; border-left: 2px solid rgba(232,150,26,0.45); box-shadow: inset 8px 0 24px rgba(0,0,0,0.5); }
+.door-studs { position: absolute; inset: 12% 10%; background-image: radial-gradient(circle 4px at center,rgba(232,175,55,0.6) 4px,transparent 4px); background-size: 8% 8%; }
+.door-ring { position: absolute; bottom: 36%; left: 50%; transform: translateX(-50%); width: 72px; height: 72px; border: 6px solid rgba(232,175,55,0.7); border-radius: 50%; box-shadow: 0 0 12px rgba(232,175,55,0.2); }
+.door-seal { position: absolute; top: 28%; right: min(60px,5.5%); width: 66px; height: 66px; display: grid; place-items: center; background: var(--red); color: #fff; font-family: "Songti SC",serif; font-size: 40px; border-radius: 4px; }
 .door-light-crack { position: absolute; top: 0; bottom: 0; left: 50%; width: 8px; transform: translateX(-50%); background: linear-gradient(90deg,transparent,rgba(255,220,100,0.9),transparent); filter: blur(3px); z-index: 5; pointer-events: none; }
-.door-title { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; gap: 10px; pointer-events: none; }
-.door-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: rgba(232,175,55,0.9); }
+.door-title { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; gap: 12px; pointer-events: none; }
+.door-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: rgba(232,175,55,0.9); text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
 .door-title-chars { display: flex; justify-content: center; gap: 4px; }
-.door-title-chars span { display: inline-block; font-family: "Songti SC",serif; font-size: clamp(52px,7vw,110px); font-weight: 700; text-shadow: 0 4px 24px rgba(0,0,0,0.6); }
-.door-sub { font-size: 14px; letter-spacing: 0.3em; color: rgba(255,255,255,0.6); }
+.door-title-chars span { display: inline-block; font-family: "Songti SC",serif; font-size: clamp(56px,7.5vw,118px); font-weight: 700; text-shadow: 0 4px 28px rgba(0,0,0,0.65); letter-spacing: 0.03em; }
+.door-sub { font-size: 15px; letter-spacing: 0.38em; color: rgba(255,255,255,0.55); }
 
 @media (prefers-reduced-motion: reduce) {
   .opening-intro { display: none; }
   .detail-overlay { animation: none; }
+  .gallery-card { transition: none; }
   .gallery-card-img { transition: none; }
 }
