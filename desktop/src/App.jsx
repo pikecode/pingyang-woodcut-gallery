@@ -35,14 +35,14 @@ function OpeningIntro() {
   const lightCrackRef = useRef(null);
   const corridorArtsRef = useRef([]);
 
-  // 走廊透视布局：左右各3幅，近大远小
+  // 走廊透视布局：全部选单图作品（有 primary.webp）
   const CORRIDOR = [
     { slug: "py-001", x: -420, y: -80,  scale: 0.42, rot: 14 },
     { slug: "py-014", x: -305, y: 48,   scale: 0.64, rot: 9  },
     { slug: "py-025", x: -162, y: 148,  scale: 0.87, rot: 4  },
     { slug: "py-030", x:  162, y: 148,  scale: 0.87, rot: -4 },
-    { slug: "py-089", x:  305, y: 48,   scale: 0.64, rot: -9 },
-    { slug: "py-095", x:  420, y: -80,  scale: 0.42, rot: -14},
+    { slug: "py-088", x:  305, y: 48,   scale: 0.64, rot: -9 },
+    { slug: "py-091", x:  420, y: -80,  scale: 0.42, rot: -14},
   ];
 
   useEffect(() => {
