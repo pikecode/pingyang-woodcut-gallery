@@ -1,5 +1,3 @@
-use tauri::Manager;
-
 #[tauri::command]
 fn read_local_image(slug: String, role: String) -> Result<Vec<u8>, String> {
     // Attempt to read original high-res image from assets/originals/
