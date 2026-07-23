@@ -1,0 +1,29 @@
+.home-page { background: #F8F4ED; padding-bottom: 120rpx; }
+.loading { display: flex; justify-content: center; padding: 120rpx 0; }
+.home-hero { position: relative; width: 100%; height: 540rpx; overflow: hidden; background: #0a0a09; }
+.hero-img { width: 100%; height: 100%; }
+.hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 40rpx; background: linear-gradient(transparent 20%, rgba(10,6,6,0.85) 100%); }
+.hero-eyebrow { font-size: 20rpx; font-weight: 700; color: rgba(232,175,55,0.9); letter-spacing: 0.12em; margin-bottom: 12rpx; }
+.hero-title { font-size: 72rpx; font-weight: 700; color: #fff; margin-bottom: 10rpx; }
+.hero-sub { font-size: 28rpx; color: rgba(255,255,255,0.75); }
+.hero-caption { position: absolute; top: 20rpx; right: 20rpx; padding: 14rpx 16rpx; background: rgba(20,8,8,0.85); border-left: 6rpx solid #C4321A; }
+.caption-no { display: block; font-size: 20rpx; color: #C4321A; font-weight: 700; }
+.caption-title { display: block; font-size: 30rpx; color: #fff; font-weight: 700; margin-top: 4rpx; }
+.theme-nav { display: flex; background: #fff; border-bottom: 1px solid #E2DDD4; }
+.theme-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24rpx 0; border-right: 1px solid #E2DDD4; }
+.theme-nav-item:last-child { border-right: none; }
+.theme-name { font-size: 28rpx; font-weight: 700; color: #1A1814; }
+.theme-count { font-size: 20rpx; color: #8C8877; margin-top: 4rpx; }
+.section { padding: 40rpx 24rpx 48rpx; }
+.section-head { margin-bottom: 28rpx; }
+.section-label { display: block; font-size: 20rpx; font-weight: 700; color: #E8961A; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8rpx; }
+.section-label.gold { color: #E8961A; }
+.section-h2 { display: block; font-size: 52rpx; font-weight: 700; color: #1A1814; }
+.section-h2.white { color: #fff; }
+.card-grid { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.card-grid > * { width: calc(50% - 8rpx); }
+.facts-section { padding: 60rpx 32rpx 80rpx; background: #0a0a09; }
+.stats-row { display: flex; gap: 0; margin-top: 36rpx; }
+.stat-item { flex: 1; padding-left: 24rpx; border-left: 1px solid rgba(255,255,255,0.15); }
+.stat-num { display: block; font-size: 72rpx; font-weight: 700; color: #E8961A; line-height: 1; }
+.stat-label { display: block; font-size: 22rpx; color: #8C8877; margin-top: 8rpx; }

@@ -1,0 +1,26 @@
+.cat-page { display: flex; flex-direction: column; height: 100vh; background: #F8F4ED; }
+.cat-topbar { flex-shrink: 0; padding: 24rpx 24rpx 16rpx; background: rgba(248,244,237,0.97); border-bottom: 1px solid #E2DDD4; }
+.cat-title { display: block; font-size: 52rpx; font-weight: 700; color: #1A1814; margin-bottom: 16rpx; }
+.cat-search-row { display: flex; gap: 12rpx; align-items: center; }
+.search-field { flex: 1; display: flex; align-items: center; height: 72rpx; padding: 0 16rpx; background: #fff; border: 1px solid #E2DDD4; gap: 12rpx; }
+.search-input { flex: 1; font-size: 26rpx; color: #1A1814; height: 100%; }
+.search-ph { color: #8C8877; }
+.search-clear { font-size: 24rpx; color: #8C8877; padding: 8rpx; }
+.view-btn { width: 72rpx; height: 72rpx; display: flex; align-items: center; justify-content: center; border: 1px solid #E2DDD4; background: #fff; font-size: 32rpx; }
+.view-btn.active { background: #1A1814; color: #fff; border-color: #1A1814; }
+.theme-tabs-wrap { flex-shrink: 0; background: #fff; border-bottom: 1px solid #E2DDD4; }
+.theme-tabs { display: flex; white-space: nowrap; }
+.theme-tab { display: inline-flex; flex-direction: column; align-items: center; padding: 18rpx 28rpx; border-right: 1px solid #E2DDD4; color: #8C8877; }
+.theme-tab.active { background: #1A1814; color: #fff; }
+.theme-tab .theme-count { font-size: 18rpx; margin-top: 4rpx; }
+.cat-content { flex: 1; }
+.results-bar { display: flex; align-items: center; justify-content: space-between; padding: 20rpx 24rpx; }
+.results-count { font-size: 24rpx; color: #8C8877; }
+.results-num { font-size: 36rpx; font-weight: 700; color: #E8961A; margin-right: 6rpx; }
+.results-reset { font-size: 24rpx; color: #1A1814; border-bottom: 1px solid #1A1814; }
+.card-grid { display: flex; flex-wrap: wrap; gap: 16rpx; padding: 0 24rpx 40rpx; }
+.card-grid > * { width: calc(50% - 8rpx); }
+.card-grid.is-list > * { width: 100%; }
+.empty-state { display: flex; flex-direction: column; align-items: center; padding: 120rpx 0; color: #8C8877; }
+.empty-title { font-size: 36rpx; color: #1A1814; margin-bottom: 12rpx; }
+.empty-desc { font-size: 26rpx; }

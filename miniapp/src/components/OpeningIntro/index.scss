@@ -1,0 +1,29 @@
+.intro-wrap { position: fixed; inset: 0; z-index: 1000; background: #140808; overflow: hidden; transition: opacity 0.8s ease; }
+.intro-wrap.is-done { opacity: 0; pointer-events: none; }
+.intro-skip { position: absolute; top: 40rpx; right: 40rpx; z-index: 10; padding: 12rpx 24rpx; border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); font-size: 22rpx; font-weight: 700; letter-spacing: 0.1em; }
+.intro-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; opacity: 0; transform: scale(1.08); transition: opacity 3s ease, transform 3s ease; }
+.intro-bg.is-visible { opacity: 1; transform: scale(1); }
+.intro-glow { position: absolute; inset: 0; z-index: 2; background: radial-gradient(ellipse 55% 70% at 50% 50%, rgba(220,160,40,0.35), rgba(180,100,20,0.1) 45%, transparent 70%); opacity: 0; transition: opacity 1s ease; }
+.intro-glow.is-visible { opacity: 1; }
+.intro-door-frame { position: absolute; inset: 0; z-index: 3; display: flex; }
+.intro-door { flex: 1; position: relative; background: linear-gradient(160deg, #7A1A1A 0%, #5C1212 50%, #3A0A0A 100%); transition: transform 3.2s cubic-bezier(0.4,0,0.2,1); }
+.intro-door.is-left { transform-origin: left center; border-right: 2px solid rgba(232,150,26,0.45); }
+.intro-door.is-right { transform-origin: right center; border-left: 2px solid rgba(232,150,26,0.45); }
+.intro-door.is-left.is-open { transform: perspective(1200px) rotateY(-108deg); }
+.intro-door.is-right.is-open { transform: perspective(1200px) rotateY(108deg); }
+.door-studs { position: absolute; inset: 14% 12%; background-image: radial-gradient(circle 6rpx at center, rgba(232,175,55,0.65) 6rpx, transparent 6rpx); background-size: 11% 11%; }
+.door-ring { position: absolute; bottom: 36%; left: 50%; transform: translateX(-50%); width: 104rpx; height: 104rpx; border: 10rpx solid rgba(232,175,55,0.75); border-radius: 50%; }
+.door-seal { position: absolute; top: 28%; right: 28rpx; width: 96rpx; height: 96rpx; display: flex; align-items: center; justify-content: center; background: #C4321A; color: #fff; font-size: 56rpx; opacity: 0; transform: scale(1.5) rotate(-10deg); transition: opacity 0.5s cubic-bezier(0.34,1.56,0.64,1), transform 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+.door-seal.is-visible { opacity: 1; transform: scale(1) rotate(0); }
+.intro-crack { position: absolute; top: 0; bottom: 0; left: 50%; width: 16rpx; transform: translateX(-50%) scaleY(0); background: linear-gradient(90deg, transparent, rgba(255,220,100,0.9), transparent); filter: blur(4px); z-index: 5; transition: transform 0.7s ease, opacity 0.8s ease; opacity: 0; }
+.intro-crack.is-visible { transform: translateX(-50%) scaleY(1); opacity: 1; }
+.intro-crack.is-hidden { opacity: 0; }
+.intro-title { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16rpx; transition: opacity 1.4s ease, transform 1.4s ease; }
+.intro-title.is-fading { opacity: 0; transform: translateY(-28rpx); }
+.intro-eyebrow { font-size: 22rpx; font-weight: 700; letter-spacing: 0.16em; color: rgba(232,175,55,0.9); opacity: 0; transform: translateY(14rpx); transition: opacity 0.38s ease, transform 0.38s ease; }
+.intro-eyebrow.is-visible { opacity: 1; transform: none; }
+.intro-chars { display: flex; justify-content: center; gap: 4rpx; }
+.intro-char { font-size: 96rpx; font-weight: 700; color: #fff; text-shadow: 0 8rpx 48rpx rgba(0,0,0,0.6); opacity: 0; transform: translateY(32rpx); transition: opacity 0.45s cubic-bezier(0.34,1.4,0.64,1), transform 0.45s cubic-bezier(0.34,1.4,0.64,1); }
+.intro-char.is-visible { opacity: 1; transform: none; }
+.intro-sub { font-size: 28rpx; letter-spacing: 0.32em; color: rgba(255,255,255,0.65); opacity: 0; transform: translateY(10rpx); transition: opacity 0.35s ease, transform 0.35s ease; }
+.intro-sub.is-visible { opacity: 1; transform: none; }

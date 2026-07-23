@@ -1,21 +1,30 @@
-# Original collection images are intentionally stored outside Git.
+# Original collection images
 assets/originals/*
 !assets/originals/README.md
 
-# The archival Word source is image-heavy and exceeds normal Git host limits.
+# Archival Word source
 docs/*.doc
 
-# Local Python artifacts.
+# Python artifacts
 __pycache__/
 *.py[cod]
 .venv/
 
-# Frontend build artifacts.
+# H5 project build artifacts
+h5/node_modules/
+h5/dist/
+
+# Mini program build artifacts
+miniapp/node_modules/
+miniapp/dist/
+
+# Root level (legacy, kept for safety)
 node_modules/
 dist/
 
-# Local browser verification captures.
+# Design captures
 design/screenshots/
 
-# Local agent state.
+# Agent state
 .omc/
+.vite/

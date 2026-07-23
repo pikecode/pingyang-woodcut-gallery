@@ -1,0 +1,12 @@
+.artwork-card { background: #fff; overflow: hidden; border: 1px solid #E2DDD4; }
+.artwork-image-wrap { position: relative; width: 100%; padding-bottom: 75%; background: #f5f2eb; overflow: hidden; }
+.artwork-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.artwork-index { position: absolute; top: 8px; left: 8px; padding: 3px 6px; background: rgba(26,24,20,0.85); color: #fff; font-size: 20rpx; }
+.artwork-copy { padding: 12px 10px 14px; }
+.artwork-kicker { display: block; color: #C4321A; font-size: 20rpx; font-weight: 700; margin-bottom: 6rpx; }
+.artwork-title { display: block; font-size: 30rpx; font-weight: 700; color: #1A1814; margin-bottom: 8rpx; line-height: 1.3; }
+.artwork-desc { display: block; font-size: 24rpx; color: #8C8877; line-height: 1.6; margin-bottom: 8rpx; }
+.artwork-meta { display: block; font-size: 22rpx; color: #8C8877; }
+.is-list { display: flex; flex-direction: row; align-items: center; }
+.is-list .artwork-image-wrap { width: 200rpx; padding-bottom: 0; height: 150rpx; flex-shrink: 0; }
+.is-list .artwork-copy { flex: 1; min-width: 0; }

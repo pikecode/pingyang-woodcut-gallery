@@ -1,0 +1,8 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "pingyang-miniapp",
+  "description": "平阳木版年画数字馆藏",
+  "appid": "touristappid",
+  "setting": { "urlCheck": false, "es6": false, "postcss": false, "minified": false },
+  "compileType": "miniprogram"
+}

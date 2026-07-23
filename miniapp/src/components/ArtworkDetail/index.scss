@@ -1,0 +1,26 @@
+.detail-mask { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.85); display: flex; align-items: flex-end; }
+.detail-panel { width: 100%; height: 92vh; background: #fff; border-radius: 16px 16px 0 0; overflow: hidden; display: flex; flex-direction: column; }
+.detail-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 0 24rpx; height: 88rpx; border-bottom: 1px solid #E2DDD4; flex-shrink: 0; }
+.detail-no { font-size: 22rpx; color: #8C8877; }
+.detail-actions { display: flex; gap: 12rpx; }
+.detail-btn { width: 64rpx; height: 64rpx; display: flex; align-items: center; justify-content: center; border: 1px solid #E2DDD4; font-size: 36rpx; color: #1A1814; }
+.detail-close { font-size: 28rpx; }
+.detail-scroll { flex: 1; }
+.detail-images { background: #0a0a09; padding: 24rpx; display: flex; gap: 16rpx; justify-content: center; }
+.detail-img { max-width: 100%; }
+.detail-body { padding: 32rpx 32rpx 120rpx; }
+.detail-kicker { display: block; font-size: 22rpx; font-weight: 700; color: #C4321A; margin-bottom: 12rpx; }
+.detail-title { display: block; font-size: 52rpx; font-weight: 700; color: #1A1814; margin-bottom: 16rpx; line-height: 1.2; }
+.detail-alias { display: block; font-size: 24rpx; color: #8C8877; margin-bottom: 24rpx; }
+.detail-desc { display: block; font-size: 30rpx; line-height: 1.9; color: #1A1814; margin-bottom: 36rpx; }
+.detail-meta { display: flex; flex-wrap: wrap; border-top: 1px solid #E2DDD4; margin-bottom: 32rpx; }
+.meta-item { width: 50%; padding: 20rpx 0; border-bottom: 1px solid #E2DDD4; }
+.meta-full { width: 100%; }
+.meta-label { display: block; font-size: 20rpx; color: #8C8877; margin-bottom: 6rpx; }
+.meta-value { display: block; font-size: 28rpx; color: #1A1814; }
+.audio-player { display: flex; align-items: center; gap: 24rpx; padding: 24rpx; background: #F8F4ED; border: 1px solid #E2DDD4; }
+.audio-btn { width: 72rpx; height: 72rpx; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #C4321A; color: #fff; font-size: 32rpx; flex-shrink: 0; }
+.audio-disabled { background: #d4d3cb; }
+.audio-info { flex: 1; }
+.audio-label { display: block; font-size: 20rpx; font-weight: 700; color: #E8961A; margin-bottom: 4rpx; }
+.audio-status { display: block; font-size: 24rpx; color: #8C8877; }
