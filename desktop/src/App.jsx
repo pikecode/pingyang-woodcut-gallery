@@ -449,21 +449,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
           <span>平阳木版年画</span>
         </button>
         <h1 className="detail-topbar-title">藏品详情</h1>
-        <div className="detail-topbar-icons">
-          <button type="button" className="topbar-icon-btn" onClick={toggleImageFullscreen} aria-label={isFullscreen ? "退出全屏" : "全屏"}>
-            {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-          </button>
-          <button
-            type="button"
-            className={`topbar-icon-btn${originalUrl ? " is-connected" : ""}`}
-            onClick={loadOriginal}
-            disabled={originalState.loading || Boolean(originalUrl)}
-            aria-label="载入本地高清原图"
-            title="载入本地高清原图"
-          >
-            {originalState.loading ? <LoaderCircle className="is-spinning" size={17} /> : <ScanSearch size={18} />}
-          </button>
-        </div>
+        <div className="detail-topbar-icons" />
       </header>
 
       {/* 主体：左图右文 */}
