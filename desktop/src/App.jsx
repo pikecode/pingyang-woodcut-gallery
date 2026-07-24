@@ -483,6 +483,11 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
               ? { scale: 2, x: 0, y: 0 }
               : { scale: 1, x: 0, y: 0 })}
           >
+            {/* 四角红钉装饰 */}
+            <span className="frame-corner frame-tl" aria-hidden="true" />
+            <span className="frame-corner frame-tr" aria-hidden="true" />
+            <span className="frame-corner frame-bl" aria-hidden="true" />
+            <span className="frame-corner frame-br" aria-hidden="true" />
             <div className={`detail-image-stage${view.scale > 1 ? " is-zoomed" : ""}${isPanning ? " is-panning" : ""}`}>
               {currentImage && (
                 <img
