@@ -433,68 +433,48 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   };
 
   return (
-    <div className="detail-overlay" onClick={onClose}>
-      <section className="detail-inner" role="dialog" aria-modal="true" aria-labelledby="detail-title" onClick={e => e.stopPropagation()}>
-        <div ref={imageAreaRef} className="detail-img-area">
-          <div className="image-toolbar" aria-label="图像工具">
-            <button type="button" onClick={() => changeZoom(-0.25)} disabled={view.scale <= 1} aria-label="缩小" title="缩小">
-              <ZoomOut size={18} />
-            </button>
-            <span>{Math.round(view.scale * 100)}%</span>
-            <button type="button" onClick={() => changeZoom(0.25)} disabled={view.scale >= 6} aria-label="放大" title="放大">
-              <ZoomIn size={18} />
-            </button>
-            <button type="button" onClick={() => setView({ scale: 1, x: 0, y: 0 })} aria-label="重置视图" title="重置视图">
-              <RotateCcw size={17} />
-            </button>
-            <button
-              type="button"
-              className={originalUrl ? "is-active" : ""}
-              onClick={loadOriginal}
-              disabled={originalState.loading || Boolean(originalUrl)}
-              aria-label="载入本地高清原图"
-              title="载入本地高清原图"
-            >
-              {originalState.loading ? <LoaderCircle className="is-spinning" size={17} /> : <ScanSearch size={18} />}
-            </button>
-            <button type="button" onClick={toggleImageFullscreen} aria-label={isFullscreen ? "退出全屏" : "图像全屏"} title={isFullscreen ? "退出全屏" : "图像全屏"}>
-              {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-            </button>
-          </div>
+    <div className="detail-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      {/* 顶部导航栏 */}
+      <header className="detail-topbar">
+        <button className="detail-back-btn" onClick={onClose} aria-label="返回">
+          <ChevronLeft size={20} />
+          <span>平阳木版年画</span>
+        </button>
+        <h1 className="detail-topbar-title">藏品详情</h1>
+        <div className="detail-topbar-icons">
+          <button type="button" className="topbar-icon-btn" onClick={toggleImageFullscreen} aria-label={isFullscreen ? "退出全屏" : "全屏"}>
+            {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+          </button>
+          <button
+            type="button"
+            className={`topbar-icon-btn${originalUrl ? " is-connected" : ""}`}
+            onClick={loadOriginal}
+            disabled={originalState.loading || Boolean(originalUrl)}
+            aria-label="载入本地高清原图"
+            title="载入本地高清原图"
+          >
+            {originalState.loading ? <LoaderCircle className="is-spinning" size={17} /> : <ScanSearch size={18} />}
+          </button>
+        </div>
+      </header>
 
-          {images.length > 1 && (
-            <div className="image-part-switch" aria-label="作品图像">
-              {images.map((image, imageIndex) => (
-                <button
-                  key={image.role}
-                  type="button"
-                  className={activeImage === imageIndex ? "is-active" : ""}
-                  onClick={() => setActiveImage(imageIndex)}
-                >
-                  图 {imageIndex + 1}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <div className="detail-img-nav">
-            <button className="detail-nav-btn" onClick={() => onChange(-1)} aria-label="上一件"><ChevronLeft size={22} /></button>
-            <span className="detail-counter">{idx + 1} / {artworks.length}</span>
-            <button className="detail-nav-btn" onClick={() => onChange(1)} aria-label="下一件"><ChevronRight size={22} /></button>
-          </div>
-          <button className="detail-close-btn" onClick={onClose} aria-label="关闭"><X size={20} /></button>
-          <div className="detail-images-wrap">
-            <div
-              className={`detail-image-stage${view.scale > 1 ? " is-zoomed" : ""}${isPanning ? " is-panning" : ""}`}
-              onWheel={onWheel}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={endPan}
-              onPointerCancel={endPan}
-              onDoubleClick={() => setView((value) => value.scale === 1
-                ? { scale: 2, x: 0, y: 0 }
-                : { scale: 1, x: 0, y: 0 })}
-            >
+      {/* 主体：左图右文 */}
+      <div className="detail-body">
+        {/* 左侧图片区 */}
+        <div className="detail-img-section">
+          <div
+            ref={imageAreaRef}
+            className="detail-img-frame"
+            onWheel={onWheel}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={endPan}
+            onPointerCancel={endPan}
+            onDoubleClick={() => setView((value) => value.scale === 1
+              ? { scale: 2, x: 0, y: 0 }
+              : { scale: 1, x: 0, y: 0 })}
+          >
+            <div className={`detail-image-stage${view.scale > 1 ? " is-zoomed" : ""}${isPanning ? " is-panning" : ""}`}>
               {currentImage && (
                 <img
                   key={activeSource}
@@ -506,16 +486,42 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
                 />
               )}
             </div>
-          </div>
-          {(originalUrl || originalState.error) && (
-            <div className={`original-image-status${originalState.error ? " is-error" : ""}`}>
-              {originalState.error ? (
-                <><span>{originalState.error}</span><button type="button" onClick={onChooseLibrary}>选择原图库</button></>
-              ) : (
-                <span>本地原图 · {currentImage.width} × {currentImage.height}</span>
-              )}
+            {/* 缩放工具栏（叠加在图片右上角） */}
+            <div className="image-toolbar" aria-label="图像工具">
+              <button type="button" onClick={() => changeZoom(-0.25)} disabled={view.scale <= 1} aria-label="缩小"><ZoomOut size={16} /></button>
+              <span>{Math.round(view.scale * 100)}%</span>
+              <button type="button" onClick={() => changeZoom(0.25)} disabled={view.scale >= 6} aria-label="放大"><ZoomIn size={16} /></button>
+              <button type="button" onClick={() => setView({ scale: 1, x: 0, y: 0 })} aria-label="重置"><RotateCcw size={15} /></button>
             </div>
-          )}
+            {(originalUrl || originalState.error) && (
+              <div className={`original-image-status${originalState.error ? " is-error" : ""}`}>
+                {originalState.error
+                  ? <><span>{originalState.error}</span><button type="button" onClick={onChooseLibrary}>选择原图库</button></>
+                  : <span>本地原图 · {currentImage.width} × {currentImage.height}</span>
+                }
+              </div>
+            )}
+          </div>
+
+          {/* 缩略图导航条 */}
+          <div className="detail-thumbs-row">
+            <button className="detail-thumb-nav" onClick={() => onChange(-1)} aria-label="上一件"><ChevronLeft size={18} /></button>
+            <button className="detail-thumb-nav" onClick={() => onChange(-1)} aria-label="上一件"><ChevronLeft size={14} /></button>
+            {images.map((image, i) => (
+              <button
+                key={image.role}
+                className={`detail-thumb${activeImage === i ? " is-active" : ""}`}
+                onClick={() => setActiveImage(i)}
+                aria-label={`图像 ${i + 1}`}
+              >
+                <img src={image.path} alt="" />
+              </button>
+            ))}
+            <button className="detail-thumb-nav" onClick={() => onChange(1)} aria-label="下一件"><ChevronRight size={14} /></button>
+            <button className="detail-thumb-nav" onClick={() => onChange(1)} aria-label="下一件"><ChevronRight size={18} /></button>
+            <button className="detail-thumb-play" aria-label="播放"><Play size={14} /></button>
+          </div>
+          <p className="detail-img-hint">点击缩放查看细节 · {idx + 1} / {artworks.length}</p>
         </div>
         <div className="detail-info">
           <div className="detail-info-scroll">
@@ -558,7 +564,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             )}
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
