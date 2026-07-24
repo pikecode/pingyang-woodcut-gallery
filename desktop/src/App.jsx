@@ -545,6 +545,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
         </div>
 
         {/* 右侧信息面板 */}
+        <div className="detail-info">
           <div className="detail-info-scroll">
             <div className="detail-kicker">
               <span className="detail-kicker-tag">{artwork.theme.name}</span>
@@ -599,11 +600,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             className="detail-lightbox-img"
             onClick={e => e.stopPropagation()}
           />
-        </div>
-      )}
-    </div>
-  );
-}
         </div>
       )}
     </div>
