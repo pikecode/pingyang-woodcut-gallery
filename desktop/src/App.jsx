@@ -69,6 +69,7 @@ function OpeningIntro() {
   const [visible, setVisible] = useState(shouldShowOpeningIntro);
   const containerRef = useRef(null);
   const timelineRef = useRef(null);
+  const bgmRef = useRef(null);
   const leftDoorRef = useRef(null);
   const rightDoorRef = useRef(null);
   const doorBgRef = useRef(null);
@@ -96,6 +97,17 @@ function OpeningIntro() {
     if (!visible || !containerRef.current) return undefined;
     const orig = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    // BGM 淡入
+    const bgm = new Audio("/audio/bgm.mp3");
+    bgm.loop = true;
+    bgm.volume = 0;
+    bgmRef.current = bgm;
+    bgm.play().catch(() => {});
+    let fadeInTimer = setInterval(() => {
+      bgm.volume = Math.min(0.45, bgm.volume + 0.015);
+      if (bgm.volume >= 0.45) clearInterval(fadeInTimer);
+    }, 80);
 
     // GSAP 直接管理透视，不依赖 CSS perspective
     gsap.set(leftDoorRef.current, { transformPerspective: 1000, transformOrigin: "left center", rotateY: 0 });
@@ -152,11 +164,21 @@ function OpeningIntro() {
         onComplete: () => {
           markOpeningIntroSeen();
           setVisible(false);
+          // BGM 淡出
+          const b = bgmRef.current;
+          if (b) {
+            const fade = setInterval(() => {
+              b.volume = Math.max(0, b.volume - 0.03);
+              if (b.volume <= 0) { b.pause(); clearInterval(fade); }
+            }, 60);
+          }
         },
       });
 
     return () => {
       document.body.style.overflow = orig;
+      clearInterval(fadeInTimer);
+      if (bgmRef.current) { bgmRef.current.pause(); bgmRef.current = null; }
       timelineRef.current = null;
       tl.kill();
     };
@@ -164,6 +186,14 @@ function OpeningIntro() {
 
   const skip = () => {
     timelineRef.current?.kill();
+    // BGM 淡出
+    const b = bgmRef.current;
+    if (b) {
+      const fade = setInterval(() => {
+        b.volume = Math.max(0, b.volume - 0.05);
+        if (b.volume <= 0) { b.pause(); clearInterval(fade); }
+      }, 40);
+    }
     markOpeningIntroSeen();
     gsap.to(containerRef.current, {
       opacity: 0,
