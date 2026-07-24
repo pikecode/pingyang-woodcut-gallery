@@ -455,16 +455,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
         </button>
         <h1 className="detail-topbar-title">藏品详情</h1>
         <div className="detail-topbar-icons">
-          <button
-            type="button"
-            className="detail-audio-btn"
-            onClick={toggleAudio}
-            disabled={!audioState.ready || Boolean(audioState.error)}
-            aria-label={audioState.playing ? "暂停导览" : "播放导览"}
-          >
-            {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
-            <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
-          </button>
           {bgmStarted && (
             <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
               {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
@@ -507,13 +497,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
                 />
               )}
             </div>
-            {/* 缩放工具栏（叠加在图片右上角） */}
-            <div className="image-toolbar" aria-label="图像工具">
-              <button type="button" onClick={() => changeZoom(-0.25)} disabled={view.scale <= 1} aria-label="缩小"><ZoomOut size={16} /></button>
-              <span>{Math.round(view.scale * 100)}%</span>
-              <button type="button" onClick={() => changeZoom(0.25)} disabled={view.scale >= 6} aria-label="放大"><ZoomIn size={16} /></button>
-              <button type="button" onClick={() => setView({ scale: 1, x: 0, y: 0 })} aria-label="重置"><RotateCcw size={15} /></button>
-            </div>
+            {/* 缩略图不用工具栏 */}
             {(originalUrl || originalState.error) && (
               <div className={`original-image-status${originalState.error ? " is-error" : ""}`}>
                 {originalState.error
@@ -569,6 +553,18 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
 
             <div className="detail-section-heading"><span>作品赏析</span></div>
             <p className="detail-desc">{artwork.description}</p>
+          </div>
+          <div className="detail-info-footer">
+            <button
+              type="button"
+              className="detail-audio-btn"
+              onClick={toggleAudio}
+              disabled={!audioState.ready || Boolean(audioState.error)}
+              aria-label={audioState.playing ? "暂停导览" : "播放导览"}
+            >
+              {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
+              <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
+            </button>
           </div>
         </div>
       </div>
