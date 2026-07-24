@@ -416,8 +416,9 @@ input:focus-visible {
 /* 图片区米白底：stage 填充 padding 内的 content box */
 .detail-image-stage {
   width: 100%; height: 100%;
-  background: transparent;
-  display: grid; place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   touch-action: none;
   user-select: none;
@@ -436,16 +437,11 @@ input:focus-visible {
 .frame-bl { bottom: 0; left: 0; border-top-right-radius: 3px; }
 .frame-br { bottom: 0; right: 0; border-top-left-radius: 3px; }
 
-.detail-image-stage {
-  width: 100%; height: 100%;
-  display: grid; place-items: center;
-  overflow: hidden;
-  touch-action: none;
-  user-select: none;
-}
-
 .detail-artwork-img {
-  width: 100%; height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   transform-origin: center;
   will-change: transform;
