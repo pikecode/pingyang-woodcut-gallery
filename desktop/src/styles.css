@@ -40,26 +40,33 @@ input:focus-visible {
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 100% 40% at 50% 0%, rgba(48,24,6,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(30,12,4,0.3) 0%, transparent 60%),
+    var(--bg);
 }
 
 /* ─── 顶部工具栏 ─────────────────────────────────────────── */
 .gallery-topbar {
   flex-shrink: 0;
-  height: 72px;
+  height: 76px;
   display: flex;
   align-items: center;
-  padding: 0 36px;
+  padding: 0 40px;
   border-bottom: 1px solid var(--border);
+  background: rgba(10,9,6,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .topbar-title {
   font-family: "Songti SC", "STSong", serif;
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 700;
   color: var(--gold);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   flex: 1;
+  text-shadow: 0 2px 12px rgba(232,175,55,0.2);
 }
 
 .topbar-icons {
@@ -127,45 +134,49 @@ input:focus-visible {
 /* ─── 导航行（居中，下划线激活）────────────────────────────── */
 .gallery-nav {
   flex-shrink: 0;
-  height: 50px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
-  padding: 0 36px;
+  gap: 4px;
+  padding: 0 40px;
   border-bottom: 1px solid var(--border);
+  background: rgba(10,9,6,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .nav-tab {
   display: flex;
   align-items: center;
   gap: 6px;
-  height: 50px;
-  padding: 0 16px;
+  height: 52px;
+  padding: 0 18px;
   font-family: "Songti SC", "STSong", serif;
   font-size: 15px;
   font-weight: 500;
-  color: rgba(255,255,255,0.42);
+  color: rgba(255,255,255,0.38);
   border-bottom: 2px solid transparent;
   white-space: nowrap;
-  transition: color 200ms, border-color 200ms;
+  transition: color 220ms, border-color 220ms;
 }
 
-.nav-count {
-  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 11px;
-  opacity: 0.5;
-}
-
-.nav-tab:hover { color: rgba(255,255,255,0.78); }
+.nav-tab:hover { color: rgba(255,255,255,0.72); }
 
 .nav-tab.is-active {
   color: #fff;
   font-weight: 700;
   border-bottom-color: var(--gold);
+  text-shadow: 0 0 20px rgba(232,175,55,0.3);
 }
 
 .nav-tab.is-active .nav-count { opacity: 0.75; }
+
+.nav-count {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 11px;
+  opacity: 0.45;
+}
 
 /* ─── 藏品网格 ─────────────────────────────────────────── */
 .gallery-grid-wrap {
@@ -173,14 +184,14 @@ input:focus-visible {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(232,175,55,0.15) transparent;
-  background: var(--bg);
+  background: transparent;
 }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  padding: 20px 28px;
+  gap: 16px;
+  padding: 24px 40px 32px;
 }
 
 /* ─── 藏品卡片（横向展览风格）─────────────────────────────── */
@@ -194,12 +205,14 @@ input:focus-visible {
   border-radius: 4px;
   text-align: left;
   width: 100%;
-  transition: border-color 300ms, box-shadow 300ms;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  transition: border-color 300ms, box-shadow 300ms, transform 280ms;
 }
 
 .gallery-card:hover {
   border-color: rgba(232,175,55,0.6);
-  box-shadow: 0 8px 36px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(232,175,55,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(232,175,55,0.1);
+  transform: translateY(-2px);
 }
 
 .card-img-wrap {
@@ -272,25 +285,27 @@ input:focus-visible {
 
 .card-title {
   font-family: "Songti SC", "STSong", serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--gold);
-  line-height: 1.4;
+  line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 .card-desc {
   font-size: 12px;
   color: rgba(255,255,255,0.38);
-  line-height: 1.7;
+  line-height: 1.75;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   flex: 1;
+  letter-spacing: 0.01em;
 }
 
 .card-audio-btn {
