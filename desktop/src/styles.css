@@ -244,15 +244,7 @@ input:focus-visible {
   justify-content: center;
 }
 
-/* 金色边框叠在图片上方 */
-.card-img-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(232,175,55,0.4);
-  pointer-events: none;
-  z-index: 2;
-}
+/* 图片区与文字区分隔线 */
 
 .card-img {
   max-width: 100%;
