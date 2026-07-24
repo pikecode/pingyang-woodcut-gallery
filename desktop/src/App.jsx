@@ -579,6 +579,7 @@ function ArtworkCard({ artwork, onOpen }) {
     <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
       <div className="card-img-wrap">
         <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
+        <span className="card-play-btn" aria-hidden="true"><Play size={14} /></span>
       </div>
       <div className="card-body">
         <div className="card-kicker">

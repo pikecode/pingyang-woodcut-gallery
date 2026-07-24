@@ -130,8 +130,9 @@ input:focus-visible {
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 52px;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 36px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -140,7 +141,7 @@ input:focus-visible {
   align-items: center;
   gap: 6px;
   height: 50px;
-  padding: 0 2px;
+  padding: 0 16px;
   font-family: "Songti SC", "STSong", serif;
   font-size: 15px;
   font-weight: 500;
@@ -227,10 +228,11 @@ input:focus-visible {
 
 .card-img-wrap {
   flex-shrink: 0;
-  width: 130px;
+  width: 190px;
   height: 100%;
   overflow: hidden;
   background: #080604;
+  position: relative;
 }
 
 .card-img {
@@ -241,6 +243,30 @@ input:focus-visible {
 }
 
 .gallery-card:hover .card-img { transform: scale(1.07); }
+
+.card-play-btn {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,0.62);
+  border: 1px solid rgba(232,175,55,0.5);
+  border-radius: 50%;
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 220ms, transform 220ms, background 160ms;
+  z-index: 2;
+}
+
+.gallery-card:hover .card-play-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card-play-btn:hover {
+  background: rgba(232,175,55,0.18);
+}
 
 .card-body {
   flex: 1;
