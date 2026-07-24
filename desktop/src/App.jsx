@@ -572,17 +572,22 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   );
 }
 
-/* ── 藏品卡片 ── */
+/* ── 藏品卡片（横向展览风格）── */
 function ArtworkCard({ artwork, onOpen }) {
   const kind = artwork.form?.name || artwork.material?.name || "木版年画";
   return (
     <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
-      <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="gallery-card-img" />
-      <span className="gallery-card-num">{String(artwork.catalogNo).padStart(3, "0")}</span>
-      <span className="gallery-card-badge">{artwork.theme.name}</span>
-      <div className="gallery-card-bottom">
-        <strong className="gallery-card-title">{artwork.title}</strong>
-        <span className="gallery-card-meta">{artwork.period.label} · {kind}</span>
+      <div className="card-img-wrap">
+        <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
+      </div>
+      <div className="card-body">
+        <div className="card-kicker">
+          <span className="card-badge">{artwork.theme.name}</span>
+          <span className="card-period">{artwork.period.label} · {kind}</span>
+        </div>
+        <strong className="card-title">{artwork.title}</strong>
+        <p className="card-desc">{artwork.description}</p>
+        <span className="card-num">No.{String(artwork.catalogNo).padStart(3, "0")}</span>
       </div>
     </button>
   );
@@ -594,6 +599,7 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
   const [query, setQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
   const [libraryRoot, setLibraryRoot] = useState(() => {
     try {
       return window.localStorage.getItem(ORIGINALS_STORAGE_KEY) || "";
@@ -659,49 +665,56 @@ export default function App() {
     <div className="app-shell">
       <OpeningIntro />
 
-      {/* 顶栏：品牌 + 分类 tabs + 搜索 + 操作 */}
+      {/* 顶栏：大字品牌名 + 图标按钮 */}
       <header className="gallery-topbar">
-        <div className="topbar-brand">
-          <span className="topbar-seal" aria-hidden="true">平</span>
-          <span className="topbar-name">平阳木版年画</span>
-        </div>
-        <nav className="topbar-tabs" aria-label="按题材筛选">
-          {THEME_ORDER.map(t => (
-            <button
-              key={t}
-              className={`topbar-tab${theme === t ? " is-active" : ""}`}
-              onClick={() => setTheme(t)}
-            >
-              {t}
-              <span>{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+        <h1 className="topbar-title">平阳木版年画</h1>
+        <div className="topbar-icons">
+          {showSearch ? (
+            <label className="topbar-search">
+              <Search size={14} aria-hidden="true" />
+              <input
+                autoFocus
+                type="search" value={query}
+                onChange={e => setQuery(e.target.value)}
+                placeholder="搜索题名、别名…"
+              />
+              <button type="button" onClick={() => { setQuery(""); setShowSearch(false); }} aria-label="关闭搜索">
+                <X size={13} />
+              </button>
+            </label>
+          ) : (
+            <button type="button" className="topbar-icon-btn" onClick={() => setShowSearch(true)} aria-label="搜索">
+              <Search size={18} />
             </button>
-          ))}
-        </nav>
-        <div className="topbar-right">
-          <label className="topbar-search">
-            <Search size={15} aria-hidden="true" />
-            <input
-              type="search" value={query}
-              onChange={e => setQuery(e.target.value)}
-              placeholder="搜索题名、别名…"
-            />
-            {query && <button type="button" onClick={() => setQuery("")} aria-label="清除"><X size={13} /></button>}
-          </label>
+          )}
           <button
             type="button"
-            className={`topbar-lib-btn${libraryRoot ? " has-library" : ""}`}
+            className={`topbar-icon-btn${libraryRoot ? " is-connected" : ""}`}
             onClick={chooseOriginalLibrary}
             aria-label="选择本地原图库"
-            title="选择本地原图库"
+            title={libraryRoot ? "原图库已连接" : "选择原图库"}
           >
-            <FolderOpen size={15} />
-            <span>{libraryRoot ? "原图库已连接" : "选择原图库"}</span>
+            <FolderOpen size={18} />
           </button>
           <button type="button" className="topbar-icon-btn" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
-            <Maximize2 size={16} />
+            <Maximize2 size={18} />
           </button>
         </div>
       </header>
+
+      {/* 导航：独立居中行，下划线激活态 */}
+      <nav className="gallery-nav" aria-label="按题材筛选">
+        {THEME_ORDER.map(t => (
+          <button
+            key={t}
+            className={`nav-tab${theme === t ? " is-active" : ""}`}
+            onClick={() => setTheme(t)}
+          >
+            {t}
+            <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+          </button>
+        ))}
+      </nav>
 
       {/* 藏品网格 */}
       <main className="gallery-grid-wrap">
