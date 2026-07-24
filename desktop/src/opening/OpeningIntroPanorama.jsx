@@ -1,0 +1,207 @@
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { X } from "lucide-react";
+import { markOpeningIntroSeen, shouldShowOpeningIntro } from "./openingIntroSession";
+import "./opening-intro-panorama.css";
+
+const SWATCHES = ["#e0b72f", "#9bbd42", "#cf4f65", "#54bfc0", "#d85f2f", "#3978a8"];
+
+const FOLIOS = [
+  { slug: "py-014", title: "水漫金山", theme: "戏曲", color: "is-yellow" },
+  { slug: "py-030", title: "踏雪寻梅", theme: "故事", color: "is-blue" },
+  { slug: "py-099", title: "秦琼敬德", theme: "门神", color: "is-red" },
+];
+
+export default function OpeningIntroPanorama({ startBgm }) {
+  const [visible, setVisible] = useState(shouldShowOpeningIntro);
+  const containerRef = useRef(null);
+  const timelineRef = useRef(null);
+  const startBgmRef = useRef(startBgm);
+  startBgmRef.current = startBgm;
+
+  useEffect(() => {
+    if (!visible || !containerRef.current) return undefined;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    startBgmRef.current?.();
+
+    const context = gsap.context(() => {
+      const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+      timelineRef.current = timeline;
+
+      gsap.set(".panorama-wordmark-line", { opacity: 0, y: 24 });
+      gsap.set(".panorama-seal", { opacity: 0, scale: 1.8, rotation: -10 });
+      gsap.set(".panorama-swatch", { opacity: 0, x: 14 });
+      gsap.set(".panorama-viewport", {
+        clipPath: "polygon(43% 7%, 60% 3%, 67% 20%, 64% 39%, 72% 57%, 64% 93%, 44% 97%, 35% 79%, 38% 55%, 31% 31%)",
+      });
+      gsap.set(".panorama-color-stripe", { scaleY: 0, transformOrigin: "top center" });
+      gsap.set(".panorama-opening-copy", { opacity: 0, y: 16 });
+      gsap.set(".scene-one .scene-art", { opacity: 0, y: 60 });
+      gsap.set(".scene-two .scene-art", { opacity: 0, y: 70 });
+      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : 90 });
+      gsap.set(".scene-caption", { opacity: 0, y: 22 });
+      gsap.set(".panorama-curtain", { opacity: 0 });
+      gsap.set(".panorama-folio-deck", { opacity: 0 });
+      gsap.set(".panorama-folio", { opacity: 0, y: 100, rotation: 0 });
+      gsap.set(".panorama-final", { opacity: 0, y: 28 });
+
+      timeline
+        .to(".panorama-wordmark-line", { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 })
+        .to(".panorama-seal", { opacity: 1, scale: 1, rotation: 0, duration: 0.42, ease: "back.out(2.5)" }, "<0.15")
+        .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.28, stagger: 0.06 }, "<0.12")
+        .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.4 }, "<0.1")
+        .to(".panorama-viewport", {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 1.05,
+          ease: "power3.inOut",
+        }, "+=0.18")
+        .to(".scene-one .scene-art", { opacity: 1, y: 0, duration: 0.72, stagger: 0.12, ease: "power3.out" }, "<0.18")
+        .to(".panorama-color-stripe", { scaleY: 1, duration: 0.44, stagger: 0.045, ease: "power3.inOut" }, "<")
+        .to(".panorama-color-stripe", { opacity: 0, duration: 0.3, stagger: 0.03 }, "<0.38")
+        .to(".panorama-opening-copy", { opacity: 0, y: -18, duration: 0.28 }, "<")
+        .to(".scene-one .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.22")
+        .to({}, { duration: 0.35 })
+        .to(".panorama-track", { xPercent: -33.3333, duration: 1.5, ease: "power2.inOut" })
+        .to(".scene-two .scene-art", { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power3.out" }, "<0.42")
+        .to(".scene-two .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.18")
+        .to({}, { duration: 0.25 })
+        .to(".panorama-track", { xPercent: -66.6667, duration: 1.5, ease: "power2.inOut" })
+        .to(".scene-three .scene-art", { opacity: 1, x: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }, "<0.38")
+        .to(".scene-three .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.22")
+        .to({}, { duration: 0.35 })
+        .to(".panorama-viewport", {
+          clipPath: "polygon(42% 5%, 61% 2%, 69% 18%, 65% 41%, 73% 60%, 63% 95%, 43% 98%, 34% 78%, 38% 55%, 30% 29%)",
+          duration: 0.82,
+          ease: "power3.inOut",
+        })
+        .to(".panorama-track", { scale: 0.82, opacity: 0.35, duration: 0.55, transformOrigin: "center center" }, "<")
+        .to(".panorama-curtain", { opacity: 1, duration: 0.55 }, "<0.25")
+        .to(".panorama-viewport", { opacity: 0, duration: 0.25 }, "<0.22")
+        .to(".panorama-folio-deck", { opacity: 1, duration: 0.2 })
+        .to(".panorama-folio", {
+          opacity: 1,
+          y: 0,
+          rotation: index => [-7, 0, 7][index],
+          duration: 0.62,
+          stagger: 0.1,
+          ease: "back.out(1.5)",
+        })
+        .to(".panorama-final", { opacity: 1, y: 0, duration: 0.55 }, "<0.3")
+        .to({}, { duration: 0.75 })
+        .to(containerRef.current, {
+          opacity: 0,
+          duration: 0.58,
+          ease: "power2.inOut",
+          onComplete: () => {
+            markOpeningIntroSeen();
+            setVisible(false);
+          },
+        });
+    }, containerRef);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      timelineRef.current = null;
+      context.revert();
+    };
+  }, [visible]);
+
+  const skip = () => {
+    timelineRef.current?.kill();
+    markOpeningIntroSeen();
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      onComplete: () => setVisible(false),
+    });
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div ref={containerRef} className="opening-intro panorama-intro">
+      <button className="panorama-skip" type="button" onClick={skip} aria-label="跳过开屏动画" title="跳过">
+        <X size={18} />
+      </button>
+
+      <div className="panorama-paper" aria-hidden="true">
+        <div className="panorama-wordmark">
+          <span className="panorama-wordmark-line">平阳</span>
+          <span className="panorama-wordmark-line">年画</span>
+        </div>
+        <span className="panorama-seal">平</span>
+        <div className="panorama-swatches">
+          {SWATCHES.map(color => <span key={color} className="panorama-swatch" style={{ backgroundColor: color }} />)}
+        </div>
+      </div>
+
+      <div className="panorama-viewport">
+        <div className="panorama-track">
+          <section className="panorama-scene scene-one" aria-label="戏曲年画">
+            <div className="scene-paper shape-one" />
+            <div className="scene-paper shape-two" />
+            <img className="scene-art art-water" src="/images/py-014/primary.webp" alt="水漫金山" />
+            <img className="scene-art art-romance" src="/images/py-005/primary.webp" alt="西厢记" />
+            <img className="scene-art art-tower" src="/images/py-016/primary.webp" alt="黄鹤楼" />
+            <div className="scene-caption">
+              <span>第一幕 · 戏曲</span>
+              <strong>粉墨入画</strong>
+            </div>
+          </section>
+
+          <section className="panorama-scene scene-two" aria-label="民间故事年画">
+            <div className="scene-paper shape-one" />
+            <div className="scene-paper shape-two" />
+            <img className="scene-art art-plum" src="/images/py-030/primary.webp" alt="踏雪寻梅" />
+            <img className="scene-art art-river" src="/images/py-038/primary.webp" alt="渭水河" />
+            <img className="scene-art art-auspicious" src="/images/py-095/part-1.webp" alt="马莲如意" />
+            <div className="scene-caption">
+              <span>第二幕 · 故事</span>
+              <strong>人间有戏</strong>
+            </div>
+          </section>
+
+          <section className="panorama-scene scene-three" aria-label="门神年画">
+            <div className="scene-paper shape-one" />
+            <div className="scene-paper shape-two" />
+            <img className="scene-art guardian-left" src="/images/py-099/part-1.webp" alt="秦琼门神" />
+            <img className="scene-art guardian-center" src="/images/py-089/part-1.webp" alt="禄门神" />
+            <img className="scene-art guardian-right" src="/images/py-099/part-2.webp" alt="敬德门神" />
+            <div className="scene-caption">
+              <span>第三幕 · 门神</span>
+              <strong>守望平阳</strong>
+            </div>
+          </section>
+        </div>
+
+        <div className="panorama-color-wipe" aria-hidden="true">
+          {SWATCHES.map(color => <span key={color} className="panorama-color-stripe" style={{ backgroundColor: color }} />)}
+        </div>
+      </div>
+
+      <div className="panorama-opening-copy" aria-hidden="true">
+        <span>木版套色</span>
+        <strong>一版见天地</strong>
+      </div>
+
+      <div className="panorama-curtain" aria-hidden="true" />
+      <div className="panorama-folio-deck" aria-hidden="true">
+        {FOLIOS.map(folio => (
+          <figure key={folio.slug} className={`panorama-folio ${folio.color}`}>
+            <span className="folio-theme">{folio.theme}</span>
+            <img src={`/images/${folio.slug}/${folio.slug === "py-099" ? "part-1" : "primary"}.webp`} alt="" />
+            <figcaption>{folio.title}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div className="panorama-final">
+        <span>山西临汾 · 国家级非物质文化遗产</span>
+        <strong>平阳木版年画</strong>
+        <small>数字馆藏</small>
+      </div>
+    </div>
+  );
+}

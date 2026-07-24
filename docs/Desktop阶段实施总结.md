@@ -64,9 +64,10 @@ desktop/
 
 ### 3.2 开屏动画
 
-- 保留年画门扉主题的 GSAP 开屏动画，并接入 Desktop 主界面。
-- 默认每个浏览会话只播放一次，避免页面内返回或刷新时反复打断浏览。
-- 支持 `?intro=1` 强制重播，便于演示和视觉验收。
+- 按 `docs/1192927823.mp4` 的叙事语言重新设计“平阳入画 · 年画长卷”GSAP 开屏，但不嵌入或复用视频画面。
+- 以项目真实藏品组成戏曲、故事、门神三幕横向长卷，并加入不规则印版揭幕、套色扫描、图录收束和品牌落版。
+- 旧“门扉长廊”组件与样式已完整备份到 `desktop/src/opening/`，可随时切回。
+- 默认每个浏览会话只播放一次；页面 reload 和 `?intro=1` 可重播，应用内部切换不重播。
 - “跳过”会终止并释放 GSAP timeline，避免动画在后台继续执行或残留页面锁定状态。
 - 当系统启用 `prefers-reduced-motion` 时不挂载动画，界面可直接使用。
 
@@ -104,7 +105,7 @@ desktop/
 ### 3.6 构建、测试与分发
 
 - 增加 `npm run assets`，从标准数据重新生成 Desktop 静态资产。
-- 增加 `npm run test:ui`，验证开屏、会话内不重播、55 件作品渲染、分类筛选、搜索、详情、多图、缩放及浏览器环境下的原图降级提示。
+- 增加 `npm run test:ui`，验证开屏三阶段、多尺寸适配、500ms 内跳过、会话与 reduced-motion、55 件作品渲染、分类筛选、搜索、详情、多图、键盘缩放和导览播放。
 - 增加 Rust 单元测试，覆盖合法清单路径、路径穿越/非图片拒绝、TIFF 内存转换且源文件保留。
 - 使用 Voicebox“文博讲解 · 温润女声”为 55 件作品简介生成离线导览音频，详情页支持播放、暂停、进度拖动和时长显示。
 - 55 条音频总时长 1,262.8 秒（21 分 02.8 秒），64 kbps M4A 合计约 10.1 MB。
@@ -116,14 +117,15 @@ desktop/
 
 | 文件或目录 | 本阶段职责 |
 |---|---|
-| `desktop/src/App.jsx` | 开屏动画、分类与搜索、详情查看器、原图库选择、原图 IPC、全屏和键盘交互 |
-| `desktop/src/styles.css` | Desktop 宽屏布局、详情查看器、缩放拖拽状态、原图状态和开屏视觉 |
+| `desktop/src/App.jsx` | 接入当前开屏、分类与搜索、详情查看器、原图库选择、原图 IPC、全屏和键盘交互 |
+| `desktop/src/opening/` | 当前长卷开屏、旧门扉备份、独立样式和共享会话控制 |
+| `desktop/src/styles.css` | Desktop 宽屏布局、详情查看器、缩放拖拽状态和原图状态 |
 | `desktop/src-tauri/src/lib.rs` | 原图库候选目录、安全路径校验、原图读取、TIFF 预览转换及单元测试 |
 | `desktop/src-tauri/Cargo.toml` | Tauri 对话框和图片解码依赖 |
 | `desktop/src-tauri/capabilities/default.json` | 原生对话框所需权限 |
 | `desktop/src-tauri/tauri.conf.json` | 窗口、应用标识、打包图标和 macOS ad-hoc 签名配置 |
 | `desktop/public/` | Desktop 自有 JSON、favicon、65 张 WebP 展示图和 55 条 M4A 导览音频 |
-| `desktop/scripts/verify_ui.mjs` | Desktop 浏览器交互回归和验收截图 |
+| `desktop/scripts/verify_ui.mjs` | Desktop 浏览器交互回归、多尺寸开屏验收和关键帧截图 |
 | `scripts/build_web_assets.py` | 从标准数据与原图生成 Desktop 运行资产 |
 | `scripts/generate_gallery_audio.py` | 调用本地 Voicebox 逐件生成、压缩并校验离线导览音频，支持断点续跑 |
 | `.github/workflows/build-desktop.yml` | macOS/Windows 自动打包、Artifacts 和可选草稿 Release |
