@@ -9,6 +9,7 @@ import {
   LoaderCircle,
   Maximize2,
   Minimize2,
+  Pause,
   Play,
   RotateCcw,
   ScanSearch,
@@ -22,6 +23,12 @@ import {
 const THEME_ORDER = ["全部", "戏曲", "神祇", "吉祥", "故事"];
 const INTRO_KEY = "pingyang-intro-seen";
 const ORIGINALS_STORAGE_KEY = "pingyang-originals-root";
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
+}
 
 function shouldShowOpeningIntro() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
@@ -218,7 +225,9 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   const [originalState, setOriginalState] = useState({ role: null, loading: false, error: "" });
   const [isPanning, setIsPanning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [audioState, setAudioState] = useState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
   const imageAreaRef = useRef(null);
+  const audioRef = useRef(null);
   const dragRef = useRef(null);
   const objectUrlsRef = useRef([]);
   const loadRequestRef = useRef(0);
@@ -227,6 +236,45 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   const currentImage = images[activeImage] || null;
   const originalUrl = currentImage ? originalUrls[currentImage.role] : null;
   const activeSource = originalUrl || currentImage?.path;
+
+  useEffect(() => {
+    if (!artwork?.slug) return undefined;
+    const audio = new Audio(`/audio/${artwork.slug}.m4a`);
+    audio.preload = "metadata";
+    audioRef.current = audio;
+    setAudioState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
+
+    const onMetadata = () => setAudioState((state) => ({ ...state, ready: true, duration: audio.duration || 0, error: "" }));
+    const onTime = () => setAudioState((state) => ({ ...state, current: audio.currentTime || 0 }));
+    const onPlay = () => setAudioState((state) => ({ ...state, playing: true }));
+    const onPause = () => setAudioState((state) => ({ ...state, playing: false }));
+    const onEnded = () => {
+      audio.currentTime = 0;
+      setAudioState((state) => ({ ...state, playing: false, current: 0 }));
+    };
+    const onError = () => setAudioState((state) => ({ ...state, ready: false, playing: false, error: "音频暂不可用" }));
+
+    audio.addEventListener("loadedmetadata", onMetadata);
+    audio.addEventListener("timeupdate", onTime);
+    audio.addEventListener("play", onPlay);
+    audio.addEventListener("pause", onPause);
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("error", onError);
+    audio.load();
+
+    return () => {
+      audio.removeEventListener("loadedmetadata", onMetadata);
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("pause", onPause);
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("error", onError);
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+      if (audioRef.current === audio) audioRef.current = null;
+    };
+  }, [artwork?.slug]);
 
   useEffect(() => {
     loadRequestRef.current += 1;
@@ -362,6 +410,27 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
     else imageAreaRef.current?.requestFullscreen?.();
   };
 
+  const toggleAudio = async () => {
+    const audio = audioRef.current;
+    if (!audio || audioState.error) return;
+    if (audio.paused) {
+      try {
+        await audio.play();
+      } catch {
+        setAudioState((state) => ({ ...state, playing: false, error: "无法播放音频" }));
+      }
+    } else {
+      audio.pause();
+    }
+  };
+
+  const seekAudio = (event) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = Number(event.target.value);
+    setAudioState((state) => ({ ...state, current: audio.currentTime }));
+  };
+
   return (
     <div className="detail-overlay" onClick={onClose}>
       <section className="detail-inner" role="dialog" aria-modal="true" aria-labelledby="detail-title" onClick={e => e.stopPropagation()}>
@@ -465,8 +534,36 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
               <div className="meta-full"><span className="meta-label">馆藏</span><span className="meta-val">{artwork.collection}</span></div>
             </div>
             <div className="audio-player">
-              <button className="audio-btn" disabled><Play size={15} /></button>
-              <div><span className="audio-label">导览音频</span><span className="audio-status">音频文件准备中</span></div>
+              <button
+                type="button"
+                className="audio-btn"
+                onClick={toggleAudio}
+                disabled={!audioState.ready || Boolean(audioState.error)}
+                aria-label={audioState.playing ? "暂停导览" : "播放导览"}
+                title={audioState.playing ? "暂停" : "播放"}
+              >
+                {audioState.playing ? <Pause size={16} /> : <Play size={16} />}
+              </button>
+              <div className="audio-player-main">
+                <div className="audio-heading">
+                  <span className="audio-label">导览音频</span>
+                  <span className="audio-time">{formatTime(audioState.current)} / {formatTime(audioState.duration)}</span>
+                </div>
+                <input
+                  className="audio-progress"
+                  type="range"
+                  min="0"
+                  max={audioState.duration || 0}
+                  step="0.1"
+                  value={Math.min(audioState.current, audioState.duration || 0)}
+                  onChange={seekAudio}
+                  disabled={!audioState.ready}
+                  aria-label="导览音频进度"
+                />
+                <span className={`audio-status${audioState.error ? " is-error" : ""}`}>
+                  {audioState.error || (audioState.ready ? "文博讲解 · 温润女声" : "正在载入音频")}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -562,64 +659,70 @@ export default function App() {
     <div className="app-shell">
       <OpeningIntro />
 
-      {/* 顶部工具栏 */}
-      <header className="gallery-topbar">
-        <div className="topbar-brand">
+      {/* 左侧边栏 */}
+      <aside className="gallery-sidebar">
+        <div className="sidebar-brand">
           <span className="topbar-seal" aria-hidden="true">平</span>
           <span className="topbar-name">平阳木版年画</span>
         </div>
-        <label className="topbar-search">
-          <Search size={16} aria-hidden="true" />
-          <input
-            type="search" value={query}
-            onChange={e => setQuery(e.target.value)}
-            placeholder="搜索题名、别名…"
-          />
-          {query && <button type="button" onClick={() => setQuery("")} aria-label="清除"><X size={14} /></button>}
-        </label>
-        <div className="topbar-actions">
+        <nav className="theme-nav" aria-label="按题材筛选">
+          {THEME_ORDER.map(t => (
+            <button
+              key={t}
+              className={`theme-nav-item${theme === t ? " is-active" : ""}`}
+              onClick={() => setTheme(t)}
+            >
+              <span className="theme-nav-label">{t}</span>
+              <span className="theme-nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-footer">
           <button
             type="button"
-            className={libraryRoot ? "has-library" : ""}
+            className={`sidebar-library-btn${libraryRoot ? " has-library" : ""}`}
             onClick={chooseOriginalLibrary}
             aria-label="选择本地原图库"
             title="选择本地原图库"
           >
-            <FolderOpen size={17} />
+            <FolderOpen size={15} />
             <span>{libraryRoot ? "原图库已连接" : "选择原图库"}</span>
           </button>
-          <button type="button" className="topbar-icon-button" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
-            <Maximize2 size={17} />
-          </button>
         </div>
-      </header>
+      </aside>
 
-      {/* 题材标签 */}
-      <nav className="theme-tabs-bar" aria-label="按题材筛选">
-        {THEME_ORDER.map(t => (
-          <button
-            key={t}
-            className={`theme-tab-btn${theme === t ? " is-active" : ""}`}
-            onClick={() => setTheme(t)}
-          >
-            {t}
-            <span>{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
-          </button>
-        ))}
-      </nav>
+      {/* 主内容区 */}
+      <div className="gallery-main">
+        <header className="gallery-topbar">
+          <label className="topbar-search">
+            <Search size={16} aria-hidden="true" />
+            <input
+              type="search" value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="搜索题名、别名…"
+            />
+            {query && <button type="button" onClick={() => setQuery("")} aria-label="清除"><X size={14} /></button>}
+          </label>
+          <div className="topbar-actions">
+            <button type="button" className="topbar-icon-button" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
+              <Maximize2 size={17} />
+            </button>
+          </div>
+        </header>
 
-      {/* 藏品网格 */}
-      <main className="gallery-grid-wrap">
-        {filtered.length > 0 ? (
-          <div className="gallery-grid">
-            {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
-          </div>
-        ) : (
-          <div className="gallery-empty">
-            <Search size={32} /><p>没有找到对应藏品</p>
-          </div>
-        )}
-      </main>
+        {/* 藏品网格 */}
+        <main className="gallery-grid-wrap">
+          {filtered.length > 0 ? (
+            <div className="gallery-grid">
+              {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
+            </div>
+          ) : (
+            <div className="gallery-empty">
+              <Search size={32} /><p>没有找到对应藏品</p>
+            </div>
+          )}
+        </main>
+      </div>
 
       {/* 详情层 */}
       <DetailOverlay
