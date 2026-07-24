@@ -659,28 +659,37 @@ export default function App() {
     <div className="app-shell">
       <OpeningIntro />
 
-      {/* 左侧边栏 */}
-      <aside className="gallery-sidebar">
-        <div className="sidebar-brand">
+      {/* 顶栏：品牌 + 分类 tabs + 搜索 + 操作 */}
+      <header className="gallery-topbar">
+        <div className="topbar-brand">
           <span className="topbar-seal" aria-hidden="true">平</span>
           <span className="topbar-name">平阳木版年画</span>
         </div>
-        <nav className="theme-nav" aria-label="按题材筛选">
+        <nav className="topbar-tabs" aria-label="按题材筛选">
           {THEME_ORDER.map(t => (
             <button
               key={t}
-              className={`theme-nav-item${theme === t ? " is-active" : ""}`}
+              className={`topbar-tab${theme === t ? " is-active" : ""}`}
               onClick={() => setTheme(t)}
             >
-              <span className="theme-nav-label">{t}</span>
-              <span className="theme-nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+              {t}
+              <span>{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
             </button>
           ))}
         </nav>
-        <div className="sidebar-footer">
+        <div className="topbar-right">
+          <label className="topbar-search">
+            <Search size={15} aria-hidden="true" />
+            <input
+              type="search" value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="搜索题名、别名…"
+            />
+            {query && <button type="button" onClick={() => setQuery("")} aria-label="清除"><X size={13} /></button>}
+          </label>
           <button
             type="button"
-            className={`sidebar-library-btn${libraryRoot ? " has-library" : ""}`}
+            className={`topbar-lib-btn${libraryRoot ? " has-library" : ""}`}
             onClick={chooseOriginalLibrary}
             aria-label="选择本地原图库"
             title="选择本地原图库"
@@ -688,41 +697,24 @@ export default function App() {
             <FolderOpen size={15} />
             <span>{libraryRoot ? "原图库已连接" : "选择原图库"}</span>
           </button>
+          <button type="button" className="topbar-icon-btn" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
+            <Maximize2 size={16} />
+          </button>
         </div>
-      </aside>
+      </header>
 
-      {/* 主内容区 */}
-      <div className="gallery-main">
-        <header className="gallery-topbar">
-          <label className="topbar-search">
-            <Search size={16} aria-hidden="true" />
-            <input
-              type="search" value={query}
-              onChange={e => setQuery(e.target.value)}
-              placeholder="搜索题名、别名…"
-            />
-            {query && <button type="button" onClick={() => setQuery("")} aria-label="清除"><X size={14} /></button>}
-          </label>
-          <div className="topbar-actions">
-            <button type="button" className="topbar-icon-button" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
-              <Maximize2 size={17} />
-            </button>
+      {/* 藏品网格 */}
+      <main className="gallery-grid-wrap">
+        {filtered.length > 0 ? (
+          <div className="gallery-grid">
+            {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
           </div>
-        </header>
-
-        {/* 藏品网格 */}
-        <main className="gallery-grid-wrap">
-          {filtered.length > 0 ? (
-            <div className="gallery-grid">
-              {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
-            </div>
-          ) : (
-            <div className="gallery-empty">
-              <Search size={32} /><p>没有找到对应藏品</p>
-            </div>
-          )}
-        </main>
-      </div>
+        ) : (
+          <div className="gallery-empty">
+            <Search size={32} /><p>没有找到对应藏品</p>
+          </div>
+        )}
+      </main>
 
       {/* 详情层 */}
       <DetailOverlay
