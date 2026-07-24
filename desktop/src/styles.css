@@ -188,7 +188,7 @@ input:focus-visible {
   position: relative;
   display: flex;
   flex-direction: row;
-  height: 240px;
+  height: 280px;
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
