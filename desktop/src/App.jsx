@@ -562,15 +562,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
 
             <div className="detail-section-heading"><span>作品赏析</span></div>
             <p className="detail-desc">{artwork.description}</p>
-
-            <div className="detail-section-heading"><span>藏品信息</span></div>
-            <div className="detail-meta-grid">
-              <div><span className="meta-label">分类</span><span className="meta-val">{artwork.theme.name}</span></div>
-              <div><span className="meta-label">形制</span><span className="meta-val">{kind}</span></div>
-              <div><span className="meta-label">年代</span><span className="meta-val">{artwork.period.label}</span></div>
-              <div><span className="meta-label">规格</span><span className="meta-val">{artwork.dimensions.sourceText}</span></div>
-              <div className="meta-full"><span className="meta-label">馆藏</span><span className="meta-val">{artwork.collection}</span></div>
-            </div>
           </div>
           <div className="detail-audio-bar">
             <button

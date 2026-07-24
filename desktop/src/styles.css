@@ -191,31 +191,15 @@ input:focus-visible {
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 6px;
+  border-radius: 4px;
   text-align: left;
   width: 100%;
-  transition: border-color 280ms, box-shadow 280ms;
+  transition: border-color 300ms, box-shadow 300ms;
 }
-
-/* 角装饰 */
-.gallery-card::before,
-.gallery-card::after {
-  content: "";
-  position: absolute;
-  width: 14px; height: 14px;
-  border-color: var(--gold);
-  border-style: solid;
-  opacity: 0.5;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.gallery-card::before { top: 6px; left: 6px; border-width: 1px 0 0 1px; }
-.gallery-card::after  { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
 
 .gallery-card:hover {
-  border-color: rgba(232,175,55,0.55);
-  box-shadow: 0 6px 32px rgba(0,0,0,0.7);
+  border-color: rgba(232,175,55,0.6);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.65), inset 0 0 0 1px rgba(232,175,55,0.1);
 }
 
 .card-img-wrap {
@@ -242,11 +226,12 @@ input:focus-visible {
 .card-body {
   flex: 1;
   min-width: 0;
-  padding: 18px 24px;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
+  border-left: 1px solid rgba(232,175,55,0.15);
 }
 
 .card-kicker {
