@@ -224,7 +224,7 @@ function OpeningIntro({ startBgm }) {
 }
 
 /* ── 藏品详情覆盖层 ── */
-function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onChooseLibrary }) {
+function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onChooseLibrary, toggleBgm, bgmMuted, bgmStarted }) {
   const [activeImage, setActiveImage] = useState(0);
   const [view, setView] = useState({ scale: 1, x: 0, y: 0 });
   const [originalUrls, setOriginalUrls] = useState({});
@@ -465,6 +465,11 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
             <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
           </button>
+          {bgmStarted && (
+            <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
+              {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+          )}
         </div>
       </header>
 
@@ -775,6 +780,9 @@ export default function App() {
         onChange={changeSelected}
         libraryRoot={libraryRoot}
         onChooseLibrary={chooseOriginalLibrary}
+        toggleBgm={toggleBgm}
+        bgmMuted={bgmMuted}
+        bgmStarted={!!bgmRef.current}
       />
     </div>
   );
