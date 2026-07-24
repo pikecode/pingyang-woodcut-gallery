@@ -135,14 +135,14 @@ input:focus-visible {
 /* ─── 导航行（居中，下划线激活）────────────────────────────── */
 .gallery-nav {
   flex-shrink: 0;
-  height: 52px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 4px;
+  gap: 8px;
   padding: 0 40px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10,9,6,0.6);
+  background: rgba(10,9,6,0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -151,27 +151,40 @@ input:focus-visible {
   display: flex;
   align-items: center;
   gap: 6px;
-  height: 52px;
+  height: 38px;
   padding: 0 18px;
   font-family: "Songti SC", "STSong", serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  color: rgba(255,255,255,0.38);
-  border-bottom: 2px solid transparent;
+  color: rgba(255,255,255,0.45);
   white-space: nowrap;
-  transition: color 220ms, border-color 220ms;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.35);
+  background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset;
+  transform: translateY(0);
+  transition: color 200ms, background 200ms, box-shadow 200ms, transform 160ms, border-color 200ms;
 }
 
-.nav-tab:hover { color: rgba(255,255,255,0.72); }
+.nav-tab:hover:not(.is-active) {
+  color: rgba(255,255,255,0.78);
+  background: linear-gradient(180deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.04) 100%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.08) inset;
+  transform: translateY(-1px);
+}
 
 .nav-tab.is-active {
-  color: #fff;
+  color: var(--gold);
   font-weight: 700;
-  border-bottom-color: var(--gold);
-  text-shadow: 0 0 20px rgba(232,175,55,0.3);
+  background: linear-gradient(180deg, rgba(232,175,55,0.2) 0%, rgba(232,175,55,0.06) 100%);
+  border-color: rgba(232,175,55,0.4);
+  border-bottom: 2px solid rgba(232,175,55,0.65);
+  box-shadow: 0 0 14px rgba(232,175,55,0.12), 0 2px 0 rgba(0,0,0,0.5) inset;
+  transform: translateY(1px);
 }
 
-.nav-tab.is-active .nav-count { opacity: 0.75; }
+.nav-tab.is-active .nav-count { opacity: 0.8; color: var(--gold); }
 
 .nav-count {
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
