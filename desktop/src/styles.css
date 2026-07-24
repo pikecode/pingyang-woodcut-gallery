@@ -717,32 +717,26 @@ input:focus-visible {
 
 .meta-val { display: block; font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
 
-/* 底部语音讲解栏 */
-.detail-audio-bar {
-  flex-shrink: 0;
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 28px;
-  border-top: 1px solid var(--border);
+.detail-topbar-icons {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .detail-audio-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  height: 40px; padding: 0 22px;
+  height: 36px; padding: 0 16px;
   border: none;
   border-radius: 4px;
   background: rgba(218,168,60,0.88);
   color: #1A1408;
-  font-size: 13px; font-weight: 700;
+  font-size: 12px; font-weight: 700;
   transition: background 160ms;
 }
 
 .detail-audio-btn:hover:not(:disabled) { background: rgba(232,180,60,1); }
 .detail-audio-btn:disabled { opacity: 0.38; cursor: not-allowed; }
-
-.detail-audio-time {
-  font-size: 11px; color: rgba(255,255,255,0.32);
-  font-variant-numeric: tabular-nums;
-}
 
 
 /* ─── 开场动画 ─────────────────────────────────────────── */

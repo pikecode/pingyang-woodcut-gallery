@@ -449,7 +449,18 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
           <span>平阳木版年画</span>
         </button>
         <h1 className="detail-topbar-title">藏品详情</h1>
-        <div className="detail-topbar-icons" />
+        <div className="detail-topbar-icons">
+          <button
+            type="button"
+            className="detail-audio-btn"
+            onClick={toggleAudio}
+            disabled={!audioState.ready || Boolean(audioState.error)}
+            aria-label={audioState.playing ? "暂停导览" : "播放导览"}
+          >
+            {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
+            <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
+          </button>
+        </div>
       </header>
 
       {/* 主体：左图右文 */}
@@ -548,24 +559,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
 
             <div className="detail-section-heading"><span>作品赏析</span></div>
             <p className="detail-desc">{artwork.description}</p>
-          </div>
-          <div className="detail-audio-bar">
-            <button
-              type="button"
-              className="detail-audio-btn"
-              onClick={toggleAudio}
-              disabled={!audioState.ready || Boolean(audioState.error)}
-              aria-label={audioState.playing ? "暂停导览" : "播放导览"}
-            >
-              {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
-              <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
-            </button>
-            {audioState.ready && (
-              <span className="detail-audio-time">{formatTime(audioState.current)} / {formatTime(audioState.duration)}</span>
-            )}
-            {!audioState.ready && !audioState.error && (
-              <span className="detail-audio-time">导览音频载入中…</span>
-            )}
           </div>
         </div>
       </div>
