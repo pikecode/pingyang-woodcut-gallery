@@ -1,16 +1,17 @@
 /* ─── 全局 ─────────────────────────────────────────────── */
 :root {
-  --bg: #0A0906;
-  --surface: #111009;
-  --card-bg: #141210;
-  --card-border: rgba(232,175,55,0.2);
-  --border: rgba(232,175,55,0.12);
+  --bg: #0C0A06;
+  --surface: #131108;
+  --card-bg: #1E1B14;
+  --card-border: rgba(232,175,55,0.22);
+  --border: rgba(232,175,55,0.14);
   --ink: #1A1814;
   --paper: #FFFFFF;
   --muted-dark: rgba(255,255,255,0.38);
   --muted-light: #8C8877;
   --red: #C4321A;
   --gold: #E8AF37;
+  --gold-dim: rgba(232,175,55,0.55);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -201,18 +202,20 @@ input:focus-visible {
   flex-direction: row;
   overflow: hidden;
   background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  border: 1.5px solid var(--card-border);
+  border-top: 2px solid rgba(232,175,55,0.45);
   border-radius: 10px;
   text-align: left;
   width: 100%;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 1px 0 rgba(232,175,55,0.08) inset;
   transition: border-color 300ms, box-shadow 300ms, transform 280ms;
 }
 
 .gallery-card:hover {
-  border-color: rgba(232,175,55,0.6);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(232,175,55,0.1);
-  transform: translateY(-2px);
+  border-color: rgba(232,175,55,0.65);
+  border-top-color: rgba(232,175,55,0.9);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.65), 0 0 0 1px rgba(232,175,55,0.12) inset;
+  transform: translateY(-3px);
 }
 
 .card-img-wrap {
@@ -264,14 +267,14 @@ input:focus-visible {
 }
 
 .card-badge {
-  padding: 2px 8px;
-  background: rgba(232,175,55,0.1);
-  border: 1px solid rgba(232,175,55,0.28);
+  padding: 3px 10px;
+  background: rgba(232,175,55,0.14);
+  border: 1px solid rgba(232,175,55,0.4);
   border-radius: 3px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   color: var(--gold);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   flex-shrink: 0;
 }
 

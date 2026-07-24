@@ -603,10 +603,6 @@ function ArtworkCard({ artwork, onOpen }) {
         </div>
         <strong className="card-title">{artwork.title}</strong>
         <p className="card-desc">{artwork.description}</p>
-        <div className="card-audio-btn">
-          <Volume2 size={14} />
-          <span>语音讲解</span>
-        </div>
       </div>
     </button>
   );
