@@ -546,7 +546,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             </button>
           </div>
 
-          <p className="detail-img-hint">点击图片单独查看 · 双击缩放</p>
+          <p className="detail-img-hint" />
         </div>
 
         {/* 右侧信息面板 */}
