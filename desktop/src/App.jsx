@@ -226,10 +226,12 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   const [originalState, setOriginalState] = useState({ role: null, loading: false, error: "" });
   const [isPanning, setIsPanning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
   const [audioState, setAudioState] = useState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
   const imageAreaRef = useRef(null);
   const audioRef = useRef(null);
   const dragRef = useRef(null);
+  const didDragRef = useRef(false);
   const objectUrlsRef = useRef([]);
   const loadRequestRef = useRef(0);
 
@@ -384,6 +386,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   };
 
   const onPointerDown = (event) => {
+    didDragRef.current = false;
     if (view.scale <= 1 || event.button !== 0) return;
     event.currentTarget.setPointerCapture(event.pointerId);
     dragRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, originX: view.x, originY: view.y };
@@ -393,6 +396,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   const onPointerMove = (event) => {
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
+    didDragRef.current = true;
     setView((value) => ({
       ...value,
       x: drag.originX + event.clientX - drag.x,
@@ -404,6 +408,10 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
     if (dragRef.current?.pointerId !== event.pointerId) return;
     dragRef.current = null;
     setIsPanning(false);
+  };
+
+  const handleFrameClick = () => {
+    if (!didDragRef.current && view.scale === 1) setShowLightbox(true);
   };
 
   const toggleImageFullscreen = () => {
@@ -465,6 +473,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
           <div
             ref={imageAreaRef}
             className="detail-img-frame"
+            onClick={handleFrameClick}
             onWheel={onWheel}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
@@ -532,9 +541,10 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             </button>
           </div>
 
-          <p className="detail-img-hint">点击缩放查看细节</p>
+          <p className="detail-img-hint">点击图片单独查看 · 双击缩放</p>
         </div>
-        <div className="detail-info">
+
+        {/* 右侧信息面板 */}
           <div className="detail-info-scroll">
             <div className="detail-kicker">
               <span className="detail-kicker-tag">{artwork.theme.name}</span>
@@ -576,6 +586,26 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
           </div>
         </div>
       </div>
+
+      {/* 图片灯箱（全屏单独查看）*/}
+      {showLightbox && currentImage && (
+        <div className="detail-lightbox" onClick={() => setShowLightbox(false)}>
+          <button className="detail-lightbox-close" onClick={() => setShowLightbox(false)} aria-label="关闭">
+            <X size={22} />
+          </button>
+          <img
+            src={activeSource}
+            alt={artwork.title}
+            className="detail-lightbox-img"
+            onClick={e => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+        </div>
+      )}
     </div>
   );
 }

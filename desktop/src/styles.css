@@ -544,6 +544,43 @@ input:focus-visible {
   letter-spacing: 0.04em;
 }
 
+/* 图片灯箱 */
+.detail-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0,0,0,0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: detail-in 0.18s ease both;
+}
+
+.detail-lightbox-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.75);
+  transition: background 160ms, color 160ms;
+}
+
+.detail-lightbox-close:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+
+.detail-lightbox-img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  cursor: default;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.8);
+}
+
 @keyframes tool-spin { to { transform: rotate(360deg); } }
 .is-spinning { animation: tool-spin 800ms linear infinite; }
 
