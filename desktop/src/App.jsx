@@ -14,6 +14,7 @@ import {
   RotateCcw,
   ScanSearch,
   Search,
+  Volume2,
   X,
   ZoomIn,
   ZoomOut,
@@ -579,7 +580,6 @@ function ArtworkCard({ artwork, onOpen }) {
     <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
       <div className="card-img-wrap">
         <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
-        <span className="card-play-btn" aria-hidden="true"><Play size={14} /></span>
       </div>
       <div className="card-body">
         <div className="card-kicker">
@@ -588,7 +588,10 @@ function ArtworkCard({ artwork, onOpen }) {
         </div>
         <strong className="card-title">{artwork.title}</strong>
         <p className="card-desc">{artwork.description}</p>
-        <span className="card-num">No.{String(artwork.catalogNo).padStart(3, "0")}</span>
+        <div className="card-audio-btn">
+          <Volume2 size={14} />
+          <span>语音讲解</span>
+        </div>
       </div>
     </button>
   );
