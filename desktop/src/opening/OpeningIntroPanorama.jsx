@@ -40,7 +40,7 @@ export default function OpeningIntroPanorama({ startBgm }) {
       gsap.set(".scene-paper", { scale: 1.035, transformOrigin: "center center" });
       gsap.set(".scene-one .scene-art", { opacity: 0, y: 60, scale: 1.055 });
       gsap.set(".scene-two .scene-art", { opacity: 0, y: 70, scale: 1.055 });
-      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : 90, scale: 1.04 });
+      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : index === 2 ? 90 : 0, scale: 1.04 });
       gsap.set(".scene-caption", { opacity: 0, y: 22 });
       gsap.set(".panorama-curtain", { opacity: 0 });
       gsap.set(".panorama-folio-deck", { opacity: 0 });
