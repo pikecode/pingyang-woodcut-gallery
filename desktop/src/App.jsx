@@ -503,25 +503,36 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             )}
           </div>
 
-          {/* 缩略图导航条 */}
-          <div className="detail-thumbs-row">
-            <button className="detail-thumb-nav" onClick={() => onChange(-1)} aria-label="上一件"><ChevronLeft size={18} /></button>
-            <button className="detail-thumb-nav" onClick={() => onChange(-1)} aria-label="上一件"><ChevronLeft size={14} /></button>
-            {images.map((image, i) => (
-              <button
-                key={image.role}
-                className={`detail-thumb${activeImage === i ? " is-active" : ""}`}
-                onClick={() => setActiveImage(i)}
-                aria-label={`图像 ${i + 1}`}
-              >
-                <img src={image.path} alt="" />
-              </button>
-            ))}
-            <button className="detail-thumb-nav" onClick={() => onChange(1)} aria-label="下一件"><ChevronRight size={14} /></button>
-            <button className="detail-thumb-nav" onClick={() => onChange(1)} aria-label="下一件"><ChevronRight size={18} /></button>
-            <button className="detail-thumb-play" aria-label="播放"><Play size={14} /></button>
+          {/* 图片缩略图切换（仅多图时显示） */}
+          {images.length > 1 && (
+            <div className="detail-image-thumbs">
+              {images.map((image, i) => (
+                <button
+                  key={image.role}
+                  className={`detail-image-thumb${activeImage === i ? " is-active" : ""}`}
+                  onClick={() => setActiveImage(i)}
+                  aria-label={`图 ${i + 1}`}
+                >
+                  <img src={image.path} alt="" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* 藏品切换：上一件 / 下一件 */}
+          <div className="detail-artwork-nav">
+            <button className="detail-artwork-btn" onClick={() => onChange(-1)} aria-label="上一件藏品">
+              <ChevronLeft size={15} />
+              <span>上一件</span>
+            </button>
+            <span className="detail-artwork-counter">{idx + 1} / {artworks.length}</span>
+            <button className="detail-artwork-btn" onClick={() => onChange(1)} aria-label="下一件藏品">
+              <span>下一件</span>
+              <ChevronRight size={15} />
+            </button>
           </div>
-          <p className="detail-img-hint">点击缩放查看细节 · {idx + 1} / {artworks.length}</p>
+
+          <p className="detail-img-hint">点击缩放查看细节</p>
         </div>
         <div className="detail-info">
           <div className="detail-info-scroll">
