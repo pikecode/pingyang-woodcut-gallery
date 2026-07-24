@@ -586,19 +586,18 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
 
 /* ── 藏品卡片（横向展览风格）── */
 function ArtworkCard({ artwork, onOpen }) {
-  const kind = artwork.form?.name || artwork.material?.name || "木版年画";
   return (
     <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
       <div className="card-img-wrap">
         <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
       </div>
       <div className="card-body">
-        <div className="card-kicker">
-          <span className="card-badge">{artwork.theme.name}</span>
-          <span className="card-period">{artwork.period.label} · {kind}</span>
-        </div>
         <strong className="card-title">{artwork.title}</strong>
         <p className="card-desc">{artwork.description}</p>
+        <div className="card-audio-btn">
+          <Volume2 size={15} />
+          <span>语音讲解</span>
+        </div>
       </div>
     </button>
   );
