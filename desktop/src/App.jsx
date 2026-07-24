@@ -15,6 +15,7 @@ import {
   ScanSearch,
   Search,
   Volume2,
+  VolumeX,
   X,
   ZoomIn,
   ZoomOut,
@@ -65,11 +66,10 @@ function useGalleryData() {
 }
 
 /* ── 开场门扉动画 ── */
-function OpeningIntro() {
+function OpeningIntro({ startBgm }) {
   const [visible, setVisible] = useState(shouldShowOpeningIntro);
   const containerRef = useRef(null);
   const timelineRef = useRef(null);
-  const bgmRef = useRef(null);
   const leftDoorRef = useRef(null);
   const rightDoorRef = useRef(null);
   const doorBgRef = useRef(null);
@@ -98,16 +98,8 @@ function OpeningIntro() {
     const orig = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // BGM 淡入
-    const bgm = new Audio("/audio/bgm.mp3");
-    bgm.loop = true;
-    bgm.volume = 0;
-    bgmRef.current = bgm;
-    bgm.play().catch(() => {});
-    let fadeInTimer = setInterval(() => {
-      bgm.volume = Math.min(0.45, bgm.volume + 0.015);
-      if (bgm.volume >= 0.45) clearInterval(fadeInTimer);
-    }, 80);
+    // 通知 App 开始播放 BGM
+    startBgm?.();
 
     // GSAP 直接管理透视，不依赖 CSS perspective
     gsap.set(leftDoorRef.current, { transformPerspective: 1000, transformOrigin: "left center", rotateY: 0 });
@@ -164,21 +156,11 @@ function OpeningIntro() {
         onComplete: () => {
           markOpeningIntroSeen();
           setVisible(false);
-          // BGM 淡出
-          const b = bgmRef.current;
-          if (b) {
-            const fade = setInterval(() => {
-              b.volume = Math.max(0, b.volume - 0.03);
-              if (b.volume <= 0) { b.pause(); clearInterval(fade); }
-            }, 60);
-          }
         },
       });
 
     return () => {
       document.body.style.overflow = orig;
-      clearInterval(fadeInTimer);
-      if (bgmRef.current) { bgmRef.current.pause(); bgmRef.current = null; }
       timelineRef.current = null;
       tl.kill();
     };
@@ -186,19 +168,9 @@ function OpeningIntro() {
 
   const skip = () => {
     timelineRef.current?.kill();
-    // BGM 淡出
-    const b = bgmRef.current;
-    if (b) {
-      const fade = setInterval(() => {
-        b.volume = Math.max(0, b.volume - 0.05);
-        if (b.volume <= 0) { b.pause(); clearInterval(fade); }
-      }, 40);
-    }
     markOpeningIntroSeen();
     gsap.to(containerRef.current, {
-      opacity: 0,
-      duration: 0.35,
-      ease: "power2.inOut",
+      opacity: 0, duration: 0.35, ease: "power2.inOut",
       onComplete: () => setVisible(false),
     });
   };
@@ -640,6 +612,8 @@ export default function App() {
   const [theme, setTheme] = useState("全部");
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
+  const [bgmMuted, setBgmMuted] = useState(false);
+  const bgmRef = useRef(null);
   const [libraryRoot, setLibraryRoot] = useState(() => {
     try {
       return window.localStorage.getItem(ORIGINALS_STORAGE_KEY) || "";
@@ -647,6 +621,37 @@ export default function App() {
       return "";
     }
   });
+
+  const startBgm = () => {
+    if (bgmRef.current) return;
+    const bgm = new Audio("/audio/bgm.mp3");
+    bgm.loop = true;
+    bgm.volume = 0;
+    bgmRef.current = bgm;
+    bgm.play().catch(() => {});
+    let t = setInterval(() => {
+      bgm.volume = Math.min(0.38, bgm.volume + 0.012);
+      if (bgm.volume >= 0.38) clearInterval(t);
+    }, 80);
+  };
+
+  const toggleBgm = () => {
+    const bgm = bgmRef.current;
+    if (!bgm) return;
+    if (!bgmMuted) {
+      let t = setInterval(() => {
+        bgm.volume = Math.max(0, bgm.volume - 0.03);
+        if (bgm.volume <= 0) { bgm.pause(); clearInterval(t); }
+      }, 50);
+    } else {
+      bgm.play().catch(() => {});
+      let t = setInterval(() => {
+        bgm.volume = Math.min(0.38, bgm.volume + 0.012);
+        if (bgm.volume >= 0.38) clearInterval(t);
+      }, 80);
+    }
+    setBgmMuted(m => !m);
+  };
 
   const chooseOriginalLibrary = async () => {
     if (!isTauri()) return;
@@ -703,7 +708,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <OpeningIntro />
+      <OpeningIntro startBgm={startBgm} />
 
       {/* 顶栏：大字品牌名 + 图标按钮 */}
       <header className="gallery-topbar">
@@ -725,6 +730,11 @@ export default function App() {
           ) : (
             <button type="button" className="topbar-icon-btn" onClick={() => setShowSearch(true)} aria-label="搜索">
               <Search size={18} />
+            </button>
+          )}
+          {bgmRef.current && (
+            <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
+              {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
             </button>
           )}
         </div>
