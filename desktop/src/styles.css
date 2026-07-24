@@ -515,81 +515,109 @@ input:focus-visible {
 }
 
 .detail-info {
-  background: var(--paper);
-  color: var(--ink);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.15) transparent;
-  display: flex; flex-direction: column;
+  background: var(--surface);
+  color: rgba(255,255,255,0.85);
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
 }
 
 .detail-info-scroll {
-  padding: 32px 28px 48px;
+  padding: 28px 28px 16px;
   display: flex; flex-direction: column; gap: 0;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232,175,55,0.15) transparent;
 }
 
-.detail-kicker { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.detail-kicker { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
 
 .detail-kicker-tag {
-  padding: 3px 10px; border-radius: 4px;
+  padding: 3px 10px; border-radius: 3px;
   font-size: 11px; font-weight: 700;
-  background: rgba(196,50,26,0.1); color: var(--red);
+  background: rgba(232,175,55,0.1);
+  border: 1px solid rgba(232,175,55,0.28);
+  color: var(--gold);
 }
 
 .detail-title {
   font-family: "Songti SC", "STSong", serif;
-  font-size: 32px; line-height: 1.25;
-  color: var(--ink); margin-bottom: 10px; letter-spacing: 0.02em;
+  font-size: 30px; line-height: 1.25;
+  color: var(--gold); margin-bottom: 6px; letter-spacing: 0.02em;
 }
 
-.detail-alias { font-size: 12px; color: var(--muted-light); margin-bottom: 18px; line-height: 1.6; }
+.detail-alias { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 4px; line-height: 1.6; }
+
+/* 分区标题：金色竖线 + 宋体 */
+.detail-section-heading {
+  display: flex; align-items: center; gap: 10px;
+  margin: 16px 0 8px;
+}
+
+.detail-section-heading::before {
+  content: "";
+  width: 3px; height: 16px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.detail-section-heading span {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 14px; font-weight: 700; color: #fff;
+}
 
 .detail-desc {
   font-family: "Songti SC", "STSong", serif;
-  font-size: 14px; line-height: 2; color: #3A3830;
-  margin-bottom: 24px; padding-bottom: 24px;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-size: 13px; line-height: 1.95;
+  color: rgba(255,255,255,0.62);
 }
 
-.detail-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-bottom: 20px; }
-.detail-meta-grid > div { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
-.detail-meta-grid > div:nth-child(even) { padding-left: 14px; border-left: 1px solid rgba(0,0,0,0.07); }
+.detail-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.detail-meta-grid > div { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.detail-meta-grid > div:nth-child(even) { padding-left: 14px; border-left: 1px solid rgba(255,255,255,0.06); }
 .detail-meta-grid .meta-full { grid-column: 1 / -1; border-left: 0 !important; padding-left: 0 !important; }
 
 .meta-label {
-  display: block; font-size: 10px; color: var(--muted-light);
-  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px;
+  display: block; font-size: 10px;
+  color: rgba(255,255,255,0.32);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
 }
 
-.meta-val { display: block; font-size: 13px; color: var(--ink); font-weight: 500; }
+.meta-val { display: block; font-size: 13px; color: rgba(255,255,255,0.8); font-weight: 500; }
 
-.audio-player {
+/* 底部语音讲解栏 */
+.detail-audio-bar {
+  flex-shrink: 0;
   display: flex; align-items: center; gap: 14px;
-  padding: 14px 16px;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 8px;
+  padding: 14px 28px;
+  border-top: 1px solid var(--border);
 }
 
-.audio-player-main { flex: 1; min-width: 0; }
-.audio-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-
-.audio-btn {
-  width: 38px; height: 38px; flex-shrink: 0;
-  display: grid; place-items: center;
-  background: var(--red); color: #fff;
-  border-radius: 50%; transition: background 160ms;
+.detail-audio-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 20px;
+  border: 1px solid rgba(232,175,55,0.5);
+  border-radius: 4px;
+  background: rgba(232,175,55,0.08);
+  color: var(--gold); font-size: 13px; font-weight: 600;
+  transition: background 160ms, border-color 160ms;
 }
 
-.audio-btn:hover:not(:disabled) { background: #a52817; }
-.audio-btn:disabled { background: rgba(0,0,0,0.12); color: var(--muted-light); cursor: not-allowed; }
+.detail-audio-btn:hover:not(:disabled) {
+  background: rgba(232,175,55,0.16);
+  border-color: rgba(232,175,55,0.8);
+}
 
-.audio-label { display: block; font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; }
-.audio-time { color: var(--muted-light); font-size: 11px; font-variant-numeric: tabular-nums; }
-.audio-progress { display: block; width: 100%; height: 16px; margin: 2px 0 0; accent-color: var(--red); cursor: pointer; }
-.audio-progress:disabled { cursor: wait; opacity: 0.45; }
-.audio-status { display: block; font-size: 11px; color: var(--muted-light); }
-.audio-status.is-error { color: var(--red); }
+.detail-audio-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.detail-audio-time {
+  font-size: 11px; color: rgba(255,255,255,0.32);
+  font-variant-numeric: tabular-nums;
+}
+
 
 /* ─── 开场动画 ─────────────────────────────────────────── */
 .opening-intro { position: fixed; inset: 0; z-index: 1000; background: #140808; overflow: hidden; }

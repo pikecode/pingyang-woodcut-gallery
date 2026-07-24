@@ -526,7 +526,11 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             </div>
             <h2 id="detail-title" className="detail-title">{artwork.title}</h2>
             {artwork.aliases.length > 0 && <p className="detail-alias">又名：{artwork.aliases.join("、")}</p>}
+
+            <div className="detail-section-heading"><span>作品赏析</span></div>
             <p className="detail-desc">{artwork.description}</p>
+
+            <div className="detail-section-heading"><span>藏品信息</span></div>
             <div className="detail-meta-grid">
               <div><span className="meta-label">分类</span><span className="meta-val">{artwork.theme.name}</span></div>
               <div><span className="meta-label">形制</span><span className="meta-val">{kind}</span></div>
@@ -534,38 +538,24 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
               <div><span className="meta-label">规格</span><span className="meta-val">{artwork.dimensions.sourceText}</span></div>
               <div className="meta-full"><span className="meta-label">馆藏</span><span className="meta-val">{artwork.collection}</span></div>
             </div>
-            <div className="audio-player">
-              <button
-                type="button"
-                className="audio-btn"
-                onClick={toggleAudio}
-                disabled={!audioState.ready || Boolean(audioState.error)}
-                aria-label={audioState.playing ? "暂停导览" : "播放导览"}
-                title={audioState.playing ? "暂停" : "播放"}
-              >
-                {audioState.playing ? <Pause size={16} /> : <Play size={16} />}
-              </button>
-              <div className="audio-player-main">
-                <div className="audio-heading">
-                  <span className="audio-label">导览音频</span>
-                  <span className="audio-time">{formatTime(audioState.current)} / {formatTime(audioState.duration)}</span>
-                </div>
-                <input
-                  className="audio-progress"
-                  type="range"
-                  min="0"
-                  max={audioState.duration || 0}
-                  step="0.1"
-                  value={Math.min(audioState.current, audioState.duration || 0)}
-                  onChange={seekAudio}
-                  disabled={!audioState.ready}
-                  aria-label="导览音频进度"
-                />
-                <span className={`audio-status${audioState.error ? " is-error" : ""}`}>
-                  {audioState.error || (audioState.ready ? "文博讲解 · 温润女声" : "正在载入音频")}
-                </span>
-              </div>
-            </div>
+          </div>
+          <div className="detail-audio-bar">
+            <button
+              type="button"
+              className="detail-audio-btn"
+              onClick={toggleAudio}
+              disabled={!audioState.ready || Boolean(audioState.error)}
+              aria-label={audioState.playing ? "暂停导览" : "播放导览"}
+            >
+              {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
+              <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
+            </button>
+            {audioState.ready && (
+              <span className="detail-audio-time">{formatTime(audioState.current)} / {formatTime(audioState.duration)}</span>
+            )}
+            {!audioState.ready && !audioState.error && (
+              <span className="detail-audio-time">导览音频载入中…</span>
+            )}
           </div>
         </div>
       </section>
