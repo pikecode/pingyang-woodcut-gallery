@@ -35,6 +35,9 @@ function shouldShowOpeningIntro() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   if (new URLSearchParams(window.location.search).get("intro") === "1") return true;
   try {
+    // 页面 reload（开发热重载 / Cmd+R）时清除标记，让动画重播
+    const nav = performance.getEntriesByType?.("navigation")?.[0];
+    if (nav?.type === "reload") window.sessionStorage.removeItem(INTRO_KEY);
     return window.sessionStorage.getItem(INTRO_KEY) !== "1";
   } catch {
     return true;
