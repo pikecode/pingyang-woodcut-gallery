@@ -106,6 +106,8 @@ desktop/
 - 增加 `npm run assets`，从标准数据重新生成 Desktop 静态资产。
 - 增加 `npm run test:ui`，验证开屏、会话内不重播、55 件作品渲染、分类筛选、搜索、详情、多图、缩放及浏览器环境下的原图降级提示。
 - 增加 Rust 单元测试，覆盖合法清单路径、路径穿越/非图片拒绝、TIFF 内存转换且源文件保留。
+- 使用 Voicebox“文博讲解 · 温润女声”为 55 件作品简介生成离线导览音频，详情页支持播放、暂停、进度拖动和时长显示。
+- 55 条音频总时长 1,262.8 秒（21 分 02.8 秒），64 kbps M4A 合计约 10.1 MB。
 - GitHub Actions 的触发范围改为 Desktop、数据和 Desktop 资产生成脚本。
 - CI 配置 macOS DMG 和 Windows MSI/NSIS 构建产物上传，并支持手动创建草稿 Release。
 - macOS 当前使用 ad-hoc 签名，可验证包内签名结构，但不等同于 Apple Developer ID 签名和公证。
@@ -120,9 +122,10 @@ desktop/
 | `desktop/src-tauri/Cargo.toml` | Tauri 对话框和图片解码依赖 |
 | `desktop/src-tauri/capabilities/default.json` | 原生对话框所需权限 |
 | `desktop/src-tauri/tauri.conf.json` | 窗口、应用标识、打包图标和 macOS ad-hoc 签名配置 |
-| `desktop/public/` | Desktop 自有 JSON、favicon 和 65 张 WebP 展示图 |
+| `desktop/public/` | Desktop 自有 JSON、favicon、65 张 WebP 展示图和 55 条 M4A 导览音频 |
 | `desktop/scripts/verify_ui.mjs` | Desktop 浏览器交互回归和验收截图 |
 | `scripts/build_web_assets.py` | 从标准数据与原图生成 Desktop 运行资产 |
+| `scripts/generate_gallery_audio.py` | 调用本地 Voicebox 逐件生成、压缩并校验离线导览音频，支持断点续跑 |
 | `.github/workflows/build-desktop.yml` | macOS/Windows 自动打包、Artifacts 和可选草稿 Release |
 | `README.md` | Desktop 优先的项目入口、开发命令和原图库说明 |
 | `docs/桌面端规划.md` | 当前技术路线、完成状态和后续功能规划 |
@@ -137,10 +140,13 @@ Tauri 自动生成的 `desktop/src-tauri/gen/schemas/*.json` 和依赖锁文件�
 | 验证项 | 结果 |
 |---|---|
 | `cd desktop && npm run assets` | 通过，生成 65 张 WebP 和 Desktop 数据文件 |
+| `cd desktop && npm run audio` | 通过，55 条来源未变化的音频均被断点校验并正确跳过 |
+| 音频文件与 manifest 校验 | 通过，55 个 M4A 的文件数、格式和 SHA-256 全部一致 |
 | `cd desktop && npm run build` | 通过，前端生产构建成功 |
 | `cd desktop && npm run test:ui` | 通过，Desktop 核心浏览交互验证成功 |
 | `cargo test --manifest-path desktop/src-tauri/Cargo.toml` | 通过，3 个 Rust 测试全部成功 |
 | `cd desktop && npm run tauri build` | 通过，生成本机 macOS DMG |
+| 安装包音频资源索引 | 通过，签名后二进制包含 55 个 `audio/py-*.m4a` 路径 |
 | `codesign --verify --deep --strict` | 通过，ad-hoc 签名结构有效 |
 | `git diff --check` | 通过，无空白符错误 |
 
@@ -153,8 +159,8 @@ UI 验收截图：
 
 ```text
 desktop/src-tauri/target/release/bundle/dmg/PingyangGallery_0.1.0_aarch64.dmg
-体积：23 MB
-SHA-256：8b74ccab4705ad04e8f9fcb52bc08958f9f4f562c3a5c5f4c55efd6890f271d5
+体积：33 MB
+SHA-256：2bd550d73d8b19d3b9a2fd5aa5e2c0651b4d3ae613bf727ff8d065306a62ac15
 ```
 
 ## 6. 开发与验收命令
@@ -182,6 +188,13 @@ cd desktop
 npm run assets
 ```
 
+启动 Voicebox 后生成或续跑导览音频：
+
+```sh
+cd desktop
+npm run audio
+```
+
 执行完整的当前阶段验证：
 
 ```sh
@@ -205,7 +218,8 @@ http://127.0.0.1:1420/?intro=1
 - 原图不进入 Git 和默认安装包。更换电脑或交付馆方时，必须同时提供完整的 `assets/originals/` 外部目录。
 - 浏览器运行模式不能调用 Tauri 原图读取命令，只能验证 WebP 界面与降级状态；原图能力需在 `npm run tauri dev` 或安装包中验证。
 - 当前数据仍包含 26 条待校问题，界面和存储结构完成不代表藏品文本已经完成最终学术校审。
-- 原生菜单、打印/PDF、展览自动轮播和真实音频尚未实现。
+- 原生菜单、打印/PDF 和展览自动轮播尚未实现；导览音频已接入，但仍需人工抽听生僻字与史料专名的发音。
+- 当前 Voicebox 的 Whisper Base 转写接口在本机返回 MLX/MPS `Stream(gpu, 2)` 线程错误，无法作为本轮自动回译证据；文件完整性、媒体解码和浏览器实播已验证。
 
 ## 8. 下一阶段优先级建议
 
@@ -224,7 +238,7 @@ http://127.0.0.1:1420/?intro=1
 ### P2：展陈能力
 
 1. 实现展览模式：自动轮播、空闲恢复、隐藏管理控件和防止系统休眠。
-2. 接入经过授权的真实音频，并提供明确的静音、音量和播放状态。
+2. 对 Voicebox 导览音频进行人工抽听与专业词校音，并根据展陈环境补充音量控制。
 3. 在实际展陈屏幕上验证 1080p/4K 缩放质量、长时间运行稳定性和触控交互。
 
 ## 9. 评审重点

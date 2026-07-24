@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "assets": "python3 ../scripts/build_web_assets.py",
+    "audio": "python3 ../scripts/generate_gallery_audio.py",
     "dev": "vite",
     "build": "vite build",
     "test:ui": "node scripts/verify_ui.mjs",

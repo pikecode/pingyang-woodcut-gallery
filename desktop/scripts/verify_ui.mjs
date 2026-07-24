@@ -67,6 +67,15 @@ try {
   await page.getByRole("button", { name: "图 2" }).click();
   await page.getByRole("button", { name: "载入本地高清原图" }).click();
   await page.getByText("本地原图仅在桌面应用中可用").waitFor();
+  await page.getByRole("button", { name: "播放导览" }).waitFor();
+  if (await page.getByRole("button", { name: "播放导览" }).isDisabled()) {
+    throw new Error("gallery narration did not become playable");
+  }
+  await page.getByText("文博讲解 · 温润女声").waitFor();
+  await page.getByRole("button", { name: "播放导览" }).click();
+  await page.getByRole("button", { name: "暂停导览" }).waitFor();
+  await page.getByRole("button", { name: "暂停导览" }).click();
+  await page.getByRole("button", { name: "播放导览" }).waitFor();
   await assertViewport("detail");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-detail-current.png") });
 

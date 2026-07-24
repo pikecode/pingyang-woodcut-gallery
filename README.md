@@ -38,6 +38,14 @@ python3 -m pip install -r requirements.txt
 cd desktop && npm run assets
 ```
 
+Voicebox 启动后，使用“文博讲解 · 温润女声”为全部作品简介生成离线导览音频：
+
+```sh
+cd desktop && npm run audio
+```
+
+脚本可断点续跑，生成的 M4A 和校验清单位于 `desktop/public/audio/`。
+
 完整规划和分发说明见：
 
 - [`docs/项目结构与规划总览.md`](docs/项目结构与规划总览.md)
