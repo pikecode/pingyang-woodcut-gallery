@@ -720,18 +720,6 @@ export default function App() {
               <Search size={18} />
             </button>
           )}
-          <button
-            type="button"
-            className={`topbar-icon-btn${libraryRoot ? " is-connected" : ""}`}
-            onClick={chooseOriginalLibrary}
-            aria-label="选择本地原图库"
-            title={libraryRoot ? "原图库已连接" : "选择原图库"}
-          >
-            <FolderOpen size={18} />
-          </button>
-          <button type="button" className="topbar-icon-btn" onClick={toggleAppFullscreen} aria-label="应用全屏" title="应用全屏">
-            <Maximize2 size={18} />
-          </button>
         </div>
       </header>
 
