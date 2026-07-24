@@ -37,9 +37,10 @@ export default function OpeningIntroPanorama({ startBgm }) {
       });
       gsap.set(".panorama-color-stripe", { scaleY: 0, transformOrigin: "top center" });
       gsap.set(".panorama-opening-copy", { opacity: 0, y: 16 });
-      gsap.set(".scene-one .scene-art", { opacity: 0, y: 60 });
-      gsap.set(".scene-two .scene-art", { opacity: 0, y: 70 });
-      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : 90 });
+      gsap.set(".scene-paper", { scale: 1.035, transformOrigin: "center center" });
+      gsap.set(".scene-one .scene-art", { opacity: 0, y: 60, scale: 1.055 });
+      gsap.set(".scene-two .scene-art", { opacity: 0, y: 70, scale: 1.055 });
+      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : 90, scale: 1.04 });
       gsap.set(".scene-caption", { opacity: 0, y: 22 });
       gsap.set(".panorama-curtain", { opacity: 0 });
       gsap.set(".panorama-folio-deck", { opacity: 0 });
@@ -47,57 +48,90 @@ export default function OpeningIntroPanorama({ startBgm }) {
       gsap.set(".panorama-final", { opacity: 0, y: 28 });
 
       timeline
-        .to(".panorama-wordmark-line", { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 })
-        .to(".panorama-seal", { opacity: 1, scale: 1, rotation: 0, duration: 0.42, ease: "back.out(2.5)" }, "<0.15")
-        .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.28, stagger: 0.06 }, "<0.12")
-        .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.4 }, "<0.1")
+        .addLabel("brand", 0)
+        .addLabel("reveal", 0.65)
+        .addLabel("panoramaTwo", 2.8)
+        .addLabel("panoramaThree", 5.05)
+        .addLabel("closePanorama", 7.25)
+        .addLabel("folios", 8.15)
+        .addLabel("finale", 8.55)
+        .addLabel("exit", 9.8)
+        .to(".panorama-wordmark-line", { opacity: 1, y: 0, duration: 0.85, stagger: 0.12, ease: "sine.out" }, "brand")
+        .to(".panorama-seal", { opacity: 1, scale: 1, rotation: 0, duration: 0.58, ease: "back.out(1.8)" }, "brand+=0.18")
+        .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.42, stagger: 0.07, ease: "sine.out" }, "brand+=0.34")
+        .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.58, ease: "sine.out" }, "brand+=0.42")
         .to(".panorama-viewport", {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          duration: 1.05,
-          ease: "power3.inOut",
-        }, "+=0.18")
-        .to(".scene-one .scene-art", { opacity: 1, y: 0, duration: 0.72, stagger: 0.12, ease: "power3.out" }, "<0.18")
-        .to(".panorama-color-stripe", { scaleY: 1, duration: 0.44, stagger: 0.045, ease: "power3.inOut" }, "<")
-        .to(".panorama-color-stripe", { opacity: 0, duration: 0.3, stagger: 0.03 }, "<0.38")
-        .to(".panorama-opening-copy", { opacity: 0, y: -18, duration: 0.28 }, "<")
-        .to(".scene-one .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.22")
-        .to({}, { duration: 0.35 })
-        .to(".panorama-track", { xPercent: -33.3333, duration: 1.5, ease: "power2.inOut" })
-        .to(".scene-two .scene-art", { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power3.out" }, "<0.42")
-        .to(".scene-two .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.18")
-        .to({}, { duration: 0.25 })
-        .to(".panorama-track", { xPercent: -66.6667, duration: 1.5, ease: "power2.inOut" })
-        .to(".scene-three .scene-art", { opacity: 1, x: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }, "<0.38")
-        .to(".scene-three .scene-caption", { opacity: 1, y: 0, duration: 0.4 }, "<0.22")
-        .to({}, { duration: 0.35 })
+          duration: 1.5,
+          ease: "sine.inOut",
+        }, "reveal")
+        .to(".panorama-color-stripe", { scaleY: 1, duration: 0.72, stagger: 0.055, ease: "sine.inOut" }, "reveal")
+        .to(".panorama-color-stripe", { opacity: 0, duration: 0.55, stagger: 0.035, ease: "sine.out" }, "reveal+=0.58")
+        .to(".panorama-opening-copy", { opacity: 0, y: -18, duration: 0.5, ease: "sine.inOut" }, "reveal+=0.68")
+        .to(".scene-one .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.3, stagger: 0.12, ease: "sine.out" }, "reveal+=0.15")
+        .to(".scene-one .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "reveal+=0.75")
+        .to(".scene-one .shape-one", { xPercent: 3.2, yPercent: -2.2, scale: 1, duration: 3.65, ease: "none" }, "reveal")
+        .to(".scene-one .shape-two", { xPercent: -3.4, yPercent: 2.2, scale: 1, duration: 3.65, ease: "none" }, "reveal")
+        .to(".scene-one .scene-art", {
+          x: index => [-16, 12, -10][index],
+          y: index => [-8, 9, -6][index],
+          duration: 2.1,
+          ease: "none",
+        }, "reveal+=1.5")
+        .to(".panorama-track", { xPercent: -33.3333, duration: 1.5, ease: "sine.inOut" }, "panoramaTwo")
+        .to(".scene-one .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.45, duration: 1.5, ease: "sine.inOut" }, "panoramaTwo")
+        .to(".scene-one .scene-caption", { opacity: 0, x: -22, duration: 0.72, ease: "sine.inOut" }, "panoramaTwo+=0.15")
+        .to(".scene-two .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.1, ease: "sine.out" }, "panoramaTwo+=0.18")
+        .to(".scene-two .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "panoramaTwo+=0.65")
+        .to(".scene-two .shape-one", { xPercent: -3.2, yPercent: 2.1, scale: 1, duration: 3.65, ease: "none" }, "panoramaTwo")
+        .to(".scene-two .shape-two", { xPercent: 3.4, yPercent: -2.2, scale: 1, duration: 3.65, ease: "none" }, "panoramaTwo")
+        .to(".scene-two .scene-art", {
+          x: index => [14, -12, 16][index],
+          y: index => [-7, 8, -9][index],
+          duration: 2.1,
+          ease: "none",
+        }, "panoramaTwo+=1.55")
+        .to(".panorama-track", { xPercent: -66.6667, duration: 1.5, ease: "sine.inOut" }, "panoramaThree")
+        .to(".scene-two .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.48, duration: 1.5, ease: "sine.inOut" }, "panoramaThree")
+        .to(".scene-two .scene-caption", { opacity: 0, x: -22, duration: 0.72, ease: "sine.inOut" }, "panoramaThree+=0.15")
+        .to(".scene-three .scene-art", { opacity: 1, x: 0, scale: 1, duration: 1.18, stagger: 0.1, ease: "sine.out" }, "panoramaThree+=0.2")
+        .to(".scene-three .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "panoramaThree+=0.7")
+        .to(".scene-three .shape-one", { yPercent: -2.8, scale: 1, duration: 3.1, ease: "none" }, "panoramaThree")
+        .to(".scene-three .shape-two", { xPercent: 2.8, scale: 1, duration: 3.1, ease: "none" }, "panoramaThree")
+        .to(".scene-three .scene-art", {
+          x: index => [-13, 8, 13][index],
+          y: index => [-6, 7, -6][index],
+          duration: 1.5,
+          ease: "none",
+        }, "panoramaThree+=1.55")
         .to(".panorama-viewport", {
           clipPath: "polygon(42% 5%, 61% 2%, 69% 18%, 65% 41%, 73% 60%, 63% 95%, 43% 98%, 34% 78%, 38% 55%, 30% 29%)",
-          duration: 0.82,
-          ease: "power3.inOut",
-        })
-        .to(".panorama-track", { scale: 0.82, opacity: 0.35, duration: 0.55, transformOrigin: "center center" }, "<")
-        .to(".panorama-curtain", { opacity: 1, duration: 0.55 }, "<0.25")
-        .to(".panorama-viewport", { opacity: 0, duration: 0.25 }, "<0.22")
-        .to(".panorama-folio-deck", { opacity: 1, duration: 0.2 })
+          duration: 1.1,
+          ease: "sine.inOut",
+        }, "closePanorama")
+        .to(".panorama-track", { scale: 0.84, opacity: 0.3, duration: 1.1, transformOrigin: "center center", ease: "sine.inOut" }, "closePanorama")
+        .to(".scene-three .scene-caption", { opacity: 0, y: -14, duration: 0.55, ease: "sine.inOut" }, "closePanorama+=0.12")
+        .to(".panorama-curtain", { opacity: 1, duration: 0.8, ease: "sine.inOut" }, "closePanorama+=0.35")
+        .to(".panorama-viewport", { opacity: 0, duration: 0.5, ease: "sine.inOut" }, "closePanorama+=0.72")
+        .to(".panorama-folio-deck", { opacity: 1, duration: 0.38, ease: "sine.out" }, "folios")
         .to(".panorama-folio", {
           opacity: 1,
           y: 0,
           rotation: index => [-7, 0, 7][index],
-          duration: 0.62,
-          stagger: 0.1,
-          ease: "back.out(1.5)",
-        })
-        .to(".panorama-final", { opacity: 1, y: 0, duration: 0.55 }, "<0.3")
-        .to({}, { duration: 0.75 })
+          duration: 0.82,
+          stagger: 0.11,
+          ease: "back.out(1.25)",
+        }, "folios+=0.1")
+        .to(".panorama-final", { opacity: 1, y: 0, duration: 0.75, ease: "sine.out" }, "finale")
         .to(containerRef.current, {
           opacity: 0,
-          duration: 0.58,
-          ease: "power2.inOut",
+          duration: 0.65,
+          ease: "sine.inOut",
           onComplete: () => {
             markOpeningIntroSeen();
             setVisible(false);
           },
-        });
+        }, "exit");
     }, containerRef);
 
     return () => {

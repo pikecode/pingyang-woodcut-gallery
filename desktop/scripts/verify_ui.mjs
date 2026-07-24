@@ -37,6 +37,7 @@ async function assertViewport(label) {
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
   await page.locator(".opening-intro").waitFor();
+  const introStartedAt = Date.now();
   await page.waitForTimeout(1200);
   await assertViewport("opening");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-current.png") });
@@ -46,11 +47,10 @@ try {
   await page.waitForTimeout(4200);
   await assertViewport("opening finale");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-finale.png") });
-  const skipStartedAt = Date.now();
-  await page.getByRole("button", { name: "跳过开屏动画" }).click();
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
-  if (Date.now() - skipStartedAt > 500) {
-    throw new Error("opening skip took longer than 500ms");
+  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 3000 });
+  const introDuration = Date.now() - introStartedAt;
+  if (introDuration < 10000 || introDuration > 11300) {
+    throw new Error(`opening duration outside 10s target: ${introDuration}ms`);
   }
   if (await page.evaluate(() => document.body.style.overflow === "hidden")) {
     throw new Error("opening skip left body scrolling locked");
@@ -108,8 +108,12 @@ try {
     await page.waitForTimeout(4400);
     await assertViewport(`opening ${viewport.name}`);
     await page.screenshot({ path: path.join(OUTPUT, `desktop-opening-${viewport.name}.png`) });
+    const skipStartedAt = Date.now();
     await page.getByRole("button", { name: "跳过开屏动画" }).click();
     await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
+    if (Date.now() - skipStartedAt > 500) {
+      throw new Error(`opening skip took longer than 500ms at ${viewport.name}`);
+    }
   }
 
   const reducedContext = await browser.newContext({

@@ -116,6 +116,7 @@
 .scene-paper {
   position: absolute;
   pointer-events: none;
+  will-change: transform;
 }
 
 .scene-one .shape-one {
