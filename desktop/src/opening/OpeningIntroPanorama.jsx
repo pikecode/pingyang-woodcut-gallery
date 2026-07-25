@@ -235,7 +235,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
       <div className="panorama-final">
         <span>山西临汾 · 国家级非物质文化遗产</span>
         <strong>平阳木版年画</strong>
-        <small>数字馆藏</small>
+        <small>博观集 · 数字馆藏</small>
       </div>
     </div>
   );

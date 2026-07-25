@@ -273,7 +273,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
       <header className="detail-topbar">
         <button className="detail-back-btn" onClick={onClose} aria-label="返回">
           <ChevronLeft size={20} />
-          <span>平阳木版年画</span>
+          <span>平阳木版年画 · 博观集</span>
         </button>
         <h1 className="detail-topbar-title">藏品详情</h1>
         <div className="detail-topbar-icons">
@@ -432,8 +432,7 @@ export default function App() {
   const artworks = useGalleryData();
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
-  // 开屏未播放时直接进分类页；开屏播放结束后也进分类页
-  const [phase, setPhase] = useState(() => shouldShowOpeningIntro() ? "gallery" : "category");
+  const [phase, setPhase] = useState("category"); // always start at category; intro overlays it
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(false);
