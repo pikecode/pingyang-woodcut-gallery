@@ -12,12 +12,14 @@ const FOLIOS = [
   { slug: "py-099", title: "秦琼敬德", theme: "门神", color: "is-red" },
 ];
 
-export default function OpeningIntroPanorama({ startBgm }) {
+export default function OpeningIntroPanorama({ startBgm, onComplete }) {
   const [visible, setVisible] = useState(shouldShowOpeningIntro);
   const containerRef = useRef(null);
   const timelineRef = useRef(null);
   const startBgmRef = useRef(startBgm);
   startBgmRef.current = startBgm;
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
     if (!visible || !containerRef.current) return undefined;
@@ -130,6 +132,7 @@ export default function OpeningIntroPanorama({ startBgm }) {
           onComplete: () => {
             markOpeningIntroSeen();
             setVisible(false);
+            onCompleteRef.current?.();
           },
         }, "exit");
     }, containerRef);
@@ -145,10 +148,8 @@ export default function OpeningIntroPanorama({ startBgm }) {
     timelineRef.current?.kill();
     markOpeningIntroSeen();
     gsap.to(containerRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.inOut",
-      onComplete: () => setVisible(false),
+      opacity: 0, duration: 0.3, ease: "power2.inOut",
+      onComplete: () => { setVisible(false); onCompleteRef.current?.(); },
     });
   };
 

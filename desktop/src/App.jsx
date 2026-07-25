@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { invoke, isTauri } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import OpeningIntroPanorama from "./opening/OpeningIntroPanorama";
+import CategorySelect from "./CategorySelect";
 import {
   ChevronLeft,
   ChevronRight,
@@ -431,6 +432,7 @@ export default function App() {
   const artworks = useGalleryData();
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
+  const [phase, setPhase] = useState("gallery"); // 'category' | 'gallery'
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(false);
@@ -529,7 +531,10 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <OpeningIntroPanorama startBgm={startBgm} />
+      <OpeningIntroPanorama startBgm={startBgm} onComplete={() => setPhase("category")} />
+      {phase === "category" && (
+        <CategorySelect onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }} />
+      )}
 
       {/* 顶栏：大字品牌名 + 图标按钮 */}
       <header className="gallery-topbar">
