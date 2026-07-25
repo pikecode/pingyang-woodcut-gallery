@@ -11,23 +11,26 @@
 .panorama-skip {
   position: absolute;
   top: 22px;
-  right: 22px;
+  right: 28px;
   z-index: 20;
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  border: 1px solid rgba(32, 32, 29, 0.28);
-  border-radius: 50%;
-  background: rgba(239, 237, 225, 0.88);
-  color: #20201d;
-  transition: background 160ms, border-color 160ms;
+  height: 30px;
+  padding: 0 18px;
+  border: 1px solid rgba(32, 32, 29, 0.35);
+  border-radius: 2px;
+  background: rgba(239, 237, 225, 0.75);
+  color: rgba(32, 32, 29, 0.65);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  backdrop-filter: blur(6px);
+  transition: background 180ms, color 180ms, border-color 180ms;
 }
 
 .panorama-skip:hover {
-  border-color: #20201d;
-  background: #f4f0df;
+  background: rgba(239, 237, 225, 0.95);
+  color: rgba(32, 32, 29, 0.9);
+  border-color: rgba(32, 32, 29, 0.55);
 }
 
 .panorama-paper,

@@ -157,8 +157,8 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
 
   return (
     <div ref={containerRef} className="opening-intro panorama-intro">
-      <button className="panorama-skip" type="button" onClick={skip} aria-label="跳过开屏动画" title="跳过">
-        <X size={14} /><span>跳过</span>
+      <button className="panorama-skip" type="button" onClick={skip} aria-label="跳过开屏动画">
+        跳过
       </button>
 
       <div className="panorama-paper" aria-hidden="true">
