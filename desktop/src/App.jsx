@@ -3,6 +3,7 @@ import { invoke, isTauri } from "@tauri-apps/api/core";
 import { open } from "@tauri-apps/plugin-dialog";
 import OpeningIntroPanorama from "./opening/OpeningIntroPanorama";
 import CategorySelect from "./CategorySelect";
+import { shouldShowOpeningIntro } from "./opening/openingIntroSession";
 import {
   ChevronLeft,
   ChevronRight,
@@ -419,8 +420,7 @@ function ArtworkCard({ artwork, onOpen }) {
         <strong className="card-title">{artwork.title}</strong>
         <p className="card-desc">{artwork.description}</p>
         <div className="card-audio-btn">
-          <Volume2 size={15} />
-          <span>语音讲解</span>
+          <span>查看详情</span>
         </div>
       </div>
     </button>
@@ -432,7 +432,8 @@ export default function App() {
   const artworks = useGalleryData();
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
-  const [phase, setPhase] = useState("gallery"); // 'category' | 'gallery'
+  // 开屏未播放时直接进分类页；开屏播放结束后也进分类页
+  const [phase, setPhase] = useState(() => shouldShowOpeningIntro() ? "gallery" : "category");
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(false);
@@ -538,7 +539,12 @@ export default function App() {
 
       {/* 顶栏：大字品牌名 + 图标按钮 */}
       <header className="gallery-topbar">
-        <h1 className="topbar-title">平阳木版年画</h1>
+        <div className="topbar-left">
+          <button className="topbar-back-btn" onClick={() => setPhase("category")} aria-label="返回题材选择">
+            <ChevronLeft size={18} />
+          </button>
+          <h1 className="topbar-title">平阳木版年画·博观集</h1>
+        </div>
         <div className="topbar-icons">
           {showSearch ? (
             <label className="topbar-search">

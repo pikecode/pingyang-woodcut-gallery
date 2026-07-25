@@ -3,11 +3,10 @@ import { gsap } from "gsap";
 import "./category-select.css";
 
 const CATEGORIES = [
-  { name: "全部", desc: "平阳木版年画 · 完整馆藏", count: 55, slug: "py-001", num: "00" },
-  { name: "戏曲", desc: "粉墨登场 · 舞台百态",     count: 38, slug: "py-014", num: "01" },
-  { name: "神祇", desc: "神灵守护 · 门神百态",     count: 13, slug: "py-087", num: "02" },
-  { name: "吉祥", desc: "年节吉庆 · 祈福纹样",     count:  3, slug: "py-095", num: "03" },
-  { name: "故事", desc: "人间烟火 · 民俗叙事",     count:  1, slug: "py-030", num: "04" },
+  { name: "戏曲", desc: "粉墨登场 · 舞台百态",   count: 38, slug: "py-014", num: "01" },
+  { name: "神祇", desc: "神灵守护 · 门神百态",   count: 13, slug: "py-087", num: "02" },
+  { name: "吉祥", desc: "年节吉庆 · 祈福纹样",   count:  3, slug: "py-095", num: "03" },
+  { name: "故事", desc: "人间烟火 · 民俗叙事",   count:  1, slug: "py-030", num: "04" },
 ];
 
 export default function CategorySelect({ onSelect }) {
@@ -68,9 +67,11 @@ export default function CategorySelect({ onSelect }) {
             <div className="cat-panel-content">
               <span className="cat-num">{cat.num}</span>
               <strong className="cat-name">{cat.name}</strong>
+              <div className="cat-divider" />
               <span className="cat-count">{cat.count} 件</span>
               <span className="cat-desc">{cat.desc}</span>
             </div>
+            <span className="cat-enter-hint">点击进入</span>
             <div className="cat-panel-border" aria-hidden="true" />
           </button>
         ))}

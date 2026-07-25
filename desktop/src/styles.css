@@ -60,6 +60,29 @@ input:focus-visible {
   -webkit-backdrop-filter: blur(20px);
 }
 
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.topbar-back-btn {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(232,175,55,0.3);
+  color: rgba(232,175,55,0.7);
+  flex-shrink: 0;
+  transition: color 160ms, border-color 160ms, background 160ms;
+}
+
+.topbar-back-btn:hover {
+  color: var(--gold);
+  border-color: rgba(232,175,55,0.7);
+  background: rgba(232,175,55,0.08);
+}
+
 .topbar-title {
   font-family: "Songti SC", "STSong", serif;
   font-size: 38px;
