@@ -44,6 +44,26 @@
   padding-left: 14px;
 }
 
+/* BGM 静音按钮 — 右上角，与画廊/详情页一致 */
+.cat-bgm-btn {
+  position: absolute;
+  top: 22px; right: 28px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.65);
+  background: transparent;
+  z-index: 10;
+  transition: color 160ms, border-color 160ms, background 160ms;
+}
+
+.cat-bgm-btn:hover {
+  color: #fff;
+  border-color: rgba(232,175,55,0.6);
+  background: rgba(232,175,55,0.08);
+}
+
 /* 面板容器 */
 .cat-panels {
   display: flex;

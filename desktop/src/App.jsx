@@ -533,7 +533,12 @@ export default function App() {
     <div className="app-shell">
       <OpeningIntroPanorama startBgm={startBgm} onComplete={() => setPhase("category")} />
       {phase === "category" && (
-        <CategorySelect onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }} />
+        <CategorySelect
+          onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
+          toggleBgm={toggleBgm}
+          bgmMuted={bgmMuted}
+          bgmStarted={!!bgmRef.current}
+        />
       )}
 
       {/* 顶栏：大字品牌名 + 图标按钮 */}

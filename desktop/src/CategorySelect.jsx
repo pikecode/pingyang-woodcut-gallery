@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Volume2, VolumeX } from "lucide-react";
 import "./category-select.css";
 
 const CATEGORIES = [
@@ -9,7 +10,7 @@ const CATEGORIES = [
   { name: "故事", desc: "人间烟火 · 民俗叙事",   count:  1, slug: "py-030", num: "04" },
 ];
 
-export default function CategorySelect({ onSelect }) {
+export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStarted }) {
   const containerRef = useRef(null);
   const [hovered, setHovered] = useState(null);
   const [exiting, setExiting] = useState(false);
@@ -48,6 +49,12 @@ export default function CategorySelect({ onSelect }) {
         <span className="cat-brand-name">平阳木版年画 · 博观集</span>
         <span className="cat-subtitle">选择题材，开始探索</span>
       </header>
+
+      {bgmStarted && (
+        <button className="cat-bgm-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
+          {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+        </button>
+      )}
 
       <div className="cat-panels">
         {CATEGORIES.map((cat) => (
