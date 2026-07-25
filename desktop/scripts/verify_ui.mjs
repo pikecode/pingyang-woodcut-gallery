@@ -64,18 +64,18 @@ try {
   await page.locator(".opening-intro").waitFor();
   await page.getByRole("button", { name: "跳过开屏动画" }).click();
   await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
+  await page.getByRole("button", { name: "神祇，共13件" }).click();
+  await page.locator(".cat-root").waitFor({ state: "detached" });
   await page.locator(".gallery-card").first().waitFor();
-  if (await page.locator(".gallery-card").count() !== 55) {
-    throw new Error("gallery did not render all 55 artworks");
+  if (await page.locator(".gallery-card").count() !== 13) {
+    throw new Error("deity category did not return 13 artworks");
   }
   await assertViewport("gallery");
 
-  await page.getByRole("button", { name: /神祇/ }).click();
-  if (await page.locator(".gallery-card").count() !== 13) {
-    throw new Error("deity filter did not return 13 artworks");
+  await page.locator(".nav-tab").filter({ hasText: "全部" }).click();
+  if (await page.locator(".gallery-card").count() !== 55) {
+    throw new Error("gallery did not render all 55 artworks");
   }
-
-  await page.getByRole("button", { name: /全部/ }).click();
   await page.getByRole("button", { name: "搜索" }).click();
   await page.getByPlaceholder("搜索题名、别名…").fill(pairedArtwork.title);
   await page.getByRole("button", { name: `查看《${pairedArtwork.title}》` }).click();
@@ -87,9 +87,7 @@ try {
   }
   await page.getByRole("button", { name: "图 2" }).click();
   await page.getByRole("button", { name: "播放导览" }).waitFor();
-  if (await page.getByRole("button", { name: "播放导览" }).isDisabled()) {
-    throw new Error("gallery narration did not become playable");
-  }
+  await page.waitForFunction(() => !document.querySelector(".detail-audio-btn")?.disabled);
   await page.getByRole("button", { name: "播放导览" }).click();
   await page.getByRole("button", { name: "暂停导览" }).waitFor();
   await page.getByRole("button", { name: "暂停导览" }).click();
@@ -97,7 +95,7 @@ try {
   await assertViewport("detail");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-detail-current.png") });
 
-  await page.getByRole("button", { name: "返回" }).click();
+  await page.getByRole("button", { name: "返回", exact: true }).click();
   for (const viewport of [
     { width: 1280, height: 800, name: "1280x800" },
     { width: 1024, height: 700, name: "1024x700" },
@@ -125,7 +123,7 @@ try {
   if (await reducedPage.locator(".opening-intro").count()) {
     throw new Error("opening intro mounted with reduced motion enabled");
   }
-  await reducedPage.locator(".gallery-card").first().waitFor();
+  await reducedPage.locator(".cat-root").waitFor();
   await reducedContext.close();
 
   if (failedRequests.length) throw new Error(`failed requests:\n${failedRequests.join("\n")}`);

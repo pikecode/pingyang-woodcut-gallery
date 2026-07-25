@@ -38,13 +38,13 @@ python3 -m pip install -r requirements.txt
 cd desktop && npm run assets
 ```
 
-Voicebox 启动后，使用“文博讲解 · 温润女声”为全部作品简介生成离线导览音频：
+Voicebox 启动后，使用“文博讲解 · 温润女声”为全部作品生成“标题 + 简介”离线导览音频：
 
 ```sh
 cd desktop && npm run audio
 ```
 
-脚本可断点续跑，生成的 M4A 和校验清单位于 `desktop/public/audio/`。
+旁白以“您现在欣赏的是《标题》”开场，并对编号标题和括号副标题进行朗读转换。脚本根据旁白、模板、音色和生成参数哈希断点续跑，生成的 M4A 和校验清单位于 `desktop/public/audio/`。
 
 完整规划和分发说明见：
 

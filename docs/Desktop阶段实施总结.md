@@ -108,8 +108,8 @@ desktop/
 - 增加 `npm run assets`，从标准数据重新生成 Desktop 静态资产。
 - 增加 `npm run test:ui`，验证开屏三阶段、10–11.3 秒自然播放、多尺寸适配、500ms 内跳过、会话与 reduced-motion、55 件作品渲染、分类筛选、搜索、详情、多图、键盘缩放和导览播放。
 - 增加 Rust 单元测试，覆盖合法清单路径、路径穿越/非图片拒绝、TIFF 内存转换且源文件保留。
-- 使用 Voicebox“文博讲解 · 温润女声”为 55 件作品简介生成离线导览音频，详情页支持播放、暂停、进度拖动和时长显示。
-- 55 条音频总时长 1,262.8 秒（21 分 02.8 秒），64 kbps M4A 合计约 10.1 MB。
+- 使用 Voicebox“文博讲解 · 温润女声”为 55 件作品生成“标题 + 简介”离线导览音频；旁白以“您现在欣赏的是《标题》”开场，并规范朗读编号标题和括号副标题。
+- 55 条音频总时长 1,421.2 秒（23 分 41.2 秒），约 65 kbps M4A 合计约 11.4 MB；详情页支持播放、暂停、进度拖动和时长显示。
 - GitHub Actions 的触发范围改为 Desktop、数据和 Desktop 资产生成脚本。
 - CI 配置 macOS DMG 和 Windows MSI/NSIS 构建产物上传，并支持手动创建草稿 Release。
 - macOS 当前使用 ad-hoc 签名，可验证包内签名结构，但不等同于 Apple Developer ID 签名和公证。
@@ -128,7 +128,7 @@ desktop/
 | `desktop/public/` | Desktop 自有 JSON、favicon、65 张 WebP 展示图和 55 条 M4A 导览音频 |
 | `desktop/scripts/verify_ui.mjs` | Desktop 浏览器交互回归、多尺寸开屏验收和关键帧截图 |
 | `scripts/build_web_assets.py` | 从标准数据与原图生成 Desktop 运行资产 |
-| `scripts/generate_gallery_audio.py` | 调用本地 Voicebox 逐件生成、压缩并校验离线导览音频，支持断点续跑 |
+| `scripts/generate_gallery_audio.py` | 组装标题与简介旁白，调用本地 Voicebox 逐件生成、压缩并校验离线导览音频，按旁白、模板、音色和参数哈希断点续跑 |
 | `.github/workflows/build-desktop.yml` | macOS/Windows 自动打包、Artifacts 和可选草稿 Release |
 | `README.md` | Desktop 优先的项目入口、开发命令和原图库说明 |
 | `docs/桌面端规划.md` | 当前技术路线、完成状态和后续功能规划 |
@@ -138,12 +138,12 @@ Tauri 自动生成的 `desktop/src-tauri/gen/schemas/*.json` 和依赖锁文件�
 
 ## 5. 验证结果
 
-截至 2026-07-23，已执行并通过：
+截至 2026-07-25，已执行并通过：
 
 | 验证项 | 结果 |
 |---|---|
 | `cd desktop && npm run assets` | 通过，生成 65 张 WebP 和 Desktop 数据文件 |
-| `cd desktop && npm run audio` | 通过，55 条来源未变化的音频均被断点校验并正确跳过 |
+| `cd desktop && npm run audio` | 通过，55 条“标题 + 简介”音频生成完成；再次执行时 55 条均通过新版哈希校验并正确跳过 |
 | 音频文件与 manifest 校验 | 通过，55 个 M4A 的文件数、格式和 SHA-256 全部一致 |
 | `cd desktop && npm run build` | 通过，前端生产构建成功 |
 | `cd desktop && npm run test:ui` | 通过，Desktop 核心浏览交互验证成功 |
