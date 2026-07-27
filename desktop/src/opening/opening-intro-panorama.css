@@ -392,3 +392,15 @@
 @media (prefers-reduced-motion: reduce) {
   .panorama-intro { display: none; }
 }
+
+/* V: 场景入场过曝层 */
+.scene-glow {
+  position: absolute; inset: 0; z-index: 6;
+  background: #f8f0d8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* IV: 逐字字幕 */
+.caption-char { display: inline-block; }
+.scene-caption strong { display: flex; gap: 2px; }
