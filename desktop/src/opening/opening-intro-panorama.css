@@ -61,6 +61,28 @@
 
 .panorama-wordmark-line { display: block; }
 
+/* A: 印章晕染圈 */
+.panorama-seal-ring {
+  position: absolute;
+  left: 6.2%;
+  bottom: 7%;
+  width: 58px;
+  height: 58px;
+  border: 2px solid rgba(169, 47, 34, 0.7);
+  border-radius: 50%;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* C: 换幕闪光 */
+.panorama-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  background: #f4ead2;
+  pointer-events: none;
+}
+
 .panorama-seal {
   position: absolute;
   left: 6.2%;

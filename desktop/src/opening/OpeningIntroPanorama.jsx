@@ -31,8 +31,10 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
       const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
       timelineRef.current = timeline;
 
-      gsap.set(".panorama-wordmark-line", { opacity: 0, y: 24 });
-      gsap.set(".panorama-seal", { opacity: 0, scale: 1.8, rotation: -10 });
+      gsap.set(".panorama-wordmark-line", { opacity: 1, clipPath: "inset(0 100% 0 0)" }); /* B: 笔触揭幕 */
+      gsap.set(".panorama-seal", { opacity: 0, scale: 2.4, rotation: -12, y: -16 });
+      gsap.set(".panorama-seal-ring", { scale: 0.6, opacity: 0 }); /* A: 晕染圈 */
+      gsap.set(".panorama-flash", { opacity: 0 }); /* C: 换幕闪光 */
       gsap.set(".panorama-swatch", { opacity: 0, x: 14 });
       gsap.set(".panorama-viewport", {
         clipPath: "polygon(43% 7%, 60% 3%, 67% 20%, 64% 39%, 72% 57%, 64% 93%, 44% 97%, 35% 79%, 38% 55%, 31% 31%)",
@@ -42,11 +44,11 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
       gsap.set(".scene-paper", { scale: 1.035, transformOrigin: "center center" });
       gsap.set(".scene-one .scene-art", { opacity: 0, y: 60, scale: 1.055 });
       gsap.set(".scene-two .scene-art", { opacity: 0, y: 70, scale: 1.055 });
-      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -90 : index === 2 ? 90 : 0, scale: 1.04 });
+      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -150 : index === 2 ? 150 : 0, scale: 1.06 }); /* D: 更大冲入距离 */
       gsap.set(".scene-caption", { opacity: 0, y: 22 });
       gsap.set(".panorama-curtain", { opacity: 0 });
       gsap.set(".panorama-folio-deck", { opacity: 0 });
-      gsap.set(".panorama-folio", { opacity: 0, y: 100, rotation: 0 });
+      gsap.set(".panorama-folio", { opacity: 0, y: 110, rotation: 0 });
       gsap.set(".panorama-final", { opacity: 0, y: 28 });
 
       timeline
@@ -58,71 +60,66 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
         .addLabel("folios", 8.15)
         .addLabel("finale", 8.55)
         .addLabel("exit", 9.8)
-        .to(".panorama-wordmark-line", { opacity: 1, y: 0, duration: 0.85, stagger: 0.12, ease: "sine.out" }, "brand")
-        .to(".panorama-seal", { opacity: 1, scale: 1, rotation: 0, duration: 0.58, ease: "back.out(1.8)" }, "brand+=0.18")
-        .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.42, stagger: 0.07, ease: "sine.out" }, "brand+=0.34")
-        .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.58, ease: "sine.out" }, "brand+=0.42")
+        /* B: 逐行笔触揭幕 */
+        .to(".panorama-wordmark-line", { clipPath: "inset(0 0% 0 0)", duration: 0.7, stagger: 0.18, ease: "power2.inOut" }, "brand")
+        /* A: 印章重击落下 → 弹性回正 + 晕染圈 */
+        .to(".panorama-seal", { opacity: 1, scale: 0.85, y: 0, rotation: 0, duration: 0.22, ease: "power4.in" }, "brand+=0.22")
+        .to(".panorama-seal", { scale: 1, duration: 0.55, ease: "elastic.out(1.6, 0.45)" }, "brand+=0.44")
+        .to(".panorama-seal-ring", { scale: 2.8, opacity: 0.55, duration: 0.22, ease: "power2.out" }, "brand+=0.44")
+        .to(".panorama-seal-ring", { opacity: 0, duration: 0.45, ease: "power2.in" }, "brand+=0.6")
+        .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.42, stagger: 0.07, ease: "sine.out" }, "brand+=0.48")
+        .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.58, ease: "sine.out" }, "brand+=0.55")
         .to(".panorama-viewport", {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          duration: 1.5,
-          ease: "sine.inOut",
+          duration: 1.5, ease: "sine.inOut",
         }, "reveal")
         .to(".panorama-color-stripe", { scaleY: 1, duration: 0.72, stagger: 0.055, ease: "sine.inOut" }, "reveal")
         .to(".panorama-color-stripe", { opacity: 0, duration: 0.55, stagger: 0.035, ease: "sine.out" }, "reveal+=0.58")
         .to(".panorama-opening-copy", { opacity: 0, y: -18, duration: 0.5, ease: "sine.inOut" }, "reveal+=0.68")
-        .to(".scene-one .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.3, stagger: 0.12, ease: "sine.out" }, "reveal+=0.15")
+        .to(".scene-one .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.3, stagger: 0.12, ease: "back.out(1.4)" }, "reveal+=0.15")
         .to(".scene-one .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "reveal+=0.75")
         .to(".scene-one .shape-one", { xPercent: 3.2, yPercent: -2.2, scale: 1, duration: 3.65, ease: "none" }, "reveal")
         .to(".scene-one .shape-two", { xPercent: -3.4, yPercent: 2.2, scale: 1, duration: 3.65, ease: "none" }, "reveal")
-        .to(".scene-one .scene-art", {
-          x: index => [-16, 12, -10][index],
-          y: index => [-8, 9, -6][index],
-          duration: 2.1,
-          ease: "none",
-        }, "reveal+=1.5")
-        .to(".panorama-track", { xPercent: -33.3333, duration: 1.5, ease: "sine.inOut" }, "panoramaTwo")
-        .to(".scene-one .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.45, duration: 1.5, ease: "sine.inOut" }, "panoramaTwo")
+        .to(".scene-one .scene-art", { x: index => [-16, 12, -10][index], y: index => [-8, 9, -6][index], duration: 2.1, ease: "none" }, "reveal+=1.5")
+        /* C: 换幕惯性 + 闪光 */
+        .to(".panorama-flash", { opacity: 0.18, duration: 0.07, ease: "none" }, "panoramaTwo")
+        .to(".panorama-flash", { opacity: 0, duration: 0.3, ease: "power2.out" }, "panoramaTwo+=0.07")
+        .to(".panorama-track", { xPercent: -33.3333, duration: 1.4, ease: "expo.inOut" }, "panoramaTwo")
+        .to(".scene-one .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.45, duration: 1.4, ease: "sine.inOut" }, "panoramaTwo")
         .to(".scene-one .scene-caption", { opacity: 0, x: -22, duration: 0.72, ease: "sine.inOut" }, "panoramaTwo+=0.15")
-        .to(".scene-two .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.1, ease: "sine.out" }, "panoramaTwo+=0.18")
+        .to(".scene-two .scene-art", { opacity: 1, y: 0, scale: 1, duration: 1.1, stagger: 0.1, ease: "back.out(1.4)" }, "panoramaTwo+=0.18")
         .to(".scene-two .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "panoramaTwo+=0.65")
         .to(".scene-two .shape-one", { xPercent: -3.2, yPercent: 2.1, scale: 1, duration: 3.65, ease: "none" }, "panoramaTwo")
         .to(".scene-two .shape-two", { xPercent: 3.4, yPercent: -2.2, scale: 1, duration: 3.65, ease: "none" }, "panoramaTwo")
-        .to(".scene-two .scene-art", {
-          x: index => [14, -12, 16][index],
-          y: index => [-7, 8, -9][index],
-          duration: 2.1,
-          ease: "none",
-        }, "panoramaTwo+=1.55")
-        .to(".panorama-track", { xPercent: -66.6667, duration: 1.5, ease: "sine.inOut" }, "panoramaThree")
-        .to(".scene-two .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.48, duration: 1.5, ease: "sine.inOut" }, "panoramaThree")
+        .to(".scene-two .scene-art", { x: index => [14, -12, 16][index], y: index => [-7, 8, -9][index], duration: 2.1, ease: "none" }, "panoramaTwo+=1.55")
+        /* C: 第二次换幕闪光 */
+        .to(".panorama-flash", { opacity: 0.18, duration: 0.07, ease: "none" }, "panoramaThree")
+        .to(".panorama-flash", { opacity: 0, duration: 0.3, ease: "power2.out" }, "panoramaThree+=0.07")
+        .to(".panorama-track", { xPercent: -66.6667, duration: 1.4, ease: "expo.inOut" }, "panoramaThree")
+        .to(".scene-two .scene-art", { xPercent: -5, scale: 0.98, opacity: 0.48, duration: 1.4, ease: "sine.inOut" }, "panoramaThree")
         .to(".scene-two .scene-caption", { opacity: 0, x: -22, duration: 0.72, ease: "sine.inOut" }, "panoramaThree+=0.15")
-        .to(".scene-three .scene-art", { opacity: 1, x: 0, scale: 1, duration: 1.18, stagger: 0.1, ease: "sine.out" }, "panoramaThree+=0.2")
+        /* D: 门神对称冲入 + 过冲弹回 */
+        .to(".scene-three .scene-art", { opacity: 1, x: 0, scale: 1, duration: 0.88, stagger: 0.08, ease: "back.out(2.2)" }, "panoramaThree+=0.2")
         .to(".scene-three .scene-caption", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "panoramaThree+=0.7")
         .to(".scene-three .shape-one", { yPercent: -2.8, scale: 1, duration: 3.1, ease: "none" }, "panoramaThree")
         .to(".scene-three .shape-two", { xPercent: 2.8, scale: 1, duration: 3.1, ease: "none" }, "panoramaThree")
-        .to(".scene-three .scene-art", {
-          x: index => [-13, 8, 13][index],
-          y: index => [-6, 7, -6][index],
-          duration: 1.5,
-          ease: "none",
-        }, "panoramaThree+=1.55")
+        .to(".scene-three .scene-art", { x: index => [-13, 8, 13][index], y: index => [-6, 7, -6][index], duration: 1.5, ease: "none" }, "panoramaThree+=1.55")
         .to(".panorama-viewport", {
           clipPath: "polygon(42% 5%, 61% 2%, 69% 18%, 65% 41%, 73% 60%, 63% 95%, 43% 98%, 34% 78%, 38% 55%, 30% 29%)",
-          duration: 1.1,
-          ease: "sine.inOut",
+          duration: 1.1, ease: "sine.inOut",
         }, "closePanorama")
         .to(".panorama-track", { scale: 0.84, opacity: 0.3, duration: 1.1, transformOrigin: "center center", ease: "sine.inOut" }, "closePanorama")
         .to(".scene-three .scene-caption", { opacity: 0, y: -14, duration: 0.55, ease: "sine.inOut" }, "closePanorama+=0.12")
         .to(".panorama-curtain", { opacity: 1, duration: 0.8, ease: "sine.inOut" }, "closePanorama+=0.35")
         .to(".panorama-viewport", { opacity: 0, duration: 0.5, ease: "sine.inOut" }, "closePanorama+=0.72")
         .to(".panorama-folio-deck", { opacity: 1, duration: 0.38, ease: "sine.out" }, "folios")
+        /* E: 图录物理扇开 */
         .to(".panorama-folio", {
-          opacity: 1,
-          y: 0,
-          rotation: index => [-7, 0, 7][index],
-          duration: 0.82,
-          stagger: 0.11,
-          ease: "back.out(1.25)",
+          opacity: 1, y: 0,
+          rotation: index => [-14, 0, 14][index],
+          duration: 0.75,
+          stagger: 0.14,
+          ease: "back.out(2.0)",
         }, "folios+=0.1")
         .to(".panorama-final", { opacity: 1, y: 0, duration: 0.75, ease: "sine.out" }, "finale")
         .to(containerRef.current, {
@@ -167,6 +164,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
           <span className="panorama-wordmark-line">年画</span>
         </div>
         <span className="panorama-seal">平</span>
+        <span className="panorama-seal-ring" aria-hidden="true" />
         <div className="panorama-swatches">
           {SWATCHES.map(color => <span key={color} className="panorama-swatch" style={{ backgroundColor: color }} />)}
         </div>
@@ -222,6 +220,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
       </div>
 
       <div className="panorama-curtain" aria-hidden="true" />
+      <div className="panorama-flash" aria-hidden="true" />
       <div className="panorama-folio-deck" aria-hidden="true">
         {FOLIOS.map(folio => (
           <figure key={folio.slug} className={`panorama-folio ${folio.color}`}>
