@@ -90,6 +90,15 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
           </button>
         ))}
       </div>
+
+      <footer className="cat-footer-info">
+        <span>主编：赵起超</span>
+        <span className="cat-footer-dot">·</span>
+        <span>顾问：赵国琦</span>
+        <span className="cat-footer-dot">·</span>
+        <span>出版发行：山西出版传媒集团 &nbsp;山西春秋电子音像出版社</span>
+        <span className="cat-footer-copy">© 2026 版权所有，未经授权不得转载</span>
+      </footer>
     </div>
   );
 }

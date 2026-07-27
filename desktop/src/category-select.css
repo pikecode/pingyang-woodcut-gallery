@@ -44,7 +44,38 @@
   padding-left: 14px;
 }
 
-/* BGM 静音按钮 — 右上角，与画廊/详情页一致 */
+/* 底部出版信息 */
+.cat-footer-info {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cat-footer-info span {
+  font-size: 10px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.cat-footer-dot { color: rgba(232,175,55,0.25) !important; }
+
+.cat-footer-copy {
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,0.14) !important;
+  font-size: 9px !important;
+  letter-spacing: 0.1em !important;
+  margin-top: 2px;
+}
 .cat-bgm-btn {
   position: absolute;
   top: 22px; right: 28px;
