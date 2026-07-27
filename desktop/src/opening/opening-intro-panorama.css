@@ -195,6 +195,7 @@
   display: block;
   object-fit: contain;
   will-change: transform, opacity;
+  mix-blend-mode: multiply;
 }
 
 .art-water {
