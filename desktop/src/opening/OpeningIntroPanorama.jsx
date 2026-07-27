@@ -163,7 +163,6 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
           <span className="panorama-wordmark-line">平阳</span>
           <span className="panorama-wordmark-line">年画</span>
         </div>
-        <span className="panorama-seal">平</span>
         <span className="panorama-seal-ring" aria-hidden="true" />
         <div className="panorama-swatches">
           {SWATCHES.map(color => <span key={color} className="panorama-swatch" style={{ backgroundColor: color }} />)}

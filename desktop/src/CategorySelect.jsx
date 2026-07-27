@@ -45,7 +45,6 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
   return (
     <div ref={containerRef} className="cat-root">
       <header className="cat-header">
-        <span className="cat-seal">平</span>
         <span className="cat-brand-name">平阳木版年画 · 博观集</span>
         <span className="cat-subtitle">选择题材，开始探索</span>
       </header>
