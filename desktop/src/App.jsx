@@ -432,7 +432,8 @@ export default function App() {
   const artworks = useGalleryData();
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
-  const [phase, setPhase] = useState("category"); // always start at category; intro overlays it
+  const [phase, setPhase] = useState("category");
+  const [introKey, setIntroKey] = useState(0);
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(false);
@@ -531,7 +532,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <OpeningIntroPanorama startBgm={startBgm} onComplete={() => setPhase("category")} />
+      <OpeningIntroPanorama key={introKey} startBgm={startBgm} onComplete={() => setPhase("category")} />
       {phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
@@ -544,7 +545,11 @@ export default function App() {
       {/* 顶栏：大字品牌名 + 图标按钮 */}
       <header className="gallery-topbar">
         <div className="topbar-left">
-          <button className="topbar-back-btn" onClick={() => setPhase("category")} aria-label="返回题材选择">
+          <button className="topbar-back-btn" onClick={() => {
+              try { sessionStorage.removeItem("pingyang-intro-seen"); } catch {}
+              setIntroKey(k => k + 1);
+              setPhase("category");
+            }} aria-label="重播开屏动画">
             <ChevronLeft size={18} />
           </button>
           <h1 className="topbar-title">平阳木版年画·博观集</h1>
