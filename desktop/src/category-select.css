@@ -60,21 +60,21 @@
 }
 
 .cat-footer-info span {
-  font-size: 10px;
-  color: rgba(255,255,255,0.22);
-  letter-spacing: 0.06em;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.08em;
   white-space: nowrap;
 }
 
-.cat-footer-dot { color: rgba(232,175,55,0.25) !important; }
+.cat-footer-dot { color: rgba(232,175,55,0.5) !important; }
 
 .cat-footer-copy {
   width: 100%;
   text-align: center;
-  color: rgba(255,255,255,0.14) !important;
-  font-size: 9px !important;
-  letter-spacing: 0.1em !important;
-  margin-top: 2px;
+  color: rgba(255,255,255,0.32) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  margin-top: 4px;
 }
 .cat-bgm-btn {
   position: absolute;
