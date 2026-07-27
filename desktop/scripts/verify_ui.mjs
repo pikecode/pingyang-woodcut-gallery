@@ -34,11 +34,46 @@ async function assertViewport(label) {
   }
 }
 
+async function waitForOpeningReady(targetPage) {
+  const opening = targetPage.locator(".opening-intro");
+  await opening.waitFor();
+  await targetPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.animationReady === "true", null, { timeout: 3500 });
+  const imagesReady = await opening.locator("img").evaluateAll((images) =>
+    images.length > 0 && images.every((image) => image.complete && image.naturalWidth > 0)
+  );
+  if (!imagesReady) throw new Error("opening timeline started before its images decoded");
+}
+
+async function assertOpeningIsolation(targetPage, label) {
+  if (await targetPage.locator(".cat-root, .gallery-topbar, .gallery-card").count()) {
+    throw new Error(`${label}: background application mounted below opening`);
+  }
+  await targetPage.getByRole("button", { name: "跳过开屏动画" }).focus();
+  await targetPage.keyboard.press("Tab");
+  const activeClass = await targetPage.evaluate(() => document.activeElement?.className);
+  if (activeClass !== "panorama-skip") {
+    throw new Error(`${label}: keyboard focus escaped opening dialog to ${activeClass}`);
+  }
+}
+
+async function openingClipPoints(targetPage) {
+  return targetPage.locator(".panorama-viewport").evaluate((element) =>
+    (getComputedStyle(element).clipPath.match(/%/g) || []).length / 2
+  );
+}
+
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
-  await page.locator(".opening-intro").waitFor();
+  await waitForOpeningReady(page);
+  await assertOpeningIsolation(page, "opening");
+  if (await openingClipPoints(page) !== 10) {
+    throw new Error("opening clip path did not start with 10 points");
+  }
   const introStartedAt = Date.now();
   await page.waitForTimeout(1200);
+  if (await openingClipPoints(page) !== 10) {
+    throw new Error("opening clip path changed point count during reveal");
+  }
   await assertViewport("opening");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-current.png") });
   await page.waitForTimeout(3200);
@@ -60,6 +95,7 @@ try {
   if (await page.locator(".opening-intro").count()) {
     throw new Error("opening intro replayed in the same session");
   }
+  await page.locator(".cat-root").waitFor();
   await page.reload({ waitUntil: "domcontentloaded" });
   await page.locator(".opening-intro").waitFor();
   await page.getByRole("button", { name: "跳过开屏动画" }).click();
@@ -96,13 +132,21 @@ try {
   await page.screenshot({ path: path.join(OUTPUT, "desktop-detail-current.png") });
 
   await page.getByRole("button", { name: "返回", exact: true }).click();
+  await page.getByRole("button", { name: "重播开屏动画" }).click();
+  await waitForOpeningReady(page);
+  await assertOpeningIsolation(page, "replayed opening");
+  await page.getByRole("button", { name: "跳过开屏动画" }).click();
+  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
+  await page.locator(".cat-root").waitFor();
+
   for (const viewport of [
     { width: 1280, height: 800, name: "1280x800" },
     { width: 1024, height: 700, name: "1024x700" },
   ]) {
     await page.setViewportSize(viewport);
     await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
-    await page.locator(".opening-intro").waitFor();
+    await waitForOpeningReady(page);
+    await assertOpeningIsolation(page, `opening ${viewport.name}`);
     await page.waitForTimeout(4400);
     await assertViewport(`opening ${viewport.name}`);
     await page.screenshot({ path: path.join(OUTPUT, `desktop-opening-${viewport.name}.png`) });
@@ -113,6 +157,21 @@ try {
       throw new Error(`opening skip took longer than 500ms at ${viewport.name}`);
     }
   }
+
+  const delayedContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  await delayedContext.route("**/images/py-014/primary.webp", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    await route.continue();
+  });
+  const delayedPage = await delayedContext.newPage();
+  await delayedPage.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
+  await delayedPage.locator(".opening-intro").waitFor();
+  await delayedPage.waitForTimeout(150);
+  if (await delayedPage.locator(".opening-intro").getAttribute("data-animation-ready") !== "false") {
+    throw new Error("opening did not wait for a delayed critical image");
+  }
+  await waitForOpeningReady(delayedPage);
+  await delayedContext.close();
 
   const reducedContext = await browser.newContext({
     viewport: { width: 1280, height: 800 },

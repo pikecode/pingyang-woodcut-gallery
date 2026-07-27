@@ -433,7 +433,7 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
   const [phase, setPhase] = useState("category");
-  const [introKey, setIntroKey] = useState(0);
+  const [introVisible, setIntroVisible] = useState(shouldShowOpeningIntro);
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [bgmMuted, setBgmMuted] = useState(false);
@@ -530,10 +530,23 @@ export default function App() {
     [artworks]
   );
 
+  const completeOpening = () => {
+    setIntroVisible(false);
+    setPhase("category");
+  };
+
+  const replayOpening = () => {
+    setSelected(null);
+    setPhase("category");
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIntroVisible(true);
+    }
+  };
+
   return (
     <div className="app-shell">
-      <OpeningIntroPanorama key={introKey} startBgm={startBgm} onComplete={() => setPhase("category")} />
-      {phase === "category" && (
+      {introVisible && <OpeningIntroPanorama startBgm={startBgm} onComplete={completeOpening} />}
+      {!introVisible && phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
           toggleBgm={toggleBgm}
@@ -542,84 +555,84 @@ export default function App() {
         />
       )}
 
-      {/* 顶栏：大字品牌名 + 图标按钮 */}
-      <header className="gallery-topbar">
-        <div className="topbar-left">
-          <button className="topbar-back-btn" onClick={() => {
-              try { sessionStorage.removeItem("pingyang-intro-seen"); } catch {}
-              setIntroKey(k => k + 1);
-              setPhase("category");
-            }} aria-label="重播开屏动画">
-            <ChevronLeft size={18} />
-          </button>
-          <h1 className="topbar-title">平阳木版年画·博观集</h1>
-        </div>
-        <div className="topbar-icons">
-          {showSearch ? (
-            <label className="topbar-search">
-              <Search size={14} aria-hidden="true" />
-              <input
-                autoFocus
-                type="search" value={query}
-                onChange={e => setQuery(e.target.value)}
-                placeholder="搜索题名、别名…"
-              />
-              <button type="button" onClick={() => { setQuery(""); setShowSearch(false); }} aria-label="关闭搜索">
-                <X size={13} />
+      {!introVisible && phase === "gallery" && (
+        <>
+          {/* 顶栏：大字品牌名 + 图标按钮 */}
+          <header className="gallery-topbar">
+            <div className="topbar-left">
+              <button className="topbar-back-btn" onClick={replayOpening} aria-label="重播开屏动画">
+                <ChevronLeft size={18} />
               </button>
-            </label>
-          ) : (
-            <button type="button" className="topbar-icon-btn" onClick={() => setShowSearch(true)} aria-label="搜索">
-              <Search size={18} />
-            </button>
-          )}
-          {bgmRef.current && (
-            <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
-              {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-            </button>
-          )}
-        </div>
-      </header>
+              <h1 className="topbar-title">平阳木版年画·博观集</h1>
+            </div>
+            <div className="topbar-icons">
+              {showSearch ? (
+                <label className="topbar-search">
+                  <Search size={14} aria-hidden="true" />
+                  <input
+                    autoFocus
+                    type="search" value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    placeholder="搜索题名、别名…"
+                  />
+                  <button type="button" onClick={() => { setQuery(""); setShowSearch(false); }} aria-label="关闭搜索">
+                    <X size={13} />
+                  </button>
+                </label>
+              ) : (
+                <button type="button" className="topbar-icon-btn" onClick={() => setShowSearch(true)} aria-label="搜索">
+                  <Search size={18} />
+                </button>
+              )}
+              {bgmRef.current && (
+                <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
+                  {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                </button>
+              )}
+            </div>
+          </header>
 
-      {/* 导航：独立居中行，下划线激活态 */}
-      <nav className="gallery-nav" aria-label="按题材筛选">
-        {THEME_ORDER.map(t => (
-          <button
-            key={t}
-            className={`nav-tab${theme === t ? " is-active" : ""}`}
-            onClick={() => setTheme(t)}
-          >
-            {t}
-            <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
-          </button>
-        ))}
-      </nav>
+          {/* 导航：独立居中行，下划线激活态 */}
+          <nav className="gallery-nav" aria-label="按题材筛选">
+            {THEME_ORDER.map(t => (
+              <button
+                key={t}
+                className={`nav-tab${theme === t ? " is-active" : ""}`}
+                onClick={() => setTheme(t)}
+              >
+                {t}
+                <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+              </button>
+            ))}
+          </nav>
 
-      {/* 藏品网格 */}
-      <main className="gallery-grid-wrap">
-        {filtered.length > 0 ? (
-          <div className="gallery-grid">
-            {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
-          </div>
-        ) : (
-          <div className="gallery-empty">
-            <Search size={32} /><p>没有找到对应藏品</p>
-          </div>
-        )}
-      </main>
+          {/* 藏品网格 */}
+          <main className="gallery-grid-wrap">
+            {filtered.length > 0 ? (
+              <div className="gallery-grid">
+                {filtered.map(a => <ArtworkCard key={a.slug} artwork={a} onOpen={setSelected} />)}
+              </div>
+            ) : (
+              <div className="gallery-empty">
+                <Search size={32} /><p>没有找到对应藏品</p>
+              </div>
+            )}
+          </main>
 
-      {/* 详情层 */}
-      <DetailOverlay
-        artwork={selected}
-        artworks={filtered}
-        onClose={() => setSelected(null)}
-        onChange={changeSelected}
-        libraryRoot={libraryRoot}
-        onChooseLibrary={chooseOriginalLibrary}
-        toggleBgm={toggleBgm}
-        bgmMuted={bgmMuted}
-        bgmStarted={!!bgmRef.current}
-      />
+          {/* 详情层 */}
+          <DetailOverlay
+            artwork={selected}
+            artworks={filtered}
+            onClose={() => setSelected(null)}
+            onChange={changeSelected}
+            libraryRoot={libraryRoot}
+            onChooseLibrary={chooseOriginalLibrary}
+            toggleBgm={toggleBgm}
+            bgmMuted={bgmMuted}
+            bgmStarted={!!bgmRef.current}
+          />
+        </>
+      )}
     </div>
   );
 }

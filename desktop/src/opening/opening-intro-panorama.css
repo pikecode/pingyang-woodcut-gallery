@@ -5,6 +5,7 @@
   overflow: hidden;
   background: #deddd5;
   color: #20201d;
+  contain: layout paint style;
   isolation: isolate;
 }
 
@@ -31,6 +32,11 @@
   background: rgba(239, 237, 225, 0.95);
   color: rgba(32, 32, 29, 0.9);
   border-color: rgba(32, 32, 29, 0.55);
+}
+
+.panorama-skip:focus-visible {
+  outline: 2px solid #a92f22;
+  outline-offset: 3px;
 }
 
 .panorama-paper,
@@ -60,46 +66,6 @@
 }
 
 .panorama-wordmark-line { display: block; }
-
-/* A: 印章晕染圈 */
-.panorama-seal-ring {
-  position: absolute;
-  left: 6.2%;
-  bottom: 7%;
-  width: 58px;
-  height: 58px;
-  border: 2px solid rgba(169, 47, 34, 0.7);
-  border-radius: 50%;
-  transform-origin: center;
-  pointer-events: none;
-}
-
-/* C: 换幕闪光 */
-.panorama-flash {
-  position: absolute;
-  inset: 0;
-  z-index: 7;
-  background: #f4ead2;
-  pointer-events: none;
-}
-
-.panorama-seal {
-  position: absolute;
-  left: 6.2%;
-  bottom: 7%;
-  display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  background: #a92f22;
-  color: #f2e8d2;
-  font-family: "Songti SC", "STSong", serif;
-  font-size: 34px;
-  font-weight: 700;
-  border: 2px solid #a92f22;
-  outline: 1px solid rgba(242, 232, 210, 0.7);
-  outline-offset: -6px;
-}
 
 .panorama-swatches {
   position: absolute;
@@ -393,14 +359,5 @@
   .panorama-intro { display: none; }
 }
 
-/* V: 场景入场过曝层 */
-.scene-glow {
-  position: absolute; inset: 0; z-index: 6;
-  background: #f8f0d8;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-/* IV: 逐字字幕 */
 .caption-char { display: inline-block; }
 .scene-caption strong { display: flex; gap: 2px; }
