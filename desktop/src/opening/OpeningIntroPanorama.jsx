@@ -52,8 +52,9 @@ function addTimelineLabels(timeline) {
 
 function addPrintmakingPrelude(timeline) {
   timeline
+    .to(".ink-art-wrap", { opacity: 1, duration: 0.46, ease: "sine.out" }, "paper")
     .to(".ink-line", { opacity: 0.18, duration: 0.34, ease: "sine.out" }, "paper")
-    .to(".ink-pressure", { opacity: 0.62, x: "112vw", duration: 1.04, ease: "power1.inOut" }, "impression")
+    .to(".ink-pressure", { opacity: 0.62, x: "50vw", duration: 1.04, ease: "power1.inOut" }, "impression")
     .to(".ink-line", { opacity: 0.96, clipPath: "inset(0% 0% 0% 0%)", duration: 1.04, ease: "power1.inOut" }, "impression")
     .to(".ink-pressure", { opacity: 0, duration: 0.28, ease: "sine.out" }, "impression+=0.92")
     .to(".ink-plate-yellow", { opacity: 0.58, duration: 0.22, ease: "sine.out" }, "register")
@@ -63,24 +64,41 @@ function addPrintmakingPrelude(timeline) {
     .to(".ink-plate-red", { opacity: 0.56, duration: 0.22, ease: "sine.out" }, "register+=0.36")
     .to(".ink-plate-red", { x: 0, y: 0, duration: 0.42 }, "register+=0.52")
     .to(".ink-line", { opacity: 1, duration: 0.38 }, "register+=0.52")
+    .to(".ink-meta-kicker, .ink-meta-title, .ink-meta-origin", {
+      opacity: 1,
+      y: 0,
+      duration: 0.42,
+      stagger: 0.07,
+      ease: "sine.out",
+    }, "register+=0.28")
+    .to(".ink-meta-rule", { scaleY: 1, duration: 0.44, ease: "sine.out" }, "register+=0.42")
+    .to(".ink-meta-seal", { opacity: 1, scale: 1, rotation: 2, duration: 0.38, ease: "power2.out" }, "register+=0.68")
     .to(".panorama-viewport", { opacity: 1, clipPath: FULL_CLIP, duration: 1.18 }, "longScroll")
-    .to(".ink-art-wrap", { x: "-25vw", scale: 0.285, duration: 1.18, ease: "sine.inOut" }, "longScroll")
+    .to(".ink-art-wrap", {
+      x: "-14vw",
+      y: "-1vh",
+      scale: 0.678,
+      clipPath: "polygon(7% 0%, 100% 4%, 95% 100%, 0% 92%)",
+      duration: 1.18,
+      ease: "sine.inOut",
+    }, "longScroll")
+    .to(".ink-meta", { opacity: 0, x: 16, duration: 0.42, ease: "sine.inOut" }, "longScroll+=0.04")
     .to(".ink-art-wrap", { backgroundColor: "rgba(239, 238, 229, 0)", duration: 0.56 }, "longScroll+=0.14")
-    .to(".ink-line, .ink-plate", { opacity: 0, duration: 0.46, ease: "sine.inOut" }, "longScroll+=0.72")
-    .to(".ink-art-wrap", { "--ghost-opacity": 0, duration: 0.46 }, "longScroll+=0.72");
+    .to(".ink-line, .ink-plate", { opacity: 0, duration: 0.32, ease: "sine.inOut" }, "longScroll+=0.8")
+    .to(".ink-art-wrap", { "--ghost-opacity": 0, duration: 0.32 }, "longScroll+=0.8");
 }
 
 function addFirstScene(timeline) {
   timeline
-    .to(".scene-one .art-water", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.72, ease: "sine.out" }, "longScroll+=0.7")
-    .to(".scene-one .art-romance, .scene-one .art-tower", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.92, stagger: 0.1, ease: "sine.out" }, "longScroll+=0.78")
+    .to(".scene-one .art-water", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.38, ease: "sine.out" }, "longScroll+=1")
+    .to(".scene-one .art-romance, .scene-one .art-tower", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.72, stagger: 0.1, ease: "sine.out" }, "longScroll+=0.9")
     .to(".scene-one .shape-one", { xPercent: 3.2, yPercent: -2.4, scale: 0.97, duration: 2.65 }, "longScroll")
     .to(".scene-one .shape-two", { xPercent: -3, yPercent: 2.5, scale: 1.04, duration: 2.65 }, "longScroll")
     .to(".scene-one .scene-caption > span", { opacity: 1, y: 0, duration: 0.46, ease: "sine.out" }, "longScroll+=0.62")
     .to(".scene-one .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.07, duration: 0.42, ease: "sine.out" }, "longScroll+=0.73")
-    .to(".scene-one .art-water", { x: -18, y: -8, rotation: -0.65, duration: 1.65 }, "longScroll+=0.74")
-    .to(".scene-one .art-romance", { x: 12, y: 8, duration: 1.65 }, "longScroll+=0.74")
-    .to(".scene-one .art-tower", { x: -7, y: -5, rotation: 0.5, duration: 1.65 }, "longScroll+=0.74");
+    .to(".scene-one .art-water", { x: -18, y: -8, rotation: -0.65, duration: 0.62 }, "longScroll+=1.18")
+    .to(".scene-one .art-romance", { x: 12, y: 8, duration: 0.72 }, "longScroll+=1.08")
+    .to(".scene-one .art-tower", { x: -7, y: -5, rotation: 0.5, duration: 0.72 }, "longScroll+=1.08");
 }
 
 function addSecondScene(timeline) {
@@ -161,14 +179,19 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
     skipRef.current?.focus({ preventScroll: true });
 
     const initialContext = gsap.context(() => {
+      gsap.set(".ink-art-wrap", { opacity: 0 });
       gsap.set(".ink-line", { opacity: 0.08, clipPath: "inset(0% 82% 0% 0%)" });
       gsap.set(".ink-pressure", { opacity: 0, x: 0 });
       gsap.set(".ink-plate-yellow", { opacity: 0, x: -9, y: 5 });
       gsap.set(".ink-plate-blue", { opacity: 0, x: 8, y: 9 });
       gsap.set(".ink-plate-red", { opacity: 0, x: 10, y: -7 });
+      gsap.set(".ink-meta-kicker, .ink-meta-title, .ink-meta-origin", { opacity: 0, y: 10 });
+      gsap.set(".ink-meta-rule", { scaleY: 0, transformOrigin: "top center" });
+      gsap.set(".ink-meta-seal", { opacity: 0, scale: 1.16, rotation: 5 });
       gsap.set(".panorama-viewport", { opacity: 0, clipPath: INITIAL_CLIP });
       gsap.set(".scene-paper", { scale: 1.04, transformOrigin: "center center" });
-      gsap.set(".scene-one .scene-art", { opacity: 0, y: 48, scale: 1.045, rotation: index => [-1.2, 0, 1.2][index] });
+      gsap.set(".scene-one .art-water", { opacity: 0, y: 0, scale: 1, rotation: 0 });
+      gsap.set(".scene-one .art-romance, .scene-one .art-tower", { opacity: 0, y: 48, scale: 1.045, rotation: index => [-1.2, 1.2][index] });
       gsap.set(".scene-two .scene-art", { opacity: 0, y: 54, scale: 1.05, rotation: index => [1, 0, -1][index] });
       gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -82 : index === 2 ? 82 : 0, scale: 1.04, rotation: index => index === 0 ? -1.5 : index === 2 ? 1.5 : 0 });
       gsap.set(".caption-char", { opacity: 0, y: 24, scale: 1.08 });
@@ -263,7 +286,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
             <span className="ink-plate ink-plate-red" />
             <img
               className="ink-line"
-              src="/images/py-014/primary.webp"
+              src="/opening/py-014-ink.webp"
               alt=""
               loading="eager"
               decoding="async"
@@ -272,6 +295,13 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
             />
             <span className="ink-pressure" />
           </div>
+        </div>
+        <div className="ink-meta">
+          <span className="ink-meta-kicker">馆藏 · 戏曲</span>
+          <strong className="ink-meta-title">水漫金山</strong>
+          <span className="ink-meta-rule" />
+          <small className="ink-meta-origin">平阳木版年画</small>
+          <i className="ink-meta-seal">平阳</i>
         </div>
       </div>
 

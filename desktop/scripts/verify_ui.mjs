@@ -91,7 +91,7 @@ async function openingClipPoints(targetPage) {
 
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
-  if (await page.locator("link[rel='preload'][as='image'][fetchpriority='high']").count() !== 3) {
+  if (await page.locator("link[rel='preload'][as='image'][fetchpriority='high']").count() !== 4) {
     throw new Error("opening critical image preloads are missing");
   }
   await waitForOpeningReady(page);

@@ -70,8 +70,8 @@
 .ink-art-anchor {
   position: absolute;
   top: 50%;
-  left: 50%;
-  width: 148vw;
+  left: 38%;
+  width: 62vw;
   transform: translate(-50%, -50%);
 }
 
@@ -82,17 +82,19 @@
   aspect-ratio: 1800 / 865;
   overflow: hidden;
   background: #efeee5;
+  border: 1px solid rgba(41, 40, 34, 0.16);
+  box-shadow: 0 22px 58px rgba(38, 36, 29, 0.1);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   transform-origin: center center;
-  will-change: transform;
+  will-change: clip-path, transform;
 }
 
 .ink-art-wrap::before {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/py-014/primary.webp") center / contain no-repeat;
+  background: url("/opening/py-014-ink.webp") center / contain no-repeat;
   content: "";
-  mix-blend-mode: multiply;
   opacity: var(--ghost-opacity);
 }
 
@@ -104,33 +106,32 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  mix-blend-mode: multiply;
   will-change: clip-path, opacity;
 }
 
 .ink-plate {
   position: absolute;
-  z-index: 1;
+  inset: 0;
+  z-index: 3;
   display: block;
+  -webkit-mask: url("/opening/py-014-ink.webp") center / contain no-repeat;
+  mask: url("/opening/py-014-ink.webp") center / contain no-repeat;
   will-change: transform, opacity;
 }
 
 .ink-plate-yellow {
-  inset: 2% 48% 4% 1.5%;
-  background: #dfbd35;
-  clip-path: polygon(0 5%, 92% 0, 100% 73%, 81% 100%, 7% 92%);
+  background: #bd8d16;
+  clip-path: polygon(0 0, 48% 0, 54% 37%, 47% 72%, 58% 100%, 0 100%);
 }
 
 .ink-plate-blue {
-  inset: 12% 22% 0 26%;
-  background: #438e9a;
-  clip-path: polygon(8% 0, 100% 8%, 91% 100%, 0 90%, 5% 43%);
+  background: #2f7582;
+  clip-path: polygon(21% 8%, 68% 4%, 78% 41%, 68% 100%, 31% 100%, 26% 63%);
 }
 
 .ink-plate-red {
-  inset: 1% 1% 6% 55%;
-  background: #ce4e3d;
-  clip-path: polygon(9% 0, 100% 6%, 94% 100%, 0 92%, 7% 52%);
+  background: #aa382f;
+  clip-path: polygon(61% 0, 100% 0, 100% 100%, 58% 100%, 64% 63%, 56% 27%);
 }
 
 .ink-pressure {
@@ -138,11 +139,65 @@
   top: 5%;
   bottom: 5%;
   left: 12%;
-  z-index: 3;
+  z-index: 4;
   width: 1px;
   background: rgba(30, 30, 25, 0.62);
   box-shadow: 0 0 24px 7px rgba(30, 30, 25, 0.08);
   will-change: transform, opacity;
+}
+
+.ink-meta {
+  position: absolute;
+  top: 50%;
+  left: 76%;
+  display: grid;
+  width: 180px;
+  transform: translateY(-50%);
+  color: #25251f;
+  will-change: opacity, transform;
+}
+
+.ink-meta-kicker {
+  color: rgba(37, 37, 31, 0.58);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ink-meta-title {
+  margin-top: 12px;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.ink-meta-rule {
+  width: 1px;
+  height: 42px;
+  margin: 18px 0 14px 2px;
+  background: rgba(37, 37, 31, 0.35);
+}
+
+.ink-meta-origin {
+  color: rgba(37, 37, 31, 0.66);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 13px;
+}
+
+.ink-meta-seal {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  margin-top: 20px;
+  place-items: center;
+  border: 2px solid #ad3c30;
+  color: #ad3c30;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  will-change: opacity, transform;
 }
 
 .panorama-viewport {
@@ -415,7 +470,10 @@
 .panorama-final small { margin-top: 2px; color: #d6ad3c; font-size: 13px; font-weight: 700; }
 
 @media (max-width: 1100px), (max-height: 760px) {
-  .ink-art-anchor { width: 150vw; }
+  .ink-meta { left: 75%; width: 150px; }
+  .ink-meta-title { font-size: 28px; }
+  .ink-meta-rule { height: 34px; margin-block: 14px 11px; }
+  .ink-meta-seal { width: 36px; height: 36px; margin-top: 14px; }
   .panorama-folio-deck { padding-bottom: 95px; }
   .panorama-folio { width: 170px; height: 244px; padding: 14px 13px; }
   .panorama-folio img { height: 180px; }

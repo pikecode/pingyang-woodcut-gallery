@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#171815" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+  <rect x="76" y="66" width="872" height="872" rx="196" fill="#e8e3d7" stroke="#c9c0ae" stroke-width="10" filter="url(#shadow)"/>
+  <path d="M228 212 L782 196 L814 247 L800 789 L747 824 L213 802 L195 744 L207 258 Z" fill="#b83d32"/>
+  <path d="M244 238 L762 222 M226 275 L785 257 M232 751 L771 781 M244 777 L734 801" fill="none" stroke="#8f2f29" stroke-width="9" stroke-linecap="round" opacity="0.48"/>
+  <g fill="#f3ecdc">
+    <path d="M324 302 L699 288 L704 350 L318 363 Z"/>
+    <path d="M350 390 L393 363 L452 449 L408 482 Z"/>
+    <path d="M672 374 L713 407 L624 482 L586 446 Z"/>
+    <path d="M272 494 L742 477 L748 549 L267 566 Z"/>
+    <path d="M478 325 L550 322 L558 730 L518 778 L480 733 Z"/>
+  </g>
+  <path d="M301 322 L686 308 M294 522 L721 507 M516 342 L525 741" fill="none" stroke="#fff8e9" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M178 675 C250 704 276 756 337 832 M710 190 C759 242 817 261 853 326" fill="none" stroke="#1f2420" stroke-width="12" stroke-linecap="round" opacity="0.16"/>
+</svg>

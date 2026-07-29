@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#171815" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+  <rect x="76" y="66" width="872" height="872" rx="196" fill="#e7dfcd" stroke="#c8bca5" stroke-width="10" filter="url(#shadow)"/>
+  <path d="M191 199 L493 221 L493 819 L209 793 Z" fill="#b93d32"/>
+  <path d="M531 221 L833 199 L815 793 L531 819 Z" fill="#2e6572"/>
+  <path d="M493 221 L531 221 L531 819 L493 819 Z" fill="#d4a934"/>
+  <path d="M231 247 L451 262 L451 748 L247 731 Z M573 262 L793 247 L777 731 L573 748 Z" fill="none" stroke="#1f2420" stroke-width="14" opacity="0.42"/>
+  <circle cx="428" cy="521" r="18" fill="#d4a934"/>
+  <circle cx="596" cy="521" r="18" fill="#d4a934"/>
+  <g fill="#f4eddd">
+    <path d="M330 303 L705 289 L710 351 L324 364 Z"/>
+    <path d="M356 391 L399 364 L458 450 L414 483 Z"/>
+    <path d="M678 375 L719 408 L630 483 L592 447 Z"/>
+    <path d="M278 495 L748 478 L754 550 L273 567 Z"/>
+    <path d="M484 326 L556 323 L564 731 L524 779 L486 734 Z"/>
+  </g>
+  <path d="M175 817 C299 843 382 854 494 858 M530 858 C646 851 729 839 849 812" fill="none" stroke="#1f2420" stroke-width="13" stroke-linecap="round" opacity="0.18"/>
+</svg>
