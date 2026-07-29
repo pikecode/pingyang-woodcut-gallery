@@ -128,20 +128,47 @@
   position: relative;
   width: min(540px, 90vw);
   max-height: 78vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   background: #141208;
   border: 1px solid rgba(232,175,55,0.38);
   border-radius: 6px;
-  padding: 44px 40px 36px;
   box-shadow: 0 28px 70px rgba(0,0,0,0.75);
+  overflow: hidden;
+}
+
+/* 固定头部 */
+.cat-credits-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 36px 16px;
+  background: #141208;
+  border-bottom: 1px solid rgba(232,175,55,0.18);
+}
+
+.credits-title {
+  font-family: "Songti SC","STSong", serif;
+  font-size: 18px; font-weight: 700;
+  color: #E8AF37;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* 可滚动内容区 */
+.cat-credits-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 36px 28px;
   scrollbar-width: thin;
   scrollbar-color: rgba(232,175,55,0.35) rgba(255,255,255,0.04);
 }
 
-.cat-credits-modal::-webkit-scrollbar { width: 4px; }
-.cat-credits-modal::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 2px; }
-.cat-credits-modal::-webkit-scrollbar-thumb { background: rgba(232,175,55,0.4); border-radius: 2px; }
-.cat-credits-modal::-webkit-scrollbar-thumb:hover { background: rgba(232,175,55,0.65); }
+.cat-credits-body::-webkit-scrollbar { width: 4px; }
+.cat-credits-body::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 2px; }
+.cat-credits-body::-webkit-scrollbar-thumb { background: rgba(232,175,55,0.4); border-radius: 2px; }
+.cat-credits-body::-webkit-scrollbar-thumb:hover { background: rgba(232,175,55,0.65); }
 
 .cat-credits-close {
   position: absolute; top: 16px; right: 16px;

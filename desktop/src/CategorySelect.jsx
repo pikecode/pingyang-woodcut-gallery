@@ -110,25 +110,29 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
       {showCredits && (
         <div className="cat-credits-overlay" onClick={() => setShowCredits(false)}>
           <div className="cat-credits-modal" onClick={e => e.stopPropagation()}>
-            <button className="cat-credits-close" onClick={() => setShowCredits(false)} aria-label="关闭">
-              <X size={18} />
-            </button>
-            <h2 className="credits-title">{CREDITS_TITLE}</h2>
+            <div className="cat-credits-header">
+              <h2 className="credits-title">{CREDITS_TITLE}</h2>
+              <button className="cat-credits-close" onClick={() => setShowCredits(false)} aria-label="关闭">
+                <X size={18} />
+              </button>
+            </div>
             <div className="credits-divider" />
-            {CREDITS_SECTIONS.map((sec, si) => (
-              <div key={si} className="credits-section">
-                <h3 className="credits-heading">
-                  {sec.heading}
-                  {sec.note && <span className="credits-note">{sec.note}</span>}
-                </h3>
-                {sec.rows.map((row, ri) => (
-                  <div key={ri} className={`credits-row${!row.label ? " credits-row-full" : ""}`}>
-                    {row.label && <span className="credits-label">{row.label}</span>}
-                    <span className="credits-value">{row.value}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
+            <div className="cat-credits-body">
+              {CREDITS_SECTIONS.map((sec, si) => (
+                <div key={si} className="credits-section">
+                  <h3 className="credits-heading">
+                    {sec.heading}
+                    {sec.note && <span className="credits-note">{sec.note}</span>}
+                  </h3>
+                  {sec.rows.map((row, ri) => (
+                    <div key={ri} className={`credits-row${!row.label ? " credits-row-full" : ""}`}>
+                      {row.label && <span className="credits-label">{row.label}</span>}
+                      <span className="credits-value">{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
