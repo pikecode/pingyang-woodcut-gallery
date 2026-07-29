@@ -16,6 +16,18 @@ const page = await context.newPage();
 const errors = [];
 const failedRequests = [];
 
+await page.addInitScript(() => {
+  const NativeAudio = window.Audio;
+  window.__testAudioInstances = [];
+  window.Audio = function Audio(source) {
+    const audio = new NativeAudio(source);
+    window.__testAudioInstances.push(audio);
+    return audio;
+  };
+  window.Audio.prototype = NativeAudio.prototype;
+  Object.setPrototypeOf(window.Audio, NativeAudio);
+});
+
 page.on("console", (message) => {
   if (message.type() === "error") errors.push(message.text());
 });
@@ -38,10 +50,25 @@ async function waitForOpeningReady(targetPage) {
   const opening = targetPage.locator(".opening-intro");
   await opening.waitFor();
   await targetPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.animationReady === "true", null, { timeout: 3500 });
-  const imagesReady = await opening.locator("img").evaluateAll((images) =>
-    images.length > 0 && images.every((image) => image.complete && image.naturalWidth > 0)
+  const imagesReady = await opening.locator("img[data-opening-critical='true']").evaluateAll((images) =>
+    images.length === 3 && images.every((image) => image.complete && image.naturalWidth > 0)
   );
-  if (!imagesReady) throw new Error("opening timeline started before its images decoded");
+  if (!imagesReady) throw new Error("opening timeline started before its critical images decoded");
+}
+
+async function getBgmState(targetPage) {
+  return targetPage.evaluate(() => {
+    const instances = (window.__testAudioInstances || []).filter((audio) =>
+      new URL(audio.src, window.location.href).pathname === "/audio/bgm.mp3"
+    );
+    const audio = instances.at(-1);
+    return {
+      count: instances.length,
+      currentTime: audio?.currentTime ?? null,
+      volume: audio?.volume ?? null,
+      paused: audio?.paused ?? null,
+    };
+  });
 }
 
 async function assertOpeningIsolation(targetPage, label) {
@@ -64,7 +91,11 @@ async function openingClipPoints(targetPage) {
 
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
+  if (await page.locator("link[rel='preload'][as='image'][fetchpriority='high']").count() !== 3) {
+    throw new Error("opening critical image preloads are missing");
+  }
   await waitForOpeningReady(page);
+  await page.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.sceneAssetsReady === "true", null, { timeout: 3500 });
   await assertOpeningIsolation(page, "opening");
   if (await openingClipPoints(page) !== 10) {
     throw new Error("opening clip path did not start with 10 points");
@@ -89,6 +120,10 @@ try {
   }
   if (await page.evaluate(() => document.body.style.overflow === "hidden")) {
     throw new Error("opening skip left body scrolling locked");
+  }
+  const initialBgm = await getBgmState(page);
+  if (initialBgm.count !== 1 || initialBgm.volume < 0.35 || initialBgm.volume > 0.39) {
+    throw new Error(`opening BGM did not reach its target state: ${JSON.stringify(initialBgm)}`);
   }
 
   await page.goto(BASE_URL, { waitUntil: "networkidle" });
@@ -135,9 +170,20 @@ try {
   await page.getByRole("button", { name: "重播开屏动画" }).click();
   await waitForOpeningReady(page);
   await assertOpeningIsolation(page, "replayed opening");
+  const replayedBgm = await getBgmState(page);
+  if (replayedBgm.count !== 1 || replayedBgm.currentTime > 0.8 || replayedBgm.volume > 0.08) {
+    throw new Error(`replayed opening did not resync its BGM: ${JSON.stringify(replayedBgm)}`);
+  }
   await page.getByRole("button", { name: "跳过开屏动画" }).click();
   await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
   await page.locator(".cat-root").waitFor();
+  await page.getByRole("button", { name: "关闭音乐" }).click();
+  await page.getByRole("button", { name: "开启音乐" }).click();
+  await page.waitForTimeout(1000);
+  const toggledBgm = await getBgmState(page);
+  if (toggledBgm.volume < 0.35 || toggledBgm.paused) {
+    throw new Error(`rapid BGM toggles left an obsolete fade active: ${JSON.stringify(toggledBgm)}`);
+  }
 
   for (const viewport of [
     { width: 1280, height: 800, name: "1280x800" },
@@ -172,6 +218,20 @@ try {
   }
   await waitForOpeningReady(delayedPage);
   await delayedContext.close();
+
+  const deferredContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  await deferredContext.route("**/images/py-038/primary.webp", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 1800));
+    await route.continue();
+  });
+  const deferredPage = await deferredContext.newPage();
+  await deferredPage.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
+  await waitForOpeningReady(deferredPage);
+  if (await deferredPage.locator(".opening-intro").getAttribute("data-scene-assets-ready") !== "false") {
+    throw new Error("opening waited for a deferred scene image before starting");
+  }
+  await deferredPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.sceneAssetsReady === "true", null, { timeout: 3500 });
+  await deferredContext.close();
 
   const reducedContext = await browser.newContext({
     viewport: { width: 1280, height: 800 },

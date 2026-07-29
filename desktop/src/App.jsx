@@ -4,6 +4,7 @@ import { open } from "@tauri-apps/plugin-dialog";
 import OpeningIntroPanorama from "./opening/OpeningIntroPanorama";
 import CategorySelect from "./CategorySelect";
 import { shouldShowOpeningIntro } from "./opening/openingIntroSession";
+import useBackgroundMusic from "./useBackgroundMusic";
 import {
   ChevronLeft,
   ChevronRight,
@@ -436,8 +437,12 @@ export default function App() {
   const [introVisible, setIntroVisible] = useState(shouldShowOpeningIntro);
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [bgmMuted, setBgmMuted] = useState(false);
-  const bgmRef = useRef(null);
+  const {
+    muted: bgmMuted,
+    started: bgmStarted,
+    startForOpening: startBgm,
+    toggle: toggleBgm,
+  } = useBackgroundMusic();
   const [libraryRoot, setLibraryRoot] = useState(() => {
     try {
       return window.localStorage.getItem(ORIGINALS_STORAGE_KEY) || "";
@@ -445,37 +450,6 @@ export default function App() {
       return "";
     }
   });
-
-  const startBgm = () => {
-    if (bgmRef.current) return;
-    const bgm = new Audio("/audio/bgm.mp3");
-    bgm.loop = true;
-    bgm.volume = 0;
-    bgmRef.current = bgm;
-    bgm.play().catch(() => {});
-    let t = setInterval(() => {
-      bgm.volume = Math.min(0.38, bgm.volume + 0.012);
-      if (bgm.volume >= 0.38) clearInterval(t);
-    }, 80);
-  };
-
-  const toggleBgm = () => {
-    const bgm = bgmRef.current;
-    if (!bgm) return;
-    if (!bgmMuted) {
-      let t = setInterval(() => {
-        bgm.volume = Math.max(0, bgm.volume - 0.03);
-        if (bgm.volume <= 0) { bgm.pause(); clearInterval(t); }
-      }, 50);
-    } else {
-      bgm.play().catch(() => {});
-      let t = setInterval(() => {
-        bgm.volume = Math.min(0.38, bgm.volume + 0.012);
-        if (bgm.volume >= 0.38) clearInterval(t);
-      }, 80);
-    }
-    setBgmMuted(m => !m);
-  };
 
   const chooseOriginalLibrary = async () => {
     if (!isTauri()) return;
@@ -551,7 +525,7 @@ export default function App() {
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
           toggleBgm={toggleBgm}
           bgmMuted={bgmMuted}
-          bgmStarted={!!bgmRef.current}
+          bgmStarted={bgmStarted}
         />
       )}
 
@@ -584,7 +558,7 @@ export default function App() {
                   <Search size={18} />
                 </button>
               )}
-              {bgmRef.current && (
+              {bgmStarted && (
                 <button type="button" className="topbar-icon-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
                   {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
                 </button>
@@ -629,7 +603,7 @@ export default function App() {
             onChooseLibrary={chooseOriginalLibrary}
             toggleBgm={toggleBgm}
             bgmMuted={bgmMuted}
-            bgmStarted={!!bgmRef.current}
+            bgmStarted={bgmStarted}
           />
         </>
       )}
