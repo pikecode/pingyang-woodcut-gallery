@@ -95,6 +95,70 @@
   background: rgba(232,175,55,0.08);
 }
 
+/* 版权信息按钮 */
+.cat-info-btn {
+  position: absolute;
+  top: 22px; right: 72px;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.65);
+  background: transparent;
+  z-index: 10;
+  transition: color 160ms, border-color 160ms, background 160ms;
+}
+
+.cat-info-btn:hover {
+  color: #E8AF37;
+  border-color: rgba(232,175,55,0.6);
+  background: rgba(232,175,55,0.08);
+}
+
+/* 版权弹窗 */
+.cat-credits-overlay {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(0,0,0,0.8);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+  animation: detail-in 0.2s ease both;
+}
+
+.cat-credits-modal {
+  position: relative;
+  width: min(540px, 90vw);
+  max-height: 78vh;
+  overflow-y: auto;
+  background: #141208;
+  border: 1px solid rgba(232,175,55,0.38);
+  border-radius: 6px;
+  padding: 44px 40px 36px;
+  box-shadow: 0 28px 70px rgba(0,0,0,0.75);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232,175,55,0.2) transparent;
+}
+
+.cat-credits-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.6);
+  transition: color 160ms, background 160ms;
+}
+
+.cat-credits-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+.cat-credits-body {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 13px;
+  line-height: 2.3;
+  color: rgba(255,255,255,0.72);
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+
 /* 面板容器 */
 .cat-panels {
   display: flex;

@@ -1,7 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Volume2, VolumeX } from "lucide-react";
+import { Info, Volume2, VolumeX, X } from "lucide-react";
 import "./category-select.css";
+
+const CREDITS = `《平阳木版年画·博观集》
+
+名誉主编：
+主编：赵起超
+常务副主编：
+副主编：许向阳、齐国生、吴刚
+
+特约顾问：
+非遗顾问：赵国琦
+艺术顾问：孔令志
+媒体顾问：赵一罡
+数字顾问：刘昕羽
+技术顾问：武斌
+
+编委（按姓氏拼音排列）：
+胡董森、胡伟东、刘畅、王建明、徐海龙、宗跃飞
+
+出版发行：山西出版传媒集团｜山西春秋电子音像出版社
+出版人：董晓宁
+策划：赵起超、董晓宁、武斌、周骁羽
+出品：萬世吉光
+责任编辑：周骁羽、薄佳丽
+复审：武斌
+终审：董晓宁
+程序开发：青岛君令品牌创意有限公司`;
 
 const CATEGORIES = [
   { name: "戏曲", desc: "粉墨登场 · 舞台百态",   count: 38, slug: "py-014", num: "01" },
@@ -14,6 +40,7 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
   const containerRef = useRef(null);
   const [hovered, setHovered] = useState(null);
   const [exiting, setExiting] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -53,6 +80,20 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
         <button className="cat-bgm-btn" onClick={toggleBgm} aria-label={bgmMuted ? "开启音乐" : "关闭音乐"} title={bgmMuted ? "开启音乐" : "关闭音乐"}>
           {bgmMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
+      )}
+      <button className="cat-info-btn" onClick={() => setShowCredits(true)} aria-label="版权信息" title="版权信息">
+        <Info size={18} />
+      </button>
+
+      {showCredits && (
+        <div className="cat-credits-overlay" onClick={() => setShowCredits(false)}>
+          <div className="cat-credits-modal" onClick={e => e.stopPropagation()}>
+            <button className="cat-credits-close" onClick={() => setShowCredits(false)} aria-label="关闭">
+              <X size={18} />
+            </button>
+            <pre className="cat-credits-body">{CREDITS}</pre>
+          </div>
+        </div>
       )}
 
       <div className="cat-panels">
