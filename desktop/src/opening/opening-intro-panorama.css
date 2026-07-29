@@ -41,9 +41,9 @@
 }
 
 .panorama-paper,
+.ink-stage,
 .panorama-curtain,
 .panorama-viewport,
-.panorama-opening-copy,
 .panorama-folio-deck,
 .panorama-final {
   position: absolute;
@@ -61,32 +61,89 @@
   to { background-color: #e3e1d9; }
 }
 
-.panorama-wordmark {
-  position: absolute;
-  top: 7%;
-  left: 5%;
-  display: flex;
-  flex-direction: column;
-  color: #b9b9b2;
-  font-family: "Songti SC", "STSong", serif;
-  font-size: 112px;
-  font-weight: 700;
-  line-height: 0.82;
+.ink-stage {
+  z-index: 4;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.panorama-wordmark-line { display: block; }
-
-.panorama-swatches {
+.ink-art-anchor {
   position: absolute;
-  right: 4.5%;
   top: 50%;
-  display: grid;
-  gap: 11px;
-  transform: translateY(-50%);
+  left: 50%;
+  width: 148vw;
+  transform: translate(-50%, -50%);
 }
 
-.panorama-swatch { width: 24px; height: 7px; }
+.ink-art-wrap {
+  --ghost-opacity: 0.1;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1800 / 865;
+  overflow: hidden;
+  background: #efeee5;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.ink-art-wrap::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/py-014/primary.webp") center / contain no-repeat;
+  content: "";
+  mix-blend-mode: multiply;
+  opacity: var(--ghost-opacity);
+}
+
+.ink-line {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  will-change: clip-path, opacity;
+}
+
+.ink-plate {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.ink-plate-yellow {
+  inset: 2% 48% 4% 1.5%;
+  background: #dfbd35;
+  clip-path: polygon(0 5%, 92% 0, 100% 73%, 81% 100%, 7% 92%);
+}
+
+.ink-plate-blue {
+  inset: 12% 22% 0 26%;
+  background: #438e9a;
+  clip-path: polygon(8% 0, 100% 8%, 91% 100%, 0 90%, 5% 43%);
+}
+
+.ink-plate-red {
+  inset: 1% 1% 6% 55%;
+  background: #ce4e3d;
+  clip-path: polygon(9% 0, 100% 6%, 94% 100%, 0 92%, 7% 52%);
+}
+
+.ink-pressure {
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  left: 12%;
+  z-index: 3;
+  width: 1px;
+  background: rgba(30, 30, 25, 0.62);
+  box-shadow: 0 0 24px 7px rgba(30, 30, 25, 0.08);
+  will-change: transform, opacity;
+}
 
 .panorama-viewport {
   z-index: 3;
@@ -258,32 +315,6 @@
 .scene-caption span { font-size: 14px; font-weight: 700; }
 .scene-caption strong { font-family: "Songti SC", "STSong", serif; font-size: 36px; }
 
-.panorama-color-wipe {
-  position: absolute;
-  inset: 0;
-  z-index: 8;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  pointer-events: none;
-}
-
-.panorama-color-stripe { display: block; height: 100%; }
-
-.panorama-opening-copy {
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  color: #20201d;
-  text-align: center;
-  pointer-events: none;
-}
-
-.panorama-opening-copy span { font-size: 13px; font-weight: 700; }
-.panorama-opening-copy strong { font-family: "Songti SC", "STSong", serif; font-size: 34px; }
-
 .panorama-curtain {
   z-index: 6;
   background: #1b1c19;
@@ -352,18 +383,46 @@
   pointer-events: none;
 }
 
-.panorama-final span { font-size: 11px; font-weight: 600; }
-.panorama-final strong { margin-top: 5px; font-family: "Songti SC", "STSong", serif; font-size: 42px; }
+.panorama-final > span { font-size: 11px; font-weight: 600; }
+
+.panorama-final-title-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 5px;
+}
+
+.panorama-final-title-row strong {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 42px;
+}
+
+.panorama-final-seal {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 2px solid #c84a38;
+  color: #c84a38;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
 .panorama-final small { margin-top: 2px; color: #d6ad3c; font-size: 13px; font-weight: 700; }
 
 @media (max-width: 1100px), (max-height: 760px) {
-  .panorama-wordmark { font-size: 78px; }
+  .ink-art-anchor { width: 150vw; }
   .panorama-folio-deck { padding-bottom: 95px; }
   .panorama-folio { width: 170px; height: 244px; padding: 14px 13px; }
   .panorama-folio img { height: 180px; }
   .panorama-folio figcaption { font-size: 15px; }
   .panorama-final { bottom: 3.5%; }
-  .panorama-final strong { font-size: 34px; }
+  .panorama-final-title-row strong { font-size: 34px; }
+  .panorama-final-seal { width: 28px; height: 28px; }
   .scene-caption strong { font-size: 30px; }
 }
 

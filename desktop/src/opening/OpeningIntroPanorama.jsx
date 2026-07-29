@@ -3,20 +3,21 @@ import { gsap } from "gsap";
 import { markOpeningIntroSeen } from "./openingIntroSession";
 import "./opening-intro-panorama.css";
 
-const SWATCHES = ["#e0b72f", "#9bbd42", "#cf4f65", "#54bfc0", "#d85f2f", "#3978a8"];
 const INITIAL_CLIP = "polygon(43% 7%, 60% 3%, 67% 20%, 64% 39%, 72% 57%, 64% 93%, 44% 97%, 35% 79%, 38% 55%, 31% 31%)";
 const FULL_CLIP = "polygon(0% 0%, 50% 0%, 100% 0%, 100% 34%, 100% 67%, 100% 100%, 67% 100%, 34% 100%, 0% 100%, 0% 50%)";
 const CLOSING_CLIP = "polygon(42% 5%, 61% 2%, 69% 18%, 65% 41%, 73% 60%, 63% 95%, 43% 98%, 34% 78%, 38% 55%, 30% 29%)";
 const IMAGE_READY_TIMEOUT = 2000;
 const TIMING = {
-  brand: 0,
-  reveal: 0.65,
-  panoramaTwo: 2.8,
-  panoramaThree: 5.05,
-  closePanorama: 7.25,
-  folios: 7.85,
-  finale: 8.2,
-  exit: 9.8,
+  paper: 0,
+  impression: 0.3,
+  register: 1.25,
+  longScroll: 2.35,
+  panoramaTwo: 4.15,
+  panoramaThree: 5.95,
+  closePanorama: 7.65,
+  folios: 8.25,
+  finale: 8.6,
+  exit: 10.15,
 };
 
 const FOLIOS = [
@@ -49,55 +50,65 @@ function addTimelineLabels(timeline) {
   Object.entries(TIMING).forEach(([label, position]) => timeline.addLabel(label, position));
 }
 
-function addBrandReveal(timeline) {
+function addPrintmakingPrelude(timeline) {
   timeline
-    .to(".panorama-wordmark-line", { clipPath: "inset(0 0% 0 0)", duration: 0.7, stagger: 0.18 }, "brand")
-    .to(".panorama-swatch", { opacity: 1, x: 0, duration: 0.5, stagger: 0.07, ease: "sine.out" }, "brand+=0.28")
-    .to(".panorama-opening-copy", { opacity: 1, y: 0, duration: 0.62, ease: "sine.out" }, "brand+=0.42")
-    .to(".panorama-viewport", { clipPath: FULL_CLIP, duration: 1.5 }, "reveal")
-    .to(".panorama-color-stripe", { scaleY: 1, duration: 0.72, stagger: 0.055 }, "reveal")
-    .to(".panorama-color-stripe", { opacity: 0, duration: 0.6, stagger: 0.035, ease: "sine.out" }, "reveal+=0.58")
-    .to(".panorama-opening-copy", { opacity: 0, y: -18, duration: 0.55 }, "reveal+=0.68");
+    .to(".ink-line", { opacity: 0.18, duration: 0.34, ease: "sine.out" }, "paper")
+    .to(".ink-pressure", { opacity: 0.62, x: "112vw", duration: 1.04, ease: "power1.inOut" }, "impression")
+    .to(".ink-line", { opacity: 0.96, clipPath: "inset(0% 0% 0% 0%)", duration: 1.04, ease: "power1.inOut" }, "impression")
+    .to(".ink-pressure", { opacity: 0, duration: 0.28, ease: "sine.out" }, "impression+=0.92")
+    .to(".ink-plate-yellow", { opacity: 0.58, duration: 0.22, ease: "sine.out" }, "register")
+    .to(".ink-plate-yellow", { x: 0, y: 0, duration: 0.42 }, "register+=0.16")
+    .to(".ink-plate-blue", { opacity: 0.54, duration: 0.22, ease: "sine.out" }, "register+=0.18")
+    .to(".ink-plate-blue", { x: 0, y: 0, duration: 0.42 }, "register+=0.34")
+    .to(".ink-plate-red", { opacity: 0.56, duration: 0.22, ease: "sine.out" }, "register+=0.36")
+    .to(".ink-plate-red", { x: 0, y: 0, duration: 0.42 }, "register+=0.52")
+    .to(".ink-line", { opacity: 1, duration: 0.38 }, "register+=0.52")
+    .to(".panorama-viewport", { opacity: 1, clipPath: FULL_CLIP, duration: 1.18 }, "longScroll")
+    .to(".ink-art-wrap", { x: "-25vw", scale: 0.285, duration: 1.18, ease: "sine.inOut" }, "longScroll")
+    .to(".ink-art-wrap", { backgroundColor: "rgba(239, 238, 229, 0)", duration: 0.56 }, "longScroll+=0.14")
+    .to(".ink-line, .ink-plate", { opacity: 0, duration: 0.46, ease: "sine.inOut" }, "longScroll+=0.72")
+    .to(".ink-art-wrap", { "--ghost-opacity": 0, duration: 0.46 }, "longScroll+=0.72");
 }
 
 function addFirstScene(timeline) {
   timeline
-    .to(".scene-one .scene-art", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 1.25, stagger: 0.12, ease: "sine.out" }, "reveal+=0.15")
-    .to(".scene-one .shape-one", { xPercent: 3.2, yPercent: -2.4, scale: 0.97, duration: 3.65 }, "reveal")
-    .to(".scene-one .shape-two", { xPercent: -3, yPercent: 2.5, scale: 1.04, duration: 3.65 }, "reveal")
-    .to(".scene-one .scene-caption > span", { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, "reveal+=0.76")
-    .to(".scene-one .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.46, ease: "sine.out" }, "reveal+=0.88")
-    .to(".scene-one .art-water", { x: -22, y: -10, rotation: -0.8, duration: 2.1 }, "reveal+=0.9")
-    .to(".scene-one .art-romance", { x: 14, y: 9, duration: 2.1 }, "reveal+=0.9")
-    .to(".scene-one .art-tower", { x: -8, y: -5, rotation: 0.6, duration: 2.1 }, "reveal+=0.9");
+    .to(".scene-one .art-water", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.72, ease: "sine.out" }, "longScroll+=0.7")
+    .to(".scene-one .art-romance, .scene-one .art-tower", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.92, stagger: 0.1, ease: "sine.out" }, "longScroll+=0.78")
+    .to(".scene-one .shape-one", { xPercent: 3.2, yPercent: -2.4, scale: 0.97, duration: 2.65 }, "longScroll")
+    .to(".scene-one .shape-two", { xPercent: -3, yPercent: 2.5, scale: 1.04, duration: 2.65 }, "longScroll")
+    .to(".scene-one .scene-caption > span", { opacity: 1, y: 0, duration: 0.46, ease: "sine.out" }, "longScroll+=0.62")
+    .to(".scene-one .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.07, duration: 0.42, ease: "sine.out" }, "longScroll+=0.73")
+    .to(".scene-one .art-water", { x: -18, y: -8, rotation: -0.65, duration: 1.65 }, "longScroll+=0.74")
+    .to(".scene-one .art-romance", { x: 12, y: 8, duration: 1.65 }, "longScroll+=0.74")
+    .to(".scene-one .art-tower", { x: -7, y: -5, rotation: 0.5, duration: 1.65 }, "longScroll+=0.74");
 }
 
 function addSecondScene(timeline) {
   timeline
-    .to(".panorama-track", { xPercent: -33.3333, duration: 1.5 }, "panoramaTwo")
-    .to(".scene-one .scene-art", { xPercent: -4, scale: 0.99, opacity: 0.48, duration: 1.25 }, "panoramaTwo")
-    .to(".scene-one .scene-caption, .scene-one .caption-char", { opacity: 0, x: -18, duration: 0.65 }, "panoramaTwo+=0.12")
-    .to(".scene-two .scene-art", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 1.25, stagger: 0.11, ease: "sine.out" }, "panoramaTwo+=0.2")
-    .to(".scene-two .shape-one", { xPercent: -3.2, yPercent: 2.5, scale: 1.04, duration: 3.65 }, "panoramaTwo")
-    .to(".scene-two .shape-two", { xPercent: 3.1, yPercent: -2.4, scale: 0.96, duration: 3.65 }, "panoramaTwo")
-    .to(".scene-two .scene-caption > span", { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, "panoramaTwo+=0.68")
-    .to(".scene-two .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.46, ease: "sine.out" }, "panoramaTwo+=0.8")
-    .to(".scene-two .art-plum", { x: 20, y: -9, rotation: 0.8, duration: 2.1 }, "panoramaTwo+=0.9")
-    .to(".scene-two .art-river", { x: -15, y: 10, duration: 2.1 }, "panoramaTwo+=0.9")
-    .to(".scene-two .art-auspicious", { x: 17, y: -8, rotation: -0.6, duration: 2.1 }, "panoramaTwo+=0.9");
+    .to(".panorama-track", { xPercent: -33.3333, duration: 1.32 }, "panoramaTwo")
+    .to(".scene-one .scene-art", { xPercent: -4, scale: 0.99, opacity: 0.46, duration: 1.12 }, "panoramaTwo")
+    .to(".scene-one .scene-caption, .scene-one .caption-char", { opacity: 0, x: -18, duration: 0.58 }, "panoramaTwo+=0.1")
+    .to(".scene-two .scene-art", { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 1.08, stagger: 0.09, ease: "sine.out" }, "panoramaTwo+=0.16")
+    .to(".scene-two .shape-one", { xPercent: -3.2, yPercent: 2.5, scale: 1.04, duration: 2.75 }, "panoramaTwo")
+    .to(".scene-two .shape-two", { xPercent: 3.1, yPercent: -2.4, scale: 0.96, duration: 2.75 }, "panoramaTwo")
+    .to(".scene-two .scene-caption > span", { opacity: 1, y: 0, duration: 0.46, ease: "sine.out" }, "panoramaTwo+=0.58")
+    .to(".scene-two .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.07, duration: 0.42, ease: "sine.out" }, "panoramaTwo+=0.68")
+    .to(".scene-two .art-plum", { x: 17, y: -8, rotation: 0.65, duration: 1.5 }, "panoramaTwo+=0.72")
+    .to(".scene-two .art-river", { x: -13, y: 8, duration: 1.5 }, "panoramaTwo+=0.72")
+    .to(".scene-two .art-auspicious", { x: 14, y: -7, rotation: -0.5, duration: 1.5 }, "panoramaTwo+=0.72");
 }
 
 function addThirdScene(timeline) {
   timeline
-    .to(".panorama-track", { xPercent: -66.6667, duration: 1.5 }, "panoramaThree")
-    .to(".scene-two .scene-art", { xPercent: -4, scale: 0.99, opacity: 0.5, duration: 1.25 }, "panoramaThree")
-    .to(".scene-two .scene-caption, .scene-two .caption-char", { opacity: 0, x: -18, duration: 0.65 }, "panoramaThree+=0.12")
-    .to(".scene-three .scene-art", { opacity: 1, x: 0, scale: 1, rotation: 0, duration: 1.25, stagger: 0.1, ease: "sine.out" }, "panoramaThree+=0.2")
-    .to(".scene-three .shape-one", { yPercent: -3, scale: 1.04, duration: 3.1 }, "panoramaThree")
-    .to(".scene-three .shape-two", { xPercent: 3, scale: 0.97, duration: 3.1 }, "panoramaThree")
-    .to(".scene-three .scene-caption > span", { opacity: 1, y: 0, duration: 0.5, ease: "sine.out" }, "panoramaThree+=0.72")
-    .to(".scene-three .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.08, duration: 0.46, ease: "sine.out" }, "panoramaThree+=0.84")
-    .to(".scene-three .scene-art", { x: index => [-13, 8, 13][index], y: index => [-6, 7, -6][index], duration: 1.8 }, "panoramaThree+=1.15");
+    .to(".panorama-track", { xPercent: -66.6667, duration: 1.32 }, "panoramaThree")
+    .to(".scene-two .scene-art", { xPercent: -4, scale: 0.99, opacity: 0.48, duration: 1.12 }, "panoramaThree")
+    .to(".scene-two .scene-caption, .scene-two .caption-char", { opacity: 0, x: -18, duration: 0.58 }, "panoramaThree+=0.1")
+    .to(".scene-three .scene-art", { opacity: 1, x: 0, scale: 1, rotation: 0, duration: 1.08, stagger: 0.09, ease: "sine.out" }, "panoramaThree+=0.16")
+    .to(".scene-three .shape-one", { yPercent: -3, scale: 1.04, duration: 2.4 }, "panoramaThree")
+    .to(".scene-three .shape-two", { xPercent: 3, scale: 0.97, duration: 2.4 }, "panoramaThree")
+    .to(".scene-three .scene-caption > span", { opacity: 1, y: 0, duration: 0.46, ease: "sine.out" }, "panoramaThree+=0.58")
+    .to(".scene-three .caption-char", { opacity: 1, y: 0, scale: 1, stagger: 0.07, duration: 0.42, ease: "sine.out" }, "panoramaThree+=0.68")
+    .to(".scene-three .scene-art", { x: index => [-11, 7, 11][index], y: index => [-5, 6, -5][index], duration: 1.42 }, "panoramaThree+=0.78");
 }
 
 function addFinale(timeline, container, finish) {
@@ -117,6 +128,7 @@ function addFinale(timeline, container, finish) {
       ease: "power2.out",
     }, "folios+=0.08")
     .to(".panorama-final", { opacity: 1, y: 0, duration: 0.65, ease: "sine.out" }, "finale")
+    .to(".panorama-final-seal", { opacity: 1, scale: 1, rotation: 2, duration: 0.42, ease: "power2.out" }, "finale+=0.32")
     .to(container, { opacity: 0, duration: 0.65, onComplete: finish }, "exit");
 }
 
@@ -149,21 +161,23 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
     skipRef.current?.focus({ preventScroll: true });
 
     const initialContext = gsap.context(() => {
-      gsap.set(".panorama-wordmark-line", { opacity: 1, clipPath: "inset(0 100% 0 0)" });
-      gsap.set(".panorama-swatch", { opacity: 0, x: 14 });
-      gsap.set(".panorama-viewport", { clipPath: INITIAL_CLIP });
-      gsap.set(".panorama-color-stripe", { scaleY: 0, transformOrigin: "top center" });
-      gsap.set(".panorama-opening-copy", { opacity: 0, y: 16 });
+      gsap.set(".ink-line", { opacity: 0.08, clipPath: "inset(0% 82% 0% 0%)" });
+      gsap.set(".ink-pressure", { opacity: 0, x: 0 });
+      gsap.set(".ink-plate-yellow", { opacity: 0, x: -9, y: 5 });
+      gsap.set(".ink-plate-blue", { opacity: 0, x: 8, y: 9 });
+      gsap.set(".ink-plate-red", { opacity: 0, x: 10, y: -7 });
+      gsap.set(".panorama-viewport", { opacity: 0, clipPath: INITIAL_CLIP });
       gsap.set(".scene-paper", { scale: 1.04, transformOrigin: "center center" });
-      gsap.set(".scene-one .scene-art", { opacity: 0, y: 64, scale: 1.07, rotation: index => [-1.5, 0, 1.5][index] });
-      gsap.set(".scene-two .scene-art", { opacity: 0, y: 72, scale: 1.07, rotation: index => [1.2, 0, -1.2][index] });
-      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -110 : index === 2 ? 110 : 0, scale: 1.05, rotation: index => index === 0 ? -2 : index === 2 ? 2 : 0 });
+      gsap.set(".scene-one .scene-art", { opacity: 0, y: 48, scale: 1.045, rotation: index => [-1.2, 0, 1.2][index] });
+      gsap.set(".scene-two .scene-art", { opacity: 0, y: 54, scale: 1.05, rotation: index => [1, 0, -1][index] });
+      gsap.set(".scene-three .scene-art", { opacity: 0, x: index => index === 0 ? -82 : index === 2 ? 82 : 0, scale: 1.04, rotation: index => index === 0 ? -1.5 : index === 2 ? 1.5 : 0 });
       gsap.set(".caption-char", { opacity: 0, y: 24, scale: 1.08 });
       gsap.set(".scene-caption > span", { opacity: 0, y: 14 });
       gsap.set(".panorama-curtain", { opacity: 0 });
       gsap.set(".panorama-folio-deck", { opacity: 0 });
       gsap.set(".panorama-folio", { opacity: 0, y: 80, rotation: 0 });
       gsap.set(".panorama-final", { opacity: 0, y: 22 });
+      gsap.set(".panorama-final-seal", { opacity: 0, scale: 1.18, rotation: 5 });
     }, container);
 
     const startTimeline = async () => {
@@ -189,7 +203,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
         const timeline = gsap.timeline({ defaults: { ease: "sine.inOut" } });
         timelineRef.current = timeline;
         addTimelineLabels(timeline);
-        addBrandReveal(timeline);
+        addPrintmakingPrelude(timeline);
         addFirstScene(timeline);
         addSecondScene(timeline);
         addThirdScene(timeline);
@@ -239,13 +253,25 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
         跳过
       </button>
 
-      <div className="panorama-paper" aria-hidden="true">
-        <div className="panorama-wordmark">
-          <span className="panorama-wordmark-line">平阳</span>
-          <span className="panorama-wordmark-line">年画</span>
-        </div>
-        <div className="panorama-swatches">
-          {SWATCHES.map(color => <span key={color} className="panorama-swatch" style={{ backgroundColor: color }} />)}
+      <div className="panorama-paper" aria-hidden="true" />
+
+      <div className="ink-stage" aria-hidden="true">
+        <div className="ink-art-anchor">
+          <div className="ink-art-wrap">
+            <span className="ink-plate ink-plate-yellow" />
+            <span className="ink-plate ink-plate-blue" />
+            <span className="ink-plate ink-plate-red" />
+            <img
+              className="ink-line"
+              src="/images/py-014/primary.webp"
+              alt=""
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              data-opening-critical="true"
+            />
+            <span className="ink-pressure" />
+          </div>
         </div>
       </div>
 
@@ -288,14 +314,6 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
           </section>
         </div>
 
-        <div className="panorama-color-wipe">
-          {SWATCHES.map(color => <span key={color} className="panorama-color-stripe" style={{ backgroundColor: color }} />)}
-        </div>
-      </div>
-
-      <div className="panorama-opening-copy" aria-hidden="true">
-        <span>木版套色</span>
-        <strong>一版见天地</strong>
       </div>
 
       <div className="panorama-curtain" aria-hidden="true" />
@@ -317,7 +335,10 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
 
       <div className="panorama-final" aria-hidden="true">
         <span>山西临汾 · 国家级非物质文化遗产</span>
-        <strong>平阳木版年画</strong>
+        <div className="panorama-final-title-row">
+          <strong>平阳木版年画</strong>
+          <i className="panorama-final-seal">平阳</i>
+        </div>
         <small>博观集 · 数字馆藏</small>
       </div>
     </div>

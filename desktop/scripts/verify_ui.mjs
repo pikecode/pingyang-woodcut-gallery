@@ -51,7 +51,7 @@ async function waitForOpeningReady(targetPage) {
   await opening.waitFor();
   await targetPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.animationReady === "true", null, { timeout: 3500 });
   const imagesReady = await opening.locator("img[data-opening-critical='true']").evaluateAll((images) =>
-    images.length === 3 && images.every((image) => image.complete && image.naturalWidth > 0)
+    images.length === 4 && images.every((image) => image.complete && image.naturalWidth > 0)
   );
   if (!imagesReady) throw new Error("opening timeline started before its critical images decoded");
 }
@@ -105,12 +105,27 @@ try {
   if (await openingClipPoints(page) !== 10) {
     throw new Error("opening clip path changed point count during reveal");
   }
+  const printLineState = await page.locator(".ink-line").evaluate((element) => ({
+    clipPath: getComputedStyle(element).clipPath,
+    opacity: Number(getComputedStyle(element).opacity),
+  }));
+  if (printLineState.clipPath.includes("50%") || printLineState.opacity < 0.5) {
+    throw new Error(`woodblock line impression did not reveal: ${JSON.stringify(printLineState)}`);
+  }
   await assertViewport("opening");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-current.png") });
-  await page.waitForTimeout(3200);
+  await page.waitForTimeout(800);
+  const registeredPlates = await page.locator(".ink-plate").evaluateAll((elements) =>
+    elements.every((element) => Number(getComputedStyle(element).opacity) >= 0.5)
+  );
+  if (!registeredPlates) throw new Error("color registration plates did not settle");
+  await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-register.png") });
+  await page.waitForTimeout(2700);
   await assertViewport("opening panorama");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-panorama.png") });
-  await page.waitForTimeout(4200);
+  await page.waitForTimeout(4400);
+  const sealOpacity = await page.locator(".panorama-final-seal").evaluate((element) => Number(getComputedStyle(element).opacity));
+  if (sealOpacity < 0.2) throw new Error("final collection seal did not appear");
   await assertViewport("opening finale");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-finale.png") });
   await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 3000 });
