@@ -104,7 +104,7 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
         </button>
       )}
       <button className="cat-info-btn" onClick={() => setShowCredits(true)} aria-label="版权信息" title="版权信息">
-        <Info size={18} />
+        版权
       </button>
 
       {showCredits && (
