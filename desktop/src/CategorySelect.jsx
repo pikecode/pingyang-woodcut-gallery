@@ -3,31 +3,53 @@ import { gsap } from "gsap";
 import { Info, Volume2, VolumeX, X } from "lucide-react";
 import "./category-select.css";
 
-const CREDITS = `《平阳木版年画·博观集》
+const CREDITS_TITLE = "《平阳木版年画·博观集》";
 
-名誉主编：
-主编：赵起超
-常务副主编：
-副主编：许向阳、齐国生、吴刚
-
-特约顾问：
-非遗顾问：赵国琦
-艺术顾问：孔令志
-媒体顾问：赵一罡
-数字顾问：刘昕羽
-技术顾问：武斌
-
-编委（按姓氏拼音排列）：
-胡董森、胡伟东、刘畅、王建明、徐海龙、宗跃飞
-
-出版发行：山西出版传媒集团｜山西春秋电子音像出版社
-出版人：董晓宁
-策划：赵起超、董晓宁、武斌、周骁羽
-出品：萬世吉光
-责任编辑：周骁羽、薄佳丽
-复审：武斌
-终审：董晓宁
-程序开发：青岛君令品牌创意有限公司`;
+const CREDITS_SECTIONS = [
+  {
+    heading: "编委会",
+    rows: [
+      { label: "主编", value: "赵起超" },
+      { label: "常务副主编", value: "" },
+      { label: "副主编", value: "许向阳　齐国生　吴刚" },
+    ],
+  },
+  {
+    heading: "顾问团",
+    rows: [
+      { label: "非遗顾问", value: "赵国琦" },
+      { label: "艺术顾问", value: "孔令志" },
+      { label: "媒体顾问", value: "赵一罡" },
+      { label: "数字顾问", value: "刘昕羽" },
+      { label: "技术顾问", value: "武斌" },
+    ],
+  },
+  {
+    heading: "编委",
+    note: "（按姓氏拼音排列）",
+    rows: [
+      { value: "胡董森　胡伟东　刘畅　王建明　徐海龙　宗跃飞" },
+    ],
+  },
+  {
+    heading: "出版发行",
+    rows: [
+      { label: "出版发行", value: "山西出版传媒集团\n山西春秋电子音像出版社" },
+      { label: "出版人", value: "董晓宁" },
+      { label: "策划", value: "赵起超　董晓宁　武斌　周骁羽" },
+      { label: "出品", value: "萬世吉光" },
+      { label: "责任编辑", value: "周骁羽　薄佳丽" },
+      { label: "复审", value: "武斌" },
+      { label: "终审", value: "董晓宁" },
+    ],
+  },
+  {
+    heading: "技术",
+    rows: [
+      { label: "程序开发", value: "青岛君令品牌创意有限公司" },
+    ],
+  },
+];
 
 const CATEGORIES = [
   { name: "戏曲", desc: "粉墨登场 · 舞台百态",   count: 38, slug: "py-014", num: "01" },
@@ -91,7 +113,22 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
             <button className="cat-credits-close" onClick={() => setShowCredits(false)} aria-label="关闭">
               <X size={18} />
             </button>
-            <pre className="cat-credits-body">{CREDITS}</pre>
+            <h2 className="credits-title">{CREDITS_TITLE}</h2>
+            <div className="credits-divider" />
+            {CREDITS_SECTIONS.map((sec, si) => (
+              <div key={si} className="credits-section">
+                <h3 className="credits-heading">
+                  {sec.heading}
+                  {sec.note && <span className="credits-note">{sec.note}</span>}
+                </h3>
+                {sec.rows.map((row, ri) => (
+                  <div key={ri} className={`credits-row${!row.label ? " credits-row-full" : ""}`}>
+                    {row.label && <span className="credits-label">{row.label}</span>}
+                    <span className="credits-value">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       )}
