@@ -1,6 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { invoke, isTauri } from "@tauri-apps/api/core";
-import { open } from "@tauri-apps/plugin-dialog";
 import OpeningIntroPanorama from "./opening/OpeningIntroPanorama";
 import CategorySelect from "./CategorySelect";
 import { shouldShowOpeningIntro } from "./opening/openingIntroSession";
@@ -8,25 +6,15 @@ import useBackgroundMusic from "./useBackgroundMusic";
 import {
   ChevronLeft,
   ChevronRight,
-  FolderOpen,
-  LoaderCircle,
-  Maximize2,
-  Minimize2,
   Pause,
-  Play,
-  RotateCcw,
-  ScanSearch,
   Search,
   Volume2,
   VolumeX,
   X,
-  ZoomIn,
-  ZoomOut,
 } from "lucide-react";
 
 /* ── 常量 ── */
 const THEME_ORDER = ["全部", "戏曲", "神祇", "吉祥", "故事"];
-const ORIGINALS_STORAGE_KEY = "pingyang-originals-root";
 
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -47,26 +35,24 @@ function useGalleryData() {
 }
 
 /* ── 藏品详情覆盖层 ── */
-function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onChooseLibrary, toggleBgm, bgmMuted, bgmStarted }) {
+function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMuted, bgmStarted }) {
   const [activeImage, setActiveImage] = useState(0);
   const [view, setView] = useState({ scale: 1, x: 0, y: 0 });
-  const [originalUrls, setOriginalUrls] = useState({});
-  const [originalState, setOriginalState] = useState({ role: null, loading: false, error: "" });
   const [isPanning, setIsPanning] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showLightbox, setShowLightbox] = useState(false);
   const [audioState, setAudioState] = useState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
   const imageAreaRef = useRef(null);
   const audioRef = useRef(null);
   const dragRef = useRef(null);
   const didDragRef = useRef(false);
-  const objectUrlsRef = useRef([]);
-  const loadRequestRef = useRef(0);
+  const isScrubRef = useRef(false);
+  const scrubPosRef = useRef(0);
+  const scrubWasPlayingRef = useRef(false);
+  const [scrubDisplay, setScrubDisplay] = useState(0);
 
   const images = artwork?.images || [];
   const currentImage = images[activeImage] || null;
-  const originalUrl = currentImage ? originalUrls[currentImage.role] : null;
-  const activeSource = originalUrl || currentImage?.path;
+  const activeSource = currentImage?.path;
 
   useEffect(() => {
     if (!artwork?.slug) return undefined;
@@ -76,7 +62,9 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
     setAudioState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
 
     const onMetadata = () => setAudioState((state) => ({ ...state, ready: true, duration: audio.duration || 0, error: "" }));
-    const onTime = () => setAudioState((state) => ({ ...state, current: audio.currentTime || 0 }));
+    const onTime = () => {
+      if (!isScrubRef.current) setAudioState((state) => ({ ...state, current: audio.currentTime || 0 }));
+    };
     const onPlay = () => setAudioState((state) => ({ ...state, playing: true }));
     const onPause = () => setAudioState((state) => ({ ...state, playing: false }));
     const onEnded = () => {
@@ -108,23 +96,12 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
   }, [artwork?.slug]);
 
   useEffect(() => {
-    loadRequestRef.current += 1;
-    objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
-    objectUrlsRef.current = [];
-    setOriginalUrls({});
-    setOriginalState({ role: null, loading: false, error: "" });
     setActiveImage(0);
     setView({ scale: 1, x: 0, y: 0 });
   }, [artwork?.slug]);
 
-  useEffect(() => () => {
-    loadRequestRef.current += 1;
-    objectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
-  }, []);
-
   useEffect(() => {
     setView({ scale: 1, x: 0, y: 0 });
-    setOriginalState((state) => ({ ...state, error: "" }));
   }, [activeImage]);
 
   useEffect(() => {
@@ -153,12 +130,9 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
         else imageAreaRef.current?.requestFullscreen?.();
       }
     };
-    const onFullscreen = () => setIsFullscreen(document.fullscreenElement === imageAreaRef.current);
     window.addEventListener("keydown", onKey);
-    document.addEventListener("fullscreenchange", onFullscreen);
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.removeEventListener("fullscreenchange", onFullscreen);
     };
   }, [artwork, onChange, onClose]);
 
@@ -171,41 +145,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
       const scale = Math.max(1, Math.min(6, value.scale + offset));
       return scale === 1 ? { scale, x: 0, y: 0 } : { ...value, scale };
     });
-  };
-
-  const loadOriginal = async () => {
-    if (!currentImage || originalUrl || originalState.loading) return;
-    if (!isTauri()) {
-      setOriginalState({ role: currentImage.role, loading: false, error: "本地原图仅在桌面应用中可用" });
-      return;
-    }
-
-    const requestId = ++loadRequestRef.current;
-    setOriginalState({ role: currentImage.role, loading: true, error: "" });
-    try {
-      const response = await invoke("read_local_image", {
-        originalPath: currentImage.originalPath,
-        libraryRoot: libraryRoot || null,
-      });
-      const bytes = response instanceof ArrayBuffer
-        ? new Uint8Array(response)
-        : response instanceof Uint8Array
-          ? response
-          : new Uint8Array(response);
-      const mimeType = /tiff/i.test(currentImage.mimeType) ? "image/png" : currentImage.mimeType;
-      const url = URL.createObjectURL(new Blob([bytes], { type: mimeType }));
-      if (requestId !== loadRequestRef.current) {
-        URL.revokeObjectURL(url);
-        return;
-      }
-      objectUrlsRef.current.push(url);
-      setOriginalUrls((value) => ({ ...value, [currentImage.role]: url }));
-      setOriginalState({ role: currentImage.role, loading: false, error: "" });
-    } catch (error) {
-      if (requestId === loadRequestRef.current) {
-        setOriginalState({ role: currentImage.role, loading: false, error: String(error) });
-      }
-    }
   };
 
   const onWheel = (event) => {
@@ -242,11 +181,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
     if (!didDragRef.current && view.scale === 1) setShowLightbox(true);
   };
 
-  const toggleImageFullscreen = () => {
-    if (document.fullscreenElement) document.exitFullscreen?.();
-    else imageAreaRef.current?.requestFullscreen?.();
-  };
-
   const toggleAudio = async () => {
     const audio = audioRef.current;
     if (!audio || audioState.error) return;
@@ -261,11 +195,33 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
     }
   };
 
-  const seekAudio = (event) => {
+  const onScrubStart = (e) => {
+    const audio = audioRef.current;
+    if (!audio || audioState.error) return;
+    const v = Number(e.target.value);
+    scrubPosRef.current = v;
+    scrubWasPlayingRef.current = !audio.paused;
+    isScrubRef.current = true;
+    if (!audio.paused) audio.pause();
+    setScrubDisplay(v);
+  };
+
+  const onScrubMove = (e) => {
+    const v = Number(e.target.value);
+    scrubPosRef.current = v;
+    setScrubDisplay(v);
+  };
+
+  const onScrubEnd = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.currentTime = Number(event.target.value);
-    setAudioState((state) => ({ ...state, current: audio.currentTime }));
+    const pos = scrubPosRef.current;
+    audio.currentTime = pos;
+    setAudioState((s) => ({ ...s, current: pos }));
+    isScrubRef.current = false;
+    if (scrubWasPlayingRef.current) {
+      try { await audio.play(); } catch {}
+    }
   };
 
   return (
@@ -320,15 +276,6 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
                 />
               )}
             </div>
-            {/* 缩略图不用工具栏 */}
-            {(originalUrl || originalState.error) && (
-              <div className={`original-image-status${originalState.error ? " is-error" : ""}`}>
-                {originalState.error
-                  ? <><span>{originalState.error}</span><button type="button" onClick={onChooseLibrary}>选择原图库</button></>
-                  : <span>本地原图 · {currentImage.width} × {currentImage.height}</span>
-                }
-              </div>
-            )}
           </div>
 
           {/* 图片缩略图切换（仅多图时显示） */}
@@ -378,16 +325,39 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, libraryRoot, onCh
             <p className="detail-desc">{artwork.description}</p>
           </div>
           <div className="detail-info-footer">
-            <button
-              type="button"
-              className="detail-audio-btn"
-              onClick={toggleAudio}
-              disabled={!audioState.ready || Boolean(audioState.error)}
-              aria-label={audioState.playing ? "暂停导览" : "播放导览"}
-            >
-              {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
-              <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
-            </button>
+            <div className="detail-audio-panel">
+              <button
+                type="button"
+                className="detail-audio-btn"
+                onClick={toggleAudio}
+                disabled={!audioState.ready || Boolean(audioState.error)}
+                aria-label={audioState.playing ? "暂停导览" : "播放导览"}
+              >
+                {audioState.playing ? <Pause size={15} /> : <Volume2 size={15} />}
+                <span>{audioState.playing ? "暂停" : "语音讲解"}</span>
+              </button>
+              <div className="detail-audio-timeline">
+                <div className="detail-audio-meta">
+                  {audioState.error && <span>{audioState.error}</span>}
+                  <span>{formatTime(audioState.current)} / {formatTime(audioState.duration)}</span>
+                </div>
+                <input
+                  className="detail-audio-range"
+                  type="range"
+                  min="0"
+                  max={audioState.duration || 0}
+                  step="any"
+                  value={isScrubRef.current ? scrubDisplay : Math.min(audioState.current, audioState.duration || 0)}
+                  onMouseDown={onScrubStart}
+                  onTouchStart={onScrubStart}
+                  onChange={onScrubMove}
+                  onMouseUp={onScrubEnd}
+                  onTouchEnd={onScrubEnd}
+                  disabled={!audioState.ready || Boolean(audioState.error)}
+                  aria-label="导览音频进度"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -443,34 +413,6 @@ export default function App() {
     startForOpening: startBgm,
     toggle: toggleBgm,
   } = useBackgroundMusic();
-  const [libraryRoot, setLibraryRoot] = useState(() => {
-    try {
-      return window.localStorage.getItem(ORIGINALS_STORAGE_KEY) || "";
-    } catch {
-      return "";
-    }
-  });
-
-  const chooseOriginalLibrary = async () => {
-    if (!isTauri()) return;
-    const selectedDirectory = await open({
-      directory: true,
-      multiple: false,
-      title: "选择 assets/originals 原始图片文件夹",
-    });
-    if (typeof selectedDirectory !== "string") return;
-    setLibraryRoot(selectedDirectory);
-    try {
-      window.localStorage.setItem(ORIGINALS_STORAGE_KEY, selectedDirectory);
-    } catch {
-      // The selected folder still works for the current application session.
-    }
-  };
-
-  const toggleAppFullscreen = () => {
-    if (document.fullscreenElement) document.exitFullscreen?.();
-    else document.documentElement.requestFullscreen?.();
-  };
 
   useEffect(() => {
     const onKey = e => {
@@ -599,8 +541,6 @@ export default function App() {
             artworks={filtered}
             onClose={() => setSelected(null)}
             onChange={changeSelected}
-            libraryRoot={libraryRoot}
-            onChooseLibrary={chooseOriginalLibrary}
             toggleBgm={toggleBgm}
             bgmMuted={bgmMuted}
             bgmStarted={bgmStarted}
