@@ -65,8 +65,8 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
     const onTime = () => {
       if (!isScrubRef.current) setAudioState((state) => ({ ...state, current: audio.currentTime || 0 }));
     };
-    const onPlay = () => setAudioState((state) => ({ ...state, playing: true }));
-    const onPause = () => setAudioState((state) => ({ ...state, playing: false }));
+    const onPlay = () => { if (!isScrubRef.current) setAudioState((state) => ({ ...state, playing: true })); };
+    const onPause = () => { if (!isScrubRef.current) setAudioState((state) => ({ ...state, playing: false })); };
     const onEnded = () => {
       audio.currentTime = 0;
       setAudioState((state) => ({ ...state, playing: false, current: 0 }));
