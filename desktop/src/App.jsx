@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import OpeningIntroPanorama from "./opening/OpeningIntroPanorama";
+import OpeningIntroVideo from "./opening/OpeningIntroVideo";
 import CategorySelect from "./CategorySelect";
 import { shouldShowOpeningIntro } from "./opening/openingIntroSession";
 import useBackgroundMusic from "./useBackgroundMusic";
@@ -461,7 +461,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      {introVisible && <OpeningIntroPanorama startBgm={startBgm} onComplete={completeOpening} />}
+      {introVisible && <OpeningIntroVideo startBgm={startBgm} onComplete={completeOpening} />}
       {!introVisible && phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}

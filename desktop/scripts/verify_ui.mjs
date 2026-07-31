@@ -4,7 +4,7 @@ import path from "node:path";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 const OUTPUT = path.join(ROOT, "design", "screenshots");
-const BASE_URL = process.env.DESKTOP_URL || "http://127.0.0.1:1420";
+const BASE_URL = process.env.DESKTOP_URL || "http://localhost:1420";
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const gallery = JSON.parse(await readFile(path.join(ROOT, "desktop/public/data/artworks.json"), "utf8"));
 const pairedArtwork = gallery.artworks.find((artwork) => artwork.images.length > 1);
@@ -49,11 +49,22 @@ async function assertViewport(label) {
 async function waitForOpeningReady(targetPage) {
   const opening = targetPage.locator(".opening-intro");
   await opening.waitFor();
-  await targetPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.animationReady === "true", null, { timeout: 3500 });
+  await targetPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.animationReady === "true", null, { timeout: 5000 });
+  const mode = await opening.evaluate((element) =>
+    element.classList.contains("opening-video-intro") ? "video" : "living"
+  );
+  if (mode === "video") {
+    const videoReady = await opening.locator("video[data-opening-critical='true']").evaluate((video) =>
+      video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && video.videoWidth > 0
+    );
+    if (!videoReady) throw new Error("opening video started before its critical media decoded");
+    return mode;
+  }
   const imagesReady = await opening.locator("img[data-opening-critical='true']").evaluateAll((images) =>
-    images.length === 4 && images.every((image) => image.complete && image.naturalWidth > 0)
+    images.length === 2 && images.every((image) => image.complete && image.naturalWidth > 0)
   );
   if (!imagesReady) throw new Error("opening timeline started before its critical images decoded");
+  return mode;
 }
 
 async function getBgmState(targetPage) {
@@ -77,61 +88,68 @@ async function assertOpeningIsolation(targetPage, label) {
   }
   await targetPage.getByRole("button", { name: "跳过开屏动画" }).focus();
   await targetPage.keyboard.press("Tab");
-  const activeClass = await targetPage.evaluate(() => document.activeElement?.className);
-  if (activeClass !== "panorama-skip") {
+  const focusStayedOnSkip = await targetPage.evaluate(() => document.activeElement?.classList.contains("living-skip"));
+  if (!focusStayedOnSkip) {
+    const activeClass = await targetPage.evaluate(() => document.activeElement?.className);
     throw new Error(`${label}: keyboard focus escaped opening dialog to ${activeClass}`);
   }
 }
 
-async function openingClipPoints(targetPage) {
-  return targetPage.locator(".panorama-viewport").evaluate((element) =>
-    (getComputedStyle(element).clipPath.match(/%/g) || []).length / 2
-  );
-}
-
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
-  if (await page.locator("link[rel='preload'][as='image'][fetchpriority='high']").count() !== 4) {
+  if (await page.locator("link[rel='preload'][as='video'][href='/opening/opening-guardian-ai.mp4']").count() !== 1) {
+    throw new Error("opening critical video preload is missing");
+  }
+  if (await page.locator("link[rel='preload'][as='image'][fetchpriority='high']").count() < 3) {
     throw new Error("opening critical image preloads are missing");
   }
-  await waitForOpeningReady(page);
+  const openingMode = await waitForOpeningReady(page);
   await page.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.sceneAssetsReady === "true", null, { timeout: 3500 });
   await assertOpeningIsolation(page, "opening");
-  if (await openingClipPoints(page) !== 10) {
-    throw new Error("opening clip path did not start with 10 points");
-  }
   const introStartedAt = Date.now();
   await page.waitForTimeout(1200);
-  if (await openingClipPoints(page) !== 10) {
-    throw new Error("opening clip path changed point count during reveal");
-  }
-  const printLineState = await page.locator(".ink-line").evaluate((element) => ({
-    clipPath: getComputedStyle(element).clipPath,
-    opacity: Number(getComputedStyle(element).opacity),
-  }));
-  if (printLineState.clipPath.includes("50%") || printLineState.opacity < 0.5) {
-    throw new Error(`woodblock line impression did not reveal: ${JSON.stringify(printLineState)}`);
+  const guardianVisible = openingMode === "video"
+    ? await page.locator(".opening-video-stage").evaluate((element) => Number(getComputedStyle(element).opacity) > 0.4)
+    : await page.locator(".guardian-base").evaluateAll((elements) =>
+      elements.length === 2 && elements.every((element) => Number(getComputedStyle(element).opacity) > 0.4)
+    );
+  if (!guardianVisible) {
+    throw new Error("guardian paintings did not reveal");
   }
   await assertViewport("opening");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-current.png") });
-  await page.waitForTimeout(800);
-  const registeredPlates = await page.locator(".ink-plate").evaluateAll((elements) =>
-    elements.every((element) => Number(getComputedStyle(element).opacity) >= 0.5)
-  );
-  if (!registeredPlates) throw new Error("color registration plates did not settle");
+  await page.waitForTimeout(1400);
+  const movingLayersVisible = openingMode === "video"
+    ? await page.locator(".opening-video").evaluate((video) => !video.paused && video.currentTime > 0)
+    : await page.locator(".guardian-atmosphere").evaluateAll((elements) =>
+      elements.length >= 12 && elements.some((element) => Number(getComputedStyle(element).opacity) > 0.2)
+    );
+  if (!movingLayersVisible) throw new Error("guardian painting atmosphere layers did not appear");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-register.png") });
   await page.waitForTimeout(2700);
-  await assertViewport("opening panorama");
+  const livingMotion = openingMode === "video"
+    ? await page.locator(".opening-video").evaluate((video) => video.currentTime)
+    : await page.locator(".guardian-a .ribbon-left").evaluate((element) =>
+      getComputedStyle(element).transform
+    );
+  if (!livingMotion || livingMotion === "none") {
+    throw new Error("guardian painting atmosphere layer did not move");
+  }
+  await assertViewport("opening living painting");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-panorama.png") });
   await page.waitForTimeout(4400);
-  const sealOpacity = await page.locator(".panorama-final-seal").evaluate((element) => Number(getComputedStyle(element).opacity));
+  const sealOpacity = openingMode === "video"
+    ? await page.locator(".opening-video-final").evaluate((element) => Number(getComputedStyle(element).opacity))
+    : await page.locator(".living-final-seal").evaluate((element) => Number(getComputedStyle(element).opacity));
   if (sealOpacity < 0.2) throw new Error("final collection seal did not appear");
   await assertViewport("opening finale");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-finale.png") });
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 3000 });
+  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 6000 });
   const introDuration = Date.now() - introStartedAt;
-  if (introDuration < 10000 || introDuration > 11300) {
-    throw new Error(`opening duration outside 10s target: ${introDuration}ms`);
+  const minIntroDuration = openingMode === "video" ? 12500 : 10000;
+  const maxIntroDuration = openingMode === "video" ? 14500 : 11300;
+  if (introDuration < minIntroDuration || introDuration > maxIntroDuration) {
+    throw new Error(`opening duration outside target: ${introDuration}ms`);
   }
   if (await page.evaluate(() => document.body.style.overflow === "hidden")) {
     throw new Error("opening skip left body scrolling locked");
@@ -174,6 +192,19 @@ try {
   await page.getByRole("button", { name: "图 2" }).click();
   await page.getByRole("button", { name: "播放导览" }).waitFor();
   await page.waitForFunction(() => !document.querySelector(".detail-audio-btn")?.disabled);
+  const audioRangeMax = await page.locator(".detail-audio-range").evaluate((input) => Number(input.max));
+  if (!Number.isFinite(audioRangeMax) || audioRangeMax <= 0) {
+    throw new Error(`detail audio duration was not reflected in the range control: ${audioRangeMax}`);
+  }
+  await page.locator(".detail-audio-range").evaluate((input) => {
+    input.value = String(Math.min(Number(input.max), 3));
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.dispatchEvent(new Event("change", { bubbles: true }));
+  });
+  const audioTimeText = await page.locator(".detail-audio-meta").innerText();
+  if (!audioTimeText.includes("/") || audioTimeText.includes("0:00 / 0:00")) {
+    throw new Error(`detail audio timeline did not render duration: ${audioTimeText}`);
+  }
   await page.getByRole("button", { name: "播放导览" }).click();
   await page.getByRole("button", { name: "暂停导览" }).waitFor();
   await page.getByRole("button", { name: "暂停导览" }).click();
@@ -220,7 +251,7 @@ try {
   }
 
   const delayedContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
-  await delayedContext.route("**/images/py-014/primary.webp", async (route) => {
+  await delayedContext.route("**/opening/opening-guardian-ai.mp4", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 700));
     await route.continue();
   });
@@ -229,24 +260,10 @@ try {
   await delayedPage.locator(".opening-intro").waitFor();
   await delayedPage.waitForTimeout(150);
   if (await delayedPage.locator(".opening-intro").getAttribute("data-animation-ready") !== "false") {
-    throw new Error("opening did not wait for a delayed critical image");
+    throw new Error("opening did not wait for a delayed critical video");
   }
   await waitForOpeningReady(delayedPage);
   await delayedContext.close();
-
-  const deferredContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
-  await deferredContext.route("**/images/py-038/primary.webp", async (route) => {
-    await new Promise((resolve) => setTimeout(resolve, 1800));
-    await route.continue();
-  });
-  const deferredPage = await deferredContext.newPage();
-  await deferredPage.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
-  await waitForOpeningReady(deferredPage);
-  if (await deferredPage.locator(".opening-intro").getAttribute("data-scene-assets-ready") !== "false") {
-    throw new Error("opening waited for a deferred scene image before starting");
-  }
-  await deferredPage.waitForFunction(() => document.querySelector(".opening-intro")?.dataset.sceneAssetsReady === "true", null, { timeout: 3500 });
-  await deferredContext.close();
 
   const reducedContext = await browser.newContext({
     viewport: { width: 1280, height: 800 },

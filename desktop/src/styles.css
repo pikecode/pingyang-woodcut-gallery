@@ -471,46 +471,6 @@ input:focus-visible {
   pointer-events: none;
 }
 
-/* 图片右上角缩放工具条 */
-.image-toolbar {
-  position: absolute; top: 10px; right: 10px; z-index: 5;
-  height: 34px;
-  display: flex; align-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(6px);
-}
-
-.image-toolbar button {
-  width: 34px; height: 34px;
-  display: grid; place-items: center;
-  border-right: 1px solid rgba(0,0,0,0.1);
-  color: rgba(0,0,0,0.6);
-}
-
-.image-toolbar button:last-child { border-right: 0; }
-.image-toolbar button:hover:not(:disabled) { background: rgba(0,0,0,0.06); color: #000; }
-.image-toolbar button:disabled { color: rgba(0,0,0,0.25); cursor: default; }
-.image-toolbar > span { width: 44px; font-size: 10px; color: rgba(0,0,0,0.5); text-align: center; }
-
-/* 原图状态 */
-.original-image-status {
-  position: absolute; bottom: 10px; left: 12px; z-index: 5;
-  max-width: 260px; min-height: 30px; padding: 0 10px;
-  display: flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-  background: rgba(255,255,255,0.85);
-  color: #5A4A20; font-size: 10px;
-  backdrop-filter: blur(6px);
-}
-
-.original-image-status.is-error { border-color: rgba(196,50,26,0.4); color: var(--red); }
-.original-image-status span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.original-image-status button { flex: 0 0 auto; font-size: 10px; text-decoration: underline; color: var(--red); }
-
 /* 图片缩略图切换 */
 .detail-image-thumbs {
   flex-shrink: 0;
@@ -730,12 +690,17 @@ input:focus-visible {
   flex-shrink: 0;
   padding: 14px 28px 18px;
   border-top: 1px solid var(--border);
+}
+
+.detail-audio-panel {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  gap: 14px;
+  width: 100%;
 }
 
 .detail-audio-btn {
+  flex: 0 0 auto;
   display: inline-flex; align-items: center; gap: 8px;
   height: 36px; padding: 0 16px;
   border: none;
@@ -748,6 +713,36 @@ input:focus-visible {
 
 .detail-audio-btn:hover:not(:disabled) { background: rgba(232,180,60,1); }
 .detail-audio-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+.detail-audio-timeline {
+  flex: 1;
+  min-width: 0;
+}
+
+.detail-audio-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  color: rgba(255,255,255,0.42);
+  font-size: 11px;
+}
+
+.detail-audio-meta span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail-audio-range {
+  display: block;
+  width: 100%;
+  accent-color: var(--gold);
+}
+
+.detail-audio-range:disabled {
+  opacity: 0.35;
+}
 
 
 @media (prefers-reduced-motion: reduce) {

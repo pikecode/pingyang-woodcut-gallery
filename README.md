@@ -7,7 +7,7 @@
 ```text
 desktop/                         React + Vite + Tauri 桌面应用
 desktop/public/                  桌面端自有数据与 65 张 WebP 展示图
-desktop/src-tauri/               Rust 后端、原图库读取和打包配置
+desktop/src-tauri/               Tauri 桌面壳和打包配置
 data/gallery.sqlite              规范化藏品数据库
 data/exports/artworks.json       标准数据导出
 assets/originals/{slug}/         438 MB 原始图片，Git 忽略
@@ -20,6 +20,7 @@ scripts/build_web_assets.py      原图 → desktop/public WebP
 ## Desktop 开发
 
 ```sh
+./start-desktop.sh       # 根目录一键启动 Tauri 桌面窗口
 cd desktop
 npm install
 npm run dev             # 浏览器 UI：http://127.0.0.1:1420/
@@ -29,7 +30,7 @@ npm run test:ui         # Desktop 浏览器交互验证
 npm run tauri build     # 生成当前平台安装包
 ```
 
-本地原图不会进入安装包。桌面应用可以在开发环境自动读取根目录 `assets/originals/`，也可以通过顶栏“选择原图库”连接外部图片文件夹。TIFF 仅在内存中转换为 PNG 预览，磁盘原文件不会被修改。
+原始图片不进入安装包，当前桌面端只使用 `desktop/public/images/` 中的 WebP 展示图运行。`assets/originals/` 继续作为数据处理源和后续外部存储备份，不在界面中直接读取。
 
 重新生成桌面展示图片：
 

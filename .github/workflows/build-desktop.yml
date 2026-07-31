@@ -55,6 +55,14 @@ jobs:
         working-directory: desktop
         run: npm ci
 
+      - name: Run frontend build
+        working-directory: desktop
+        run: npm run build
+
+      - name: Run Rust tests
+        working-directory: desktop/src-tauri
+        run: cargo test
+
       - name: Build Tauri app
         working-directory: desktop
         run: npm run tauri build
