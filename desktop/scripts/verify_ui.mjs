@@ -83,8 +83,20 @@ async function getBgmState(targetPage) {
 }
 
 async function assertOpeningIsolation(targetPage, label) {
-  if (await targetPage.locator(".cat-root, .gallery-topbar, .gallery-card").count()) {
+  if (await targetPage.locator(".gallery-topbar, .gallery-card").count()) {
     throw new Error(`${label}: background application mounted below opening`);
+  }
+  const layerOrder = await targetPage.evaluate(() => {
+    const opening = document.querySelector(".opening-intro");
+    const category = document.querySelector(".cat-root");
+    if (!opening || !category) return null;
+    return {
+      openingZ: Number(getComputedStyle(opening).zIndex),
+      categoryZ: Number(getComputedStyle(category).zIndex),
+    };
+  });
+  if (layerOrder && layerOrder.openingZ <= layerOrder.categoryZ) {
+    throw new Error(`${label}: opening is not layered above the prepared category page`);
   }
   await targetPage.getByRole("button", { name: "跳过开屏动画" }).focus();
   await targetPage.keyboard.press("Tab");
@@ -138,16 +150,18 @@ try {
   await assertViewport("opening living painting");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-panorama.png") });
   await page.waitForTimeout(4400);
-  const sealOpacity = openingMode === "video"
-    ? await page.locator(".opening-video-final").evaluate((element) => Number(getComputedStyle(element).opacity))
-    : await page.locator(".living-final-seal").evaluate((element) => Number(getComputedStyle(element).opacity));
-  if (sealOpacity < 0.2) throw new Error("final collection seal did not appear");
+  const finaleVisible = openingMode === "video"
+    ? await page.locator(".opening-intro").evaluate((element) =>
+      element.classList.contains("panorama-intro") || element.classList.contains("living-intro")
+    )
+    : await page.locator(".living-final-seal").evaluate((element) => Number(getComputedStyle(element).opacity) > 0.2);
+  if (!finaleVisible) throw new Error("final collection seal did not appear");
   await assertViewport("opening finale");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-finale.png") });
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 6000 });
+  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 18000 });
   const introDuration = Date.now() - introStartedAt;
-  const minIntroDuration = openingMode === "video" ? 12500 : 10000;
-  const maxIntroDuration = openingMode === "video" ? 14500 : 11300;
+  const minIntroDuration = openingMode === "video" ? 19000 : 10000;
+  const maxIntroDuration = openingMode === "video" ? 22000 : 11300;
   if (introDuration < minIntroDuration || introDuration > maxIntroDuration) {
     throw new Error(`opening duration outside target: ${introDuration}ms`);
   }

@@ -2,10 +2,12 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { markOpeningIntroSeen } from "./openingIntroSession";
 import OpeningIntroLivingPainting from "./OpeningIntroLivingPainting";
+import OpeningIntroPanorama from "./OpeningIntroPanorama";
 import "./opening-intro-video.css";
 
 const VIDEO_SOURCE = "/opening/opening-guardian-ai.mp4";
 const POSTER_SOURCE = "/opening/opening-guardian-ai-poster.jpg";
+const END_FRAME_SOURCE = "/opening/opening-guardian-ai-end.jpg";
 const VIDEO_READY_TIMEOUT = 3000;
 
 function waitForVideo(video) {
@@ -37,7 +39,7 @@ function waitForVideo(video) {
 }
 
 export default function OpeningIntroVideo({ startBgm, onComplete }) {
-  const [fallback, setFallback] = useState(false);
+  const [phase, setPhase] = useState("video");
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const skipRef = useRef(null);
@@ -55,7 +57,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
   };
 
   useLayoutEffect(() => {
-    if (fallback) return undefined;
+    if (phase !== "video") return undefined;
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return undefined;
@@ -67,14 +69,13 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
 
     const context = gsap.context(() => {
       gsap.set(".opening-video-stage", { opacity: 0, scale: 1.015 });
-      gsap.set(".opening-video-final", { opacity: 0, y: 20 });
     }, container);
 
     const start = async () => {
       const ready = await waitForVideo(video);
       if (cancelled || finishedRef.current) return;
       if (!ready) {
-        setFallback(true);
+        setPhase("fallback");
         return;
       }
 
@@ -94,13 +95,12 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
       try {
         await video.play();
       } catch {
-        if (!cancelled && !finishedRef.current) setFallback(true);
+        if (!cancelled && !finishedRef.current) setPhase("fallback");
         return;
       }
 
       gsap.timeline({ defaults: { ease: "sine.inOut" } })
-        .to(".opening-video-stage", { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, 0)
-        .to(".opening-video-final", { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 9.7);
+        .to(".opening-video-stage", { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, 0);
     };
 
     start();
@@ -111,10 +111,22 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
       video.pause();
       context.revert();
     };
-  }, [fallback]);
+  }, [phase]);
 
-  if (fallback) {
+  if (phase === "fallback") {
     return <OpeningIntroLivingPainting startBgm={startBgm} onComplete={onComplete} />;
+  }
+
+  if (phase === "outro") {
+    return (
+      <>
+        <OpeningIntroPanorama startBgm={async () => {}} onComplete={onComplete} />
+        <div className="opening-video-bridge" aria-hidden="true">
+          <img src={END_FRAME_SOURCE} alt="" />
+          <span />
+        </div>
+      </>
+    );
   }
 
   const skip = () => {
@@ -162,22 +174,16 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
           playsInline
           data-opening-critical="true"
           onEnded={() => {
-            gsap.to(containerRef.current, { opacity: 0, duration: 0.72, ease: "sine.inOut", onComplete: finish });
+            setPhase("outro");
           }}
           onError={() => {
-            if (!finishedRef.current) setFallback(true);
+            if (!finishedRef.current) setPhase("fallback");
           }}
         />
       </div>
 
       <div className="opening-video-vignette" aria-hidden="true" />
       <div className="opening-video-grain" aria-hidden="true" />
-
-      <div className="opening-video-final" aria-hidden="true">
-        <span>山西临汾 · 国家级非物质文化遗产</span>
-        <strong>平阳木版年画</strong>
-        <small>博观集 · 数字馆藏</small>
-      </div>
     </div>
   );
 }
