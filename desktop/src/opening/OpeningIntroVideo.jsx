@@ -40,7 +40,6 @@ function waitForVideo(video) {
 
 export default function OpeningIntroVideo({ startBgm, onComplete }) {
   const [phase, setPhase] = useState("video");
-  const [showPanorama, setShowPanorama] = useState(false);
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const skipRef = useRef(null);
@@ -118,6 +117,17 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
     return <OpeningIntroLivingPainting startBgm={startBgm} onComplete={onComplete} />;
   }
 
+  if (phase === "panorama") {
+    return (
+      <OpeningIntroPanorama
+        startBgm={async () => {}}
+        onComplete={onComplete}
+        handoffFromVideo
+        handoffFrameSrc={END_FRAME_SOURCE}
+      />
+    );
+  }
+
   const skip = () => {
     if (finishedRef.current) return;
     videoRef.current?.pause();
@@ -164,7 +174,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
             playsInline
             data-opening-critical="true"
             onEnded={() => {
-              if (!finishedRef.current) setShowPanorama(true);
+              if (!finishedRef.current) setPhase("panorama");
             }}
             onError={() => {
               if (!finishedRef.current) setPhase("fallback");
@@ -176,14 +186,6 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
         <div className="opening-video-grain" aria-hidden="true" />
       </div>
 
-      {showPanorama && (
-        <OpeningIntroPanorama
-          startBgm={async () => {}}
-          onComplete={onComplete}
-          handoffFromVideo
-          handoffFrameSrc={END_FRAME_SOURCE}
-        />
-      )}
     </>
   );
 }

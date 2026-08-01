@@ -7,6 +7,8 @@ const INITIAL_CLIP = "polygon(43% 7%, 60% 3%, 67% 20%, 64% 39%, 72% 57%, 64% 93%
 const FULL_CLIP = "polygon(0% 0%, 50% 0%, 100% 0%, 100% 34%, 100% 67%, 100% 100%, 67% 100%, 34% 100%, 0% 100%, 0% 50%)";
 const CLOSING_CLIP = "polygon(42% 5%, 61% 2%, 69% 18%, 65% 41%, 73% 60%, 63% 95%, 43% 98%, 34% 78%, 38% 55%, 30% 29%)";
 const IMAGE_READY_TIMEOUT = 2000;
+const VIDEO_HANDOFF_PRELUDE_DELAY = 0.28;
+const VIDEO_HANDOFF_FADE_DURATION = 0.86;
 const TIMING = {
   paper: 0,
   impression: 0.3,
@@ -46,8 +48,8 @@ async function decodeOpeningImages(images) {
   }));
 }
 
-function addTimelineLabels(timeline) {
-  Object.entries(TIMING).forEach(([label, position]) => timeline.addLabel(label, position));
+function addTimelineLabels(timeline, offset = 0) {
+  Object.entries(TIMING).forEach(([label, position]) => timeline.addLabel(label, position + offset));
 }
 
 function addPrintmakingPrelude(timeline) {
@@ -227,10 +229,11 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
       container.dataset.animationReady = "true";
       timelineContext = gsap.context(() => {
         const timeline = gsap.timeline({ defaults: { ease: "sine.inOut" } });
+        const handoffDelay = handoffFromVideo ? VIDEO_HANDOFF_PRELUDE_DELAY : 0;
         timelineRef.current = timeline;
-        addTimelineLabels(timeline);
+        addTimelineLabels(timeline, handoffDelay);
         if (handoffFromVideo) {
-          timeline.to(".panorama-handoff-veil", { opacity: 0, duration: 0.88, ease: "sine.inOut" }, "paper");
+          timeline.to(".panorama-handoff-veil", { opacity: 0, duration: VIDEO_HANDOFF_FADE_DURATION, ease: "sine.inOut" }, 0);
         }
         addPrintmakingPrelude(timeline);
         addFirstScene(timeline);
