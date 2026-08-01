@@ -150,7 +150,7 @@ function addFinale(timeline, container, finish) {
     .to(container, { opacity: 0, duration: 0.65, onComplete: finish }, "exit");
 }
 
-export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFromVideo = false }) {
+export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFromVideo = false, handoffFrameSrc = null }) {
   const containerRef = useRef(null);
   const skipRef = useRef(null);
   const timelineRef = useRef(null);
@@ -201,6 +201,9 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
       gsap.set(".panorama-folio", { opacity: 0, y: 80, rotation: 0 });
       gsap.set(".panorama-final", { opacity: 0, y: 22 });
       gsap.set(".panorama-final-seal", { opacity: 0, scale: 1.18, rotation: 5 });
+      if (handoffFromVideo) {
+        gsap.set(".panorama-handoff-veil", { opacity: 1 });
+      }
     }, container);
 
     const startTimeline = async () => {
@@ -226,6 +229,9 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
         const timeline = gsap.timeline({ defaults: { ease: "sine.inOut" } });
         timelineRef.current = timeline;
         addTimelineLabels(timeline);
+        if (handoffFromVideo) {
+          timeline.to(".panorama-handoff-veil", { opacity: 0, duration: 0.88, ease: "sine.inOut" }, "paper");
+        }
         addPrintmakingPrelude(timeline);
         addFirstScene(timeline);
         addSecondScene(timeline);
@@ -371,6 +377,12 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
         </div>
         <small>博观集 · 数字馆藏</small>
       </div>
+
+      {handoffFromVideo && (
+        <div className="panorama-handoff-veil" aria-hidden="true">
+          {handoffFrameSrc && <img src={handoffFrameSrc} alt="" />}
+        </div>
+      )}
     </div>
   );
 }
