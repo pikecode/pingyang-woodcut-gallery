@@ -462,7 +462,7 @@ export default function App() {
   return (
     <div className="app-shell">
       {introVisible && <OpeningIntroVideo startBgm={startBgm} onComplete={completeOpening} />}
-      {phase === "category" && (
+      {!introVisible && phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
           toggleBgm={toggleBgm}
