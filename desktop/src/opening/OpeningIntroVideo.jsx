@@ -173,9 +173,9 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
           playsInline
           data-opening-critical="true"
           onEnded={() => {
-            const el = containerRef.current;
-            if (!el || finishedRef.current) return;
-            gsap.to(el, {
+            const stage = containerRef.current?.querySelector(".opening-video-stage");
+            if (!stage || finishedRef.current) return;
+            gsap.to(stage, {
               opacity: 0,
               duration: 0.22,
               ease: "sine.in",
