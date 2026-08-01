@@ -150,7 +150,7 @@ function addFinale(timeline, container, finish) {
     .to(container, { opacity: 0, duration: 0.65, onComplete: finish }, "exit");
 }
 
-export default function OpeningIntroPanorama({ startBgm, onComplete }) {
+export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFromVideo = false }) {
   const containerRef = useRef(null);
   const skipRef = useRef(null);
   const timelineRef = useRef(null);
@@ -264,7 +264,7 @@ export default function OpeningIntroPanorama({ startBgm, onComplete }) {
   return (
     <div
       ref={containerRef}
-      className="opening-intro panorama-intro"
+      className={`opening-intro panorama-intro${handoffFromVideo ? " is-video-handoff" : ""}`}
       data-animation-ready="false"
       data-scene-assets-ready="false"
       role="dialog"

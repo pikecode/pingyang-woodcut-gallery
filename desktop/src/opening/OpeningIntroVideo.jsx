@@ -120,10 +120,11 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
   if (phase === "outro") {
     return (
       <>
-        <OpeningIntroPanorama startBgm={async () => {}} onComplete={onComplete} />
+        <OpeningIntroPanorama startBgm={async () => {}} onComplete={onComplete} handoffFromVideo />
         <div className="opening-video-bridge" aria-hidden="true">
-          <img src={END_FRAME_SOURCE} alt="" />
-          <span />
+          <img className="opening-video-bridge-frame" src={END_FRAME_SOURCE} alt="" />
+          <span className="opening-video-bridge-warmth" />
+          <span className="opening-video-bridge-grain" />
         </div>
       </>
     );
