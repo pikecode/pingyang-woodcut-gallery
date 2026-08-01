@@ -173,7 +173,16 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
           playsInline
           data-opening-critical="true"
           onEnded={() => {
-            setPhase("outro");
+            const el = containerRef.current;
+            if (!el || finishedRef.current) return;
+            gsap.to(el, {
+              opacity: 0,
+              duration: 0.22,
+              ease: "sine.in",
+              onComplete: () => {
+                if (!finishedRef.current) setPhase("outro");
+              },
+            });
           }}
           onError={() => {
             if (!finishedRef.current) setPhase("fallback");

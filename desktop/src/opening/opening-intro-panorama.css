@@ -61,10 +61,15 @@
   to { background-color: #e3e1d9; }
 }
 
+.panorama-intro.is-video-handoff {
+  background: #1a130d;
+}
+
 .panorama-handoff-veil {
   position: absolute;
   inset: 0;
   z-index: 80;
+  background: #1a130d;
   pointer-events: none;
 }
 
