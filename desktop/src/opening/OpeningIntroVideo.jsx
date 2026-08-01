@@ -40,6 +40,7 @@ function waitForVideo(video) {
 
 export default function OpeningIntroVideo({ startBgm, onComplete }) {
   const [phase, setPhase] = useState("video");
+  const [showPanorama, setShowPanorama] = useState(false);
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const skipRef = useRef(null);
@@ -117,17 +118,6 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
     return <OpeningIntroLivingPainting startBgm={startBgm} onComplete={onComplete} />;
   }
 
-  if (phase === "outro") {
-    return (
-      <OpeningIntroPanorama
-        startBgm={async () => {}}
-        onComplete={onComplete}
-        handoffFromVideo
-        handoffFrameSrc={END_FRAME_SOURCE}
-      />
-    );
-  }
-
   const skip = () => {
     if (finishedRef.current) return;
     videoRef.current?.pause();
@@ -144,54 +134,56 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="opening-intro opening-video-intro"
-      data-animation-ready="false"
-      data-scene-assets-ready="false"
-      data-video-ready="false"
-      role="dialog"
-      aria-modal="true"
-      aria-label="平阳木版年画开屏动画"
-      onKeyDown={keepDialogFocus}
-    >
-      <button ref={skipRef} className="living-skip opening-video-skip" type="button" onClick={skip} aria-label="跳过开屏动画">
-        跳过
-      </button>
+    <>
+      <div
+        ref={containerRef}
+        className="opening-intro opening-video-intro"
+        data-animation-ready="false"
+        data-scene-assets-ready="false"
+        data-video-ready="false"
+        role="dialog"
+        aria-modal="true"
+        aria-label="平阳木版年画开屏动画"
+        onKeyDown={keepDialogFocus}
+      >
+        <button ref={skipRef} className="living-skip opening-video-skip" type="button" onClick={skip} aria-label="跳过开屏动画">
+          跳过
+        </button>
 
-      <div className="opening-video-bg" aria-hidden="true">
-        <img src={POSTER_SOURCE} alt="" />
+        <div className="opening-video-bg" aria-hidden="true">
+          <img src={POSTER_SOURCE} alt="" />
+        </div>
+        <div className="opening-video-stage" aria-hidden="true">
+          <video
+            ref={videoRef}
+            className="opening-video"
+            src={VIDEO_SOURCE}
+            poster={POSTER_SOURCE}
+            preload="auto"
+            muted
+            playsInline
+            data-opening-critical="true"
+            onEnded={() => {
+              if (!finishedRef.current) setShowPanorama(true);
+            }}
+            onError={() => {
+              if (!finishedRef.current) setPhase("fallback");
+            }}
+          />
+        </div>
+
+        <div className="opening-video-vignette" aria-hidden="true" />
+        <div className="opening-video-grain" aria-hidden="true" />
       </div>
-      <div className="opening-video-stage" aria-hidden="true">
-        <video
-          ref={videoRef}
-          className="opening-video"
-          src={VIDEO_SOURCE}
-          poster={POSTER_SOURCE}
-          preload="auto"
-          muted
-          playsInline
-          data-opening-critical="true"
-          onEnded={() => {
-            const stage = containerRef.current?.querySelector(".opening-video-stage");
-            if (!stage || finishedRef.current) return;
-            gsap.to(stage, {
-              opacity: 0,
-              duration: 0.22,
-              ease: "sine.in",
-              onComplete: () => {
-                if (!finishedRef.current) setPhase("outro");
-              },
-            });
-          }}
-          onError={() => {
-            if (!finishedRef.current) setPhase("fallback");
-          }}
+
+      {showPanorama && (
+        <OpeningIntroPanorama
+          startBgm={async () => {}}
+          onComplete={onComplete}
+          handoffFromVideo
+          handoffFrameSrc={END_FRAME_SOURCE}
         />
-      </div>
-
-      <div className="opening-video-vignette" aria-hidden="true" />
-      <div className="opening-video-grain" aria-hidden="true" />
-    </div>
+      )}
+    </>
   );
 }
