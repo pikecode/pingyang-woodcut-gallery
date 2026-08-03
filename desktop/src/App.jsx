@@ -6,6 +6,7 @@ import useBackgroundMusic from "./useBackgroundMusic";
 import {
   ChevronLeft,
   ChevronRight,
+  Home,
   Pause,
   Search,
   Volume2,
@@ -383,7 +384,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
 /* ── 藏品卡片（横向展览风格）── */
 function ArtworkCard({ artwork, onOpen }) {
   return (
-    <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
+    <button className="gallery-card" onClick={(e) => { console.log("Card clicked:", artwork.slug); onOpen(artwork); }} aria-label={`查看《${artwork.title}》`}>
       <div className="card-img-wrap">
         <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
       </div>
@@ -462,12 +463,13 @@ export default function App() {
   return (
     <div className="app-shell">
       {introVisible && <OpeningIntroVideo startBgm={startBgm} onComplete={completeOpening} />}
-      {!introVisible && phase === "category" && (
+      {phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
           toggleBgm={toggleBgm}
           bgmMuted={bgmMuted}
           bgmStarted={bgmStarted}
+          inactive={introVisible}
         />
       )}
 
@@ -476,8 +478,8 @@ export default function App() {
           {/* 顶栏：大字品牌名 + 图标按钮 */}
           <header className="gallery-topbar">
             <div className="topbar-left">
-              <button className="topbar-back-btn" onClick={replayOpening} aria-label="重播开屏动画">
-                <ChevronLeft size={18} />
+              <button className="topbar-back-btn" onClick={replayOpening} aria-label="回到首页">
+                <Home size={18} />
               </button>
               <h1 className="topbar-title">平阳木版年画·博观集</h1>
             </div>
