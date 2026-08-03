@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "平阳木版年画·博观集",
+  "productName": "PingyangGallery",
   "version": "0.1.0",
   "identifier": "com.pikecode.pingyang",
   "build": {
