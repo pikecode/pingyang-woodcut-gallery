@@ -9,7 +9,7 @@ const VIDEO_SOURCE = "/opening/opening-guardian-ai.mp4";
 const POSTER_SOURCE = "/opening/opening-guardian-ai-poster.jpg";
 const END_FRAME_SOURCE = "/opening/opening-guardian-ai-end.jpg";
 const VIDEO_READY_TIMEOUT = 3000;
-const VIDEO_PLAYBACK_RATE = 0.7;
+const VIDEO_PLAYBACK_RATE = 1.0;
 
 function waitForVideo(video) {
   if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {

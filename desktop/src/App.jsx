@@ -59,6 +59,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
     if (!artwork?.slug) return undefined;
     const audio = new Audio(`/audio/${artwork.slug}.m4a`);
     audio.preload = "metadata";
+    audio.playbackRate = 0.7;
     audioRef.current = audio;
     setAudioState({ ready: false, playing: false, current: 0, duration: 0, error: "" });
 
