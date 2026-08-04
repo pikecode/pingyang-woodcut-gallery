@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "dataset": "20260803-official-woodcut-documents",
-  "importedAt": "2026-08-03T23:26:45.602018+00:00",
+  "importedAt": "2026-08-04T16:46:32.277361+00:00",
   "sourceDirectory": "/Users/ompeak/Desktop/aaa/20260803修订版木版年画",
   "imageSourceDirectory": "/Users/ompeak/Desktop/aaa/平阳木版年画",
   "sourceDocuments": [
@@ -5231,6 +5231,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 1,
           "sourceTitle": "左右门神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-001/primary.webp",
           "bytes": 194792,
           "sha256": "08b3084091ad82b0487040b4d2c246a77cc93f99c1bdd39fcb56ab73a4d4330d",
@@ -5320,6 +5325,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 2,
           "sourceTitle": "井神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-002/primary.webp",
           "bytes": 144957,
           "sha256": "20c8b4a7dd6cfcabf50aadcedff1b66ef3b0ed2844adf8010ea3bf31b83a56b8",
@@ -5409,6 +5419,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 3,
           "sourceTitle": "仓神位",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-003/primary.webp",
           "bytes": 193606,
           "sha256": "07c48ffff54eb42e1ecab1dfd71a88f4f4f55558408687c31cc5f63b68d111fd",
@@ -5498,6 +5513,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 4,
           "sourceTitle": "地宁",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-004/primary.webp",
           "bytes": 159764,
           "sha256": "0a6aa7eb205780261725f6a38c49920a83cec185f5179a7336ff46868cb65d2c",
@@ -5587,6 +5607,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 5,
           "sourceTitle": "客车神位",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-005/primary.webp",
           "bytes": 154904,
           "sha256": "c8212bf84239a9b1037084e091f0e51704f1a6fd95b012d44d1a6351510785b8",
@@ -5676,6 +5701,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 6,
           "sourceTitle": "一本万利",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-006/primary.webp",
           "bytes": 58689,
           "sha256": "4e0ff9bb62dfb2fb6f4ac4ef3873c40ab2f8da859b05d4e6dffc69748a8415a8",
@@ -5765,6 +5795,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 7,
           "sourceTitle": "神农",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-007/primary.webp",
           "bytes": 151906,
           "sha256": "7603f2f237165145c897ec0a0ff8f42822af1b68edd2ba9c6b9b602a96019343",
@@ -5854,6 +5889,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 8,
           "sourceTitle": "家堂",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-008/primary.webp",
           "bytes": 174208,
           "sha256": "6a74fa4a9ac3f681c3ba7c5a57d93e0158d5103d3fe63ae267356150eeaf1684",
@@ -5943,6 +5983,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 9,
           "sourceTitle": "女十忙",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-009/primary.webp",
           "bytes": 152279,
           "sha256": "a1166cf29798e952473ffc98bb88e8c149938884a8954a78b592fe806f92d124",
@@ -6032,6 +6077,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 10,
           "sourceTitle": "四季花卉",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-010/primary.webp",
           "bytes": 138635,
           "sha256": "06dfc6f385b857352bb5394b6c3d16b490391b730fa81c5d83d40ee66aa4e128",
@@ -6121,6 +6171,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 11,
           "sourceTitle": "新春大吉",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-011/primary.webp",
           "bytes": 151381,
           "sha256": "aeff495a8976a971d2056b822347a17fc3afdecc1e533bce96e626426a3c37be",
@@ -6210,6 +6265,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 12,
           "sourceTitle": "广寒宫",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-012/primary.webp",
           "bytes": 212443,
           "sha256": "b667e6c0e44716a3fcc1a1eceaea0571b65593aab133ae95a3c45bc420038b8a",
@@ -6299,6 +6359,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 13,
           "sourceTitle": "白衣菩萨",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-013/primary.webp",
           "bytes": 176870,
           "sha256": "47dd81479823d6366644f548f5683ee7e3159d1ccaa11abb2174878b0031be37",
@@ -6388,6 +6453,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 14,
           "sourceTitle": "天官抓星",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-014/primary.webp",
           "bytes": 250903,
           "sha256": "d6eb2746c703e94cc5943b93b794d459e214069e042194e535da95e9481ecfa3",
@@ -6477,6 +6547,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 15,
           "sourceTitle": "神荼郁垒",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-015/primary.webp",
           "bytes": 54822,
           "sha256": "56c1d0ff781b8da4f3328c1f705869ea8cd19d35b58fd3f2cb31f99061219142",
@@ -6495,6 +6570,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 15,
           "sourceTitle": "神荼郁垒",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-015/part-2.webp",
           "bytes": 53070,
           "sha256": "89c7b65dd645d7a62f9435d959e608efb94dadfd341e12545fecda36ff687533",
@@ -6584,6 +6664,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 16,
           "sourceTitle": "张仙护子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-016/primary.webp",
           "bytes": 695029,
           "sha256": "e1052f262ce9430193c75ba553f8ba2adf13b0630415894d46beff2fd2ba92ed",
@@ -6602,6 +6687,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 16,
           "sourceTitle": "张仙护子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-016/part-2.webp",
           "bytes": 682412,
           "sha256": "3cfd9189fc83fdef4dcd398d6d23cfa473ed1e81567c8915d6e4f14f702eeaef",
@@ -6691,6 +6781,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 17,
           "sourceTitle": "南天门",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-017/primary.webp",
           "bytes": 599851,
           "sha256": "6dbb09bfa5d51b67066c70007f50a459120c789656aec1942fab7b68c02dce09",
@@ -6780,6 +6875,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 18,
           "sourceTitle": "南天门",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-018/primary.webp",
           "bytes": 507427,
           "sha256": "369e250f002da2b97251890ca9f57bae696a8fb88f70e55201a24d144b626e5b",
@@ -6869,6 +6969,11 @@
           "sourceDocument": "平阳木版年画作品登记表20.docx",
           "sourceRecordIndex": 19,
           "sourceTitle": "天地神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg20-019/primary.webp",
           "bytes": 1066805,
           "sha256": "10c0934e9e49bb81e35cbb351da4ab3fd4345f43419b090ed32440b0ee6a5d0c",
@@ -6958,6 +7063,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 1,
           "sourceTitle": "赵云救阿斗",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-001/primary.webp",
           "bytes": 67111,
           "sha256": "249b97f125f68eb9af4a8e3650e152473551b26d314f1eddd046b9e5175ee306",
@@ -7047,6 +7157,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 2,
           "sourceTitle": "大对刀线板",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-002/primary.webp",
           "bytes": 156607,
           "sha256": "9beeccc03cabf8d6d11f5e3908cc164a0a7b25cc3e170978d1c2adf5b61f734b",
@@ -7136,6 +7251,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 3,
           "sourceTitle": "福水善火",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-003/primary.webp",
           "bytes": 98533,
           "sha256": "c13a8c59424eb1fe1d7c0c628e3c1db25545712de0b3adc7c400bb8312f8a705",
@@ -7225,6 +7345,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 4,
           "sourceTitle": "福字",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-004/primary.webp",
           "bytes": 75003,
           "sha256": "50f0947fa6bdd1f7cdec7e57459f50e6d7c844c5c64a6951922ec68e12d4ffb9",
@@ -7314,6 +7439,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 5,
           "sourceTitle": "五子登科",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-005/primary.webp",
           "bytes": 75026,
           "sha256": "344b156518ab1f24e5f33c5d4232325a8a7613efcdd67a0b300dc7924f2e5a53",
@@ -7403,6 +7533,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 6,
           "sourceTitle": "会票",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-006/primary.webp",
           "bytes": 89846,
           "sha256": "44f75f97e7593a9ebe9e90e83f55f72ad6fdd37db711ce9ea4e0394e63a0c69d",
@@ -7492,6 +7627,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 7,
           "sourceTitle": "会票",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-007/primary.webp",
           "bytes": 111991,
           "sha256": "40fd8b79a86ac5c48218f60bf82d46c547cad5de84abebafba40fa1f40241bfb",
@@ -7581,6 +7721,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 8,
           "sourceTitle": "南天门",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-008/primary.webp",
           "bytes": 73833,
           "sha256": "be7435aef23c3e4bb1e185cfc6c3e33abcbc3009e5753fa63914b9223adf324c",
@@ -7670,6 +7815,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 9,
           "sourceTitle": "侠名",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-009/primary.webp",
           "bytes": 99581,
           "sha256": "f8649d0d74e786733bb16fd264abc14830b8f722192c048bdccfff62987b3fa8",
@@ -7759,6 +7909,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 10,
           "sourceTitle": "金山寺",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-010/primary.webp",
           "bytes": 119658,
           "sha256": "b6616f448fb09d340e7fd4e5eae3564bed6b26600ff8b512365064070fdda583",
@@ -7848,6 +8003,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 11,
           "sourceTitle": "西游记",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-011/primary.webp",
           "bytes": 67837,
           "sha256": "cfe709854a4c74b3c91255414d03e8b62a744e335cf9ef72778688563f901fa1",
@@ -7937,6 +8097,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 12,
           "sourceTitle": "马王、天地、土地",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-012/primary.webp",
           "bytes": 134100,
           "sha256": "487a840827d2488e0b41cca26eeddaabbefceeb7345089116b876045b43241c2",
@@ -8026,6 +8191,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 13,
           "sourceTitle": "吉好耄耋",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-013/primary.webp",
           "bytes": 107473,
           "sha256": "1acf790dc014756a237544cf5dc93158f31848d35dbaebe8074dd457d1140449",
@@ -8115,6 +8285,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 14,
           "sourceTitle": "迎春图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-014/primary.webp",
           "bytes": 84741,
           "sha256": "4e9e58a5237fec7d556853590bd9c4984df755f416fa7daf8133a42e60dee92b",
@@ -8204,6 +8379,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 15,
           "sourceTitle": "庆丰收",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-015/primary.webp",
           "bytes": 65852,
           "sha256": "a4dd4ffbbeb4a9e0d43a5be055288fa5a5674dba0fe02974ddde8e9152560837",
@@ -8293,6 +8473,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 16,
           "sourceTitle": "硕果图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-016/primary.webp",
           "bytes": 70687,
           "sha256": "28bd607fa4f60ede1ad596f1214ab3c41ed17b73e8c95bc5602998caefabc0f6",
@@ -8382,6 +8567,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 17,
           "sourceTitle": "四季如春",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-017/primary.webp",
           "bytes": 88764,
           "sha256": "641c365db9c5f9f519b43e62c3aa77a359aec8d996c7b71d943ae01fd60ea52c",
@@ -8471,6 +8661,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 18,
           "sourceTitle": "猫戏图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-018/primary.webp",
           "bytes": 91152,
           "sha256": "68c9df39d6ff4b2571fe8eaeea4213b0114d5b3bfdf7f2b100c704ed7ea366c0",
@@ -8560,6 +8755,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 19,
           "sourceTitle": "大对刀",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-019/primary.webp",
           "bytes": 183809,
           "sha256": "091f4980568fcaaec060346c17462a7b36ce9acd57c1ff1168e6a5aa555fbc72",
@@ -8649,6 +8849,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 20,
           "sourceTitle": "加官来财",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-020/primary.webp",
           "bytes": 150180,
           "sha256": "51b173bd1d7832a2b20b092846019112019e69470930606590b90f44af17abca",
@@ -8738,6 +8943,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 21,
           "sourceTitle": "武将神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-021/primary.webp",
           "bytes": 123265,
           "sha256": "4b8924d9d18f795328e5d989a78415306217477d62cc37c483afffa8d82704df",
@@ -8827,6 +9037,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 22,
           "sourceTitle": "神虎下山",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-022/primary.webp",
           "bytes": 131235,
           "sha256": "c41806a10c082ff2b08be12d2b569bf6490573f62bcfe52c04239f45b07149ce",
@@ -8916,6 +9131,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 23,
           "sourceTitle": "元帅镇宅",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-023/primary.webp",
           "bytes": 82192,
           "sha256": "e234b0bfa89fba4d7f9ee8554f65234d39e6ddad557007973d8fd665982cf206",
@@ -9007,6 +9227,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 24,
           "sourceTitle": "五福临门",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-024/primary.webp",
           "bytes": 113045,
           "sha256": "2e39f647eb067271b17bbfbf995584b422eb17c4cc17fc2fafb7d117743d4e28",
@@ -9096,6 +9321,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 25,
           "sourceTitle": "武官",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-025/primary.webp",
           "bytes": 71025,
           "sha256": "a089b92bdbf6d82a7d30f23b9bc2c711d2b57e48183ec86e7f8a2dd290384197",
@@ -9185,6 +9415,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 26,
           "sourceTitle": "加官进禄",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-026/primary.webp",
           "bytes": 102611,
           "sha256": "b00718650086a9576ed8186573a95902e5d97ffc8224bd94e5e4702558b5e73b",
@@ -9274,6 +9509,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 27,
           "sourceTitle": "吉祥天官",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-027/primary.webp",
           "bytes": 110122,
           "sha256": "96bf868682cb9779ece88300c363d4f099c933bfaea668c9c121cb3dd85135f2",
@@ -9363,6 +9603,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 28,
           "sourceTitle": "增福相公",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-028/primary.webp",
           "bytes": 66611,
           "sha256": "ca16c6891b14faeacf7bc87608c89830603cc0e4b6aa0eef8719397bf9400646",
@@ -9452,6 +9697,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 29,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": true
+          },
           "path": "/official-images/official-reg42-029/primary.webp",
           "bytes": 48915,
           "sha256": "dd8e603a39406cacd69e7ffe9f03fd0596b4729ba4b995c52f00cfcb12a5aece",
@@ -9541,6 +9791,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 30,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": true
+          },
           "path": "/official-images/official-reg42-030/primary.webp",
           "bytes": 41041,
           "sha256": "b5eae1a4d654dd24541e8789e768868c6471fa45ca660626cbe3b12db19296b6",
@@ -9630,6 +9885,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 31,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-031/primary.webp",
           "bytes": 60399,
           "sha256": "6cd7c45e7c5aa891bb8696eb25bc4a2d165cbbd3d5a0e5ee21797dc0dd9dcea2",
@@ -9719,6 +9979,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 32,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-032/primary.webp",
           "bytes": 47851,
           "sha256": "f9ac2533e4ab39834ff8799d342d7b99c85800e9f94e060dcb7462aca2a32f57",
@@ -9808,6 +10073,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 33,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-033/primary.webp",
           "bytes": 38206,
           "sha256": "2b403e2083e62532f1180773fd60db940f0e2aa15195b9a4f438b09140f80be1",
@@ -9897,6 +10167,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 34,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-034/primary.webp",
           "bytes": 42569,
           "sha256": "86ffc726af6e3fdc5526cc26cefe78747139405a97a8228a779aabb3e6b52a8a",
@@ -9986,6 +10261,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 35,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-035/primary.webp",
           "bytes": 46574,
           "sha256": "ea0526a1478e45a348ed5e5b0212dec65ca367953764ffcf6f33238235e74fd6",
@@ -10075,6 +10355,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 36,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-036/primary.webp",
           "bytes": 41158,
           "sha256": "89328fd84f5d764bf3b4bf44ae60c44502761830cf8b7e9982cb95d1c8ea27c1",
@@ -10164,6 +10449,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 37,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-037/primary.webp",
           "bytes": 46395,
           "sha256": "1edafeb48321bb992c77217f907de5addc0fadcfabd8c92403971520b187b759",
@@ -10253,6 +10543,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 38,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-038/primary.webp",
           "bytes": 42219,
           "sha256": "b8bf9ab326f762d7431f91e220a4022591053c81edcab419c0867ffa564ead92",
@@ -10342,6 +10637,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 39,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-039/primary.webp",
           "bytes": 44650,
           "sha256": "ef03710e6ae59b53895769212b04cd905305104607ca044619fa4b050f26a104",
@@ -10431,6 +10731,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 40,
           "sourceTitle": "十二钗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-040/primary.webp",
           "bytes": 39920,
           "sha256": "61effdba39bde40dfbd3aeaf5260292675b44512fd9546d6a955cbeba019c30a",
@@ -10520,6 +10825,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 41,
           "sourceTitle": "猪",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-041/primary.webp",
           "bytes": 83403,
           "sha256": "e49f2167886cae85ad9f52f266b1aac2f82497eef4367a4ca4b65d76d1520d99",
@@ -10609,6 +10919,11 @@
           "sourceDocument": "平阳木版年画作品登记表42张.docx",
           "sourceRecordIndex": 42,
           "sourceTitle": "猪",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg42-042/primary.webp",
           "bytes": 100386,
           "sha256": "252b31e5a7aaba41145e62d3ef4cac0a5b9a457314d39b1f8d5dbac209643684",
@@ -10698,6 +11013,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 1,
           "sourceTitle": "空城计",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-001/primary.webp",
           "bytes": 1405278,
           "sha256": "35d27ad2ccc0c9fe26b4d4c53714bcd43dd69086dc55b0ff443776bd8d2610f1",
@@ -10787,6 +11107,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 2,
           "sourceTitle": "香山还愿",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-002/primary.webp",
           "bytes": 954090,
           "sha256": "60f7d25e3b28d0ca8b7fa4280209b19bf7b134da9a8716a93399890d9d100bf3",
@@ -10876,6 +11201,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 3,
           "sourceTitle": "兴盛合号",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-003/primary.webp",
           "bytes": 161916,
           "sha256": "6d34cecef58cd860ece7cb04bb6fe85497203852a97064e660177c8a0cbf0d68",
@@ -10965,6 +11295,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 4,
           "sourceTitle": "孙膑骑牛为记",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-004/primary.webp",
           "bytes": 1104550,
           "sha256": "ae74bb6e6337b5584954d69058818132fa054361c99d7e974a56c24e20e1d36f",
@@ -11054,6 +11389,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 5,
           "sourceTitle": "孩童硕果",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-005/primary.webp",
           "bytes": 662631,
           "sha256": "35cb3a2f0e7e29b146dd0d854756a860a3a9e222730ccfb5cd33937e1127497e",
@@ -11143,6 +11483,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 6,
           "sourceTitle": "撷菜",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-006/primary.webp",
           "bytes": 616615,
           "sha256": "2d4791c74db7b99b06232ac87301f95a120f4a1c4e8481541e327197a976ba34",
@@ -11234,6 +11579,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 7,
           "sourceTitle": "捻线",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-007/primary.webp",
           "bytes": 728015,
           "sha256": "f62fbc24c8d90a714e062a8883feed997b3a42827cba0fa0e8a88822118a9e4d",
@@ -11323,6 +11673,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 8,
           "sourceTitle": "连升有余",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-008/primary.webp",
           "bytes": 681952,
           "sha256": "4affc4a480a6dc692d35611db94b3a838d86b59ca4dd416e9b7d542fd2c01d40",
@@ -11412,6 +11767,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 9,
           "sourceTitle": "羽翼双飞",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-009/primary.webp",
           "bytes": 586845,
           "sha256": "4a309e9385410094124bb35e2549a3171c58936222dfd0aee243ae4aade035f6",
@@ -11501,6 +11861,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 10,
           "sourceTitle": "打水",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-010/primary.webp",
           "bytes": 639049,
           "sha256": "9d61fc5721728929ff8473468bb625785946863c666ffd9e23c049fb7e65957b",
@@ -11590,6 +11955,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 11,
           "sourceTitle": "诗书",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-011/primary.webp",
           "bytes": 648151,
           "sha256": "1054c3e9fb8c2e36b0555a725d4e283e5a391a45203802c24350002c125f51cc",
@@ -11681,6 +12051,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 12,
           "sourceTitle": "送茶",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-012/primary.webp",
           "bytes": 586154,
           "sha256": "9695873e8082a78afc87d101d1ce912b16bfd0dd304e8f7b95538abab6f7bab8",
@@ -11770,6 +12145,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 14,
           "sourceTitle": "蛇",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-013/primary.webp",
           "bytes": 1346247,
           "sha256": "c8c5c875233e42134ecaf157025d38a294284a08bdf0462a7deafabac03f82a4",
@@ -11859,6 +12239,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 15,
           "sourceTitle": "鼠",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-014/primary.webp",
           "bytes": 1436032,
           "sha256": "d5ee50e7817dc78c833a72c19c4e04ce6333937dfc5fa8601c2d99d9e67a92fa",
@@ -11948,6 +12333,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 16,
           "sourceTitle": "虎",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-015/primary.webp",
           "bytes": 1422159,
           "sha256": "25ee513abc8711b58a185d965bb02e3eb73c6d503218250b0d0f169e95530212",
@@ -12037,6 +12427,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 17,
           "sourceTitle": "龙",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-016/primary.webp",
           "bytes": 1482537,
           "sha256": "6a44930b10e87b5e3567d02edef60aa4b2c4fe99244a1aab849dd778cf921938",
@@ -12126,6 +12521,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 18,
           "sourceTitle": "兔",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-017/primary.webp",
           "bytes": 1446356,
           "sha256": "e15d8aa6ef014a163cea948638312f040124647971ed62b9e4ff478e23bc754f",
@@ -12215,6 +12615,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 19,
           "sourceTitle": "马",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-018/primary.webp",
           "bytes": 1571851,
           "sha256": "f9ad2ea9748b119a33b4b459f594722599731f7b8dec5c093d0d1d13850183c5",
@@ -12304,6 +12709,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 20,
           "sourceTitle": "羊",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-019/primary.webp",
           "bytes": 1405762,
           "sha256": "38a842d16929bd57601e1ca2742a06719f0b7acf8495917a4c0937a13bb9d953",
@@ -12393,6 +12803,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 21,
           "sourceTitle": "狗",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-020/primary.webp",
           "bytes": 1418447,
           "sha256": "108e9c2589ea00027135072f493eec1438a3eab1ace0f41608480c8d0d40c56f",
@@ -12482,6 +12897,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 22,
           "sourceTitle": "鸡",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-021/primary.webp",
           "bytes": 1475524,
           "sha256": "fd92fed858c43392c29a27edc61bcc2c0d3753fc03466e765e9e6657c9e6182b",
@@ -12571,6 +12991,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 23,
           "sourceTitle": "牛",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-022/primary.webp",
           "bytes": 1476290,
           "sha256": "e51bdf9b015e31bb0841d5a88dbc2cc78483eeded888ce2b6108ca28b33bd018",
@@ -12657,6 +13082,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 24,
           "sourceTitle": "2-11关公像",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-023/primary.webp",
           "bytes": 122003,
           "sha256": "39d5e8923388a51a7648c02fe8e55452c774f4fe6863d47e6a07a96a92fba9d2",
@@ -12745,6 +13175,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 25,
           "sourceTitle": "采药图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-024/primary.webp",
           "bytes": 1376754,
           "sha256": "4698bd587cb7c8e0a2f7322b0571dd8d6f74d79815a89a01e56ff2adf5ebf553",
@@ -12836,6 +13271,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 26,
           "sourceTitle": "富贵有余",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-025/primary.webp",
           "bytes": 911550,
           "sha256": "16b2cc002cffda0c8eea897b1efa25c5739b888d550316a6bc5ad9a816c238e7",
@@ -12925,6 +13365,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 27,
           "sourceTitle": "禹王锁蛟",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-026/primary.webp",
           "bytes": 63846,
           "sha256": "dee0b50085d2e26b9d06ac8237544d532af3d14381867793d8e2ed4b8a9e6aeb",
@@ -13014,6 +13459,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 28,
           "sourceTitle": "东方朔盗桃",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-027/primary.webp",
           "bytes": 78980,
           "sha256": "f86551068ea87af5f498ff71f80707dd3869fd80a07ebc5fbea252c156032235",
@@ -13103,6 +13553,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 29,
           "sourceTitle": "四美图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-028/primary.webp",
           "bytes": 142600,
           "sha256": "c924443d7c4a2a3793f5bd2051797befb0e97d6b9cd5c6b892b0fdd3b85884ce",
@@ -13194,6 +13649,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 30,
           "sourceTitle": "老寿星",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-029/primary.webp",
           "bytes": 49587,
           "sha256": "1797e505893d724c3a2c0f80c2efb8258dddafda2b440cb75543098bdf27b6bb",
@@ -13283,6 +13743,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 31,
           "sourceTitle": "招财进宝",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-030/primary.webp",
           "bytes": 44102,
           "sha256": "a51d8ca84be4d7756356ced5afc9a3d4aa9270101b3f118a70c7789bf383e8ec",
@@ -13372,6 +13837,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 32,
           "sourceTitle": "斑疹娘娘",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-031/primary.webp",
           "bytes": 2049242,
           "sha256": "3a0da51968f5ae50a35ac3e452647ee3f6aa095dcf6721804dec86cf717f61ec",
@@ -13461,6 +13931,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 33,
           "sourceTitle": "关公",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-032/primary.webp",
           "bytes": 48636,
           "sha256": "e0736504d6cd705fbca6bcf0c1e5cb884cb4fcf86cd93434271c99fb154a951c",
@@ -13550,6 +14025,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 34,
           "sourceTitle": "闺房教子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": true,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-033/primary.webp",
           "bytes": 58491,
           "sha256": "907828f6e3d113207895b5a1309d0ece85151b007dab039ab76416ec465b1dab",
@@ -13639,6 +14119,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 35,
           "sourceTitle": "麒麟送子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-034/primary.webp",
           "bytes": 71844,
           "sha256": "c3f0378e0bf0888d7b935ace5b04eb9fbba7bcee237eee6d59639bf14bb84d82",
@@ -13728,6 +14213,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 36,
           "sourceTitle": "灶王爷",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-035/primary.webp",
           "bytes": 1307004,
           "sha256": "f20adc5596b7bb1fcb06e8ddb339a9bc7789f7b9948434d375c218fd55c99f15",
@@ -13817,6 +14307,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 37,
           "sourceTitle": "刘海",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": true,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-036/primary.webp",
           "bytes": 26621,
           "sha256": "2da9dd6b02b5ebab6d4b61342ec5d085d305881730391c109ee88d143b6fc554",
@@ -13906,6 +14401,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 38,
           "sourceTitle": "和谐吉祥",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-037/primary.webp",
           "bytes": 1024800,
           "sha256": "4a0766a074cacef9c2707cc45ddf775ce0518ddc4020dcb0e402cf85d0226edd",
@@ -13997,6 +14497,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 39,
           "sourceTitle": "闺房教子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-038/primary.webp",
           "bytes": 64114,
           "sha256": "2dbf178c2effb93dff2f83ff154ec5ded51cc0547a37fa23f06e1147b3f7492e",
@@ -14086,6 +14591,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 40,
           "sourceTitle": "勒封金龙四文王",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-039/primary.webp",
           "bytes": 1746578,
           "sha256": "38c1064d6c9d642a2fa9d81236949ff7e2b246d6ed4a144abccdc7238b135541",
@@ -14177,6 +14687,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 41,
           "sourceTitle": "和合二仙",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-040/primary.webp",
           "bytes": 54576,
           "sha256": "43832690148b3a13e3f3a1cd7f2fc756c97d457a4075112d4e34fe16830e6549",
@@ -14266,6 +14781,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 42,
           "sourceTitle": "教子图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-041/primary.webp",
           "bytes": 48304,
           "sha256": "8bece50ef6eb7a831497f1fc5ef386146f3d043aade46e0330e65a3aaeb40948",
@@ -14355,6 +14875,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 43,
           "sourceTitle": "天仙送子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-042/primary.webp",
           "bytes": 972820,
           "sha256": "db7e142ec95fe6c3a2f067549a763c58d78581649fa8828e22228ae49ac9ef81",
@@ -14444,6 +14969,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 44,
           "sourceTitle": "全神图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-043/primary.webp",
           "bytes": 1000776,
           "sha256": "32c3148424c0c25c5d7dc4ae3dae75c2cda29f2d722d30ad61f1a0a72d6e5ebb",
@@ -14533,6 +15063,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 45,
           "sourceTitle": "天仙送子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-044/primary.webp",
           "bytes": 962172,
           "sha256": "af52da704ddac6a0d2edd74dd5a7c381898a82db1d1c1a17463b144e2edcb3a5",
@@ -14622,6 +15157,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 46,
           "sourceTitle": "山西夫子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-045/primary.webp",
           "bytes": 1261842,
           "sha256": "fb82369f032ed1b9f580f64f2b2db4c83a83a01d984f785a958a3ae174bceef5",
@@ -14713,6 +15253,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 47,
           "sourceTitle": "天地神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-046/primary.webp",
           "bytes": 72798,
           "sha256": "fb852c158a1fdce056b17f75985f2ecd14bdd3fc7b9d2476a8bc00c28ace4b99",
@@ -14802,6 +15347,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 48,
           "sourceTitle": "协天大帝",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-047/primary.webp",
           "bytes": 1324380,
           "sha256": "a6ab107de8e05f432c5af296aed369bd08ec13aaa4b16bcea00a9d7a6698a8bf",
@@ -14891,6 +15441,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 49,
           "sourceTitle": "福禄寿三星",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-048/primary.webp",
           "bytes": 106788,
           "sha256": "a5f66c8534a5d9f2f9a57a918655ca32243fd4ec9fb16bcb00ddcd9acb6f2007",
@@ -14980,6 +15535,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 50,
           "sourceTitle": "鱼胶喜乐",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-049/primary.webp",
           "bytes": 975816,
           "sha256": "3ab4709034b9e91ffe2bea4e6c8f65c0eb3d75d63cef20d3bbca62e743f0609b",
@@ -15069,6 +15629,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 51,
           "sourceTitle": "八仙庆寿福",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-050/primary.webp",
           "bytes": 1393764,
           "sha256": "d034b5c602e9cf22610f5602331a811cff9101657063ccf72e78ad572bd752ab",
@@ -15158,6 +15723,11 @@
           "sourceDocument": "平阳木版年画作品登记表54张.docx",
           "sourceRecordIndex": 52,
           "sourceTitle": "天地神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-reg54-051/primary.webp",
           "bytes": 889656,
           "sha256": "fa9ceb961c5b3fe02c4e23d52146ad65673c98567d176c2d07324288dada0873",
@@ -15247,6 +15817,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 1,
           "sourceTitle": "钱龙宝马",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-001/primary.webp",
           "bytes": 121126,
           "sha256": "4835b4c6432956a26ae047b4165c642062333ee0c2874ee4f7925dfa8ccc95b5",
@@ -15336,6 +15911,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 2,
           "sourceTitle": "麒麟送子",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-002/primary.webp",
           "bytes": 112529,
           "sha256": "5fc149ef7b798ae545bc411db48525d90e9c6052126fe84ce8fd206aff0f253c",
@@ -15425,6 +16005,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 3,
           "sourceTitle": "福禄寿",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-003/primary.webp",
           "bytes": 137375,
           "sha256": "794501942c33b55d41f61f0e2ee4b67d07dcd29d5f1309d29ba294a5b21879d2",
@@ -15514,6 +16099,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 4,
           "sourceTitle": "连中三元",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-004/primary.webp",
           "bytes": 142536,
           "sha256": "37650f744f35026b591fde28bdc21f7a6718d7068967602d94ecd51fb868cc0d",
@@ -15603,6 +16193,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 5,
           "sourceTitle": "天地神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-005/primary.webp",
           "bytes": 1135888,
           "sha256": "17768a111e9d4be4bb33b1d1486e32f97a18e8f087ec8d0628c6102639f45cd8",
@@ -15692,6 +16287,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 6,
           "sourceTitle": "增福财神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-006/primary.webp",
           "bytes": 152669,
           "sha256": "3f93e78eac576fdcf3f17e1fcd72fb3ca1709ca80a5088c636d0e07bb243380a",
@@ -15781,6 +16381,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 7,
           "sourceTitle": "八仙庆寿",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-007/primary.webp",
           "bytes": 124311,
           "sha256": "48bc2b85fc9bbe5a14ab9a4f2ce15d2f46be27bebf7f60d73a9ef56e06aa3793",
@@ -15870,6 +16475,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 8,
           "sourceTitle": "东厨司命",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-008/primary.webp",
           "bytes": 1601980,
           "sha256": "ca7ff8cc620017c19d6239bc2363a6b38f9b7e488d2b29ad734c325ade33e181",
@@ -15959,6 +16569,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 9,
           "sourceTitle": "黄鹤楼",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-009/primary.webp",
           "bytes": 222518,
           "sha256": "3d9e1fcffb03bd0f44feca17b6e81b22fbe426a80b99d6b7fd129fa0de5c7203",
@@ -16048,6 +16663,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 10,
           "sourceTitle": "忠义千秋",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-010/primary.webp",
           "bytes": 169702,
           "sha256": "eabff40f5f22b5879d4b295a61e626c1ab7fcd6cda9a31c60bc8052eda7b7818",
@@ -16137,6 +16757,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 11,
           "sourceTitle": "炮烙柱",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-011/primary.webp",
           "bytes": 1523166,
           "sha256": "8a8540552d59ea87b28acb7ce81c5c66738792ac3280bdba6161f7a33b774157",
@@ -16226,6 +16851,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 12,
           "sourceTitle": "三家店图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-012/primary.webp",
           "bytes": 1544398,
           "sha256": "e415d9a9101f001395b12ea086cac5b835e4e5e7bbd533670cef99111fb223b0",
@@ -16315,6 +16945,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 13,
           "sourceTitle": "白蛇传",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-013/primary.webp",
           "bytes": 1413330,
           "sha256": "7a4de0767ffada4044abe63370e70175f0369f4f768759e9b6966fd1f94aafbf",
@@ -16404,6 +17039,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 14,
           "sourceTitle": "精忠报国",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-014/primary.webp",
           "bytes": 1414384,
           "sha256": "82de62098ac71b01e5c2a22eea8b6aeaf6ffdf100210c56685d4355f6cf21e4e",
@@ -16495,6 +17135,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 15,
           "sourceTitle": "老鼠娶亲",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-015/primary.webp",
           "bytes": 230826,
           "sha256": "9b4fe16c557614e6d186dfc4f087336f7a09d0c21098369df72e7184a20dbcaa",
@@ -16584,6 +17229,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 16,
           "sourceTitle": "马上封侯",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-016/primary.webp",
           "bytes": 1837032,
           "sha256": "2b9ba56877293b8c0d6b3f0176dd2b1255843d6cf8fb95b045b546a23efc0b61",
@@ -16673,6 +17323,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 17,
           "sourceTitle": "喜上眉梢",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-017/primary.webp",
           "bytes": 1795020,
           "sha256": "f1da3063701aa34c043b8e8a9ec89952d2085d09d13f62391c1e36364c8a219c",
@@ -16762,6 +17417,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 18,
           "sourceTitle": "千祥云集",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-018/primary.webp",
           "bytes": 1934388,
           "sha256": "4d790179df577b5b47641cd081bed3b547d459708529150b2c613f8ec0dfabda",
@@ -16851,6 +17511,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 19,
           "sourceTitle": "婚帖",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-019/primary.webp",
           "bytes": 2114808,
           "sha256": "6b1fc9ef8d0d7e0664c1b35a8811288f0e2f4437a9a93ab8970a21f471d9a768",
@@ -16940,6 +17605,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 20,
           "sourceTitle": "四季平安",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-020/primary.webp",
           "bytes": 145615,
           "sha256": "80e096aa9955de567ad6a07fc35c63d7bbad7472f1ffb009248af754ec778c01",
@@ -17029,6 +17699,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 21,
           "sourceTitle": "伏魔大帝",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-021/primary.webp",
           "bytes": 2599222,
           "sha256": "f113b41b1410d4ec1d8582a826416d6786f9d78cbe1535993ad379de9c8d4aca",
@@ -17118,6 +17793,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 22,
           "sourceTitle": "宅神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-022/primary.webp",
           "bytes": 2702256,
           "sha256": "15b7ed9034fef12e0fa7990e5196a6a42d2067002793c24802665b6a1eeb1c21",
@@ -17209,6 +17889,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 23,
           "sourceTitle": "观音菩萨",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-023/primary.webp",
           "bytes": 2424952,
           "sha256": "f6092b0358d9b5572006a59068d763f8c038a3248aec2b414a929697acea5476",
@@ -17298,6 +17983,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 24,
           "sourceTitle": "五瘟使者",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-024/primary.webp",
           "bytes": 2516874,
           "sha256": "667a0aa151ce82635d185548e0ffa371527f80defa66ae109f3132895658c56c",
@@ -17387,6 +18077,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 25,
           "sourceTitle": "药王",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-025/primary.webp",
           "bytes": 2587668,
           "sha256": "d8585d64b18c68fc7ac1126f486772f275af3c79f76fe2d923eb6b8ec7e6275c",
@@ -17476,6 +18171,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 26,
           "sourceTitle": "谢宅兴隆",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-026/primary.webp",
           "bytes": 2612970,
           "sha256": "bb9d3cc749b2e1efa7ff1e08dfcfd3d63d6d0f438ed19e0c29424131dbb13669",
@@ -17565,6 +18265,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 27,
           "sourceTitle": "神位",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-027/primary.webp",
           "bytes": 2634234,
           "sha256": "84e9d95e13f8b7e37a6413b7f88fccde24ea9db5815f5f2a60ccc1c46e9e132d",
@@ -17654,6 +18359,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 28,
           "sourceTitle": "一本万利",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-028/primary.webp",
           "bytes": 99819,
           "sha256": "9ce341707f7ac4d8fd1741fedbb044668f32205fa9f52bc2e003a566241edd82",
@@ -17743,6 +18453,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 29,
           "sourceTitle": "白衣子孙",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-029/primary.webp",
           "bytes": 80244,
           "sha256": "e2dfbd4ece1f889ddb0ef6d8673bf3df61e817fdf76db77c9cee13565e534b2f",
@@ -17832,6 +18547,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 30,
           "sourceTitle": "龙凤钱马",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-030/primary.webp",
           "bytes": 128961,
           "sha256": "cb1c4bc6650cd63334ef9407073b59eec59214bdb1b8ca8243c7158bfe186ab9",
@@ -17921,6 +18641,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 31,
           "sourceTitle": "土地堂",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-031/primary.webp",
           "bytes": 98853,
           "sha256": "c4a9f5ab9c52d1d8cbc1a2398dba9e0ef73020c1569d30696de7de35bed760a7",
@@ -18010,6 +18735,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 32,
           "sourceTitle": "财神宫",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-032/primary.webp",
           "bytes": 132981,
           "sha256": "6bcad8dc6a2aa3783077d8d3f2e9ef54a6f8a8f1717b9e2900144d431834dca3",
@@ -18099,6 +18829,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 33,
           "sourceTitle": "槽头兴旺",
+          "docTransform": {
+            "rotationDegrees": 180.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-033/primary.webp",
           "bytes": 111267,
           "sha256": "95f83eeb99739295f0e254fc4c222e99cb4f7ddf73ba7811e94d85021e6de401",
@@ -18188,6 +18923,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 34,
           "sourceTitle": "回荆州",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-034/primary.webp",
           "bytes": 2026970,
           "sha256": "8e0c8b23a1484407780bfcd456939774fc3a97235bf670cdc873393fa496c0b1",
@@ -18277,6 +19017,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 35,
           "sourceTitle": "跃马前程",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-035/primary.webp",
           "bytes": 121620,
           "sha256": "a2c39c907579860afc58b4dd47d5c252c72231f7c097eb281c15d56d0fa88d4f",
@@ -18366,6 +19111,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 36,
           "sourceTitle": "富贵耄耋",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-036/primary.webp",
           "bytes": 158714,
           "sha256": "a6606d838bc2526036277146cd9fee118919c85dcf0607e32ab2b2540c623e81",
@@ -18455,6 +19205,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 37,
           "sourceTitle": "大吉大利",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-037/primary.webp",
           "bytes": 104098,
           "sha256": "3800c8ed2e0870b0a679358e4e5ef3d40cd578c684d083c8cb3c10890dae712e",
@@ -18544,6 +19299,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 38,
           "sourceTitle": "春牛图",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-038/primary.webp",
           "bytes": 1276018,
           "sha256": "2316bca2299b19a7af3010e2056d8747bce41977c1f92d6298b27327770d1e2a",
@@ -18633,6 +19393,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 39,
           "sourceTitle": "花好月圆",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-039/primary.webp",
           "bytes": 144522,
           "sha256": "89361cbf44bc85d06522603f177a611972a6e1fb523291720e62eca13675a533",
@@ -18722,6 +19487,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 40,
           "sourceTitle": "送子娘娘",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-040/primary.webp",
           "bytes": 1298572,
           "sha256": "dc97fea40573975deb2b1041c9b263dcb6412456481f467be0d6ed196c42a2c7",
@@ -18811,6 +19581,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 41,
           "sourceTitle": "牛马王",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-041/primary.webp",
           "bytes": 2129826,
           "sha256": "7bb2ad088809c569678ed51847aca66544ce506cc101fcb9a97f09d7faa80432",
@@ -18900,6 +19675,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 42,
           "sourceTitle": "事事如意福",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-042/primary.webp",
           "bytes": 1674954,
           "sha256": "3c89b1c3420ee4cfa75c42677188bc2ce588f7529371ccb5aede5347d8169e7f",
@@ -18991,6 +19771,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 43,
           "sourceTitle": "大吉大利",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-043/primary.webp",
           "bytes": 94736,
           "sha256": "3463c827d22903c870a7c3ce51b224dbb1e23646fd80e615039f94e120c921fd",
@@ -19080,6 +19865,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 44,
           "sourceTitle": "火德神君",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-044/primary.webp",
           "bytes": 2837130,
           "sha256": "83619954c6ac42a585a33860e3860dfdc89317c7d9404192aa46cdf5f6149f43",
@@ -19169,6 +19959,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 45,
           "sourceTitle": "满门增福",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-045/primary.webp",
           "bytes": 1699044,
           "sha256": "1d529f8aaef56f05ceebbd4c76b781af80303842f824a46db565ba0e4b6fb1da",
@@ -19258,6 +20053,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 46,
           "sourceTitle": "土地爷",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-046/primary.webp",
           "bytes": 1504144,
           "sha256": "c9d874480d43301a1463036b2ab50b0ac14676ca38c206ac8c4266a24b29c20c",
@@ -19347,6 +20147,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 47,
           "sourceTitle": "土地爷",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-047/primary.webp",
           "bytes": 142530,
           "sha256": "4da1a177589d12d9dbf464debd1d91ed78edb270146eaa9313ceefdde9853fd0",
@@ -19436,6 +20241,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 48,
           "sourceTitle": "王灵官",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-048/primary.webp",
           "bytes": 1415676,
           "sha256": "d1555a41a459d34c62d6dc47596aa64fba997a1067e0d27c07c09c5637b789bf",
@@ -19525,6 +20335,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 49,
           "sourceTitle": "协天大帝",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-049/primary.webp",
           "bytes": 1274004,
           "sha256": "86c164dbd2036ecc9dc90f017d69a212ecefb6f9009f732976faff0d380f1f47",
@@ -19614,6 +20429,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 50,
           "sourceTitle": "南天门",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-050/primary.webp",
           "bytes": 132488,
           "sha256": "6058c4116de8bd87d35d5630b8abaf371baf735811db316c330e3b62ebdc723e",
@@ -19703,6 +20523,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 51,
           "sourceTitle": "增福财神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-051/primary.webp",
           "bytes": 152161,
           "sha256": "e256abc26185cbdf435c7ee706da29e2a33d100dbf07c43bc9de296f122647c3",
@@ -19792,6 +20617,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 52,
           "sourceTitle": "中天神",
+          "docTransform": {
+            "rotationDegrees": 0.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-052/primary.webp",
           "bytes": 1407354,
           "sha256": "564c211d6dab47006b95752c5e68d94cb3bbb51b989dcb10588e7168461c8960",
@@ -19881,6 +20711,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 53,
           "sourceTitle": "钟馗",
+          "docTransform": {
+            "rotationDegrees": 90.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-053/primary.webp",
           "bytes": 39472,
           "sha256": "691589e1a448959b1cffa2aa274e5ade6d094b163ff114098d9d488f4099b549",
@@ -19970,6 +20805,11 @@
           "sourceDocument": "平阳木版年画作品登记表aa54.docx",
           "sourceRecordIndex": 54,
           "sourceTitle": "镇宅神判",
+          "docTransform": {
+            "rotationDegrees": 270.0,
+            "flipH": false,
+            "flipV": false
+          },
           "path": "/official-images/official-regaa54-054/primary.webp",
           "bytes": 99672,
           "sha256": "019dbbaa8b3c3646a02b8ede2dca53cdc3fdad950891e52c48e81211482bcdd4",

@@ -41,6 +41,7 @@ DEFAULT_IMAGE_ROOT = ROOT / "assets" / "official-originals"
 NS = {
     "w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main",
     "a": "http://schemas.openxmlformats.org/drawingml/2006/main",
+    "pic": "http://schemas.openxmlformats.org/drawingml/2006/picture",
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
     "rel": "http://schemas.openxmlformats.org/package/2006/relationships",
 }
@@ -529,14 +530,36 @@ def cell_text(element: ET.Element) -> str:
     return "".join((text.text or "") for text in element.findall(".//w:t", NS)).strip()
 
 
-def table_images(table: ET.Element, rels: dict[str, str]) -> list[str]:
-    paths: list[str] = []
+def table_images(table: ET.Element, rels: dict[str, str]) -> list[dict[str, Any]]:
+    images: list[dict[str, Any]] = []
+    seen: set[str] = set()
     for blip in table.findall(".//a:blip", NS):
         rel_id = blip.attrib.get(f"{{{NS['r']}}}embed")
         target = rels.get(rel_id or "")
-        if target and target not in paths:
-            paths.append(target)
-    return paths
+        if not target or target in seen:
+            continue
+        seen.add(target)
+        rotation = 0
+        flip_h = False
+        flip_v = False
+        for pic in table.findall(".//pic:pic", NS):
+            if blip not in list(pic.iter()):
+                continue
+            xfrm = pic.find(".//a:xfrm", NS)
+            if xfrm is not None:
+                rotation = int(xfrm.attrib.get("rot", "0") or "0")
+                flip_h = xfrm.attrib.get("flipH") == "1"
+                flip_v = xfrm.attrib.get("flipV") == "1"
+            break
+        images.append(
+            {
+                "archivePath": target,
+                "rotationDegrees": (rotation / 60000) % 360,
+                "flipH": flip_h,
+                "flipV": flip_v,
+            }
+        )
+    return images
 
 
 def docx_record_tables(path: Path) -> list[dict[str, Any]]:
@@ -614,7 +637,8 @@ def parse_docx(
             else:
                 if image_table["title"] != title:
                     issues.append("image_source_title_differs")
-                for image_index, archive_path in enumerate(image_table["imageArchivePaths"], 1):
+                for image_index, image_ref in enumerate(image_table["imageArchivePaths"], 1):
+                    archive_path = image_ref["archivePath"]
                     payload = image_zf.read(archive_path)
                     extension = Path(archive_path).suffix.lower() or ".bin"
                     role = "primary" if image_index == 1 else f"part-{image_index}"
@@ -631,6 +655,11 @@ def parse_docx(
                             "sourceDocument": actual_image_source.name,
                             "sourceRecordIndex": image_table_index + 1,
                             "sourceTitle": image_table["title"],
+                            "docTransform": {
+                                "rotationDegrees": image_ref["rotationDegrees"],
+                                "flipH": image_ref["flipH"],
+                                "flipV": image_ref["flipV"],
+                            },
                             "path": extracted_path,
                             "bytes": len(payload),
                             "sha256": sha256_bytes(payload),

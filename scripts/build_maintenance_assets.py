@@ -19,12 +19,23 @@ OUTPUT_IMAGE_ROOT = PUBLIC_ROOT / "official-images"
 MAX_EDGE = 1800
 
 
-def build_image(source: Path, destination: Path) -> None:
+def build_image(source: Path, destination: Path, transform: dict | None = None) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(source) as image:
         if getattr(image, "n_frames", 1) > 1:
             image.seek(0)
         image = image.convert("RGB")
+        if (transform or {}).get("flipH"):
+            image = image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        if (transform or {}).get("flipV"):
+            image = image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        rotation = int((transform or {}).get("rotationDegrees") or 0) % 360
+        if rotation == 90:
+            image = image.transpose(Image.Transpose.ROTATE_270)
+        elif rotation == 180:
+            image = image.transpose(Image.Transpose.ROTATE_180)
+        elif rotation == 270:
+            image = image.transpose(Image.Transpose.ROTATE_90)
         image.thumbnail((MAX_EDGE, MAX_EDGE), Image.Resampling.LANCZOS)
         image.save(destination, "WEBP", quality=88, method=6)
 
@@ -36,7 +47,7 @@ def main() -> None:
             role = image["role"]
             source = ROOT / image["path"]
             relative = Path("official-images") / artwork["slug"] / f"{role}.webp"
-            build_image(source, PUBLIC_ROOT / relative)
+            build_image(source, PUBLIC_ROOT / relative, image.get("docTransform"))
             image["originalPath"] = image["path"]
             image["path"] = f"/{relative.as_posix()}"
             image["webFormat"] = "WEBP"
