@@ -1,0 +1,457 @@
+{
+  "importedAt": "2026-08-03T23:26:45.602018+00:00",
+  "sourceDirectory": "/Users/ompeak/Desktop/aaa/20260803修订版木版年画",
+  "imageSourceDirectory": "/Users/ompeak/Desktop/aaa/平阳木版年画",
+  "recordCount": 221,
+  "sourceCounts": {
+    "main102": 55,
+    "reg20": 19,
+    "reg42": 42,
+    "reg54": 51,
+    "regaa54": 54
+  },
+  "categoryCounts": {
+    "拂尘纸": 47,
+    "灯画": 7,
+    "天官门神": 3,
+    "门神": 27,
+    "纸马": 11,
+    "神祇": 45,
+    "装饰": 52,
+    "商标纸": 5,
+    "装饰（手稿）": 12,
+    "未分类": 2,
+    "团画": 5,
+    "戏曲": 1,
+    "商标画": 2,
+    "对画": 2
+  },
+  "imageCount": 238,
+  "recordsWithoutImages": [],
+  "issueCounts": {
+    "image_source_title_differs": 15,
+    "unparsed_dimensions": 3
+  },
+  "sameTitleGroupCount": 20,
+  "sameTitleRecordCount": 54,
+  "sameTitleGroups": {
+    "黄鹤楼": [
+      {
+        "slug": "official-main102-016",
+        "source": "main102",
+        "recordIndex": 16,
+        "catalogNo": 16,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-regaa54-009",
+        "source": "regaa54",
+        "recordIndex": 9,
+        "catalogNo": null,
+        "category": "戏曲"
+      }
+    ],
+    "回荆州": [
+      {
+        "slug": "official-main102-018",
+        "source": "main102",
+        "recordIndex": 18,
+        "catalogNo": 18,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-regaa54-034",
+        "source": "regaa54",
+        "recordIndex": 34,
+        "catalogNo": null,
+        "category": "拂尘纸"
+      }
+    ],
+    "禹王锁蛟": [
+      {
+        "slug": "official-main102-039",
+        "source": "main102",
+        "recordIndex": 39,
+        "catalogNo": 39,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-reg54-026",
+        "source": "reg54",
+        "recordIndex": 26,
+        "catalogNo": null,
+        "category": "装饰"
+      }
+    ],
+    "赵云救阿斗": [
+      {
+        "slug": "official-main102-087",
+        "source": "main102",
+        "recordIndex": 40,
+        "catalogNo": 87,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-reg42-001",
+        "source": "reg42",
+        "recordIndex": 1,
+        "catalogNo": null,
+        "category": "门神"
+      }
+    ],
+    "张仙护子": [
+      {
+        "slug": "official-main102-088",
+        "source": "main102",
+        "recordIndex": 41,
+        "catalogNo": 88,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-reg20-016",
+        "source": "reg20",
+        "recordIndex": 16,
+        "catalogNo": null,
+        "category": "门神"
+      }
+    ],
+    "五子登科": [
+      {
+        "slug": "official-main102-092",
+        "source": "main102",
+        "recordIndex": 45,
+        "catalogNo": 92,
+        "category": "天官门神"
+      },
+      {
+        "slug": "official-reg42-005",
+        "source": "reg42",
+        "recordIndex": 5,
+        "catalogNo": null,
+        "category": "门神"
+      }
+    ],
+    "神荼郁垒": [
+      {
+        "slug": "official-main102-098",
+        "source": "main102",
+        "recordIndex": 51,
+        "catalogNo": 98,
+        "category": "门神"
+      },
+      {
+        "slug": "official-reg20-015",
+        "source": "reg20",
+        "recordIndex": 15,
+        "catalogNo": null,
+        "category": "门神"
+      }
+    ],
+    "一本万利": [
+      {
+        "slug": "official-reg20-006",
+        "source": "reg20",
+        "recordIndex": 6,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-regaa54-028",
+        "source": "regaa54",
+        "recordIndex": 28,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ],
+    "南天门": [
+      {
+        "slug": "official-reg20-017",
+        "source": "reg20",
+        "recordIndex": 17,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-reg20-018",
+        "source": "reg20",
+        "recordIndex": 18,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-reg42-008",
+        "source": "reg42",
+        "recordIndex": 8,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-regaa54-050",
+        "source": "regaa54",
+        "recordIndex": 50,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ],
+    "天地神": [
+      {
+        "slug": "official-reg20-019",
+        "source": "reg20",
+        "recordIndex": 19,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-reg54-046",
+        "source": "reg54",
+        "recordIndex": 46,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-reg54-051",
+        "source": "reg54",
+        "recordIndex": 51,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-regaa54-005",
+        "source": "regaa54",
+        "recordIndex": 5,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ],
+    "会票": [
+      {
+        "slug": "official-reg42-006",
+        "source": "reg42",
+        "recordIndex": 6,
+        "catalogNo": null,
+        "category": "商标纸"
+      },
+      {
+        "slug": "official-reg42-007",
+        "source": "reg42",
+        "recordIndex": 7,
+        "catalogNo": null,
+        "category": "商标纸"
+      }
+    ],
+    "十二钗": [
+      {
+        "slug": "official-reg42-029",
+        "source": "reg42",
+        "recordIndex": 29,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-030",
+        "source": "reg42",
+        "recordIndex": 30,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-031",
+        "source": "reg42",
+        "recordIndex": 31,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-032",
+        "source": "reg42",
+        "recordIndex": 32,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-033",
+        "source": "reg42",
+        "recordIndex": 33,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-034",
+        "source": "reg42",
+        "recordIndex": 34,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-035",
+        "source": "reg42",
+        "recordIndex": 35,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-036",
+        "source": "reg42",
+        "recordIndex": 36,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-037",
+        "source": "reg42",
+        "recordIndex": 37,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-038",
+        "source": "reg42",
+        "recordIndex": 38,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-039",
+        "source": "reg42",
+        "recordIndex": 39,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      },
+      {
+        "slug": "official-reg42-040",
+        "source": "reg42",
+        "recordIndex": 40,
+        "catalogNo": null,
+        "category": "装饰（手稿）"
+      }
+    ],
+    "猪": [
+      {
+        "slug": "official-reg42-041",
+        "source": "reg42",
+        "recordIndex": 41,
+        "catalogNo": null,
+        "category": "装饰"
+      },
+      {
+        "slug": "official-reg42-042",
+        "source": "reg42",
+        "recordIndex": 42,
+        "catalogNo": null,
+        "category": "装饰"
+      }
+    ],
+    "闺房教子": [
+      {
+        "slug": "official-reg54-033",
+        "source": "reg54",
+        "recordIndex": 33,
+        "catalogNo": null,
+        "category": "装饰"
+      },
+      {
+        "slug": "official-reg54-038",
+        "source": "reg54",
+        "recordIndex": 38,
+        "catalogNo": null,
+        "category": "装饰"
+      }
+    ],
+    "麒麟送子": [
+      {
+        "slug": "official-reg54-034",
+        "source": "reg54",
+        "recordIndex": 34,
+        "catalogNo": null,
+        "category": "装饰"
+      },
+      {
+        "slug": "official-regaa54-002",
+        "source": "regaa54",
+        "recordIndex": 2,
+        "catalogNo": null,
+        "category": "团画"
+      }
+    ],
+    "天仙送子": [
+      {
+        "slug": "official-reg54-042",
+        "source": "reg54",
+        "recordIndex": 42,
+        "catalogNo": null,
+        "category": "装饰"
+      },
+      {
+        "slug": "official-reg54-044",
+        "source": "reg54",
+        "recordIndex": 44,
+        "catalogNo": null,
+        "category": "装饰"
+      }
+    ],
+    "协天大帝": [
+      {
+        "slug": "official-reg54-047",
+        "source": "reg54",
+        "recordIndex": 47,
+        "catalogNo": null,
+        "category": "装饰"
+      },
+      {
+        "slug": "official-regaa54-049",
+        "source": "regaa54",
+        "recordIndex": 49,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ],
+    "增福财神": [
+      {
+        "slug": "official-regaa54-006",
+        "source": "regaa54",
+        "recordIndex": 6,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-regaa54-051",
+        "source": "regaa54",
+        "recordIndex": 51,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ],
+    "大吉大利": [
+      {
+        "slug": "official-regaa54-037",
+        "source": "regaa54",
+        "recordIndex": 37,
+        "catalogNo": null,
+        "category": "拂尘纸"
+      },
+      {
+        "slug": "official-regaa54-043",
+        "source": "regaa54",
+        "recordIndex": 43,
+        "catalogNo": null,
+        "category": "门神"
+      }
+    ],
+    "土地爷": [
+      {
+        "slug": "official-regaa54-046",
+        "source": "regaa54",
+        "recordIndex": 46,
+        "catalogNo": null,
+        "category": "神祇"
+      },
+      {
+        "slug": "official-regaa54-047",
+        "source": "regaa54",
+        "recordIndex": 47,
+        "catalogNo": null,
+        "category": "神祇"
+      }
+    ]
+  }
+}

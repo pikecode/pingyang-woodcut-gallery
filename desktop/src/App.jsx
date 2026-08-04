@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import OpeningIntroVideo from "./opening/OpeningIntroVideo";
 import CategorySelect from "./CategorySelect";
+import MaintenanceWorkbench from "./MaintenanceWorkbench";
 import { shouldShowOpeningIntro } from "./opening/openingIntroSession";
 import useBackgroundMusic from "./useBackgroundMusic";
 import {
@@ -15,7 +16,36 @@ import {
 } from "lucide-react";
 
 /* ── 常量 ── */
-const THEME_ORDER = ["全部", "戏曲", "神祇", "吉祥", "故事"];
+const MAINTENANCE_STORAGE_KEY = "pingyang.maintenance.overrides.v1";
+const MAINTENANCE_UPDATE_EVENT = "pingyang:gallery-overrides-updated";
+
+function loadMaintenanceOverrides() {
+  try {
+    return JSON.parse(localStorage.getItem(MAINTENANCE_STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function normalizeArtwork(artwork, override) {
+  const merged = { ...artwork, ...(override || {}) };
+  const category = merged.category || merged.theme?.name || merged.sourceCategory || "未分类";
+  const content = merged.content || merged.description || "";
+  return {
+    ...merged,
+    category,
+    content,
+    description: content,
+    aliases: merged.aliases || [],
+    images: merged.images || [],
+    theme: {
+      ...(merged.theme || {}),
+      code: merged.theme?.code || category,
+      name: category,
+    },
+    period: merged.period || { code: "unknown", label: "未标注" },
+  };
+}
 
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -26,13 +56,35 @@ function formatTime(seconds) {
 /* ── 数据 ── */
 function useGalleryData() {
   const [artworks, setArtworks] = useState([]);
+  const [overrides, setOverrides] = useState(loadMaintenanceOverrides);
+
   useEffect(() => {
-    fetch("/data/artworks.json")
-      .then(r => r.json())
+    fetch("/data/official-artworks.json")
+      .then(r => r.ok ? r.json() : fetch("/data/artworks.json").then(fallback => fallback.json()))
+      .catch(() => fetch("/data/artworks.json").then(r => r.json()))
       .then(d => setArtworks(d.artworks || []))
       .catch(() => {});
   }, []);
-  return artworks;
+
+  useEffect(() => {
+    const refresh = (event) => {
+      setOverrides(event.detail || loadMaintenanceOverrides());
+    };
+    const onStorage = (event) => {
+      if (event.key === MAINTENANCE_STORAGE_KEY) setOverrides(loadMaintenanceOverrides());
+    };
+    window.addEventListener(MAINTENANCE_UPDATE_EVENT, refresh);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener(MAINTENANCE_UPDATE_EVENT, refresh);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
+
+  return useMemo(
+    () => artworks.map(artwork => normalizeArtwork(artwork, overrides[artwork.slug])),
+    [artworks, overrides]
+  );
 }
 
 /* ── 藏品详情覆盖层 ── */
@@ -403,10 +455,11 @@ function ArtworkCard({ artwork, onOpen }) {
 /* ── 主应用 ── */
 export default function App() {
   const artworks = useGalleryData();
+  const navRef = useRef(null);
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("全部");
-  const [phase, setPhase] = useState("category");
-  const [introVisible, setIntroVisible] = useState(shouldShowOpeningIntro);
+  const [phase, setPhase] = useState(() => window.location.hash === "#maintenance" ? "maintenance" : "category");
+  const [introVisible, setIntroVisible] = useState(() => window.location.hash === "#maintenance" ? false : shouldShowOpeningIntro);
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const {
@@ -417,14 +470,49 @@ export default function App() {
   } = useBackgroundMusic();
 
   useEffect(() => {
+    let maintenanceClickCount = 0;
+    let maintenanceClickTimer = null;
+
+    const openMaintenance = () => {
+      setSelected(null);
+      setIntroVisible(false);
+      setPhase("maintenance");
+      window.location.hash = "maintenance";
+    };
+
     const onKey = e => {
+      if (e.ctrlKey && e.altKey && (e.key === "e" || e.key === "E")) {
+        e.preventDefault();
+        openMaintenance();
+        return;
+      }
       if ((e.key === "f" || e.key === "F") && !selected) {
         if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
         else document.exitFullscreen?.();
       }
     };
+
+    const onClick = e => {
+      if (!e.target.closest?.("[data-maintenance-hotspot]")) return;
+      maintenanceClickCount += 1;
+      window.clearTimeout(maintenanceClickTimer);
+      maintenanceClickTimer = window.setTimeout(() => {
+        maintenanceClickCount = 0;
+      }, 1000);
+      if (maintenanceClickCount >= 3) {
+        maintenanceClickCount = 0;
+        window.clearTimeout(maintenanceClickTimer);
+        openMaintenance();
+      }
+    };
+
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("click", onClick);
+    return () => {
+      window.clearTimeout(maintenanceClickTimer);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("click", onClick);
+    };
   }, [selected]);
 
   const filtered = useMemo(() => {
@@ -435,6 +523,19 @@ export default function App() {
     );
   }, [artworks, theme, query]);
 
+  const themeOrder = useMemo(() => {
+    const names = Array.from(new Set(artworks.map(a => a.theme?.name).filter(Boolean)));
+    names.sort((left, right) => {
+      const diff = artworks.filter(a => a.theme?.name === right).length - artworks.filter(a => a.theme?.name === left).length;
+      return diff || left.localeCompare(right, "zh-Hans-CN");
+    });
+    return ["全部", ...names];
+  }, [artworks]);
+
+  useEffect(() => {
+    if (!themeOrder.includes(theme)) setTheme("全部");
+  }, [theme, themeOrder]);
+
   const changeSelected = offset => {
     setSelected(cur => {
       if (!cur) return cur;
@@ -444,9 +545,24 @@ export default function App() {
   };
 
   const counts = useMemo(() =>
-    Object.fromEntries(THEME_ORDER.slice(1).map(t => [t, artworks.filter(a => a.theme.name === t).length])),
-    [artworks]
+    Object.fromEntries(themeOrder.slice(1).map(t => [t, artworks.filter(a => a.theme.name === t).length])),
+    [artworks, themeOrder]
   );
+
+  const categoryCards = useMemo(() => {
+    const firstArtwork = artworks[0];
+    return themeOrder.map((name, index) => {
+      const categoryItems = name === "全部" ? artworks : artworks.filter(a => a.theme.name === name);
+      const cover = categoryItems.find(a => a.images?.[0]) || firstArtwork;
+      return {
+        name,
+        desc: name === "全部" ? "总览全库 · 正式数据" : "按正式文档类别浏览",
+        count: name === "全部" ? artworks.length : (counts[name] || 0),
+        imagePath: cover?.images?.[0]?.path,
+        num: String(index + 1).padStart(2, "0"),
+      };
+    });
+  }, [artworks, counts, themeOrder]);
 
   const completeOpening = () => {
     setIntroVisible(false);
@@ -456,17 +572,40 @@ export default function App() {
   const replayOpening = () => {
     setSelected(null);
     setPhase("category");
+    if (window.location.hash === "#maintenance") window.history.replaceState(null, "", window.location.pathname);
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setIntroVisible(true);
     }
   };
 
+  const closeMaintenance = () => {
+    setSelected(null);
+    setPhase("category");
+    setIntroVisible(false);
+    if (window.location.hash === "#maintenance") window.history.replaceState(null, "", window.location.pathname);
+  };
+
+  const scrollCategoryNav = (offset) => {
+    navRef.current?.scrollBy({ left: offset, behavior: "smooth" });
+  };
+
+  const onCategoryNavWheel = (event) => {
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    navRef.current?.scrollBy({ left: event.deltaY * 1.15, behavior: "smooth" });
+  };
+
   return (
     <div className="app-shell">
+      {phase === "maintenance" ? (
+        <MaintenanceWorkbench onClose={closeMaintenance} />
+      ) : (
+        <>
       {introVisible && <OpeningIntroVideo startBgm={startBgm} onComplete={completeOpening} />}
       {phase === "category" && (
         <CategorySelect
           onSelect={(cat) => { setTheme(cat); setPhase("gallery"); }}
+          categories={categoryCards}
           toggleBgm={toggleBgm}
           bgmMuted={bgmMuted}
           bgmStarted={bgmStarted}
@@ -482,7 +621,7 @@ export default function App() {
               <button className="topbar-back-btn" onClick={replayOpening} aria-label="回到首页">
                 <Home size={18} />
               </button>
-              <h1 className="topbar-title">平阳木版年画·博观集</h1>
+              <h1 className="topbar-title" data-maintenance-hotspot title="平阳木版年画·博观集">平阳木版年画·博观集</h1>
             </div>
             <div className="topbar-icons">
               {showSearch ? (
@@ -512,18 +651,26 @@ export default function App() {
           </header>
 
           {/* 导航：独立居中行，下划线激活态 */}
-          <nav className="gallery-nav" aria-label="按题材筛选">
-            {THEME_ORDER.map(t => (
-              <button
-                key={t}
-                className={`nav-tab${theme === t ? " is-active" : ""}`}
-                onClick={() => setTheme(t)}
-              >
-                {t}
-                <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
-              </button>
-            ))}
-          </nav>
+          <div className="gallery-nav-shell">
+            <button className="gallery-nav-arrow is-left" onClick={() => scrollCategoryNav(-360)} aria-label="向左滚动分类">
+              <ChevronLeft size={16} />
+            </button>
+            <nav ref={navRef} className="gallery-nav" aria-label="按题材筛选" onWheel={onCategoryNavWheel}>
+              {themeOrder.map(t => (
+                <button
+                  key={t}
+                  className={`nav-tab${theme === t ? " is-active" : ""}`}
+                  onClick={() => setTheme(t)}
+                >
+                  {t}
+                  <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+                </button>
+              ))}
+            </nav>
+            <button className="gallery-nav-arrow is-right" onClick={() => scrollCategoryNav(360)} aria-label="向右滚动分类">
+              <ChevronRight size={16} />
+            </button>
+          </div>
 
           {/* 藏品网格 */}
           <main className="gallery-grid-wrap">
@@ -548,6 +695,8 @@ export default function App() {
             bgmMuted={bgmMuted}
             bgmStarted={bgmStarted}
           />
+        </>
+      )}
         </>
       )}
     </div>

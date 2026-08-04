@@ -155,25 +155,73 @@ input:focus-visible {
 
 .topbar-search button:hover { color: rgba(255,255,255,0.75); }
 
-/* ─── 导航行（居中，下划线激活）────────────────────────────── */
-.gallery-nav {
+/* ─── 导航行（横向滚动分类）────────────────────────────── */
+.gallery-nav-shell {
   flex-shrink: 0;
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-  padding: 0 40px;
+  gap: 10px;
+  padding: 0 24px;
   border-bottom: 1px solid var(--border);
   background: rgba(10,9,6,0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
+.gallery-nav {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 12px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232,175,55,0.28) transparent;
+  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.gallery-nav::-webkit-scrollbar { height: 4px; }
+.gallery-nav::-webkit-scrollbar-track { background: transparent; }
+.gallery-nav::-webkit-scrollbar-thumb {
+  background: rgba(232,175,55,0.26);
+  border-radius: 999px;
+}
+
+.gallery-nav-arrow {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(232,175,55,0.25);
+  background: rgba(255,255,255,0.045);
+  color: rgba(232,175,55,0.72);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.24);
+  transition: color 160ms, border-color 160ms, background 160ms, transform 160ms;
+}
+
+.gallery-nav-arrow:hover {
+  color: #fff;
+  border-color: rgba(232,175,55,0.58);
+  background: rgba(232,175,55,0.12);
+  transform: translateY(-1px);
+}
+
 .nav-tab {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex: 0 0 auto;
   height: 38px;
   padding: 0 18px;
   font-family: "Songti SC", "STSong", serif;
@@ -187,6 +235,7 @@ input:focus-visible {
   background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
   box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset;
   transform: translateY(0);
+  scroll-snap-align: start;
   transition: color 200ms, background 200ms, box-shadow 200ms, transform 160ms, border-color 200ms;
 }
 

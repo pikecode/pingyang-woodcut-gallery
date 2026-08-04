@@ -51,14 +51,14 @@ const CREDITS_SECTIONS = [
   },
 ];
 
-const CATEGORIES = [
+const DEFAULT_CATEGORIES = [
   { name: "戏曲", desc: "粉墨登场 · 舞台百态",   count: 38, slug: "py-014", num: "01" },
   { name: "神祇", desc: "神灵守护 · 门神百态",   count: 13, slug: "py-087", num: "02" },
   { name: "吉祥", desc: "年节吉庆 · 祈福纹样",   count:  3, slug: "py-025", num: "03" },
   { name: "故事", desc: "人间烟火 · 民俗叙事",   count:  1, slug: "py-030", num: "04" },
 ];
 
-export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStarted }) {
+export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORIES, toggleBgm, bgmMuted, bgmStarted, inactive = false }) {
   const containerRef = useRef(null);
   const [hovered, setHovered] = useState(null);
   const [exiting, setExiting] = useState(false);
@@ -91,10 +91,21 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
     return () => ctx.revert();
   };
 
+  const onPanelsWheel = (event) => {
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    event.currentTarget.scrollBy({ left: event.deltaY * 1.15, behavior: "smooth" });
+  };
+
   return (
-    <div ref={containerRef} className="cat-root">
+    <div
+      ref={containerRef}
+      className="cat-root"
+      aria-hidden={inactive ? "true" : undefined}
+      inert={inactive ? "" : undefined}
+    >
       <header className="cat-header">
-        <span className="cat-brand-name">平阳木版年画 · 博观集</span>
+        <span className="cat-brand-name" data-maintenance-hotspot>平阳木版年画 · 博观集</span>
         <span className="cat-subtitle">选择题材，开始探索</span>
       </header>
 
@@ -137,8 +148,8 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
         </div>
       )}
 
-      <div className="cat-panels">
-        {CATEGORIES.map((cat) => (
+      <div className="cat-panels" onWheel={onPanelsWheel}>
+        {categories.map((cat) => (
           <button
             key={cat.name}
             className={`cat-panel${hovered === cat.name ? " is-hovered" : ""}${hovered && hovered !== cat.name ? " is-dimmed" : ""}`}
@@ -148,7 +159,7 @@ export default function CategorySelect({ onSelect, toggleBgm, bgmMuted, bgmStart
             aria-label={`${cat.name}，共${cat.count}件`}
           >
             {/* 藏品背景图（始终可见，hover更亮）*/}
-            <img className="cat-bg" src={`/images/${cat.slug}/primary.webp`} alt="" aria-hidden="true" />
+            <img className="cat-bg" src={cat.imagePath || `/images/${cat.slug}/primary.webp`} alt="" aria-hidden="true" />
             <div className="cat-overlay" />
 
             {/* 大号序号水印 */}
