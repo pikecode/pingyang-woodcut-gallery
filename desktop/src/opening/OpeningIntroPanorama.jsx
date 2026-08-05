@@ -23,9 +23,9 @@ const TIMING = {
 };
 
 const FOLIOS = [
-  { slug: "py-014", title: "水漫金山", theme: "戏曲", color: "is-yellow" },
-  { slug: "py-030", title: "踏雪寻梅", theme: "故事", color: "is-blue" },
-  { slug: "py-099", title: "秦琼敬德", theme: "门神", color: "is-red" },
+  { image: "/opening/panorama/py-014-primary.webp", title: "水漫金山", theme: "戏曲", color: "is-yellow" },
+  { image: "/opening/panorama/py-030-primary.webp", title: "踏雪寻梅", theme: "故事", color: "is-blue" },
+  { image: "/opening/panorama/py-099-part-1.webp", title: "秦琼敬德", theme: "门神", color: "is-red" },
 ];
 
 function waitForImage(image) {
@@ -319,9 +319,9 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
           <section className="panorama-scene scene-one">
             <div className="scene-paper shape-one" />
             <div className="scene-paper shape-two" />
-            <img className="scene-art art-water" src="/images/py-014/primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
-            <img className="scene-art art-romance" src="/images/py-005/primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
-            <img className="scene-art art-tower" src="/images/py-016/primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
+            <img className="scene-art art-water" src="/opening/panorama/py-014-primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
+            <img className="scene-art art-romance" src="/opening/panorama/py-005-primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
+            <img className="scene-art art-tower" src="/opening/panorama/py-016-primary.webp" alt="" loading="eager" decoding="async" fetchpriority="high" data-opening-critical="true" />
             <div className="scene-caption">
               <span>第一幕 · 戏曲</span>
               <strong>{"粉墨入画".split("").map((c, i) => <span key={i} className="caption-char">{c}</span>)}</strong>
@@ -331,9 +331,9 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
           <section className="panorama-scene scene-two">
             <div className="scene-paper shape-one" />
             <div className="scene-paper shape-two" />
-            <img className="scene-art art-plum" src="/images/py-030/primary.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
-            <img className="scene-art art-river" src="/images/py-038/primary.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
-            <img className="scene-art art-auspicious" src="/images/py-095/part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art art-plum" src="/opening/panorama/py-030-primary.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art art-river" src="/opening/panorama/py-038-primary.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art art-auspicious" src="/opening/panorama/py-095-part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
             <div className="scene-caption">
               <span>第二幕 · 人间</span>
               <strong>{"人间有戏".split("").map((c, i) => <span key={i} className="caption-char">{c}</span>)}</strong>
@@ -343,9 +343,9 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
           <section className="panorama-scene scene-three">
             <div className="scene-paper shape-one" />
             <div className="scene-paper shape-two" />
-            <img className="scene-art guardian-left" src="/images/py-099/part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
-            <img className="scene-art guardian-center" src="/images/py-089/part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
-            <img className="scene-art guardian-right" src="/images/py-099/part-2.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art guardian-left" src="/opening/panorama/py-099-part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art guardian-center" src="/opening/panorama/py-089-part-1.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
+            <img className="scene-art guardian-right" src="/opening/panorama/py-099-part-2.webp" alt="" loading="eager" decoding="async" fetchpriority="low" />
             <div className="scene-caption">
               <span>第三幕 · 门神</span>
               <strong>{"守望平阳".split("").map((c, i) => <span key={i} className="caption-char">{c}</span>)}</strong>
@@ -358,10 +358,10 @@ export default function OpeningIntroPanorama({ startBgm, onComplete, handoffFrom
       <div className="panorama-curtain" aria-hidden="true" />
       <div className="panorama-folio-deck" aria-hidden="true">
         {FOLIOS.map(folio => (
-          <figure key={folio.slug} className={`panorama-folio ${folio.color}`}>
+          <figure key={folio.title} className={`panorama-folio ${folio.color}`}>
             <span className="folio-theme">{folio.theme}</span>
             <img
-              src={`/images/${folio.slug}/${folio.slug === "py-099" ? "part-1" : "primary"}.webp`}
+              src={folio.image}
               alt=""
               loading="eager"
               decoding="async"

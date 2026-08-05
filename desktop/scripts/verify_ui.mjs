@@ -6,7 +6,15 @@ const ROOT = path.resolve(import.meta.dirname, "../..");
 const OUTPUT = path.join(ROOT, "design", "screenshots");
 const BASE_URL = process.env.DESKTOP_URL || "http://localhost:1420";
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const gallery = JSON.parse(await readFile(path.join(ROOT, "desktop/public/data/artworks.json"), "utf8"));
+const gallery = JSON.parse(await readFile(path.join(ROOT, "desktop/public/data/official-artworks.json"), "utf8"));
+const artworkCount = gallery.artworks.length;
+const categoryCounts = gallery.artworks.reduce((counts, artwork) => {
+  const category = artwork.category || artwork.theme?.name || "未分类";
+  counts[category] = (counts[category] || 0) + 1;
+  return counts;
+}, {});
+const verifyCategory = categoryCounts["神祇"] ? "神祇" : Object.keys(categoryCounts)[0];
+const verifyCategoryCount = categoryCounts[verifyCategory];
 const pairedArtwork = gallery.artworks.find((artwork) => artwork.images.length > 1);
 
 await mkdir(OUTPUT, { recursive: true });
@@ -107,6 +115,18 @@ async function assertOpeningIsolation(targetPage, label) {
   }
 }
 
+async function waitForCategoryActive(targetPage, options = {}) {
+  const timeout = options.timeout ?? 5000;
+  await targetPage.waitForFunction(
+    () => {
+      const category = document.querySelector(".cat-root");
+      return Boolean(category && !category.hasAttribute("inert") && !document.querySelector(".opening-intro"));
+    },
+    null,
+    { timeout },
+  );
+}
+
 try {
   await page.goto(`${BASE_URL}/?intro=1`, { waitUntil: "domcontentloaded" });
   if (await page.locator("link[rel='preload'][as='video'][href='/opening/opening-guardian-ai.mp4']").count() !== 1) {
@@ -158,7 +178,7 @@ try {
   if (!finaleVisible) throw new Error("final collection seal did not appear");
   await assertViewport("opening finale");
   await page.screenshot({ path: path.join(OUTPUT, "desktop-opening-finale.png") });
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 18000 });
+  await waitForCategoryActive(page, { timeout: 22000 });
   const introDuration = Date.now() - introStartedAt;
   const minIntroDuration = openingMode === "video" ? 19000 : 10000;
   const maxIntroDuration = openingMode === "video" ? 22000 : 11300;
@@ -177,22 +197,22 @@ try {
   if (await page.locator(".opening-intro").count()) {
     throw new Error("opening intro replayed in the same session");
   }
-  await page.locator(".cat-root").waitFor();
+  await waitForCategoryActive(page);
   await page.reload({ waitUntil: "domcontentloaded" });
   await page.locator(".opening-intro").waitFor();
   await page.getByRole("button", { name: "跳过开屏动画" }).click();
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
-  await page.getByRole("button", { name: "神祇，共13件" }).click();
+  await waitForCategoryActive(page, { timeout: 700 });
+  await page.getByRole("button", { name: `${verifyCategory}，共${verifyCategoryCount}件` }).click();
   await page.locator(".cat-root").waitFor({ state: "detached" });
   await page.locator(".gallery-card").first().waitFor();
-  if (await page.locator(".gallery-card").count() !== 13) {
-    throw new Error("deity category did not return 13 artworks");
+  if (await page.locator(".gallery-card").count() !== verifyCategoryCount) {
+    throw new Error(`${verifyCategory} category did not return ${verifyCategoryCount} artworks`);
   }
   await assertViewport("gallery");
 
   await page.locator(".nav-tab").filter({ hasText: "全部" }).click();
-  if (await page.locator(".gallery-card").count() !== 55) {
-    throw new Error("gallery did not render all 55 artworks");
+  if (await page.locator(".gallery-card").count() !== artworkCount) {
+    throw new Error(`gallery did not render all ${artworkCount} artworks`);
   }
   await page.getByRole("button", { name: "搜索" }).click();
   await page.getByPlaceholder("搜索题名、别名…").fill(pairedArtwork.title);
@@ -227,7 +247,7 @@ try {
   await page.screenshot({ path: path.join(OUTPUT, "desktop-detail-current.png") });
 
   await page.getByRole("button", { name: "返回", exact: true }).click();
-  await page.getByRole("button", { name: "重播开屏动画" }).click();
+  await page.getByRole("button", { name: "回到首页" }).click();
   await waitForOpeningReady(page);
   await assertOpeningIsolation(page, "replayed opening");
   const replayedBgm = await getBgmState(page);
@@ -235,8 +255,7 @@ try {
     throw new Error(`replayed opening did not resync its BGM: ${JSON.stringify(replayedBgm)}`);
   }
   await page.getByRole("button", { name: "跳过开屏动画" }).click();
-  await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
-  await page.locator(".cat-root").waitFor();
+  await waitForCategoryActive(page, { timeout: 700 });
   await page.getByRole("button", { name: "关闭音乐" }).click();
   await page.getByRole("button", { name: "开启音乐" }).click();
   await page.waitForTimeout(1000);
@@ -258,7 +277,7 @@ try {
     await page.screenshot({ path: path.join(OUTPUT, `desktop-opening-${viewport.name}.png`) });
     const skipStartedAt = Date.now();
     await page.getByRole("button", { name: "跳过开屏动画" }).click();
-    await page.locator(".opening-intro").waitFor({ state: "detached", timeout: 500 });
+    await waitForCategoryActive(page, { timeout: 700 });
     if (Date.now() - skipStartedAt > 500) {
       throw new Error(`opening skip took longer than 500ms at ${viewport.name}`);
     }
@@ -288,7 +307,7 @@ try {
   if (await reducedPage.locator(".opening-intro").count()) {
     throw new Error("opening intro mounted with reduced motion enabled");
   }
-  await reducedPage.locator(".cat-root").waitFor();
+  await waitForCategoryActive(reducedPage);
   await reducedContext.close();
 
   if (failedRequests.length) throw new Error(`failed requests:\n${failedRequests.join("\n")}`);

@@ -60,8 +60,10 @@ function useGalleryData() {
 
   useEffect(() => {
     fetch("/data/official-artworks.json")
-      .then(r => r.ok ? r.json() : fetch("/data/artworks.json").then(fallback => fallback.json()))
-      .catch(() => fetch("/data/artworks.json").then(r => r.json()))
+      .then(r => {
+        if (!r.ok) throw new Error(`official data request failed: ${r.status}`);
+        return r.json();
+      })
       .then(d => setArtworks(d.artworks || []))
       .catch(() => {});
   }, []);
@@ -437,7 +439,7 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
 /* ── 藏品卡片（横向展览风格）── */
 function ArtworkCard({ artwork, onOpen }) {
   return (
-    <button className="gallery-card" onClick={(e) => { console.log("Card clicked:", artwork.slug); onOpen(artwork); }} aria-label={`查看《${artwork.title}》`}>
+    <button className="gallery-card" onClick={() => onOpen(artwork)} aria-label={`查看《${artwork.title}》`}>
       <div className="card-img-wrap">
         <img src={artwork.images[0].path} alt={artwork.title} loading="lazy" className="card-img" />
       </div>
@@ -458,7 +460,7 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [theme, setTheme] = useState("");
   const [phase, setPhase] = useState(() => window.location.hash === "#maintenance" ? "maintenance" : "category");
-  const [introVisible, setIntroVisible] = useState(() => window.location.hash === "#maintenance" ? false : shouldShowOpeningIntro);
+  const [introVisible, setIntroVisible] = useState(() => window.location.hash === "#maintenance" ? false : shouldShowOpeningIntro());
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const {

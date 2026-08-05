@@ -5,12 +5,12 @@ import { markOpeningIntroSeen, shouldShowOpeningIntro } from "./openingIntroSess
 import "./opening-intro-door-backup.css";
 
 const CORRIDOR = [
-  { slug: "py-001", x: -420, y: -80, scale: 0.42, rot: 14 },
-  { slug: "py-014", x: -305, y: 48, scale: 0.64, rot: 9 },
-  { slug: "py-025", x: -162, y: 148, scale: 0.87, rot: 4 },
-  { slug: "py-030", x: 162, y: 148, scale: 0.87, rot: -4 },
-  { slug: "py-088", x: 305, y: 48, scale: 0.64, rot: -9 },
-  { slug: "py-091", x: 420, y: -80, scale: 0.42, rot: -14 },
+  { image: "/opening/panorama/py-005-primary.webp", x: -420, y: -80, scale: 0.42, rot: 14 },
+  { image: "/opening/panorama/py-014-primary.webp", x: -305, y: 48, scale: 0.64, rot: 9 },
+  { image: "/opening/panorama/py-095-part-1.webp", x: -162, y: 148, scale: 0.87, rot: 4 },
+  { image: "/opening/panorama/py-030-primary.webp", x: 162, y: 148, scale: 0.87, rot: -4 },
+  { image: "/opening/panorama/py-089-part-1.webp", x: 305, y: 48, scale: 0.64, rot: -9 },
+  { image: "/opening/panorama/py-038-primary.webp", x: 420, y: -80, scale: 0.42, rot: -14 },
 ];
 
 export default function OpeningIntroDoorBackup({ startBgm }) {
@@ -115,9 +115,9 @@ export default function OpeningIntroDoorBackup({ startBgm }) {
         <div className="door-corridor-bg" />
         {CORRIDOR.map((item, index) => (
           <img
-            key={item.slug}
+            key={item.image}
             ref={element => { corridorArtsRef.current[index] = element; }}
-            src={`/images/${item.slug}/primary.webp`}
+            src={item.image}
             alt=""
             className="corridor-art"
           />
@@ -127,13 +127,13 @@ export default function OpeningIntroDoorBackup({ startBgm }) {
       <div ref={doorGlowRef} className="door-glow" aria-hidden="true" />
       <div className="door-frame" aria-hidden="true">
         <div ref={leftDoorRef} className="door-panel is-left">
-          <img className="door-panel-art" src="/images/py-099/part-1.webp" alt="" />
+          <img className="door-panel-art" src="/opening/panorama/py-099-part-1.webp" alt="" />
           <div className="door-studs" />
           <div ref={leftRingRef} className="door-ring" />
           <span ref={sealRef} className="door-seal">平</span>
         </div>
         <div ref={rightDoorRef} className="door-panel is-right">
-          <img className="door-panel-art" src="/images/py-099/part-2.webp" alt="" />
+          <img className="door-panel-art" src="/opening/panorama/py-099-part-2.webp" alt="" />
           <div className="door-studs" />
           <div ref={rightRingRef} className="door-ring" />
         </div>

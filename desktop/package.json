@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "assets": "python3 ../scripts/build_web_assets.py",
+    "assets": "python3 ../scripts/build_maintenance_assets.py",
     "audio": "python3 ../scripts/generate_gallery_audio.py",
     "dev": "vite",
     "build": "vite build",

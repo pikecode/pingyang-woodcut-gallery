@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { Info, Volume2, VolumeX, X } from "lucide-react";
+import { Volume2, VolumeX, X } from "lucide-react";
 import "./category-select.css";
 
 const CREDITS_TITLE = "《平阳木版年画·博观集》";
@@ -52,10 +52,10 @@ const CREDITS_SECTIONS = [
 ];
 
 const DEFAULT_CATEGORIES = [
-  { name: "戏曲", desc: "粉墨登场 · 舞台百态",   count: 38, slug: "py-014", num: "01" },
-  { name: "神祇", desc: "神灵守护 · 门神百态",   count: 13, slug: "py-087", num: "02" },
-  { name: "吉祥", desc: "年节吉庆 · 祈福纹样",   count:  3, slug: "py-025", num: "03" },
-  { name: "故事", desc: "人间烟火 · 民俗叙事",   count:  1, slug: "py-030", num: "04" },
+  { name: "门神", desc: "守护门户 · 镇宅纳祥", count: 0, imagePath: "/opening/panorama/py-099-part-1.webp", num: "01" },
+  { name: "神祇", desc: "神灵护佑 · 民俗信仰", count: 0, imagePath: "/opening/panorama/py-089-part-1.webp", num: "02" },
+  { name: "装饰", desc: "纹样装点 · 吉庆成章", count: 0, imagePath: "/opening/panorama/py-095-part-1.webp", num: "03" },
+  { name: "纸马", desc: "纸上神灵 · 岁时供奉", count: 0, imagePath: "/opening/panorama/py-014-primary.webp", num: "04" },
 ];
 
 export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORIES, toggleBgm, bgmMuted, bgmStarted, inactive = false }) {
@@ -153,7 +153,7 @@ export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORI
             aria-label={`${cat.name}，共${cat.count}件`}
           >
             {/* 藏品背景图（始终可见，hover更亮）*/}
-            <img className="cat-bg" src={cat.imagePath || `/images/${cat.slug}/primary.webp`} alt="" aria-hidden="true" />
+            {cat.imagePath && <img className="cat-bg" src={cat.imagePath} alt="" aria-hidden="true" />}
             <div className="cat-overlay" />
 
             {/* 大号序号水印 */}
