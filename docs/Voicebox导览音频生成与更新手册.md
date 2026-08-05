@@ -23,15 +23,15 @@
 
 | 项目 | 当前约定 |
 |---|---|
-| 音频标准数据源 | `data/exports/artworks.json` |
+| 音频标准数据源 | `desktop/public/data/official-artworks.json` |
 | 使用字段 | `slug`、`title`、`description` |
 | 生成脚本 | `scripts/generate_gallery_audio.py` |
 | 输出目录 | `desktop/public/audio/` |
-| 文件命名 | `{slug}.m4a`，例如 `py-001.m4a` |
+| 文件命名 | `{slug}.m4a`，例如 `official-main102-001.m4a` |
 | 本地校验清单 | `desktop/public/audio/manifest.json` |
 | 前端播放地址 | `/audio/{slug}.m4a` |
 
-`desktop/public/data/artworks.json` 是通过资产脚本生成的运行副本，不是音频脚本的数据源。不要只修改该文件，否则下次生成资产时会被覆盖，音频脚本也不会读取到变化。
+`desktop/public/data/official-artworks.json` 是当前 Desktop 正式展示数据，也是音频脚本默认读取的数据源。更新文档后应先重新导入正式数据并重建展示资源，再运行音频脚本。
 
 ### 2.2 Voicebox 配置
 
@@ -59,7 +59,7 @@ Profile ID 来自当前 Voicebox 本地数据。如果 Voicebox 被重装或 Pro
 - WAV 是临时文件，命名为 `.{slug}.wav`，成功或失败后都会清理。
 - M4A 先写入临时文件，再原子替换正式文件，失败任务不会破坏旧音频。
 
-2026-07-25 的生产结果：55 条音频，总时长 1,421.2 秒（23 分 41.2 秒），总字节数 11,940,378，约 11.4 MB。
+2026-07-25 的旧生产结果：55 条测试音频，总时长 1,421.2 秒（23 分 41.2 秒），总字节数 11,940,378，约 11.4 MB。正式 221 条数据改用 `official-*` slug 后，需要重新生成对应音频。
 
 ## 3. 旁白生成规则
 
@@ -96,7 +96,7 @@ Profile ID 来自当前 Voicebox 本地数据。如果 Voicebox 被重装或 Pro
 1. 全角括号中只有中文数字时，转换为“第 N 幅”。
 2. 其他全角括号内容转换为逗号停顿。
 3. 普通标题保持原样。
-4. 不修改 `data/exports/artworks.json` 中的正式标题。
+4. 不修改 `desktop/public/data/official-artworks.json` 中的正式标题。
 
 生僻字、专名或多音字必须人工抽听。如果 Voicebox 发音错误，应在脚本中增加针对该作品的朗读覆盖，不应为了纠正发音而篡改正式标题。
 
@@ -126,50 +126,49 @@ Profile ID 来自当前 Voicebox 本地数据。如果 Voicebox 被重装或 Pro
 
 ### 4.1 仅修改已有作品标题或简介
 
-当前音频标准源是 `data/exports/artworks.json`。修改已有作品时：
+当前音频标准源是 `desktop/public/data/official-artworks.json`。修改已有作品时：
 
 1. 根据稳定 `slug` 找到作品。
 2. 更新 `title` 或 `description`。
 3. 不修改 `slug`，否则前端会把它视为新作品，旧音频也会失去映射。
 4. 同步数据库或上游编辑源，避免未来重新导入 Word 时覆盖人工修订。
-5. 运行 Desktop 资产生成，使界面文案与标准数据一致。
+5. 运行正式数据导入和 Desktop 资源构建，使界面文案与标准数据一致。
 
 ```sh
-cd desktop
-npm run assets
+python3 scripts/import_official_gallery_docs.py --extract-images
+python3 scripts/build_maintenance_assets.py
 ```
 
-如果本轮只更新结构化文案，不要盲目执行 `scripts/import_gallery.py`。该脚本会从完整 Word 文档重新生成数据库、原始 JSON、标准导出和图片；只有新的完整 Word 文档是本轮权威来源时才应执行。
+如果本轮只更新结构化文案，不要盲目执行旧的 `scripts/import_gallery.py`。正式 221 条数据应使用 `scripts/import_official_gallery_docs.py`。
 
 ### 4.2 从新的完整 Word 文档重新导入
 
-仅当新文档保持当前 Word 97 结构、包含完整藏品记录和图片，并被确认是新的权威来源时执行：
+仅当新文档保持当前正式文档结构、包含完整藏品记录和图片，并被确认是新的权威来源时执行：
 
 ```sh
 python3 -m pip install -r requirements.txt
-python3 scripts/import_gallery.py --source /absolute/path/to/new-catalog.doc
-cd desktop
-npm run assets
+python3 scripts/import_official_gallery_docs.py --extract-images
+python3 scripts/build_maintenance_assets.py
 ```
 
 执行前必须：
 
-- 保存当前 `data/exports/artworks.json`、`data/gallery.sqlite` 和 `assets/originals/`。
+- 保存当前 `data/staging/official-artworks.json`、`desktop/public/data/official-artworks.json` 和 `assets/official-originals/`。
 - 记录旧文件 Git 状态。
 - 导入后检查作品数、slug、标题、简介、图片数和数据问题。
-- 使用 `git diff -- data/exports/artworks.json` 人工审核变化。
+- 使用 `git diff -- data/staging/official-artworks.json desktop/public/data/official-artworks.json` 人工审核变化。
 
-不要用只包含增量内容或普通 `.docx` 排版的文档直接运行当前导入脚本；当前解析器针对既有 Word 97 OLE 文档结构。
+不要用只包含增量内容或格式不一致的文档直接运行当前导入脚本；当前解析器针对已经统一的正式文档结构。
 
 ### 4.3 新增作品
 
-新增作品进入 `data/exports/artworks.json` 后，至少要保证：
+新增作品进入 `desktop/public/data/official-artworks.json` 后，至少要保证：
 
 - `slug` 唯一且稳定。
 - `title` 非空。
 - `description` 非空。
 - `images`、题材、年代等字段满足 Desktop 数据结构。
-- 对应图片资产已经生成到 `desktop/public/images/{slug}/`。
+- 对应图片资产已经生成到 `desktop/public/official-images/{slug}/`。
 
 音频脚本只依赖 `slug/title/description`，但 Desktop 页面依赖完整作品结构。不要为了生成音频而加入只有三个字段的不完整作品。
 
@@ -182,7 +181,7 @@ npm run assets
 1. 确认文案已经进入标准数据：
 
 ```sh
-jq -r '.artworks[] | [.slug, .title, .description] | @tsv' data/exports/artworks.json
+jq -r '.artworks[] | [.slug, .title, .description] | @tsv' desktop/public/data/official-artworks.json
 ```
 
 2. 启动 Voicebox，检查健康状态和 Profile：
@@ -220,16 +219,16 @@ command -v afconvert
 
 ```sh
 python3 scripts/generate_gallery_audio.py \
-  --only py-001 \
-  --only py-002 \
-  --only py-091 \
-  --only py-098
+  --only official-main102-001 \
+  --only official-main102-002 \
+  --only official-main102-091 \
+  --only official-main102-098
 ```
 
 只有被哈希判定为变化的样本才会生成。如果需要在文案不变时重新测试音色或发音，可加 `--force`：
 
 ```sh
-python3 scripts/generate_gallery_audio.py --only py-098 --force
+python3 scripts/generate_gallery_audio.py --only official-main102-098 --force
 ```
 
 样本必须人工确认：
@@ -265,7 +264,7 @@ jq '{
   totalBytes: ([.items[].bytes] | add)
 }' desktop/public/audio/manifest.json
 
-find desktop/public/audio -maxdepth 1 -name 'py-*.m4a' | wc -l
+find desktop/public/audio -maxdepth 1 -name 'official-*.m4a' | wc -l
 ```
 
 作品数、manifest 条目数和 M4A 数量必须一致。
@@ -276,7 +275,7 @@ macOS 验证全部 M4A：
 
 ```sh
 failed=0
-for file in desktop/public/audio/py-*.m4a; do
+for file in desktop/public/audio/official-*.m4a; do
   afinfo "$file" >/dev/null 2>&1 || { echo "decode failed: $file"; failed=1; }
 done
 exit "$failed"
@@ -381,7 +380,7 @@ Profile ID 变化会触发全部作品重新生成，这是预期行为。
 
 - 上游标准文案或数据变更。
 - `scripts/generate_gallery_audio.py` 的规则变化。
-- `desktop/public/audio/py-*.m4a` 中实际变化的音频。
+- `desktop/public/audio/official-*.m4a` 中实际变化的音频。
 - README、实施总结和本手册中的基线变化。
 - 与新流程对应的 UI 回归测试修改。
 
@@ -408,11 +407,11 @@ git diff --check
 1. 增加 `title-description-v1` 模板。
 2. 增加编号标题和括号副标题的朗读转换。
 3. 增加完整旁白与生成参数哈希。
-4. 先生成 `py-001`、`py-002`、`py-091`、`py-098` 四个样本。
-5. 首次任务因旧 Voicebox Server 返回 `Generation orphaned by worker`；正常退出并重启 Voicebox 后恢复。
-6. 断点生成其余 51 件，最终完成 55 件。
-7. 55 个 M4A 全部通过 `afinfo` 解码和 SHA-256 校验。
-8. 再次执行时 55 件全部跳过。
+4. 先生成少量 `official-*` 样本，例如 `official-main102-001`、`official-main102-002`、`official-main102-091`、`official-main102-098`。
+5. 首次任务如遇旧 Voicebox Server 返回 `Generation orphaned by worker`，正常退出并重启 Voicebox 后恢复。
+6. 断点生成其余作品，直到正式数据中的每个 slug 都有对应 M4A。
+7. 全部正式 M4A 需要通过 `afinfo` 解码和 SHA-256 校验。
+8. 再次执行时全部未变化作品应跳过。
 9. Desktop 生产构建、UI 回归和浏览器实际播放时间推进验证通过。
 
 后续更新应重复第 4–8 节流程，不应依赖记忆临时操作。

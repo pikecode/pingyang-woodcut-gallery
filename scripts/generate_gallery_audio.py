@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_DATA = ROOT / "data" / "exports" / "artworks.json"
+SOURCE_DATA = ROOT / "desktop" / "public" / "data" / "official-artworks.json"
 OUTPUT_ROOT = ROOT / "desktop" / "public" / "audio"
 MANIFEST_PATH = OUTPUT_ROOT / "manifest.json"
 DEFAULT_BASE_URL = "http://127.0.0.1:17493"
@@ -219,6 +219,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
     parser.add_argument("--profile-id", default=DEFAULT_PROFILE_ID)
+    parser.add_argument("--source-data", type=Path, default=SOURCE_DATA, help="作品数据 JSON，默认读取 Desktop 正式数据")
     parser.add_argument("--only", action="append", help="仅生成指定 slug，可重复传入")
     parser.add_argument("--force", action="store_true", help="覆盖已生成且来源未变化的音频")
     parser.add_argument("--timeout", type=int, default=900, help="单件作品生成超时秒数")
@@ -232,7 +233,7 @@ def main() -> None:
     if health.get("status") != "healthy":
         raise SystemExit(f"Voicebox 服务异常：{health}")
 
-    data = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
+    data = json.loads(args.source_data.read_text(encoding="utf-8"))
     artworks = data["artworks"]
     if args.only:
         selected = set(args.only)
