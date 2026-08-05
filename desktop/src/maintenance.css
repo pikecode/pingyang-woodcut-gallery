@@ -240,6 +240,11 @@
   object-fit: contain;
 }
 
+.maint-image-empty {
+  color: #80694d;
+  font-size: 14px;
+}
+
 .maint-thumbs {
   display: flex;
   gap: 8px;
@@ -247,12 +252,43 @@
   overflow-x: auto;
 }
 
-.maint-thumbs img {
+.maint-thumb {
+  position: relative;
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(84, 56, 26, 0.18);
+  background: #d8ccb8;
+  overflow: hidden;
+}
+
+.maint-thumb.is-active {
+  border-color: rgba(139, 45, 25, 0.78);
+  box-shadow: 0 0 0 2px rgba(139, 45, 25, 0.14);
+}
+
+.maint-thumb img {
+  display: block;
   width: 72px;
   height: 72px;
   object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid rgba(84, 56, 26, 0.18);
+}
+
+.maint-thumb span {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.88);
+  color: #3b2a1a;
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .maint-source-card,

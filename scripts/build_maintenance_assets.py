@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from pathlib import Path
 
 from PIL import Image
@@ -42,6 +43,8 @@ def build_image(source: Path, destination: Path, transform: dict | None = None) 
 
 def main() -> None:
     data = json.loads(SOURCE_DATA.read_text(encoding="utf-8"))
+    if OUTPUT_IMAGE_ROOT.exists():
+        shutil.rmtree(OUTPUT_IMAGE_ROOT)
     for artwork in data["artworks"]:
         for image in artwork["images"]:
             role = image["role"]

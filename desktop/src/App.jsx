@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 /* ── 常量 ── */
-const MAINTENANCE_STORAGE_KEY = "pingyang.maintenance.overrides.v1";
+const MAINTENANCE_STORAGE_KEY = "pingyang.maintenance.overrides.v2";
 const MAINTENANCE_UPDATE_EVENT = "pingyang:gallery-overrides-updated";
 
 function loadMaintenanceOverrides() {
@@ -455,9 +455,8 @@ function ArtworkCard({ artwork, onOpen }) {
 /* ── 主应用 ── */
 export default function App() {
   const artworks = useGalleryData();
-  const navRef = useRef(null);
   const [selected, setSelected] = useState(null);
-  const [theme, setTheme] = useState("全部");
+  const [theme, setTheme] = useState("");
   const [phase, setPhase] = useState(() => window.location.hash === "#maintenance" ? "maintenance" : "category");
   const [introVisible, setIntroVisible] = useState(() => window.location.hash === "#maintenance" ? false : shouldShowOpeningIntro);
   const [query, setQuery] = useState("");
@@ -518,7 +517,7 @@ export default function App() {
   const filtered = useMemo(() => {
     const kw = query.trim().toLowerCase();
     return artworks.filter(a =>
-      (theme === "全部" || a.theme.name === theme) &&
+      (!theme || a.theme.name === theme) &&
       (!kw || [a.title, a.description, ...a.aliases].join(" ").toLowerCase().includes(kw))
     );
   }, [artworks, theme, query]);
@@ -529,11 +528,12 @@ export default function App() {
       const diff = artworks.filter(a => a.theme?.name === right).length - artworks.filter(a => a.theme?.name === left).length;
       return diff || left.localeCompare(right, "zh-Hans-CN");
     });
-    return ["全部", ...names];
+    return names;
   }, [artworks]);
 
   useEffect(() => {
-    if (!themeOrder.includes(theme)) setTheme("全部");
+    if (!themeOrder.length) return;
+    if (!theme || !themeOrder.includes(theme)) setTheme(themeOrder[0]);
   }, [theme, themeOrder]);
 
   const changeSelected = offset => {
@@ -545,19 +545,19 @@ export default function App() {
   };
 
   const counts = useMemo(() =>
-    Object.fromEntries(themeOrder.slice(1).map(t => [t, artworks.filter(a => a.theme.name === t).length])),
+    Object.fromEntries(themeOrder.map(t => [t, artworks.filter(a => a.theme.name === t).length])),
     [artworks, themeOrder]
   );
 
   const categoryCards = useMemo(() => {
     const firstArtwork = artworks[0];
     return themeOrder.map((name, index) => {
-      const categoryItems = name === "全部" ? artworks : artworks.filter(a => a.theme.name === name);
+      const categoryItems = artworks.filter(a => a.theme.name === name);
       const cover = categoryItems.find(a => a.images?.[0]) || firstArtwork;
       return {
         name,
-        desc: name === "全部" ? "总览全库 · 正式数据" : "按正式文档类别浏览",
-        count: name === "全部" ? artworks.length : (counts[name] || 0),
+        desc: "按正式文档类别浏览",
+        count: counts[name] || 0,
         imagePath: cover?.images?.[0]?.path,
         num: String(index + 1).padStart(2, "0"),
       };
@@ -583,16 +583,6 @@ export default function App() {
     setPhase("category");
     setIntroVisible(false);
     if (window.location.hash === "#maintenance") window.history.replaceState(null, "", window.location.pathname);
-  };
-
-  const scrollCategoryNav = (offset) => {
-    navRef.current?.scrollBy({ left: offset, behavior: "smooth" });
-  };
-
-  const onCategoryNavWheel = (event) => {
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-    event.preventDefault();
-    navRef.current?.scrollBy({ left: event.deltaY * 1.15, behavior: "smooth" });
   };
 
   return (
@@ -652,10 +642,7 @@ export default function App() {
 
           {/* 导航：独立居中行，下划线激活态 */}
           <div className="gallery-nav-shell">
-            <button className="gallery-nav-arrow is-left" onClick={() => scrollCategoryNav(-360)} aria-label="向左滚动分类">
-              <ChevronLeft size={16} />
-            </button>
-            <nav ref={navRef} className="gallery-nav" aria-label="按题材筛选" onWheel={onCategoryNavWheel}>
+            <nav className="gallery-nav" aria-label="按题材筛选">
               {themeOrder.map(t => (
                 <button
                   key={t}
@@ -663,13 +650,10 @@ export default function App() {
                   onClick={() => setTheme(t)}
                 >
                   {t}
-                  <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
+                  <span className="nav-count">{counts[t] || 0}</span>
                 </button>
               ))}
             </nav>
-            <button className="gallery-nav-arrow is-right" onClick={() => scrollCategoryNav(360)} aria-label="向右滚动分类">
-              <ChevronRight size={16} />
-            </button>
           </div>
 
           {/* 藏品网格 */}

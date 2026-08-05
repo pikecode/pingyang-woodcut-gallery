@@ -32,7 +32,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE_DIR = Path("/Users/ompeak/Desktop/aaa/20260803修订版木版年画")
+DEFAULT_SOURCE_DIR = Path("/Users/ompeak/Desktop/aaa/木版年画最终版")
 DEFAULT_IMAGE_SOURCE_DIR = None
 DEFAULT_OUTPUT = ROOT / "data" / "staging" / "official-artworks.json"
 DEFAULT_REPORT = ROOT / "data" / "staging" / "official-import-report.json"
@@ -54,11 +54,24 @@ IMAGE_SIGNATURES = (
 )
 
 SOURCE_ORDER = [
-    ("main102", "平阳木版年画（102幅）.doc"),
+    ("main102", "平阳木版年画（102幅）.docx"),
     ("reg20", "平阳木版年画作品登记表20.docx"),
     ("reg42", "平阳木版年画作品登记表42张.docx"),
     ("reg54", "平阳木版年画作品登记表54张.docx"),
     ("regaa54", "平阳木版年画作品登记表aa54.docx"),
+]
+
+SOURCE_FALLBACKS = {
+    "main102": (
+        "平阳木板年画102 幅文字已校对（统一格式）.docx",
+        "平阳木版年画（102幅）.docx",
+        "平阳木版年画（102幅）.doc",
+    ),
+}
+
+MAIN102_STABLE_SLUG_NOS = [
+    *range(1, 40),
+    *range(87, 103),
 ]
 
 
@@ -673,6 +686,11 @@ def parse_docx(
                     "sourceFile": source.path.name,
                     "sourceKind": "docx-registration-table",
                     "sourceRecordIndex": record_index,
+                    "slugNo": (
+                        MAIN102_STABLE_SLUG_NOS[text_index]
+                        if source.code == "main102" and text_index < len(MAIN102_STABLE_SLUG_NOS)
+                        else None
+                    ),
                     "sourceCatalogNo": None,
                     "title": title,
                     "periodRaw": table_data["periodRaw"],
@@ -718,7 +736,7 @@ def normalize_records(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any
         category = record["sourceCategory"] or record["summaryThemeRaw"] or "未分类"
         source_code = record["sourceCode"]
         source_record_index = record["sourceRecordIndex"]
-        source_no_for_slug = record["sourceCatalogNo"] or source_record_index
+        source_no_for_slug = record.get("slugNo") or record["sourceCatalogNo"] or source_record_index
         slug = f"official-{source_code}-{source_no_for_slug:03d}"
         same_title_group = (
             f"same-title-{title_group_index[record['title']]:03d}"
@@ -731,7 +749,7 @@ def normalize_records(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any
             issues.append("missing_title")
         if not record["description"]:
             issues.append("missing_description")
-        if not dimensions:
+        if record["dimensionsRaw"] and not dimensions:
             issues.append("unparsed_dimensions")
         if not record["images"]:
             issues.append("missing_image")
@@ -850,9 +868,10 @@ def normalize_records(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any
 def resolve_sources(source_dir: Path) -> list[SourceFile]:
     sources: list[SourceFile] = []
     for code, filename in SOURCE_ORDER:
-        path = source_dir / filename
-        if not path.exists():
-            raise FileNotFoundError(path)
+        candidates = SOURCE_FALLBACKS.get(code, (filename,))
+        path = next((source_dir / candidate for candidate in candidates if (source_dir / candidate).exists()), None)
+        if path is None:
+            raise FileNotFoundError(source_dir / filename)
         sources.append(SourceFile(code, path))
     return sources
 

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Check, Download, Eye, RotateCcw, Search, X } from "lucide-react";
+import { Check, Download, Eye, RotateCcw, Search, Trash2, X } from "lucide-react";
 import "./maintenance.css";
 
-const STORAGE_KEY = "pingyang.maintenance.overrides.v1";
+const STORAGE_KEY = "pingyang.maintenance.overrides.v2";
 const UPDATE_EVENT = "pingyang:gallery-overrides-updated";
 const ACCESS_CODE = "pingyang-admin";
 
@@ -72,8 +72,9 @@ export default function MaintenanceWorkbench({ onClose }) {
   const [selectedSlug, setSelectedSlug] = useState("");
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("全部");
-  const [issueFilter, setIssueFilter] = useState("全部");
+  const [changeFilter, setChangeFilter] = useState("全部");
   const [saveState, setSaveState] = useState("");
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -97,20 +98,25 @@ export default function MaintenanceWorkbench({ onClose }) {
   const selectedOriginal = rawArtworks.find((item) => item.slug === selected?.slug);
   const selectedOverride = selected ? overrides[selected.slug] || {} : {};
   const dirtyCount = Object.keys(overrides).length;
+  const dataIssueCount = artworks.filter((item) => item.issues?.length).length;
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [selected?.slug]);
 
   const filtered = useMemo(() => {
     const kw = query.trim().toLowerCase();
     return artworks.filter((item) => {
       const matchesCategory = category === "全部" || item.category === category;
-      const matchesIssue =
-        issueFilter === "全部" ||
-        (issueFilter === "图片标题需确认" && item.issues?.includes("image_source_title_differs")) ||
-        (issueFilter === "尺寸缺失" && item.issues?.includes("unparsed_dimensions"));
+      const matchesChange =
+        changeFilter === "全部" ||
+        (changeFilter === "已修改" && Boolean(overrides[item.slug])) ||
+        (changeFilter === "未修改" && !overrides[item.slug]);
       const sourceText = `${item.sourceRef?.label || ""} ${item.imageSourceRef?.label || ""}`;
       const matchesQuery = !kw || [item.title, item.category, item.content, sourceText, item.slug].join(" ").toLowerCase().includes(kw);
-      return matchesCategory && matchesIssue && matchesQuery;
+      return matchesCategory && matchesChange && matchesQuery;
     });
-  }, [artworks, category, issueFilter, query]);
+  }, [artworks, category, changeFilter, overrides, query]);
 
   const updateSelected = (patch) => {
     if (!selected) return;
@@ -136,6 +142,13 @@ export default function MaintenanceWorkbench({ onClose }) {
     });
   };
 
+  const clearDrafts = () => {
+    setOverrides({});
+    localStorage.removeItem(STORAGE_KEY);
+    window.dispatchEvent(new CustomEvent(UPDATE_EVENT, { detail: {} }));
+    setSaveState("已清空本机草稿");
+  };
+
   const exportOverrides = () => {
     downloadJson("official-artwork-overrides.json", {
       schemaVersion: 1,
@@ -156,6 +169,8 @@ export default function MaintenanceWorkbench({ onClose }) {
 
   if (!unlocked) return <MaintenanceGate onUnlock={() => setUnlocked(true)} onClose={onClose} />;
 
+  const currentImage = selected?.images?.[activeImageIndex] || selected?.images?.[0];
+
   return (
     <div className="maint-root">
       <header className="maint-topbar">
@@ -167,6 +182,7 @@ export default function MaintenanceWorkbench({ onClose }) {
           <span className="maint-save-state">{saveState || `本机草稿 ${dirtyCount} 条`}</span>
           <button onClick={exportOverrides}><Download size={15} />导出变更包</button>
           <button onClick={exportMerged}><Download size={15} />导出合并预览</button>
+          <button onClick={clearDrafts}><Trash2 size={15} />清空草稿</button>
           <button onClick={onClose}><X size={16} />返回展览</button>
         </div>
       </header>
@@ -180,16 +196,16 @@ export default function MaintenanceWorkbench({ onClose }) {
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             {categories.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
-          <select value={issueFilter} onChange={(e) => setIssueFilter(e.target.value)}>
+          <select value={changeFilter} onChange={(e) => setChangeFilter(e.target.value)}>
             <option>全部</option>
-            <option>图片标题需确认</option>
-            <option>尺寸缺失</option>
+            <option>已修改</option>
+            <option>未修改</option>
           </select>
         </div>
         <div className="maint-stats">
           <span>正式记录 {artworks.length}</span>
           <span>当前筛选 {filtered.length}</span>
-          <span>图片/尺寸提示 {artworks.filter((item) => item.issues?.length).length}</span>
+          <span>数据状态 {dataIssueCount ? `${dataIssueCount} 条提示` : "已整理"}</span>
         </div>
         <div className="maint-list">
           {filtered.map((item) => (
@@ -203,7 +219,7 @@ export default function MaintenanceWorkbench({ onClose }) {
                 <strong>{item.title}</strong>
                 <em>{item.category} · {item.sourceRef?.label}</em>
               </span>
-              {item.issues?.length > 0 && <AlertTriangle size={15} />}
+              {overrides[item.slug] && <Check size={15} />}
             </button>
           ))}
         </div>
@@ -213,12 +229,24 @@ export default function MaintenanceWorkbench({ onClose }) {
         <main className="maint-main">
           <section className="maint-preview">
             <div className="maint-image-stage">
-              <img src={selected.images?.[0]?.path} alt={selected.title} />
+              {currentImage ? (
+                <img src={currentImage.path} alt={selected.title} />
+              ) : (
+                <div className="maint-image-empty">暂无图片</div>
+              )}
             </div>
             {selected.images?.length > 1 && (
               <div className="maint-thumbs">
                 {selected.images.map((image, index) => (
-                  <img key={`${image.role}-${index}`} src={image.path} alt="" />
+                  <button
+                    key={`${image.role}-${index}`}
+                    className={`maint-thumb${index === activeImageIndex ? " is-active" : ""}`}
+                    onClick={() => setActiveImageIndex(index)}
+                    type="button"
+                  >
+                    <img src={image.path} alt="" />
+                    <span>{index + 1}</span>
+                  </button>
                 ))}
               </div>
             )}
@@ -227,9 +255,15 @@ export default function MaintenanceWorkbench({ onClose }) {
               <p><strong>文字：</strong>{selected.sourceRef?.label}</p>
               <p><strong>图片：</strong>{selected.imageSourceRef?.label}</p>
               {selected.imageSourceRef?.title && selected.imageSourceRef.title !== selected.title && (
-                <p className="maint-warning"><AlertTriangle size={14} />高清图片来源标题：{selected.imageSourceRef.title}</p>
+                <p className="maint-warning">图片来源标题：{selected.imageSourceRef.title}</p>
               )}
-              <p><strong>原图：</strong>{selected.images?.[0]?.originalPath}</p>
+              <p><strong>图片数量：</strong>{selected.images?.length || 0} 张</p>
+              {currentImage && (
+                <>
+                  <p><strong>当前图片：</strong>{activeImageIndex + 1} / {selected.images.length} · {currentImage.role}</p>
+                  <p><strong>原图：</strong>{currentImage.originalPath}</p>
+                </>
+              )}
             </div>
           </section>
 
@@ -280,15 +314,17 @@ export default function MaintenanceWorkbench({ onClose }) {
               <h3>原始值对照</h3>
               <p><strong>标题：</strong>{selectedOriginal?.title}</p>
               <p><strong>类别：</strong>{selectedOriginal?.category}</p>
+              <p><strong>年代：</strong>{selectedOriginal?.period?.label || "未标注"}</p>
+              <p><strong>尺寸：</strong>{selectedOriginal?.dimensions?.sourceText || "未标注"}</p>
               <p><strong>内容：</strong>{selectedOriginal?.content}</p>
             </div>
 
             <div className="maint-issues">
-              <h3>待核对项</h3>
+              <h3>数据状态</h3>
               {selected.issues?.length ? (
                 selected.issues.map((issue) => <span key={issue}>{issue}</span>)
               ) : (
-                <p><Check size={14} />暂无待核对项</p>
+                <p><Check size={14} />最终版数据已整理</p>
               )}
             </div>
           </section>

@@ -91,12 +91,6 @@ export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORI
     return () => ctx.revert();
   };
 
-  const onPanelsWheel = (event) => {
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-    event.preventDefault();
-    event.currentTarget.scrollBy({ left: event.deltaY * 1.15, behavior: "smooth" });
-  };
-
   return (
     <div
       ref={containerRef}
@@ -148,7 +142,7 @@ export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORI
         </div>
       )}
 
-      <div className="cat-panels" onWheel={onPanelsWheel}>
+      <div className="cat-panels">
         {categories.map((cat) => (
           <button
             key={cat.name}
@@ -167,7 +161,12 @@ export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORI
 
             {/* 主内容 */}
             <div className="cat-body">
-              <strong className="cat-name">{cat.name}</strong>
+              <strong className="cat-name" aria-hidden="true">
+                {Array.from(cat.name).map((char, index) => (
+                  <span key={`${cat.name}-${index}`}>{char}</span>
+                ))}
+              </strong>
+              <span className="sr-only">{cat.name}</span>
               <div className="cat-line" aria-hidden="true" />
               <span className="cat-count">{cat.count} 件</span>
             </div>
