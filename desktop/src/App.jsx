@@ -517,7 +517,7 @@ export default function App() {
   const filtered = useMemo(() => {
     const kw = query.trim().toLowerCase();
     return artworks.filter(a =>
-      (!theme || a.theme.name === theme) &&
+      (!theme || theme === "全部" || a.theme.name === theme) &&
       (!kw || [a.title, a.description, ...a.aliases].join(" ").toLowerCase().includes(kw))
     );
   }, [artworks, theme, query]);
@@ -533,7 +533,7 @@ export default function App() {
 
   useEffect(() => {
     if (!themeOrder.length) return;
-    if (!theme || !themeOrder.includes(theme)) setTheme(themeOrder[0]);
+    if (!theme || (theme !== "全部" && !themeOrder.includes(theme))) setTheme(themeOrder[0]);
   }, [theme, themeOrder]);
 
   const changeSelected = offset => {
@@ -548,6 +548,8 @@ export default function App() {
     Object.fromEntries(themeOrder.map(t => [t, artworks.filter(a => a.theme.name === t).length])),
     [artworks, themeOrder]
   );
+
+  const galleryThemeOrder = useMemo(() => ["全部", ...themeOrder], [themeOrder]);
 
   const categoryCards = useMemo(() => {
     const firstArtwork = artworks[0];
@@ -643,14 +645,14 @@ export default function App() {
           {/* 导航：独立居中行，下划线激活态 */}
           <div className="gallery-nav-shell">
             <nav className="gallery-nav" aria-label="按题材筛选">
-              {themeOrder.map(t => (
+              {galleryThemeOrder.map(t => (
                 <button
                   key={t}
                   className={`nav-tab${theme === t ? " is-active" : ""}`}
                   onClick={() => setTheme(t)}
                 >
                   {t}
-                  <span className="nav-count">{counts[t] || 0}</span>
+                  <span className="nav-count">{t === "全部" ? artworks.length : (counts[t] || 0)}</span>
                 </button>
               ))}
             </nav>
