@@ -194,6 +194,11 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
 
   if (!artwork) return null;
   const kind = artwork.form?.name || artwork.material?.name || "木版年画";
+  const detailTags = Array.from(new Set([
+    artwork.theme?.name,
+    kind,
+    artwork.period?.label,
+  ].filter(tag => tag && tag !== "未标注")));
   const idx = artworks.findIndex(a => a.slug === artwork.slug);
 
   const changeZoom = (offset) => {
@@ -370,9 +375,9 @@ function DetailOverlay({ artwork, artworks, onClose, onChange, toggleBgm, bgmMut
         <div className="detail-info">
           <div className="detail-info-scroll">
             <div className="detail-kicker">
-              <span className="detail-kicker-tag">{artwork.theme.name}</span>
-              <span className="detail-kicker-tag">{kind}</span>
-              <span className="detail-kicker-tag">{artwork.period.label}</span>
+              {detailTags.map(tag => (
+                <span key={tag} className="detail-kicker-tag">{tag}</span>
+              ))}
             </div>
             <h2 id="detail-title" className="detail-title">{artwork.title}</h2>
             {artwork.aliases.length > 0 && <p className="detail-alias">又名：{artwork.aliases.join("、")}</p>}
