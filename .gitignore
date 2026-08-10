@@ -11,6 +11,9 @@ __pycache__/
 *.py[cod]
 .venv/
 
+# macOS system files
+.DS_Store
+
 # H5 project build artifacts
 h5/node_modules/
 h5/dist/
