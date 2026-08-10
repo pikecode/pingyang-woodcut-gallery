@@ -9,26 +9,34 @@ const CREDITS_SECTIONS = [
   {
     heading: "编委会",
     rows: [
+      { label: "名誉主编", value: "李荣钢" },
       { label: "主编", value: "赵起超" },
-      { label: "常务副主编", value: "" },
-      { label: "副主编", value: "许向阳　齐国生　吴刚" },
+      { label: "常务副主编", value: "边疆、李阳、谢晨曲" },
+      { label: "副主编", value: "成一榕、姜黎明、王小强、吴刚" },
+      { label: "特约专家", value: "齐国生、许向阳" },
     ],
   },
   {
     heading: "顾问团",
     rows: [
-      { label: "非遗顾问", value: "赵国琦" },
+      { label: "总顾问", value: "边保华" },
+      { label: "非遗顾问", value: "赵国琦、张馨韦" },
       { label: "艺术顾问", value: "孔令志" },
       { label: "媒体顾问", value: "赵一罡" },
       { label: "数字顾问", value: "刘昕羽" },
-      { label: "技术顾问", value: "武斌" },
     ],
   },
   {
     heading: "编委",
     note: "（按姓氏拼音排列）",
     rows: [
-      { value: "胡董森　胡伟东　刘畅　王建明　徐海龙　宗跃飞" },
+      { value: "陈虹、崔欣怡、傅海青、韩姣姣、胡董森、胡淑芳、胡伟东、黄艳霞、贾南、李栋、林琳、刘畅、刘仲、吕秋月、薿薿、田园、王建明、王凤龙、辛霞、徐海龙、严乐耘、杨波、尹彩云、袁琴、张世佳、张天琦、张恬祎、宗跃飞" },
+    ],
+  },
+  {
+    heading: "支持单位",
+    rows: [
+      { value: "北京市工艺美术技师学院、大同市网络视频传播协会、山西中华文化促进会、山西省非物质文化遗产保护促进会、中国商业文化研究会" },
     ],
   },
   {
@@ -36,11 +44,12 @@ const CREDITS_SECTIONS = [
     rows: [
       { label: "出版发行", value: "山西出版传媒集团\n山西春秋电子音像出版社" },
       { label: "出版人", value: "董晓宁" },
-      { label: "策划", value: "赵起超　董晓宁　武斌　周骁羽" },
+      { label: "策划", value: "董晓宁、武斌、周骁羽" },
       { label: "出品", value: "萬世吉光" },
-      { label: "责任编辑", value: "周骁羽　薄佳丽" },
+      { label: "责任编辑", value: "周骁羽、薄佳丽" },
       { label: "复审", value: "武斌" },
       { label: "终审", value: "董晓宁" },
+      { label: "出版物号", value: "ISBN 978-7-89504-811-9" },
     ],
   },
   {
@@ -186,10 +195,11 @@ export default function CategorySelect({ onSelect, categories = DEFAULT_CATEGORI
       <footer className="cat-footer-info">
         <span>主编：赵起超</span>
         <span className="cat-footer-dot">·</span>
-        <span>顾问：赵国琦</span>
+        <span>非遗顾问：赵国琦、张馨韦</span>
         <span className="cat-footer-dot">·</span>
         <span>出版发行：山西出版传媒集团 &nbsp;山西春秋电子音像出版社</span>
-        <span className="cat-footer-copy">© 2026 版权所有，未经授权不得转载</span>
+        <span className="cat-footer-dot">·</span>
+        <span>出版物号：ISBN 978-7-89504-811-9</span>
       </footer>
     </div>
   );
