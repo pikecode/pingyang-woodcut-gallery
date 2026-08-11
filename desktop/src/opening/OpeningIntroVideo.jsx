@@ -1,14 +1,13 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { markOpeningIntroSeen } from "./openingIntroSession";
-import OpeningIntroLivingPainting from "./OpeningIntroLivingPainting";
 import OpeningIntroPanorama from "./OpeningIntroPanorama";
 import "./opening-intro-video.css";
 
 const VIDEO_SOURCE = "/opening/opening-guardian-ai.mp4";
 const POSTER_SOURCE = "/opening/opening-guardian-ai-poster.jpg";
 const END_FRAME_SOURCE = "/opening/opening-guardian-ai-end.jpg";
-const VIDEO_READY_TIMEOUT = 3000;
+const VIDEO_READY_TIMEOUT = 12000;
 const VIDEO_PLAYBACK_RATE = 1.0;
 
 function waitForVideo(video) {
@@ -76,7 +75,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
       const ready = await waitForVideo(video);
       if (cancelled || finishedRef.current) return;
       if (!ready) {
-        setPhase("fallback");
+        setPhase("panorama");
         return;
       }
 
@@ -98,7 +97,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
       try {
         await video.play();
       } catch {
-        if (!cancelled && !finishedRef.current) setPhase("fallback");
+        if (!cancelled && !finishedRef.current) setPhase("panorama");
         return;
       }
 
@@ -115,10 +114,6 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
       context.revert();
     };
   }, [phase]);
-
-  if (phase === "fallback") {
-    return <OpeningIntroLivingPainting startBgm={startBgm} onComplete={onComplete} />;
-  }
 
   if (phase === "panorama") {
     return (
@@ -159,7 +154,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
         aria-label="平阳木版年画开屏动画"
         onKeyDown={keepDialogFocus}
       >
-        <button ref={skipRef} className="living-skip opening-video-skip" type="button" onClick={skip} aria-label="跳过开屏动画">
+        <button ref={skipRef} className="opening-video-skip" type="button" onClick={skip} aria-label="跳过开屏动画">
           跳过
         </button>
 
@@ -180,7 +175,7 @@ export default function OpeningIntroVideo({ startBgm, onComplete }) {
               if (!finishedRef.current) setPhase("panorama");
             }}
             onError={() => {
-              if (!finishedRef.current) setPhase("fallback");
+              if (!finishedRef.current) setPhase("panorama");
             }}
           />
         </div>

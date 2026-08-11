@@ -18,18 +18,18 @@
   padding: 0 18px;
   border: 1px solid rgba(32, 32, 29, 0.35);
   border-radius: 2px;
-  background: rgba(239, 237, 225, 0.75);
-  color: rgba(32, 32, 29, 0.65);
+  background: rgba(239, 237, 225, 0.12);
+  color: rgba(32, 32, 29, 0.88);
   font-family: "Songti SC", "STSong", serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
   transition: background 180ms, color 180ms, border-color 180ms;
 }
 
 .panorama-skip:hover {
-  background: rgba(239, 237, 225, 0.95);
+  background: rgba(239, 237, 225, 0.72);
   color: rgba(32, 32, 29, 0.9);
   border-color: rgba(32, 32, 29, 0.55);
 }
@@ -37,7 +37,8 @@
 .panorama-skip:focus-visible {
   outline: 1px solid rgba(32, 32, 29, 0.78);
   outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(239, 237, 225, 0.72);
+  background: rgba(239, 237, 225, 0.72);
+  box-shadow: 0 0 0 3px rgba(239, 237, 225, 0.48);
 }
 
 .panorama-paper,

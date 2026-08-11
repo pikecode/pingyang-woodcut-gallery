@@ -510,16 +510,16 @@
             "flipV": false
           },
           "path": "assets/official-originals/replacements/official-main102-005/primary.jpeg",
-          "bytes": 4480421,
-          "sha256": "e35823d01507dbcad3ca9968c6e45de0307b848ecdcace14ba56893c76152f1f",
+          "bytes": 403796,
+          "sha256": "64748febe51e143d33698962041b8fa49fb1c0c8b1e11f488269b75d6c895490",
           "format": "JPEG",
           "mimeType": "image/jpeg",
-          "width": 4547,
-          "height": 2185,
-          "mode": "CMYK",
+          "width": 2645,
+          "height": 1280,
+          "mode": "RGB",
           "frameCount": 1,
-          "replacementSourcePath": "木版年画换图1/拂尘纸/西厢记.jpg",
-          "replacementReason": "safe-exact",
+          "replacementSourcePath": "/Users/ompeak/Downloads/111.jpeg",
+          "replacementReason": "manual-user-replacement",
           "replacementCopyMode": "copied"
         }
       ],
@@ -3791,7 +3791,7 @@
       "slug": "official-main102-087",
       "title": "赵云救阿斗",
       "category": "门神",
-      "content": "描绘的是在曹操和刘备的战争中，刘备的妻小处于水深火热之中，赵云以一己之力，七进七出救出刘备之子阿斗的故事。画中的赵云骑白马，披盔甲，怀抱阿斗，手执长枪。其造型夸张，赵云与战马的比例几乎是一比一，甚至大过战马。",
+      "content": "描绘的是在曹操和刘备的战争中，刘备的妻小处于水深火热之中，赵云以一己之力，七进七出救出刘备之子阿斗的故事。画中的赵云骑红马，披盔甲，怀抱阿斗，手执长枪。其造型夸张，赵云与战马的比例几乎是一比一，甚至大过战马。",
       "sameTitleGroup": "same-title-018",
       "sameTitleCount": 2,
       "aliases": [],
@@ -3819,7 +3819,7 @@
         "sourceText": ""
       },
       "collection": "",
-      "description": "描绘的是在曹操和刘备的战争中，刘备的妻小处于水深火热之中，赵云以一己之力，七进七出救出刘备之子阿斗的故事。画中的赵云骑白马，披盔甲，怀抱阿斗，手执长枪。其造型夸张，赵云与战马的比例几乎是一比一，甚至大过战马。",
+      "description": "描绘的是在曹操和刘备的战争中，刘备的妻小处于水深火热之中，赵云以一己之力，七进七出救出刘备之子阿斗的故事。画中的赵云骑红马，披盔甲，怀抱阿斗，手执长枪。其造型夸张，赵云与战马的比例几乎是一比一，甚至大过战马。",
       "notes": "",
       "editorialStatus": "staged",
       "images": [

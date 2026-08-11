@@ -1,6 +1,6 @@
 [package]
 name = "pingyang-desktop"
-version = "0.1.0"
+version = "0.1.1"
 description = "平阳木版年画数字馆藏桌面端"
 edition = "2021"
 

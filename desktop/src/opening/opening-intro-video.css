@@ -69,15 +69,37 @@
 }
 
 .opening-video-skip {
-  background: rgba(22, 19, 14, 0.42);
-  border-color: rgba(242, 224, 184, 0.48);
-  color: rgba(248, 238, 214, 0.72);
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  z-index: 20;
+  height: 30px;
+  padding: 0 18px;
+  border: 1px solid rgba(32, 32, 29, 0.35);
+  border-radius: 2px;
+  background: rgba(239, 237, 225, 0.12);
+  color: rgba(32, 32, 29, 0.88);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 180ms, color 180ms, border-color 180ms;
 }
 
 .opening-video-skip:hover {
-  background: rgba(28, 23, 16, 0.66);
-  border-color: rgba(242, 224, 184, 0.72);
-  color: rgba(248, 238, 214, 0.92);
+  background: rgba(239, 237, 225, 0.72);
+  color: rgba(32, 32, 29, 0.9);
+  border-color: rgba(32, 32, 29, 0.55);
+}
+
+.opening-video-skip:focus-visible {
+  outline: 1px solid rgba(32, 32, 29, 0.78);
+  outline-offset: 2px;
+  background: rgba(239, 237, 225, 0.72);
+  box-shadow: 0 0 0 3px rgba(239, 237, 225, 0.48);
 }
 
 @media (max-width: 1100px), (max-height: 760px) {
